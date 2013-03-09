@@ -2,17 +2,6 @@
 
 class Post extends CActiveRecord
 {
-	/**
-	 * The followings are the available columns in table 'tbl_post':
-	 * @var integer $id
-	 * @var string $title
-	 * @var string $content
-	 * @var string $tags
-	 * @var integer $status
-	 * @var integer $create_time
-	 * @var integer $update_time
-	 * @var integer $author_id
-	 */
 	const STATUS_DRAFT=1;
 	const STATUS_PUBLISHED=2;
 	const STATUS_ARCHIVED=3;
@@ -44,11 +33,12 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content, status', 'required'),
+			array('title, content, category_id, status', 'required'),
 			array('status', 'in', 'range'=>array(1,2,3)),
 			array('title', 'length', 'max'=>128),
 			array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/', 'message'=>'Tags can only contain word characters.'),
 			array('tags', 'normalizeTags'),
+			array('category_id', 'numerical'),
 
 			array('title, status', 'safe', 'on'=>'search'),
 		);
@@ -63,6 +53,7 @@ class Post extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'author' => array(self::BELONGS_TO, 'User', 'author_id'),
+			'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 			'comments' => array(self::HAS_MANY, 'Comment', 'post_id', 'condition'=>'comments.status='.Comment::STATUS_APPROVED, 'order'=>'comments.create_time DESC'),
 			'commentCount' => array(self::STAT, 'Comment', 'post_id', 'condition'=>'status='.Comment::STATUS_APPROVED),
 		);
@@ -77,6 +68,8 @@ class Post extends CActiveRecord
 			'id' => 'Id',
 			'title' => 'Title',
 			'content' => 'Content',
+			'category_id' => 'Category',
+			'image_filename' => 'Image',
 			'tags' => 'Tags',
 			'status' => 'Status',
 			'create_time' => 'Create Time',
@@ -189,13 +182,16 @@ class Post extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('title',$this->title,true);
-
+		$criteria->compare('category_id',$this->category_id);
+		$criteria->compare('content',$this->content,true);
+		$criteria->compare('image_filename',$this->image_filename,true);
+		$criteria->compare('tags',$this->tags,true);
 		$criteria->compare('status',$this->status);
 
 		return new CActiveDataProvider('Post', array(
 			'criteria'=>$criteria,
 			'sort'=>array(
-				'defaultOrder'=>'status, update_time DESC',
+				'defaultOrder'=>'update_time DESC',
 			),
 		));
 	}

@@ -23,6 +23,33 @@ class SiteController extends Controller
 		);
 	}
 
+	
+	/**
+	 * Homepage
+	 */
+	public function actionIndex()
+	{
+		$criteria=new CDbCriteria(array(
+			'condition'=>'status='.Post::STATUS_PUBLISHED,
+			'order'=>'update_time DESC',
+			'with'=>'commentCount',
+		));
+		if(isset($_GET['tag']))
+			$criteria->addSearchCondition('tags',$_GET['tag']);
+
+		$dataProvider=new CActiveDataProvider('Post', array(
+			'pagination'=>array(
+				'pageSize'=>Yii::app()->params['postsPerPage'],
+			),
+			'criteria'=>$criteria,
+		));
+
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+	 
+	 
 	/**
 	 * This is the action to handle external exceptions.
 	 */
@@ -37,6 +64,7 @@ class SiteController extends Controller
 	    }
 	}
 
+	
 	/**
 	 * Displays the contact page
 	 */
@@ -57,6 +85,7 @@ class SiteController extends Controller
 		$this->render('contact',array('model'=>$model));
 	}
 
+	
 	/**
 	 * Displays the login page
 	 */
@@ -86,6 +115,7 @@ class SiteController extends Controller
 		$this->render('login',array('model'=>$model));
 	}
 
+	
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */

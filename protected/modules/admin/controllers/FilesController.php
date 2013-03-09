@@ -1,0 +1,1 @@
+<?phpclass FilesController extends Controller{	public $layout = 'column2';		function actionIndex()	{		$this->render('index');	}}

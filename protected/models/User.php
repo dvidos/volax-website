@@ -120,4 +120,36 @@ class User extends CActiveRecord
 		$salt.=strtr(substr(base64_encode($rand),0,22),array('+'=>'.'));
 		return $salt;
 	}
-}
+	
+	public function search()
+	{
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('username',$this->email,true);
+		$criteria->compare('email',$this->email,true);
+		$criteria->compare('is_admin',$this->is_admin);
+		$criteria->compare('is_author',$this->is_author);
+
+		return new CActiveDataProvider('user', array(
+			'criteria'=>$criteria,
+			'sort'=>array(
+				'defaultOrder'=>'username ASC',
+			),
+		));
+	}
+	
+	private static $_items = null;
+	public static function dropDownListItems()
+	{
+		if (self::$_items == null)
+		{
+			$users = User::model()->findAll(array('order'=>'username'));
+			foreach ($users as $user)
+				self::$_items[$user->id] = $user->username;
+		}
+		return self::$_items;
+	}
+}	
+
+

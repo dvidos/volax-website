@@ -16,8 +16,8 @@ $this->breadcrumbs=array(
 		),
 		array(
 			'name'=>'status',
-			'value'=>'Status::item("PostStatus",$data->status)',
-			'filter'=>Status::items('PostStatus'),
+			'value'=>'Lookup::item("PostStatus",$data->status)',
+			'filter'=>Lookup::items('PostStatus'),
 		),
 		array(
 			'name'=>'create_time',
