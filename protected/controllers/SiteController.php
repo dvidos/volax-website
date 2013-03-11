@@ -44,6 +44,7 @@ class SiteController extends Controller
 			'criteria'=>$criteria,
 		));
 
+		$this->layout = 'homepage';
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

@@ -23,7 +23,11 @@ Yii::app()->clientScript->registerScript('search',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'title',
+		array(
+			'name'=>'title',
+			'type'=>'raw',
+			'value'=>'CHtml::link(CHtml::encode($data->title), array("update", "id"=>$data->id));',
+		),
 		'view_order',
 		array(
 			'name'=>'parent_id',
@@ -37,7 +41,7 @@ Yii::app()->clientScript->registerScript('search',
 		),
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{update} {delete}',
+			'template'=>'{delete}',
 		),
 	),
 )); ?>

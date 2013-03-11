@@ -30,10 +30,11 @@ class Category extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content, status', 'required'),
+			array('title, status', 'required'),
 			array('status', 'in', 'range'=>array(1,2)),
 			array('title, image_filename', 'length', 'max'=>128),
 			array('parent_id, view_order', 'numerical'),
+			array('content', 'safe'),
 
 			array('id, parent_id, title, content, image_filename, status, view_order', 'safe', 'on'=>'search'),
 		);
@@ -48,6 +49,7 @@ class Category extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'parent' => array(self::BELONGS_TO, 'Category', 'parent_id'),
+			'subcategories'=>array(self::HAS_MANY, 'Category', 'parent_id', 'order'=>'view_order,title', 'condition'=>'status='.Category::STATUS_PUBLISHED),
 			'posts' => array(self::HAS_MANY, 'Post', 'category_id'),
 			//'postsCount' => array(self::STAT, 'Post', 'category_id', 'condition'=>'status='.Post::STATUS_APPROVED),
 			'postsCount' => array(self::STAT, 'Post', 'category_id', 'condition'=>'status='.'2'),
@@ -161,7 +163,7 @@ class Category extends CActiveRecord
 		));
 		foreach ($models as $model)
 		{
-			self::$_items[$model->id] = str_repeat('   ' , $depth) . $model->title;
+			self::$_items[$model->id] = str_repeat(' - ' , $depth) . $model->title;
 			self::loadDropDownListItemsOf($model->id, $depth + 1);
 		}
 	}

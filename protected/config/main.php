@@ -29,10 +29,16 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=volax4',
+			//*
+				'connectionString' => 'mysql:host=localhost;dbname=volax4',
+				'username' => 'root',
+				'password' => '',
+			/*/
+				'connectionString' => 'mysql:host=mysql5.internet.gr:3305;dbname=forthnet_volax_gr',
+				'username' => 'forthnet_volax_gr',
+				'password' => 'Rtesnd@4s',
+			// */
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
 			'charset' => 'utf8',
 			'tablePrefix' => 'v4_',
 		),
@@ -45,6 +51,7 @@ return array(
 			'showScriptName'=>false,
 			'rules'=>array(
 				'post/<id:\d+>/<title:.*?>'=>'post/view',
+				'category/<id:\d+>/<title:.*?>'=>'category/view',
 				'posts/<tag:.*?>'=>'post/index',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
