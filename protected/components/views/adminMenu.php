@@ -6,5 +6,6 @@
 	<li><?php echo CHtml::link('Users',array('/admin/users')); ?></li>
 	<li><?php echo CHtml::link('Tags',array('/admin/tags')); ?></li>
 	<li><?php echo CHtml::link('Ads',array('/admin/ads')); ?></li>
+	<li><?php echo CHtml::link('Snippets',array('/admin/snippets')); ?></li>
 </ul>
 

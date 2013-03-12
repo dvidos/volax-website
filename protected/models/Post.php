@@ -191,7 +191,7 @@ class Post extends CActiveRecord
 		return new CActiveDataProvider('Post', array(
 			'criteria'=>$criteria,
 			'sort'=>array(
-				'defaultOrder'=>'update_time DESC',
+				'defaultOrder'=>'create_time DESC',
 			),
 		));
 	}

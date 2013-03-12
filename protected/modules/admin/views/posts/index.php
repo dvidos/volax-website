@@ -4,11 +4,11 @@ Yii::app()->clientScript->registerScript('search',
 	"$('.search-form form').submit(function(){ $.fn.yiiGridView.update('user-grid', { data: $(this).serialize() }); return false; });");
 ?>
 
-<h1>Manage posts</h1>
+<h1>Posts</h1>
 
 <p><?php
 	echo CHtml::link('Create post', array('create'), array('class'=>'button')); 
-	echo ' | ';
+	echo ' ';
 	echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); 
 ?></p>
 
@@ -24,6 +24,11 @@ Yii::app()->clientScript->registerScript('search',
 	'filter'=>$model,
 	'columns'=>array(
 		'title',
+		array(
+			'name'=>'title',
+			'type'=>'raw',
+			'value'=>'CHtml::link(CHtml::encode($data->title), array("update", "id"=>$data->id))',
+		),
 		array(
 			'name'=>'category_id',
 			'value'=>'$data->category == null ? "None" : $data->category->title',
@@ -41,7 +46,8 @@ Yii::app()->clientScript->registerScript('search',
 		),
 		array(
 			'name'=>'create_time',
-			'type'=>'datetime',
+			'type'=>'raw',
+			'value'=>'date("d-M-y H:i", $data->create_time)',
 			'filter'=>false,
 		),
 		array(

@@ -1,0 +1,754 @@
+
+2013/03/09 18:19:24 [error] [php] Object of class ServerFileInput could not be converted to string (F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\categories\_form.php:25)
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CategoriesController->renderFile()
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\categories\update.php(3): CategoriesController->renderPartial()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CategoriesController->renderInternal()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CategoriesController->renderFile()
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CategoriesController->renderPartial()
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\CategoriesController.php(54): CategoriesController->render()
+#7 unknown(0): CategoriesController->actionUpdate()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams()
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CategoriesController->runAction()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CategoriesController->runActionWithFilters()
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CategoriesController->run()
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController()
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CWebApplication->run()
+REQUEST_URI=/volax4/admin/categories/update/id/1
+2013/03/09 18:19:31 [error] [php] Object of class ServerFileInput could not be converted to string (F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\categories\_form.php:25)
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CategoriesController->renderFile()
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\categories\update.php(3): CategoriesController->renderPartial()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CategoriesController->renderInternal()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CategoriesController->renderFile()
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CategoriesController->renderPartial()
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\CategoriesController.php(54): CategoriesController->render()
+#7 unknown(0): CategoriesController->actionUpdate()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams()
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CategoriesController->runAction()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CategoriesController->runActionWithFilters()
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CategoriesController->run()
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController()
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CWebApplication->run()
+REQUEST_URI=/volax4/admin/categories/update/id/1
+2013/03/09 18:19:38 [error] [php] Object of class ServerFileInput could not be converted to string (F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\categories\_form.php:25)
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CategoriesController->renderFile()
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\categories\update.php(3): CategoriesController->renderPartial()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CategoriesController->renderInternal()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CategoriesController->renderFile()
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CategoriesController->renderPartial()
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\CategoriesController.php(54): CategoriesController->render()
+#7 unknown(0): CategoriesController->actionUpdate()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams()
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CategoriesController->runAction()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CategoriesController->runActionWithFilters()
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CategoriesController->run()
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController()
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CWebApplication->run()
+REQUEST_URI=/volax4/admin/categories/update/id/1
+2013/03/09 18:24:10 [error] [php] Illegal string offset 'id' (F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\components\elFinder\ServerFileInput.php:67)
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require()
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CategoriesController->renderInternal()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CategoriesController->renderFile()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\categories\update.php(3): CategoriesController->renderPartial()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require()
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CategoriesController->renderInternal()
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CategoriesController->renderFile()
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CategoriesController->renderPartial()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\CategoriesController.php(54): CategoriesController->render()
+#9 unknown(0): CategoriesController->actionUpdate()
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams()
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CategoriesController->runAction()
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CategoriesController->runActionWithFilters()
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CategoriesController->run()
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController()
+#17 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#18 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CWebApplication->run()
+REQUEST_URI=/volax4/admin/categories/update/id/1
+2013/03/09 18:28:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/posts".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/posts
+HTTP_REFERER=http://localhost/volax4/admin/categories/update/id/1
+---
+2013/03/09 18:28:29 [error] [exception.CException] exception 'CException' with message 'Property "Post.image_filename" is not defined.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php:130
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\ar\CActiveRecord.php(143): CComponent->__get('image_filename')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\helpers\CHtml.php(2255): CActiveRecord->__get('image_filename')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\helpers\CHtml.php(1980): CHtml::resolveValue(Object(Post), 'image_filename')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\helpers\CHtml.php(1257): CHtml::activeInputField('text', Object(Post), 'image_filename', Array)
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\widgets\CActiveForm.php(657): CHtml::activeTextField(Object(Post), 'image_filename', Array)
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\posts\_search.php(20): CActiveForm->textField(Object(Post), 'image_filename')
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\posts\index.php(18): CController->renderPartial('_search', Array)
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CController->renderPartial('index', Array, true)
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\PostsController.php(16): CController->render('index', Array)
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): PostsController->actionIndex()
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#18 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('')
+#20 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts')
+#21 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#22 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#23 {main}
+REQUEST_URI=/volax4/admin/posts
+HTTP_REFERER=http://localhost/volax4/admin/categories/update/id/1
+---
+2013/03/09 18:29:14 [error] [exception.CException] exception 'CException' with message 'Property "Post.parent_id" is not defined.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php:130
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\ar\CActiveRecord.php(143): CComponent->__get('parent_id')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\helpers\CHtml.php(2255): CActiveRecord->__get('parent_id')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\helpers\CHtml.php(1980): CHtml::resolveValue(Object(Post), 'parent_id')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\helpers\CHtml.php(1257): CHtml::activeInputField('text', Object(Post), 'parent_id', Array)
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\widgets\CActiveForm.php(657): CHtml::activeTextField(Object(Post), 'parent_id', Array)
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\posts\_search.php(25): CActiveForm->textField(Object(Post), 'parent_id')
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\posts\index.php(18): CController->renderPartial('_search', Array)
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CController->renderPartial('index', Array, true)
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\PostsController.php(16): CController->render('index', Array)
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): PostsController->actionIndex()
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#18 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('')
+#20 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts')
+#21 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#22 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#23 {main}
+REQUEST_URI=/volax4/admin/posts
+HTTP_REFERER=http://localhost/volax4/admin/categories/update/id/1
+---
+2013/03/09 18:32:14 [error] [exception.CException] exception 'CException' with message 'Property "Post.parent_id" is not defined.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php:130
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\ar\CActiveRecord.php(143): CComponent->__get('parent_id')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\helpers\CHtml.php(2255): CActiveRecord->__get('parent_id')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\helpers\CHtml.php(1980): CHtml::resolveValue(Object(Post), 'parent_id')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\helpers\CHtml.php(1257): CHtml::activeInputField('text', Object(Post), 'parent_id', Array)
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\widgets\CActiveForm.php(657): CHtml::activeTextField(Object(Post), 'parent_id', Array)
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\posts\_search.php(25): CActiveForm->textField(Object(Post), 'parent_id')
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\posts\index.php(18): CController->renderPartial('_search', Array)
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CController->renderPartial('index', Array, true)
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\PostsController.php(16): CController->render('index', Array)
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): PostsController->actionIndex()
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#18 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('')
+#20 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts')
+#21 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#22 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#23 {main}
+REQUEST_URI=/volax4/admin/posts
+HTTP_REFERER=http://localhost/volax4/admin/categories/update/id/1
+---
+2013/03/09 18:32:59 [error] [exception.CException] exception 'CException' with message 'Property "Post.category" is not defined.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php:130
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\ar\CActiveRecord.php(143): CComponent->__get('category')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php(606) : eval()'d code(1): CActiveRecord->__get('category')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php(606): eval()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\grid\CDataColumn.php(131): CComponent->evaluateExpression('$data->category...', Array)
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\grid\CGridColumn.php(144): CDataColumn->renderDataCellContent(0, Object(Post))
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\grid\CGridView.php(589): CGridColumn->renderDataCell(0)
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\grid\CGridView.php(545): CGridView->renderTableRow(0)
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\grid\CGridView.php(455): CGridView->renderTableBody()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CBaseListView.php(160): CGridView->renderItems()
+#9 [internal function]: CBaseListView->renderSection(Array)
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CBaseListView.php(143): preg_replace_callback('/{(\w+)}/', Array, '{summary}?{item...')
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CBaseListView.php(128): CBaseListView->renderContent()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(173): CBaseListView->run()
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\posts\index.php(42): CBaseController->widget('zii.widgets.gri...', Array)
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#17 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CController->renderPartial('index', Array, true)
+#18 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\PostsController.php(16): CController->render('index', Array)
+#19 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): PostsController->actionIndex()
+#20 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams(Array)
+#21 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#22 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('')
+#24 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts')
+#25 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#26 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#27 {main}
+REQUEST_URI=/volax4/admin/posts
+HTTP_REFERER=http://localhost/volax4/admin/categories/update/id/1
+---
+2013/03/09 18:39:22 [error] [php] Non-static method CActiveRecord::findAll() should not be called statically (F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\models\User.php:147)
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require()
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): PostsController->renderInternal()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): PostsController->renderFile()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): PostsController->renderPartial()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\PostsController.php(16): PostsController->render()
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): PostsController->actionIndex()
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams()
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): PostsController->runAction()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): PostsController->runActionWithFilters()
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): PostsController->run()
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController()
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CWebApplication->run()
+REQUEST_URI=/volax4/admin/posts
+2013/03/09 18:40:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=ta&limit=10&timestamp=1362850823069
+HTTP_REFERER=http://localhost/volax4/admin/posts/create
+---
+2013/03/09 18:40:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=tag&limit=10&timestamp=1362850823709
+HTTP_REFERER=http://localhost/volax4/admin/posts/create
+---
+2013/03/09 18:40:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=t&limit=10&timestamp=1362850826053
+HTTP_REFERER=http://localhost/volax4/admin/posts/create
+---
+2013/03/09 18:40:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=tag%2C&limit=10&timestamp=1362850831668
+HTTP_REFERER=http://localhost/volax4/admin/posts/create
+---
+2013/03/09 18:45:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/tags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/tags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/tags
+HTTP_REFERER=http://localhost/volax4/admin/posts/index
+---
+2013/03/09 18:46:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=t&limit=10&timestamp=1362851191266
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=t&limit=10&timestamp=1362854769584
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=t&limit=10&timestamp=1362854769652
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=t&limit=10&timestamp=1362854772603
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=ta&limit=10&timestamp=1362854775509
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=t&limit=10&timestamp=1362854779556
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=ta&limit=10&timestamp=1362854780275
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=tag&limit=10&timestamp=1362854781775
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=volax&limit=10&timestamp=1362854783963
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=%CE%B2%CF%89&limit=10&timestamp=1362854785916
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=y&limit=10&timestamp=1362854791213
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:46:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "suggestTags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('suggestTags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('suggestTags')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/posts/sug...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/admin/posts/suggestTags?q=yi&limit=10&timestamp=1362854794884
+HTTP_REFERER=http://localhost/volax4/admin/posts/update/id/4
+---
+2013/03/09 19:59:50 [error] [exception.CException] exception 'CException' with message 'PostController and its behaviors do not have a method or closure named "newComment".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php:265
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\controllers\PostController.php(32): CComponent->__call('newComment', Array)
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\controllers\PostController.php(32): PostController->newComment(Object(Post))
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): PostController->actionView()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('view')
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('post/view')
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#10 {main}
+REQUEST_URI=/volax4/post/2/A+Test+Post
+HTTP_REFERER=http://localhost/volax4/post/index
+---
+2013/03/09 20:01:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/comments".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/comments')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/comments
+HTTP_REFERER=http://localhost/volax4/admin/posts
+---
+2013/03/09 20:18:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/tags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/tags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/tags
+HTTP_REFERER=http://localhost/volax4/admin/categories/update/id/1
+---
+2013/03/09 20:24:17 [error] [php] require(): Filename cannot be empty (F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php:130)
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CListView.php(281): SiteController->renderFile()
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CBaseListView.php(160): CListView->renderItems()
+#2 unknown(0): CListView->renderSection()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CBaseListView.php(143): preg_replace_callback()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CBaseListView.php(128): CListView->renderContent()
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(173): CListView->run()
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\views\site\index.php(11): SiteController->widget()
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): SiteController->renderInternal()
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): SiteController->renderFile()
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): SiteController->renderPartial()
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\controllers\SiteController.php(49): SiteController->render()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams()
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): SiteController->runAction()
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): SiteController->runActionWithFilters()
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): SiteController->run()
+#17 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController()
+#18 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#19 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CWebApplication->run()
+REQUEST_URI=/volax4/
+2013/03/11 10:56:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested view "index" was not found.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CViewAction.php:112
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CViewAction.php(123): CViewAction->resolveView('index')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CAction.php(76): CViewAction->run()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CAction->runWithParams(Array)
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CViewAction))
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('page')
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('site/page')
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#9 {main}
+REQUEST_URI=/volax4/site/page?page=about
+HTTP_REFERER=http://localhost/volax4/
+---
+2013/03/11 10:57:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested view "index" was not found.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CViewAction.php:112
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CViewAction.php(123): CViewAction->resolveView('index')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CAction.php(76): CViewAction->run()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CAction->runWithParams(Array)
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CViewAction))
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('page')
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('site/page')
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#9 {main}
+REQUEST_URI=/volax4/site/page?page=about
+HTTP_REFERER=http://localhost/volax4/
+---
+2013/03/11 10:57:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested view "index" was not found.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CViewAction.php:112
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CViewAction.php(123): CViewAction->resolveView('index')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CAction.php(76): CViewAction->run()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CAction->runWithParams(Array)
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CViewAction))
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('page')
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('site/page')
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#9 {main}
+REQUEST_URI=/volax4/site/page?page=about
+HTTP_REFERER=http://localhost/volax4/
+---
+2013/03/11 10:59:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ad_sample.gif".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php:483
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(270): CController->missingAction('ad_sample.gif')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('ad_sample.gif')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('images/ad_sampl...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#5 {main}
+REQUEST_URI=/volax4/images/ad_sample.gif
+HTTP_REFERER=http://localhost/volax4/site/page?view=about
+---
+2013/03/11 11:03:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/logo_sample.gif".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/assets/images/logo_sample.gif
+HTTP_REFERER=http://localhost/volax4/site/page?view=about
+---
+2013/03/11 11:04:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/images/logo_sample.gif".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('assets/images/l...')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/assets/images/logo_sample.gif
+HTTP_REFERER=http://localhost/volax4/site/page?view=about
+---
+2013/03/11 11:29:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/css/form.css".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('assets/css/form...')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/assets/css/form.css
+HTTP_REFERER=http://localhost/volax4/
+---
+2013/03/11 14:00:37 [error] [php] Use of undefined constant col4 - assumed 'col4' (F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\views\layouts\homepage.php:22)
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(784): SiteController->renderFile()
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\controllers\SiteController.php(50): SiteController->render()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): SiteController->runAction()
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): SiteController->runActionWithFilters()
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): SiteController->run()
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CWebApplication->run()
+REQUEST_URI=/volax4/
+2013/03/11 14:00:54 [error] [exception.CException] exception 'CException' with message 'Property "Category.author" is not defined.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php:130
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\ar\CActiveRecord.php(143): CComponent->__get('author')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\views\category\_view.php(6): CActiveRecord->__get('author')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\views\category\view.php(10): CController->renderPartial('_view', Array)
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CController->renderPartial('view', Array, true)
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\controllers\CategoryController.php(35): CController->render('view', Array)
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): CategoryController->actionView()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('view')
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('category/view')
+#17 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#18 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#19 {main}
+REQUEST_URI=/volax4/category/view?id=6
+HTTP_REFERER=http://localhost/volax4/
+---
+2013/03/11 14:20:17 [error] [php] Undefined variable: dta (F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php(606) : eval()'d code:1)
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\grid\CGridColumn.php(144): CDataColumn->renderDataCellContent()
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\grid\CGridView.php(589): CDataColumn->renderDataCell()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\grid\CGridView.php(545): CGridView->renderTableRow()
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\grid\CGridView.php(455): CGridView->renderTableBody()
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CBaseListView.php(160): CGridView->renderItems()
+#5 unknown(0): CGridView->renderSection()
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CBaseListView.php(143): preg_replace_callback()
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\zii\widgets\CBaseListView.php(128): CGridView->renderContent()
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(173): CGridView->run()
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\views\categories\index.php(47): CategoriesController->widget()
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require()
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CategoriesController->renderInternal()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CategoriesController->renderFile()
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CategoriesController->renderPartial()
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\CategoriesController.php(16): CategoriesController->render()
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): CategoriesController->actionIndex()
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams()
+#17 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CategoriesController->runAction()
+#18 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CategoriesController->runActionWithFilters()
+#19 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CategoriesController->run()
+#20 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController()
+#21 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#22 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CWebApplication->run()
+REQUEST_URI=/volax4/admin/categories/index
+2013/03/11 14:42:49 [error] [exception.CException] exception 'CException' with message 'Property "Category.author" is not defined.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CComponent.php:130
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\ar\CActiveRecord.php(143): CComponent->__get('author')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\views\category\_view.php(6): CActiveRecord->__get('author')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#4 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\views\category\view.php(10): CController->renderPartial('_view', Array)
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(126): require('F:\Dimitris Vid...')
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CBaseController.php(95): CBaseController->renderInternal('F:\Dimitris Vid...', Array, true)
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(869): CBaseController->renderFile('F:\Dimitris Vid...', Array, true)
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(782): CController->renderPartial('view', Array, true)
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\controllers\CategoryController.php(35): CController->render('view', Array)
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(49): CategoryController->actionView()
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#14 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('view')
+#16 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('category/view')
+#17 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#18 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#19 {main}
+REQUEST_URI=/volax4/category/9/%CE%A6%CF%8D%CF%83%CE%B7
+HTTP_REFERER=http://localhost/volax4/
+---
+2013/03/11 15:22:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/comments".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/comments')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/comments
+HTTP_REFERER=http://localhost/volax4/admin/files
+---
+2013/03/11 15:24:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/tags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/tags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/tags
+HTTP_REFERER=http://localhost/volax4/admin/users
+---
+2013/03/11 15:24:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/ads".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/ads')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/ads
+HTTP_REFERER=http://localhost/volax4/admin/users
+---
+2013/03/11 15:27:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/comment/update/id/2".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/comment/u...')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/comment/update/id/2
+HTTP_REFERER=http://localhost/volax4/admin/comments
+---
+2013/03/11 16:03:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/tags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/tags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/tags
+HTTP_REFERER=http://localhost/volax4/admin/comments
+---
+2013/03/11 16:12:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/tags".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/tags')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/tags
+HTTP_REFERER=http://localhost/volax4/admin/comments
+---
+2013/03/11 16:15:20 [error] [exception.CDbException] exception 'CDbException' with message 'Column name must be either a string or an array.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\schema\CDbCommandBuilder.php:722
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\schema\CDbCommandBuilder.php(519): CDbCommandBuilder->createInCondition(Object(CMysqlTableSchema), NULL, Array, '`t`.')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\ar\CActiveRecord.php(1431): CDbCommandBuilder->createPkCriteria(Object(CMysqlTableSchema), '', '', Array, '`t`.')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\SnippetsController.php(74): CActiveRecord->findByPk('')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\SnippetsController.php(40): SnippetsController->loadModel('')
+#4 [internal function]: SnippetsController->actionUpdate('')
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(SnippetsController), Array)
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SnippetsController), Object(ReflectionMethod), Array)
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('update')
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/snippets/...')
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#14 {main}
+REQUEST_URI=/volax4/admin/snippets/update/id
+HTTP_REFERER=http://localhost/volax4/admin/snippets
+---
+2013/03/11 16:15:23 [error] [exception.CDbException] exception 'CDbException' with message 'Column name must be either a string or an array.' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\schema\CDbCommandBuilder.php:722
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\schema\CDbCommandBuilder.php(519): CDbCommandBuilder->createInCondition(Object(CMysqlTableSchema), NULL, Array, '`t`.')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\db\ar\CActiveRecord.php(1431): CDbCommandBuilder->createPkCriteria(Object(CMysqlTableSchema), '0', '', Array, '`t`.')
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\SnippetsController.php(74): CActiveRecord->findByPk('0')
+#3 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\protected\modules\admin\controllers\SnippetsController.php(40): SnippetsController->loadModel('0')
+#4 [internal function]: SnippetsController->actionUpdate('0')
+#5 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(SnippetsController), Array)
+#6 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SnippetsController), Object(ReflectionMethod), Array)
+#7 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#9 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(282): CController->run('update')
+#11 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/snippets/...')
+#12 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#13 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#14 {main}
+REQUEST_URI=/volax4/admin/snippets/update/id/0
+HTTP_REFERER=http://localhost/volax4/admin/snippets
+---
+2013/03/11 16:16:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/ads".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/ads')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/ads
+HTTP_REFERER=http://localhost/volax4/admin/snippets
+---
+2013/03/12 08:40:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/ads".' in F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\web\CWebApplication.php(141): CWebApplication->runController('admin/ads')
+#1 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\yii\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\Dimitris Vidos\Work\Pelates\Volax.gr\projects\volaxV4\htdocs\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/volax4/admin/ads
+HTTP_REFERER=http://localhost/volax4/admin/tags
+---

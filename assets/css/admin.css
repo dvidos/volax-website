@@ -679,3 +679,20 @@ table.bordered td
 	margin: 0;
 }
 
+a.button, a.search-button, input[type=submit]
+{
+	display: inline-block;
+	text-decoration: none;
+	font-weight: bold;
+	color: #666;
+	background-color: #ddd;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	padding: 4px 10px;
+}
+a.button:hover, a.search-button:hover, input[type=submit]:hover
+{
+	color: #555;
+	background-color: #eee;
+	border: 1px solid #999;
+}

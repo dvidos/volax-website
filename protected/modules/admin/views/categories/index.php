@@ -4,11 +4,11 @@ Yii::app()->clientScript->registerScript('search',
 	"$('.search-form form').submit(function(){ $.fn.yiiGridView.update('user-grid', { data: $(this).serialize() }); return false; });");
 ?>
 
-<h1>Manage categories</h1>
+<h1>Categories</h1>
 
 <p><?php
 	echo CHtml::link('Create Category', array('create'), array('class'=>'button')); 
-	echo ' | ';
+	echo ' ';
 	echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); 
 ?></p>
 

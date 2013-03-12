@@ -4,11 +4,11 @@ Yii::app()->clientScript->registerScript('search',
 	"$('.search-form form').submit(function(){ $.fn.yiiGridView.update('user-grid', { data: $(this).serialize() }); return false; });");
 ?>
 
-<h1>Manage snippets</h1>
+<h1>Snippets</h1>
 
 <p><?php
 	echo CHtml::link('Create Snippet', array('create'), array('class'=>'button')); 
-	echo ' | ';
+	echo ' ';
 	echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); 
 ?></p>
 
@@ -23,10 +23,14 @@ Yii::app()->clientScript->registerScript('search',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'title',
+		array(
+			'name'=>'title',
+			'type'=>'raw',
+			'value'=>'CHtml::link(CHtml::encode($data->title), array("update", "id"=>$data->id))',
+		),
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{update} {delete}',
+			'template'=>'{delete}',
 		),
 	),
 )); ?>
