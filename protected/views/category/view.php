@@ -5,32 +5,24 @@ $this->breadcrumbs=array(
 $this->pageTitle=$model->title;
 ?>
 
-<?php $this->renderPartial('_view', array(
-	'data'=>$model,
-)); ?>
+<h1><?php echo CHtml::encode($model->title); ?></h1>
 
-<div id="comments">
-	<?php if($model->commentCount>=1): ?>
-		<h3>
-			<?php echo $model->commentCount>1 ? $model->commentCount . ' comments' : 'One comment'; ?>
-		</h3>
+<?php
+	$dataProvider = new CActiveDataProvider('Post', array(
+		'criteria'=>array(
+			'condition'=>'category_id = :cid AND (status=' . Post::STATUS_PUBLISHED . ' OR status=' . Post::STATUS_ARCHIVED . ')',
+			'params'=>array(':cid'=>$model->id),
+		),
+		'sort'=>array(
+			'defaultOrder'=>'create_time DESC',
+		),
+	));
+		
+	$this->widget('zii.widgets.CListView', array(
+		'dataProvider'=>$dataProvider,
+		'itemView'=>'/post/_indexEntry',
+		'template'=>"{items}\n{pager}",
+	));
+?>
 
-		<?php $this->renderPartial('_comments',array(
-			'post'=>$model,
-			'comments'=>$model->comments,
-		)); ?>
-	<?php endif; ?>
 
-	<h3>Leave a Comment</h3>
-
-	<?php if(Yii::app()->user->hasFlash('commentSubmitted')): ?>
-		<div class="flash-success">
-			<?php echo Yii::app()->user->getFlash('commentSubmitted'); ?>
-		</div>
-	<?php else: ?>
-		<?php $this->renderPartial('/comment/_form',array(
-			'model'=>$comment,
-		)); ?>
-	<?php endif; ?>
-
-</div><!-- comments -->

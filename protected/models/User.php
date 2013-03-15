@@ -10,6 +10,10 @@ class User extends CActiveRecord
 	 * @var string $email
 	 * @var string $profile
 	 */
+	
+	// for changing password.
+	var $password1;
+	var $password2;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -36,9 +40,10 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),
+			array('username, email', 'required'),
 			array('username, password, email', 'length', 'max'=>128),
-			array('profile', 'safe'),
+			array('password2', 'compare', 'compareAttribute'=>'password1'),
+			array('profile, password1, password2, is_admin, is_author', 'safe'),
 		);
 	}
 
@@ -63,11 +68,22 @@ class User extends CActiveRecord
 			'id' => 'Id',
 			'username' => 'Username',
 			'password' => 'Password',
+			'password1' => 'Change password (leave blank to keep old password)',
+			'password2' => 'Repeat changed passsword',
 			'email' => 'Email',
 			'profile' => 'Profile',
 		);
 	}
 
+	public function beforeSave()
+	{
+		if (strlen($this->password1) > 0 && strlen($this->password2) > 0 && $this->password1 == $this->password2)
+			$this->password = $this->hashPassword($this->password1);
+			
+		// allow continue
+		return parent::beforeSave();
+	}
+	
 	/**
 	 * Checks if the given password is correct.
 	 * @param string the password to be validated

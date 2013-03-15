@@ -23,7 +23,6 @@ Yii::app()->clientScript->registerScript('search',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'title',
 		array(
 			'name'=>'title',
 			'type'=>'raw',

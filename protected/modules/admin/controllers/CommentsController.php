@@ -6,11 +6,16 @@ class CommentsController extends Controller
 
 	public function actionIndex()
 	{
+		$criteria = new CDbCriteria(array(
+			'condition'=>'1',
+			'with'=>'post',
+			'order'=>'t.create_time DESC',
+		));
+		if (isset($_GET['status']))
+			$criteria->addSearchCondition('t.status',$_GET['status']);
+		
 		$dataProvider=new CActiveDataProvider('Comment', array(
-			'criteria'=>array(
-				'with'=>'post',
-				'order'=>'t.status, t.create_time DESC',
-			),
+			'criteria'=>$criteria,
 		));
 
 		$this->render('index',array(

@@ -4,7 +4,6 @@ class CategoryController extends Controller
 {
 	public $layout='column2';
 
-
 	public function actionIndex()
 	{
 		$criteria=new CDbCriteria(array(

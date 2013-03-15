@@ -21,6 +21,18 @@
 		<?php echo $form->error($model,'username'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'password1'); ?>
+		<?php echo $form->passwordField($model,'password1'); ?>
+		<?php echo $form->error($model,'password1'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'password2'); ?>
+		<?php echo $form->passwordField($model,'password2'); ?>
+		<?php echo $form->error($model,'password2'); ?>
+	</div>
+
 	<div class="row checkbox">
 		<?php echo $form->checkBox($model,'is_admin'); ?>
 		<?php echo $form->labelEx($model,'is_admin'); ?>
@@ -33,6 +45,12 @@
 		<?php echo $form->error($model,'is_author'); ?>
 	</div>
 
+	<div class="row checkbox">
+		<?php echo $form->labelEx($model,'profile'); ?>
+		<?php echo $form->textArea($model,'profile', array('style'=>'width:100%; min-height:250px;')); ?>
+		<?php echo $form->error($model,'profile'); ?>
+	</div>
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

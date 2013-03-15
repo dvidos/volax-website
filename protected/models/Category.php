@@ -136,12 +136,10 @@ class Category extends CActiveRecord
 		return new CActiveDataProvider('Category', array(
 			'criteria'=>$criteria,
 			'sort'=>array(
-				'defaultOrder'=>'title, view_order, update_time DESC',
+				'defaultOrder'=>'parent_id, view_order, title, update_time DESC',
 			),
 		));
 	}
-	
-	
 
 	private static $_items = null;
 	public static function dropDownListItems()
@@ -156,11 +154,7 @@ class Category extends CActiveRecord
 	
 	private static function loadDropDownListItemsOf($parent_id, $depth)
 	{
-		$models = Category::model()->findAll(array(
-			'condition' => 'parent_id = :pid',
-			'params'=>array(':pid'=>$parent_id),
-			'order'=>'title',
-		));
+		$models = self::findAllOfParent($parent_id);
 		foreach ($models as $model)
 		{
 			self::$_items[$model->id] = str_repeat(' - ' , $depth) . $model->title;
@@ -168,6 +162,14 @@ class Category extends CActiveRecord
 		}
 	}
 	
-	
+
+	public static function findAllOfParent($parent_id)
+	{
+		return Category::model()->findAll(array(
+			'condition' => 'parent_id = :pid',
+			'params'=>array(':pid'=>$parent_id),
+			'order'=>'view_order,title',
+		));
+	}
 }
 

@@ -6,7 +6,7 @@ class AdminMenu extends CPortlet
 {
 	public function init()
 	{
-		$this->title='Manage';
+		$this->title='Admin Quick Menu';
 		parent::init();
 	}
 

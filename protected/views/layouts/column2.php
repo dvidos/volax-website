@@ -5,16 +5,13 @@
 	)); ?><!-- breadcrumbs -->
 
 
-<div class="span-18">
+<div style="float:left;width:74%;">
 	<div id="content">
 		<?php echo $content; ?>
 	</div><!-- content -->
 </div>
-
-<div class="span-6 last">
+<div style="float:right;width:24%;">
 	<div id="sidebar">
-		<?php if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); ?>
-
 		<?php $this->widget('TagCloud', array(
 			'maxTags'=>Yii::app()->params['tagCloudCount'],
 		)); ?>
@@ -24,5 +21,7 @@
 		)); ?>
 	</div><!-- sidebar -->
 </div>
+<div style="clear:both;"></div>
+
 
 <?php $this->endContent(); ?>

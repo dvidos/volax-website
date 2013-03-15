@@ -2,6 +2,9 @@
 
 // this contains the application parameters that can be maintained via GUI
 return array(
+	// version, displayed on Admin.
+	'version'=>0.1,
+	
 	// this is displayed in the header section
 	'title'=>'My Yii Blog',
 	// this is used in error pages
