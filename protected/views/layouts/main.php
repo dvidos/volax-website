@@ -3,7 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/screen.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&amp;subset=latin,greek" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/print.css" media="print" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -42,13 +43,13 @@
 <div id="banner">
 	<div id="banner-left" style="float:left; width:25%;">
 		<?php
-			$img = CHtml::image(Yii::app()->baseUrl . '/assets/images/logo_sample.png');
+			$img = CHtml::image(Yii::app()->baseUrl . '/assets/images/logo.jpg');
 			echo CHtml::link($img, array('/'))
 		?>
 	</div>
 	<div id="banner-right" style="float:right; width:75%;">
 		<?php
-			echo CHtml::image(Yii::app()->baseUrl . '/assets/images/ad_sample.gif');
+			// echo CHtml::image(Yii::app()->baseUrl . '/assets/images/ad_sample.gif');
 		?>
 	</div>
 	<div style="clear:both;"></div>

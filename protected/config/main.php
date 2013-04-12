@@ -34,8 +34,8 @@ return array(
 				'username' => 'root',
 				'password' => '',
 			/*/
-				'connectionString' => 'mysql:host=mysql5.internet.gr:3305;dbname=forthnet_volax_gr',
-				'username' => 'forthnet_volax_gr',
+				'connectionString' => 'mysql:host=mysql5.internet.gr;port=3305;dbname=forthnet_volax_gr',
+				'username' => 'volax_gr',
 				'password' => 'Rtesnd@4s',
 			// */
 			'emulatePrepare' => true,
@@ -47,12 +47,13 @@ return array(
 			'errorAction'=>'site/error',
 		),
 		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'showScriptName'=>false,
+			'urlFormat'=>'get', // 'path',
+			'showScriptName'=>true,
 			'rules'=>array(
 				'post/<id:\d+>/<title:.*?>'=>'post/view',
 				'category/<id:\d+>/<title:.*?>'=>'category/view',
 				'posts/<tag:.*?>'=>'post/index',
+				'page/<view:.*?>'=>'site/page',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),

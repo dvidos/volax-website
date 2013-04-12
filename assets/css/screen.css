@@ -1,10 +1,12 @@
 body
 {
-	font: normal 13px TAhoma,Helvetica,sans-serif;
+	font-size: 13px;
+	font-family: 'Open sans',sans-serif;
 	color: #555;
 	background: white;
 	margin: 0;
 	padding: 0;
+	line-height: 150%;
 }
 div#page
 {
@@ -13,7 +15,7 @@ div#page
 }
 div#top-menu
 {
-	background-color: #333;
+	background-color: #000;
 	padding: .5em 10px;
 	color: white;
 }
@@ -24,8 +26,8 @@ div#top-menu a
 }
 div#banner
 {
-	background-color: #999;
-	padding: 5px 10px;
+	background-color: #fff;
+	margin: 2em 0;
 }
 div#banner-logo
 {
@@ -42,7 +44,7 @@ div#content
 }
 div#footer
 {
-	background-color: #333;
+	background-color: #000;
 	padding: 5px 10px;
 	color: white;
 	font-size: 85%;
@@ -54,17 +56,68 @@ div#footer a
 }
 
 
+div#homepage-explanation
+{
+	margin: 1em 0 3em 0;
+	font-weight: lighter;
+	color: #aaa;
+}
 
 div#content-col1 a.category-link, div#content-col4 a.category-link
 {
 	display: block;
 	margin: 1em 0;
-	background-color: #00D6D6;
-	color: #333;
+	background-color: #aaa;
 	text-decoration: none;
-	padding: .5em 1em;
-	font-size: 125%;
-	font-weight: bold;
+	padding: .25em .5em;
+	font-size: 110%;
+	letter-spacing: 3px;
+}
+div#homepage-main-categories-list a.category-link
+{
+	background-color: #66cef5;
+	color: black;
+}
+div#homepage-main-categories-list a.category-link:hover
+{
+	background-color: #7fd6f6;
+}
+div#homepage-messages-area
+{
+	height: 666px;
+}
+div#homepage-action-categories-list a.category-link
+{
+	background-color: #000;
+	color: white;
+	margin-bottom: .5em;
+}
+div#homepage-action-categories-list span.category-subtitle
+{
+	display: block;
+	text-align: right;
+	margin: -.5em 0;
+}
+div#homepage-action-categories-list a.category-link:hover
+{
+	background-color: #222;
+	color: white;
+}
+div#homepage-pages-categories-list h3
+{
+	font-weight: normal;
+	font-size: 280%;
+	margin-top: 3em;
+	margin-bottom: .5em;
+}
+div#homepage-pages-categories-list a.category-link
+{
+	background-color: #66cef5;
+	color: black;
+}
+div#homepage-pages-categories-list a.category-link:hover
+{
+	background-color: #7fd6f6;
 }
 
 
@@ -201,6 +254,13 @@ div.breadcrumbs span
 {
 	color: #555;
 	text-decoration: none;
+}
+
+.post .subtitle
+{
+	color: #333;
+	font-weight: bold;
+	margin: 1em 0;
 }
 
 .post .author

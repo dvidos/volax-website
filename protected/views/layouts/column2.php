@@ -1,8 +1,10 @@
 <?php $this->beginContent('/layouts/main'); ?>
 
-	<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-		'links'=>$this->breadcrumbs,
-	)); ?><!-- breadcrumbs -->
+	<?php 
+		// $this->widget('zii.widgets.CBreadcrumbs', array(
+		//	'links'=>$this->breadcrumbs,
+		// )); 
+	?><!-- breadcrumbs -->
 
 
 <div style="float:left;width:74%;">

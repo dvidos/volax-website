@@ -13,7 +13,14 @@
 	<?php echo $form->textField($model,'title',array('size'=>100,'maxlength'=>100)); ?>
 	<?php echo $form->error($model,'title'); ?>
 	
-<tr><td>
+</td></tr>
+<tr><td colspan="3">
+
+	<?php echo $form->labelEx($model,'subtitle'); ?>
+	<?php echo $form->textField($model,'subtitle',array('size'=>100,'maxlength'=>100)); ?>
+	<?php echo $form->error($model,'subtitle'); ?>
+	
+</td></tr>
 <tr><td>
 
 	<?php echo $form->labelEx($model,'parent_id'); ?>

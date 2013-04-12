@@ -17,7 +17,6 @@ class ImagesController extends Controller
 		//if (!is_file($src))
 		//	throw new CHttpException(404);
 		
-		
 		// if nothing given, simply redirect to the file.
 		if (($width == '' && $height == '') || ($width == 0 && $height == 0))
 		{

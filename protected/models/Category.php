@@ -32,10 +32,9 @@ class Category extends CActiveRecord
 		return array(
 			array('title, status', 'required'),
 			array('status', 'in', 'range'=>array(1,2)),
-			array('title, image_filename', 'length', 'max'=>128),
+			array('title, subtitle, image_filename', 'length', 'max'=>128),
 			array('parent_id, view_order', 'numerical'),
 			array('content', 'safe'),
-
 			array('id, parent_id, title, content, image_filename, status, view_order', 'safe', 'on'=>'search'),
 		);
 	}
@@ -65,6 +64,7 @@ class Category extends CActiveRecord
 			'id' => 'Id',
 			'parent_id' => 'Parent',
 			'title' => 'Title',
+			'subtitle' => 'Subtitle',
 			'content' => 'Content',
 			'image_filename' => 'Image',
 			'status' => 'Status',

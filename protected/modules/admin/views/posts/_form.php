@@ -15,6 +15,13 @@
 	<?php echo $form->error($model,'title'); ?>
 	
 </td></tr>
+<tr><td colspan="3">
+
+	<?php echo $form->labelEx($model,'subtitle'); ?>
+	<?php echo $form->textField($model,'subtitle',array('size'=>100,'maxlength'=>100)); ?>
+	<?php echo $form->error($model,'subtitle'); ?>
+	
+</td></tr>
 <tr><td>
 
 	<?php echo $form->labelEx($model,'category_id'); ?>

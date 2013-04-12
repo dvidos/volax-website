@@ -35,10 +35,11 @@ class Post extends CActiveRecord
 		return array(
 			array('title, content, category_id, status', 'required'),
 			array('status', 'in', 'range'=>array(1,2,3)),
-			array('title', 'length', 'max'=>128),
+			array('title, subtitle', 'length', 'max'=>128),
 			array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/', 'message'=>'Tags can only contain word characters.'),
 			array('tags', 'normalizeTags'),
 			array('category_id', 'numerical'),
+			array('image_filename', 'safe'),
 
 			array('title, status', 'safe', 'on'=>'search'),
 		);
@@ -67,6 +68,7 @@ class Post extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'title' => 'Title',
+			'subtitle' => 'Subtitle',
 			'content' => 'Content',
 			'category_id' => 'Category',
 			'image_filename' => 'Image',
@@ -182,6 +184,7 @@ class Post extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('title',$this->title,true);
+		$criteria->compare('subtitle',$this->subtitle,true);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('image_filename',$this->image_filename,true);
