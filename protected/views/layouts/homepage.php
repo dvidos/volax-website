@@ -27,6 +27,14 @@
 	</div>
 	<div id="content-col4" style="float:left;width:18%;margin-left:4%;">
 		<div id="homepage-messages-area">
+			<?php
+				// $this->widget('application.components.SlideshowWidget', array(
+					// 'directory'=>'uploads/slideshows/homepage',
+					// 'htmlOptions'=>array(
+						// 'style'=>'border: 1px solid red;',
+					// ),
+				// ));
+			?>
 		</div>
 		<div id="homepage-action-categories-list">
 			<?php
