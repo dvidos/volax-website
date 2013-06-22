@@ -2,7 +2,7 @@
 
 class CommentController extends Controller
 {
-	public $layout='column2';
+	public $layout='column1';
 
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.

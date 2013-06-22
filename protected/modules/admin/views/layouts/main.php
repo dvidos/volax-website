@@ -12,19 +12,30 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?> - Administration Area</div>
+		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?> administration</div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Admin Home', 'url'=>array('/admin')),
-				array('label'=>'Notes/Help', 'url'=>array('/admin/dashboard/page', 'page'=>'notes')),
-				array('label'=>'View Website', 'url'=>array('/')),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Admin', 'url'=>array('/admin')),
+				array('label'=>'Website', 'url'=>array('/')),
+				array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+				
 			),
 		)); ?>
 	</div><!-- mainmenu -->
+	<div id="submenu">
+		<?php echo CHtml::link('Posts',array('/admin/posts')); ?> |
+		<?php echo CHtml::link('Files',array('/admin/files')); ?> |
+		<?php echo CHtml::link('Comments',array('/admin/comments')); ?> |
+		<?php echo CHtml::link('Categories',array('/admin/categories')); ?> |
+		<?php echo CHtml::link('Users',array('/admin/users')); ?> |
+		<?php echo CHtml::link('Tags',array('/admin/tags')); ?> |
+		<?php echo CHtml::link('Ads',array('/admin/ads')); ?> |
+		<?php echo CHtml::link('Snippets',array('/admin/snippets')); ?> |
+		<?php echo CHtml::link('Notes',array('/admin/dashboard/page', 'page'=>'notes')); ?>
+	</div>
 
 	<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 		'links'=>$this->breadcrumbs,

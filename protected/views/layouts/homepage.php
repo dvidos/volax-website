@@ -43,7 +43,7 @@
 				{
 					$link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'category-link'));
 					echo $link;
-					echo '<span class="category-subtitle">' . $category->subtitle . '</span>';
+					echo '<span class="category-prologue">' . $category->prologue . '</span>';
 				}
 			?>
 		</div>

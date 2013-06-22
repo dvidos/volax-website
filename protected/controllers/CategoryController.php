@@ -2,7 +2,7 @@
 
 class CategoryController extends Controller
 {
-	public $layout='column2';
+	public $layout='column1';
 
 	public function actionIndex()
 	{

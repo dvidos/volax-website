@@ -5,9 +5,10 @@ $this->breadcrumbs=array(
 $this->pageTitle=$model->title;
 ?>
 
-<?php $this->renderPartial('_indexEntry', array(
+<?php $this->renderPartial('_layoutFullPage', array(
 	'data'=>$model,
 )); ?>
+
 
 <div id="comments">
 	<?php if($model->commentCount>=1): ?>

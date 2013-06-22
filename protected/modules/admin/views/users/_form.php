@@ -35,13 +35,13 @@
 
 	<div class="row checkbox">
 		<?php echo $form->checkBox($model,'is_admin'); ?>
-		<?php echo $form->labelEx($model,'is_admin'); ?>
+		<?php echo $form->labelEx($model,'is_admin', array('style'=>'display:inline;')); ?>
 		<?php echo $form->error($model,'is_owner'); ?>
 	</div>
 
 	<div class="row checkbox">
 		<?php echo $form->checkBox($model,'is_author'); ?>
-		<?php echo $form->labelEx($model,'is_author'); ?>
+		<?php echo $form->labelEx($model,'is_author', array('style'=>'display:inline;')); ?>
 		<?php echo $form->error($model,'is_author'); ?>
 	</div>
 

@@ -4,6 +4,6 @@
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
-	'itemView'=>'_indexEntry',
+	'itemView'=>'_layoutTitleOnly',
 	'template'=>"{items}\n{pager}",
 )); ?>

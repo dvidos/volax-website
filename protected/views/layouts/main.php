@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
+	<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&amp;subset=latin,greek" media="screen" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/print.css" media="print" />
@@ -77,32 +78,44 @@
 		<input><br />
 		Λοιπό functionality<br />
 	</div>
-	<div id="footer-col2" style="float:left; width:25%;">
-		<?php
-			$cat = Category::model()->findByPk(3);
-			echo '<b>' . $cat->title . '</b><br />';
-			foreach ($cat->subcategories as $category)
-				echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
-		?>
-	</div>
-	<div id="footer-col3" style="float:left;width:25%;">
-		<?php
-			$cat = Category::model()->findByPk(12);
-			echo '<b>' . $cat->title . '</b><br />';
-			foreach ($cat->subcategories as $category)
-				echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
-			echo '<br />';
-			
-			$cat = Category::model()->findByPk(17);
-			echo '<b>' . $cat->title . '</b><br />';
-			foreach ($cat->subcategories as $category)
-				echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
-		?>
+	<div id="footer-col2" style="float:left; width:50%;">
+		<a href="#" onClick="$('#footer-categories-list').slideToggle();"><b>Στήλες</b></a>
+		<div id="footer-categories-list" style="display: none;">
+			<?php
+				echo '<table width="100%"><tr><td>';
+				
+				$cat = Category::model()->findByPk(3);
+				echo '<b>' . $cat->title . '</b><br />';
+				foreach ($cat->subcategories as $category)
+				{
+					echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
+				}
+				
+				echo '</td><td>';
+
+				$cat = Category::model()->findByPk(12);
+				echo '<b>' . $cat->title . '</b><br />';
+				foreach ($cat->subcategories as $category)
+				{
+					echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
+				}
+
+				echo '</td><td>';
+				
+				$cat = Category::model()->findByPk(17);
+				echo '<b>' . $cat->title . '</b><br />';
+				foreach ($cat->subcategories as $category)
+				{
+					echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
+				}
+				
+				echo '</td></tr></table>';
+			?>
+		</div>
+		
 	</div>
 	<div style="clear:both;"></div>
 </div><!-- /footer -->
-
-
 
 
 </div><!-- /page -->

@@ -237,10 +237,10 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 body
 {
 	margin: 0;
-	padding: 0;
+	padding: 1em;
 	color: #555;
 	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #EFEFEF;
+	background: #777;
 }
 
 #page
@@ -248,14 +248,12 @@ body
 	margin-top: 5px;
 	margin-bottom: 5px;
 	background: white;
-	border: 1px solid #C9E0ED;
 }
 
 #header
 {
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
 }
 
 #content
@@ -314,6 +312,19 @@ body
 	color: #6399cd;
 	background-color:#EFF4FA;
 	text-decoration:none;
+}
+
+#submenu {
+	background-color: #eee;
+	border-bottom: 1px solid #aaa;
+	padding: .5em 1em;
+	text-align: left;
+}
+#submenu a {
+	color: #666;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 0 8px;
 }
 
 div.flash-error, div.flash-notice, div.flash-success
@@ -695,4 +706,14 @@ a.button:hover, a.search-button:hover, input[type=submit]:hover
 	color: #555;
 	background-color: #eee;
 	border: 1px solid #999;
+}
+
+
+#content a {
+	color: #23455A;
+	text-decoration: none;
+	font-weight: bold;
+}
+#content a:hover {
+	text-decoration: underline;
 }

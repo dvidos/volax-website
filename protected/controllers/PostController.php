@@ -2,7 +2,7 @@
 
 class PostController extends Controller
 {
-	public $layout='column2';
+	public $layout='column1';
 
 	/**
 	 * Displays a particular model.
@@ -43,6 +43,7 @@ class PostController extends Controller
 		));
 	}
 
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -62,6 +63,8 @@ class PostController extends Controller
 			
 		return $model;
 	}
+	
+	
 
 	/**
 	 * Creates a new comment.

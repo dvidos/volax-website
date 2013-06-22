@@ -4,75 +4,118 @@
 	'id'=>'user-form',
 	'enableAjaxValidation'=>false,
 )); ?>
-
 <?php echo $form->errorSummary($model); ?>
 
-<table>
-<tr><td colspan="3">
+<table style="border:1px solid #ddd; background-color: #f7f7f7; padding: .5em 1em;">
+<tr><td width="66%" style="vertical-align: top;">
 
-	<?php echo $form->labelEx($model,'title'); ?>
-	<?php echo $form->textField($model,'title',array('size'=>100,'maxlength'=>100)); ?>
-	<?php echo $form->error($model,'title'); ?>
+	<div class="row">
+		<?php echo $form->labelEx($model,'title'); ?>
+		<?php echo $form->textField($model,'title',array('style'=>'width:100%;','maxlength'=>100)); ?>
+		<?php echo $form->error($model,'title'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'content'); ?>
+		<?php echo $form->textArea($model,'content', array('style'=>'width:100%; min-height:450px;')); ?>
+		<?php echo $form->error($model,'content'); ?>
+	</div>
+	
+	<p class="hint">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> syntax.</p>
+	
+</td><td width="33%" style="vertical-align: top;">
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'category_id'); ?>
+		<?php echo $form->dropDownList($model,'category_id',Category::dropDownListItems()); ?>
+		<?php echo $form->error($model,'category_id'); ?>
+	</div>
+	
+	<table width="100%" border="1">
+	<tr><td>
+		<div class="row">
+			<?php echo $form->labelEx($model,'status'); ?>
+			<?php echo $form->dropDownList($model,'status',Status::items('PostStatus')); ?>
+			<?php echo $form->error($model,'status'); ?>
+		</div>
+	</td><td style="text-align: center;">
+		<div class="row">
+			<?php echo $form->labelEx($model,'in_home_page'); ?>
+			<?php echo $form->checkBox($model, 'in_home_page'); ?>
+			<?php echo $form->error($model,'in_home_page'); ?>
+		</div>
+	</td><td style="text-align: center;">
+		<div class="row">
+			<?php echo $form->labelEx($model,'render_narrow'); ?>
+			<?php echo $form->checkBox($model, 'render_narrow'); ?>
+			<?php echo $form->error($model,'render_narrow'); ?>
+		</div>
+	</td></tr>
+	</table>
+	
+	
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'prologue'); ?>
+		<?php echo $form->textArea($model,'prologue', array('style'=>'width:100%; min-height:80px;')); ?>
+		<?php echo $form->error($model,'prologue'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'masthead'); ?>
+		<?php echo $form->textArea($model,'masthead', array('style'=>'width:100%; min-height:80px;')); ?>
+		<?php echo $form->error($model,'masthead'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'image_filename'); ?>
+		<?php /* echo $form->textField($model,'image_filename',array('size'=>100,'maxlength'=>100)); */ ?>
+		<?php echo $this->widget('application.components.elFinder.ServerFileInput', array(
+			'model' => $model,
+			'attribute' => 'image_filename',
+			'connectorRoute' => '/admin/elfinder/connector',
+			'htmlOptions'=>array('size'=>20),
+		)); ?>
+		<?php echo $form->error($model,'image_filename'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'image2_filename'); ?>
+		<?php /* echo $form->textField($model,'image2_filename',array('size'=>100,'maxlength'=>100)); */ ?>
+		<?php echo $this->widget('application.components.elFinder.ServerFileInput', array(
+			'model' => $model,
+			'attribute' => 'image2_filename',
+			'connectorRoute' => '/admin/elfinder/connector',
+			'htmlOptions'=>array('size'=>20),
+		)); ?>
+		<?php echo $form->error($model,'image2_filename'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'tags'); ?>
+		<?php $this->widget('CAutoComplete', array(
+			'model'=>$model,
+			'attribute'=>'tags',
+			'url'=>array('suggestTags'),
+			'multiple'=>true,
+			'htmlOptions'=>array('size'=>40),
+		)); ?>
+		<p class="hint">Separate different tags with commas.</p>
+		<?php echo $form->error($model,'tags'); ?>
+	</div>
+	
+	
 	
 </td></tr>
-<tr><td colspan="3">
-
-	<?php echo $form->labelEx($model,'subtitle'); ?>
-	<?php echo $form->textField($model,'subtitle',array('size'=>100,'maxlength'=>100)); ?>
-	<?php echo $form->error($model,'subtitle'); ?>
-	
-</td></tr>
-<tr><td>
-
-	<?php echo $form->labelEx($model,'category_id'); ?>
-	<?php echo $form->dropDownList($model,'category_id',Category::dropDownListItems()); ?>
-	<?php echo $form->error($model,'category_id'); ?>
-
-</td><td>
-
-	<?php echo $form->labelEx($model,'status'); ?>
-	<?php echo $form->dropDownList($model,'status',Status::items('PostStatus')); ?>
-	<?php echo $form->error($model,'status'); ?>
-
-</td><td>
-
-	<?php echo $form->labelEx($model,'tags'); ?>
-	<?php $this->widget('CAutoComplete', array(
-		'model'=>$model,
-		'attribute'=>'tags',
-		'url'=>array('suggestTags'),
-		'multiple'=>true,
-	)); ?>
-	<p class="hint">Please separate different tags with commas.</p>
-	<?php echo $form->error($model,'tags'); ?>
-
-</td></tr>
-<tr><td colspan="3">
-
-	<?php echo $form->labelEx($model,'image_filename'); ?>
-	<?php /* echo $form->textField($model,'image_filename',array('size'=>100,'maxlength'=>100)); */ ?>
-	<?php echo $this->widget('application.components.elFinder.ServerFileInput', array(
-		'model' => $model,
-		'attribute' => 'image_filename',
-		'connectorRoute' => '/admin/elfinder/connector',
-		'htmlOptions'=>array('size'=>50),
-	)); ?>
-	<?php echo $form->error($model,'image_filename'); ?>
-	
-</td></tr>
-<tr><td colspan="3">
-
-	<?php echo $form->labelEx($model,'content'); ?>
-	<?php echo $form->textArea($model,'content', array('style'=>'width:100%; min-height:250px;')); ?>
-	<?php echo $form->error($model,'content'); ?>
-
-</td></tr>
-<tr><td colspan="3">
+<tr><td colspan="2">
 
 	<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 
 </td></tr>
 </table>
+
+
+
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

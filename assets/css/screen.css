@@ -275,7 +275,11 @@ div.breadcrumbs span
 	padding: 5px;
 	background: #EFFDFF;
 }
-
+.post .nav a 
+{
+	text-decoration: none;
+	color: #555;
+}
 .comment
 {
 	-moz-border-radius:7px;
@@ -490,4 +494,14 @@ div.wide form .errorMessage
 {
 	margin: 0 0 0 110px;
 }
+
+
+
+/*
+ * some redefinitions
+ */
+
+table { border-collapse: collapse; }
+table td { vertical-align: top; }
+
 

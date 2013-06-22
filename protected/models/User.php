@@ -152,6 +152,9 @@ class User extends CActiveRecord
 			'sort'=>array(
 				'defaultOrder'=>'username ASC',
 			),
+			'pagination'=>array(
+				'pageSize'=>25,
+			),
 		));
 	}
 	

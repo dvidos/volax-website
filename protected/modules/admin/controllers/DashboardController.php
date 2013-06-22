@@ -1,1 +1,1 @@
-<?phpclass DashboardController extends Controller{	public $layout='column2';	public function actionIndex()	{		$this->render('index');	}		public function actionPage($page)	{		$this->render('pages/' . $page);	}}
+<?phpclass DashboardController extends Controller{	// public $layout='column2';	public function actionIndex()	{		$this->render('index');	}		public function actionPage($page)	{		$this->render('pages/' . $page);	}}

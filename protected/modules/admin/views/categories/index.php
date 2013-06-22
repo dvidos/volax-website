@@ -40,6 +40,11 @@ Yii::app()->clientScript->registerScript('search',
 			'filter'=>Status::items('CategoryStatus'),
 		),
 		array(
+			'name'=>'layout',
+			'value'=>'Category::getLayoutCaption($data->layout)',
+			'filter'=>Category::getLayoutOptions(),
+		),
+		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{delete}',
 		),

@@ -18,9 +18,10 @@ $this->pageTitle=$model->title;
 		),
 	));
 		
+	// itemView  should be dependent on the Layout...
 	$this->widget('zii.widgets.CListView', array(
 		'dataProvider'=>$dataProvider,
-		'itemView'=>'/post/_indexEntry',
+		'itemView'=>'/post/_layoutFullPage',
 		'template'=>"{items}\n{pager}",
 	));
 ?>

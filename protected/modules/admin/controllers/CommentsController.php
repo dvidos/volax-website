@@ -2,7 +2,7 @@
 
 class CommentsController extends Controller
 {
-	public $layout='column2';
+	// public $layout='column2';
 
 	public function actionIndex()
 	{

@@ -31,11 +31,10 @@ class Category extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, status', 'required'),
-			array('status', 'in', 'range'=>array(1,2)),
-			array('title, subtitle, image_filename', 'length', 'max'=>128),
-			array('parent_id, view_order', 'numerical'),
-			array('content', 'safe'),
-			array('id, parent_id, title, content, image_filename, status, view_order', 'safe', 'on'=>'search'),
+			array('title, image_filename, image_2filename', 'length', 'max'=>128),
+			array('parent_id, view_order, layout, status', 'numerical'),
+			array('content, prologue, masthead', 'safe'),
+			array('id, parent_id, title, content, prologue, masthead, image_filename, image2_filename, layout, status, view_order', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,9 +63,12 @@ class Category extends CActiveRecord
 			'id' => 'Id',
 			'parent_id' => 'Parent',
 			'title' => 'Title',
-			'subtitle' => 'Subtitle',
+			'prologue' => 'Prologue',
+			'masthead' => 'Masthead',
 			'content' => 'Content',
 			'image_filename' => 'Image',
+			'image2_filename' => 'Smaller Image',
+			'layout' => 'Layout',
 			'status' => 'Status',
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
@@ -131,12 +133,24 @@ class Category extends CActiveRecord
 
 		$criteria->compare('parent_id',$this->parent_id);
 		$criteria->compare('title',$this->title,true);
+		$criteria->compare('prologue',$this->prologue,true);
+		$criteria->compare('masthead',$this->masthead,true);
+		$criteria->compare('content',$this->content,true);
+		$criteria->compare('image_filename',$this->image_filename,true);
+		$criteria->compare('image2_filename',$this->image2_filename,true);
+		$criteria->compare('layout',$this->layout);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('create_time',$this->create_time);
+		$criteria->compare('update_time',$this->update_time);
+		$criteria->compare('view_order',$this->view_order);
 
 		return new CActiveDataProvider('Category', array(
 			'criteria'=>$criteria,
 			'sort'=>array(
 				'defaultOrder'=>'parent_id, view_order, title, update_time DESC',
+			),
+			'pagination'=>array(
+				'pageSize'=>25,
 			),
 		));
 	}
@@ -161,7 +175,27 @@ class Category extends CActiveRecord
 			self::loadDropDownListItemsOf($model->id, $depth + 1);
 		}
 	}
-	
+
+	public static function getLayoutOptions()
+	{
+		return array(
+			0 => 'Default',
+			1 => 'One column with more',
+			2 => 'Two columns',
+			3 => 'Three columns',
+			4 => 'Mixed 2:1 columns',
+			5 => 'One column brief listing',
+			6 => 'One column whole posts',
+		);
+	}
+	public static function getLayoutCaption($layout)
+	{
+		$options = self::getLayoutOptions();
+		if (array_key_exists($layout, $options))
+			return $options[$layout];
+		else
+			return '(unknown)';
+	}
 
 	public static function findAllOfParent($parent_id)
 	{

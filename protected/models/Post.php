@@ -35,13 +35,13 @@ class Post extends CActiveRecord
 		return array(
 			array('title, content, category_id, status', 'required'),
 			array('status', 'in', 'range'=>array(1,2,3)),
-			array('title, subtitle', 'length', 'max'=>128),
-			array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/', 'message'=>'Tags can only contain word characters.'),
+			array('title', 'length', 'max'=>128),
+			array('tags', 'match', 'pattern'=>'/^[\S\s,]+$/', 'message'=>'Tags must be separated with comma.'),
 			array('tags', 'normalizeTags'),
-			array('category_id', 'numerical'),
-			array('image_filename', 'safe'),
+			array('category_id, status, render_narrow, in_home_page', 'numerical'),
+			array('image_filename, image2_filename', 'safe'),
 
-			array('title, status', 'safe', 'on'=>'search'),
+			array('id, title, prologue, masthead, category_id, content, image_filename, image2_filename, tags, status, in_home_page, render_narrow, author_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,12 +68,16 @@ class Post extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'title' => 'Title',
-			'subtitle' => 'Subtitle',
+			'prologue' => 'Prologue',
+			'masthead' => 'Masthead',
 			'content' => 'Content',
 			'category_id' => 'Category',
 			'image_filename' => 'Image',
+			'image2_filename' => 'Mini Image',
 			'tags' => 'Tags',
 			'status' => 'Status',
+			'in_home_page' => 'In Home Page',
+			'render_narrow' => 'Render Narrow',
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
 			'author_id' => 'Author',
@@ -126,6 +130,15 @@ class Post extends CActiveRecord
 		return $comment->save();
 	}
 
+	
+	/**
+	 * To set default values
+	 */
+	protected function afterConstruct()
+	{
+		$this->in_home_page = true;
+	}
+	
 	/**
 	 * This is invoked when a record is populated with data from a find() call.
 	 */
@@ -184,17 +197,24 @@ class Post extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('subtitle',$this->subtitle,true);
+		$criteria->compare('prologue',$this->prologue,true);
+		$criteria->compare('masthead',$this->masthead,true);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('image_filename',$this->image_filename,true);
+		$criteria->compare('image2_filename',$this->image2_filename,true);
 		$criteria->compare('tags',$this->tags,true);
 		$criteria->compare('status',$this->status);
-
+		$criteria->compare('in_home_page',$this->in_home_page);
+		$criteria->compare('render_narrow',$this->render_narrow);
+		
 		return new CActiveDataProvider('Post', array(
 			'criteria'=>$criteria,
 			'sort'=>array(
 				'defaultOrder'=>'create_time DESC',
+			),
+			'pagination'=>array(
+				'pageSize'=>25,
 			),
 		));
 	}

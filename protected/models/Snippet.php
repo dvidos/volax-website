@@ -60,6 +60,9 @@ class Snippet  extends CActiveRecord
 			'sort'=>array(
 				'defaultOrder'=>'title ASC',
 			),
+			'pagination'=>array(
+				'pageSize'=>25,
+			),
 		));
 	}
 }

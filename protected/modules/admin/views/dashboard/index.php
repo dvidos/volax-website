@@ -1,7 +1,4 @@
-﻿<h1>Admin Dashboard</h1>
-
-
-<div style="width:33%;float:left;">
+﻿<div style="width:33%;float:left;">
 	<h2>Posts</h2>
 	<ul>
 		<li><?php echo CHtml::link('Draft', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_DRAFT)) ?> (<?php echo Post::model()->count('status='.Post::STATUS_DRAFT); ?>)</li>
@@ -11,14 +8,14 @@
 	<?php echo CHtml::link('Create New Post', array('/admin/posts/create'), array('class'=>'button')); ?>
 	<p>&nbsp;</p>
 	
-	<h2>Comments</h2>
+	<h2>Σχόλια</h2>
 	<ul>
 		<li><?php echo CHtml::link('Pending', array('/admin/comments/index', 'status'=>Comment::STATUS_PENDING)) ?> (<?php echo Comment::model()->count('status='.Comment::STATUS_PENDING); ?>)</li>
 		<li><?php echo CHtml::link('Approved', array('/admin/comments/index', 'status'=>Comment::STATUS_APPROVED)) ?> (<?php echo Comment::model()->count('status='.Comment::STATUS_APPROVED); ?>)</li>
 	</ul>
 	
 </div><div style="width:33%;float:left;">
-	<h2>Categories</h2>
+	<h2>Κατηγορίες</h2>
 	<ul>
 	<?php
 		function listCateogoriesFor($parent_id)
@@ -54,8 +51,6 @@
 	
 	
 	<h2>Ads</h2>
-	
-	
 	
 	
 
