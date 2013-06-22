@@ -66,12 +66,12 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'username' => 'Username',
-			'password' => 'Password',
-			'password1' => 'Change password (leave blank to keep old password)',
-			'password2' => 'Repeat changed passsword',
+			'username' => 'Ονομα',
+			'password' => 'Κωδικός',
+			'password1' => 'Αλλαγή κωδικού (αν είναι κενό, δεν αλλάζει)',
+			'password2' => 'Επανάληψη αλλαγής κωδικού',
 			'email' => 'Email',
-			'profile' => 'Profile',
+			'profile' => 'Προφίλ',
 		);
 	}
 

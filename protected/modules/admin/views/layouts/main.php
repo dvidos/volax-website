@@ -3,8 +3,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&amp;subset=latin,greek" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/admin.css" />
-	<title><?php echo CHtml::encode($this->pageTitle); ?> - Administration Area</title>
+	<title><?php echo CHtml::encode($this->pageTitle); ?> - Διαχείριση</title>
 </head>
 
 <body>
@@ -12,30 +13,45 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?> administration</div>
+		<div id="logo">Διαχείριση <?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Admin', 'url'=>array('/admin')),
-				array('label'=>'Website', 'url'=>array('/')),
-				array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-				
-			),
-		)); ?>
+		<div style="float:left;">
+			<?php 
+				$submenu_items = array(
+					array('label'=>'Κατηγορίες', 'url'=>array('/admin/categories')),
+					array('label'=>'Tags', 'url'=>array('/admin/tags')),
+					array('label'=>'Διαφημίσεις', 'url'=>array('/admin/advertisements')),
+					array('label'=>'Snippets', 'url'=>array('/admin/snippets')),
+					array('label'=>'Καταστάσεις', 'url'=>array('/admin/statuses')),
+					array('label'=>'Χρήστες', 'url'=>array('/admin/users')),
+					array('label'=>'Σημειώσεις', 'url'=>array('/admin/dashboard/page', 'page'=>'notes')),
+				);
+				$this->widget('zii.widgets.CMenu',array(
+					'activeCssClass'=>'active',
+					'activateParents'=>true,
+					'items'=>array(
+						array('label'=>'Αρχική', 'url'=>array('/admin')),
+						array('label'=>'Αναρτήσεις', 'url'=>array('/admin/posts')),
+						array('label'=>'Αρχεία', 'url'=>array('/admin/files')),
+						array('label'=>'Σχόλια', 'url'=>array('/admin/comments')),
+						array('label'=>'...', 'url'=>'#', 'items'=>$submenu_items),
+					),
+				)); ?>
+		</div><div style="float:right;">
+			<?php 
+				$this->widget('zii.widgets.CMenu',array(
+					'activeCssClass'=>'active',
+					'activateParents'=>true,
+					'items'=>array(
+						array('label'=>'Website', 'url'=>array('/')),
+						array('label'=>'Εξοδος', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+					),
+				)); ?>
+		</div>
+		<div style="clear:both;"></div>
 	</div><!-- mainmenu -->
-	<div id="submenu">
-		<?php echo CHtml::link('Posts',array('/admin/posts')); ?> |
-		<?php echo CHtml::link('Files',array('/admin/files')); ?> |
-		<?php echo CHtml::link('Comments',array('/admin/comments')); ?> |
-		<?php echo CHtml::link('Categories',array('/admin/categories')); ?> |
-		<?php echo CHtml::link('Users',array('/admin/users')); ?> |
-		<?php echo CHtml::link('Tags',array('/admin/tags')); ?> |
-		<?php echo CHtml::link('Ads',array('/admin/ads')); ?> |
-		<?php echo CHtml::link('Snippets',array('/admin/snippets')); ?> |
-		<?php echo CHtml::link('Notes',array('/admin/dashboard/page', 'page'=>'notes')); ?>
-	</div>
 
 	<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 		'links'=>$this->breadcrumbs,
@@ -44,7 +60,7 @@
 	<?php echo $content; ?>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by D.V. &amp; D.V. All Rights Reserved.<br/>
+		Πνευματικά δικαιώματα &copy; <?php echo date('Y'); ?> Δ.Β. &amp; Δ.Β.<br/>
 	</div><!-- footer -->
 
 </div><!-- page -->

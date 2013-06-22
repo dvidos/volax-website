@@ -4,7 +4,7 @@ Yii::app()->clientScript->registerScript('search',
 	"$('.search-form form').submit(function(){ $.fn.yiiGridView.update('user-grid', { data: $(this).serialize() }); return false; });");
 ?>
 
-<h1>Κατηγορίες</h1>
+<h1>Διαφημίσεις</h1>
 
 <p><?php
 	echo CHtml::link('Δημιουργία', array('create'), array('class'=>'button')); 
@@ -19,34 +19,25 @@ Yii::app()->clientScript->registerScript('search',
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'user-grid',
+	'id'=>'advertisement-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		array(
 			'name'=>'title',
 			'type'=>'raw',
-			'value'=>'CHtml::link(CHtml::encode($data->title), array("update", "id"=>$data->id));',
+			'value'=>'CHtml::link(CHtml::encode($data->title), array("update", "id"=>$data->id))',
 		),
-		'view_order',
+		'customer',
 		array(
-			'name'=>'parent_id',
-			'value'=>'$data->parent == null ? "None" : $data->parent->title',
-			'filter'=>Category::dropDownListItems(),
-		),
-		array(
-			'name'=>'status',
-			'value'=>'Status::item("CategoryStatus",$data->status)',
-			'filter'=>Status::items('CategoryStatus'),
-		),
-		array(
-			'name'=>'layout',
-			'value'=>'Category::getLayoutCaption($data->layout)',
-			'filter'=>Category::getLayoutOptions(),
+			'name'=>'is_active',
+			'header'=>'Active',
+			'value'=>'$data->is_active ? "Yes" : ""',
+			'filter'=>array('1'=>'Yes','0'=>'No'),
 		),
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}',
+			'template'=>'{update} {delete}',
 		),
 	),
 )); ?>

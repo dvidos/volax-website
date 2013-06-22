@@ -67,20 +67,20 @@ class Post extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'title' => 'Title',
-			'prologue' => 'Prologue',
-			'masthead' => 'Masthead',
-			'content' => 'Content',
-			'category_id' => 'Category',
-			'image_filename' => 'Image',
-			'image2_filename' => 'Mini Image',
+			'title' => 'Τίτλος',
+			'prologue' => 'Πρόλογος',
+			'masthead' => 'Υπέρτιτλος',
+			'content' => 'Περιεχόμενο',
+			'category_id' => 'Κατηγορία',
+			'image_filename' => 'Εικόνα',
+			'image2_filename' => 'Μικρή εικόνα',
 			'tags' => 'Tags',
-			'status' => 'Status',
-			'in_home_page' => 'In Home Page',
-			'render_narrow' => 'Render Narrow',
+			'status' => 'Κατάσταση',
+			'in_home_page' => 'Σε αρχική σελίδα',
+			'render_narrow' => 'Στενή εμφάνιση',
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
-			'author_id' => 'Author',
+			'author_id' => 'Συγγραφέας',
 		);
 	}
 

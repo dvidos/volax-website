@@ -2,18 +2,11 @@
 
 class Status extends CActiveRecord
 {
-	/**
-	 * The followings are the available columns in table 'tbl_lookup':
-	 * @var integer $id
-	 * @var string $object_type
-	 * @var integer $code
-	 * @var string $name_en
-	 * @var string $name_fr
-	 * @var integer $sequence
-	 * @var integer $status
-	 */
-
 	private static $_items=array();
+	
+	const POST_STATUS = 'PostStatus';
+	const CATEGORY_STATUS = 'CategoryStatus';
+	const COMMENT_STATUS = 'CommentStatus';
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -30,6 +23,27 @@ class Status extends CActiveRecord
 	public function tableName()
 	{
 		return '{{status}}';
+	}
+
+	public function rules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('name, code, type, position', 'required'),
+			array('id, name, code, type, position', 'safe', 'on'=>'search'),
+		);
+	}
+	
+	public function attributeLabels()
+	{
+		return array(
+			'id' => 'Id',
+			'name' => 'Ονομα',
+			'code' => 'Κωδικός',
+			'type' => 'Τύπος',
+			'position' => 'Σειρά εμφάνισης',
+		);
 	}
 
 	/**
@@ -72,5 +86,35 @@ class Status extends CActiveRecord
 		));
 		foreach($models as $model)
 			self::$_items[$type][$model->code]=$model->name;
+	}
+	
+
+	public static function getTypeOptions()
+	{
+		return array(
+			self::POST_STATUS=>self::POST_STATUS,
+			self::CATEGORY_STATUS=>self::CATEGORY_STATUS,
+			self::COMMENT_STATUS=>self::COMMENT_STATUS,
+		);
+	}
+	
+	public function search()
+	{
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('name',$this->name, true);
+		$criteria->compare('code',$this->code, true);
+		$criteria->compare('type',$this->type, true);
+		$criteria->compare('position',$this->position);
+
+		return new CActiveDataProvider('Status', array(
+			'criteria'=>$criteria,
+			'sort'=>array(
+				'defaultOrder'=>'type, position',
+			),
+			'pagination'=>array(
+				'pageSize'=>25,
+			),
+		));
 	}
 }

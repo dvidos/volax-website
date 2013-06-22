@@ -51,6 +51,11 @@
 	<div id="banner-right" style="float:right; width:75%;">
 		<?php
 			// echo CHtml::image(Yii::app()->baseUrl . '/assets/images/ad_sample.gif');
+			$this->widget('application.components.advertisementWidget', array(
+				'htmlOptions'=>array(
+					'style'=>'background-color: #777; border: 3px solid red; width: 468px; height: 60px; overflow: hidden;'
+				),
+			));
 		?>
 	</div>
 	<div style="clear:both;"></div>
@@ -79,7 +84,7 @@
 		Λοιπό functionality<br />
 	</div>
 	<div id="footer-col2" style="float:left; width:50%;">
-		<a href="#" onClick="$('#footer-categories-list').slideToggle();"><b>Στήλες</b></a>
+		<a href="#" onClick="$('#footer-categories-list').slideToggle(); return false;"><b>Στήλες</b></a>
 		<div id="footer-categories-list" style="display: none;">
 			<?php
 				echo '<table width="100%"><tr><td>';

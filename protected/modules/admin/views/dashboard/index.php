@@ -1,58 +1,90 @@
-﻿<div style="width:33%;float:left;">
-	<h2>Posts</h2>
-	<ul>
-		<li><?php echo CHtml::link('Draft', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_DRAFT)) ?> (<?php echo Post::model()->count('status='.Post::STATUS_DRAFT); ?>)</li>
-		<li><?php echo CHtml::link('Published', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_PUBLISHED)) ?> (<?php echo Post::model()->count('status='.Post::STATUS_PUBLISHED); ?>)</li>
-		<li><?php echo CHtml::link('Archived', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_ARCHIVED)) ?> (<?php echo Post::model()->count('status='.Post::STATUS_ARCHIVED); ?>)</li>
-	</ul>
-	<?php echo CHtml::link('Create New Post', array('/admin/posts/create'), array('class'=>'button')); ?>
-	<p>&nbsp;</p>
+﻿<div style="width:20%;float:left;">
+
+	<h2>Αναρτήσεις</h2>
+	<table class="compact">
+		<tr>
+			<td><?php echo CHtml::link('Πρόχειρες', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_DRAFT)) ?></td>
+			<td><?php echo Post::model()->count('status='.Post::STATUS_DRAFT); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo CHtml::link('Δημοσιευμένες', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_PUBLISHED)) ?></td>
+			<td><?php echo Post::model()->count('status='.Post::STATUS_PUBLISHED); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo CHtml::link('Αρχειοθετημένες', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_ARCHIVED)) ?></td>
+			<td><?php echo Post::model()->count('status='.Post::STATUS_ARCHIVED); ?></td>
+		</tr>
+		<tr><td colspan="2"><?php echo CHtml::link('Νέα ανάρτηση', array('/admin/posts/create'), array('class'=>'button', 'style'=>'margin-top: .5em;')); ?></td></tr>
+	</table>
+		
 	
 	<h2>Σχόλια</h2>
-	<ul>
-		<li><?php echo CHtml::link('Pending', array('/admin/comments/index', 'status'=>Comment::STATUS_PENDING)) ?> (<?php echo Comment::model()->count('status='.Comment::STATUS_PENDING); ?>)</li>
-		<li><?php echo CHtml::link('Approved', array('/admin/comments/index', 'status'=>Comment::STATUS_APPROVED)) ?> (<?php echo Comment::model()->count('status='.Comment::STATUS_APPROVED); ?>)</li>
-	</ul>
+	<table class="compact">
+		<tr>
+			<td><?php echo CHtml::link('Εκκρεμή', array('/admin/comments/index', 'status'=>Comment::STATUS_PENDING)) ?></td>
+			<td><?php echo Comment::model()->count('status='.Comment::STATUS_PENDING); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo CHtml::link('Εγκεκρικένα', array('/admin/comments/index', 'status'=>Comment::STATUS_APPROVED)) ?></td>
+			<td><?php echo Comment::model()->count('status='.Comment::STATUS_APPROVED); ?></td>
+		</tr>
+	</table>
+
+	<h2>Κατηγορίες</h2>
+	<table class="compact">
+		<tr>
+			<td><?php echo CHtml::link('Πρόχειρες', array('/admin/categories/index', 'Category[status]'=>Category::STATUS_DRAFT)) ?></td>
+			<td><?php echo Category::model()->count('status='.Category::STATUS_DRAFT); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo CHtml::link('Δημοσιευμένες', array('/admin/categories/index', 'Category[status]'=>Category::STATUS_PUBLISHED)) ?></td>
+			<td><?php echo Category::model()->count('status='.Category::STATUS_PUBLISHED); ?></td>
+		</tr>
+	</table>
 	
-</div><div style="width:33%;float:left;">
+</div><div style="width:25%;float:left;margin-left:5%;">
+
 	<h2>Κατηγορίες</h2>
 	<ul>
 	<?php
-		function listCateogoriesFor($parent_id)
+		function listCategoriesFor($parent_id, $depth)
 		{
 			$categories = Category::findAllOfParent($parent_id);
-			if (count($categories) > 0)
+			foreach ($categories as $category)
 			{
-				echo '<ul>';
-				foreach ($categories as $category)
-				{
-					$html = CHtml::link($category->title, array('/admin/categories/update', 'id'=>$category->id));
-					$html .= ' (';
-					if ($category->postsCount == 0)
-						$html .= '0';
-					else
-						$html .= CHtml::link($category->postsCount, array('/admin/posts/index', 'Post[category_id]'=>$category->id));
-					$html .= ')';
+				$c1 = '';
+				$c2 = '';
+				
+				if ($depth > 0)
+					$c1 .= '-';
+				for ($i = 0; $i < $depth; $i++)
+					$c1 .= '&nbsp';
+				$c1 .= CHtml::link($category->title, array('/admin/categories/update', 'id'=>$category->id));
+
+				if ($category->postsCount == 0)
+					$c2 = '0';
+				else
+					$c2 = CHtml::link($category->postsCount, array('/admin/posts/index', 'Post[category_id]'=>$category->id));
 					
-					echo '<li>' . $html . '</li>';
-					listCateogoriesFor($category->id);
-				}
-				echo '</ul>';
+				echo '<tr><td>' . $c1 . '</td><td>' . $c2 . '</td></tr>' . "\r\n";
+				listCategoriesFor($category->id, $depth + 4);
 			}
 		}
 
-		listCateogoriesFor(0);
+		echo '<table class="compact">';
+		listCategoriesFor(0, 0);
+		echo '</table>';
 	?>
 	</ul>
 	
 
-</div><div style="width:33%;float:left;">
-	<h2>Users</h2>
+</div><div style="width:20%;float:left;margin-left: 5%;">
+
+	&nbsp;
+
+</div><div style="width:20%;float:left;margin-left: 5%;">
 	
-	
-	<h2>Ads</h2>
-	
-	
+	&nbsp;
 
 </div>
 <div style="clear:both;"></div>

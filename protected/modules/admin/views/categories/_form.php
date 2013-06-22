@@ -6,7 +6,7 @@
 )); ?>
 <?php echo $form->errorSummary($model); ?>
 
-<table style="border:1px solid #ddd; background-color: #f7f7f7; padding: .5em 1em;">
+<table style="border:1px solid #ddd; background-color: #eee; padding: .5em 1em;">
 <tr><td width="66%" style="vertical-align: top;">
 
 	<div class="row">
@@ -20,6 +20,8 @@
 		<?php echo $form->textArea($model,'content', array('style'=>'width:100%; min-height:450px;')); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
+	
+	<p class="hint">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> syntax.</p>
 	
 </td><td width="33%" style="vertical-align: top;">
 	

@@ -31,7 +31,7 @@ class Category extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, status', 'required'),
-			array('title, image_filename, image_2filename', 'length', 'max'=>128),
+			array('title, image_filename, image2_filename', 'length', 'max'=>128),
 			array('parent_id, view_order, layout, status', 'numerical'),
 			array('content, prologue, masthead', 'safe'),
 			array('id, parent_id, title, content, prologue, masthead, image_filename, image2_filename, layout, status, view_order', 'safe', 'on'=>'search'),
@@ -61,18 +61,18 @@ class Category extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'parent_id' => 'Parent',
-			'title' => 'Title',
-			'prologue' => 'Prologue',
-			'masthead' => 'Masthead',
-			'content' => 'Content',
-			'image_filename' => 'Image',
-			'image2_filename' => 'Smaller Image',
-			'layout' => 'Layout',
-			'status' => 'Status',
+			'parent_id' => 'Πατρική κατηγορία',
+			'title' => 'Τίτλος',
+			'prologue' => 'Πρόλογος',
+			'masthead' => 'Υπέρτιτλος',
+			'content' => 'Περιεχόμενο',
+			'image_filename' => 'Εικόνα',
+			'image2_filename' => 'Μικρή εικόνα',
+			'layout' => 'Εμφάνιση',
+			'status' => 'Κατάσταση',
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
-			'view_order' => 'View Order',
+			'view_order' => 'Σειρά εμφάνισης',
 		);
 	}
 

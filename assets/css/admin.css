@@ -239,8 +239,9 @@ body
 	margin: 0;
 	padding: 1em;
 	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #777;
+	font-size: 10pt;
+	font-family: 'Open sans',sans-serif;
+	background: #29546B;
 }
 
 #page
@@ -281,23 +282,23 @@ body
 	font-size: 200%;
 }
 
-#mainmenu
+x#xmainmenu
 {
 	background:white url(../images/bg_blue.gif) repeat-x left top;
 }
 
-#mainmenu ul
+x#xmainmenu ul
 {
 	padding:6px 20px 5px 20px;
 	margin:0px;
 }
 
-#mainmenu ul li
+x#xmainmenu ul li
 {
 	display: inline;
 }
 
-#mainmenu ul li a
+x#xmainmenu ul li a
 {
 	color:#ffffff;
 	background-color:transparent;
@@ -307,12 +308,30 @@ body
 	padding:5px 8px;
 }
 
-#mainmenu ul li a:hover, #mainmenu ul li.active a
+x#xmainmenu ul li a:hover, x#xmainmenu ul li.active a
 {
 	color: #6399cd;
 	background-color:#EFF4FA;
 	text-decoration:none;
 }
+
+#mainmenu { background:white url(../images/bg_blue.gif) repeat-x left top; padding: 0 1.5em; }
+#mainmenu ul { list-style: none; margin: 0; padding: 0; position: relative; height: 30px; border-left: 1px solid #467996; }
+#mainmenu ul li { display: block; height: 28px; float: left; overflow: visible; }
+#mainmenu ul li:hover > ul { display: block; }
+#mainmenu ul li a { float: left; display: block; border-right: 1px solid #467996; height: 30px; padding: 0 1em; line-height: 30px; 
+	text-decoration: none;
+	color: #23455A;
+	font-weight: bold;
+}
+#mainmenu ul li a:hover { background-color: #A1C9E2; }
+#mainmenu ul li ul { display: none; position: absolute; top: 100%;
+                    background-color: #5EA2CA; color: #fff; height: auto;  border: 1px solid #366984
+}
+#mainmenu ul li ul li { display: block; float: none; }
+#mainmenu ul li ul li a { padding: 4px 14px; display: block; height: 1.5em; line-height: 1em; width: 10em; border-right: none; }
+#mainmenu ul li ul li.active a,
+#mainmenu ul li ul li a:hover { }
 
 #submenu {
 	background-color: #eee;
@@ -716,4 +735,9 @@ a.button:hover, a.search-button:hover, input[type=submit]:hover
 }
 #content a:hover {
 	text-decoration: underline;
+}
+
+table.compact td {
+	padding: 1px 2px;
+	margin: 0;
 }

@@ -4,10 +4,9 @@
 	'id'=>'user-form',
 	'enableAjaxValidation'=>false,
 )); ?>
+<?php echo $form->errorSummary($model); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
+<table style="border:1px solid #ddd; background-color: #eee; padding: .5em 1em;"><tr><td>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
@@ -23,13 +22,15 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'content'); ?>
-		<?php echo $form->textArea($model,'content'); ?>
+		<?php echo $form->textArea($model,'content', array('style'=>'width:100%; min-height:350px;')); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
+
+</td></tr></table>
 
 <?php $this->endWidget(); ?>
 

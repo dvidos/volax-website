@@ -4,7 +4,7 @@ $('.container').on('click','.time a.delete',function() {
 	var th=$(this),
 		container=th.closest('div.comment'),
 		id=container.attr('id').slice(1);
-	if(confirm('Are you sure you want to delete comment #'+id+'?')) {
+	if(confirm('Διαγραφή του σχολίου #'+id+'?')) {
 		$.ajax({
 			url:th.attr('href'),
 			type:'POST'
@@ -19,24 +19,24 @@ Yii::app()->getClientScript()->registerScript('delete', $deleteJS);
 
 	<?php echo CHtml::link("#{$data->id}", $data->url, array(
 		'class'=>'cid',
-		'title'=>'Permalink to this comment',
+		'title'=>'Permalink',
 	)); ?>
 
 	<div class="author">
-		<?php echo $data->authorLink; ?> says on
-		<?php echo CHtml::link(CHtml::encode($data->post->title), $data->post->url); ?>
+		Από τον <?php echo $data->authorLink; ?> 
+		στο <?php echo CHtml::link(CHtml::encode($data->post->title), $data->post->url); ?>
 	</div>
 
 	<div class="time">
 		<?php if($data->status==Comment::STATUS_PENDING): ?>
-			<span class="pending">Pending approval</span> |
-			<?php echo CHtml::linkButton('Approve', array(
+			<span class="pending">Εκκρεμές</span> |
+			<?php echo CHtml::linkButton('Εγκριση', array(
 				'submit'=>array('comments/approve','id'=>$data->id),
 			)); ?> |
 		<?php endif; ?>
-		<?php echo CHtml::link('Update',array('comments/update','id'=>$data->id)); ?> |
-		<?php echo CHtml::link('Delete',array('comments/delete','id'=>$data->id),array('class'=>'delete')); ?> |
-		<?php echo date('j F Y, \a\t H:i',$data->create_time); ?>
+		<?php echo CHtml::link('Διόρθωση',array('comments/update','id'=>$data->id)); ?> |
+		<?php echo CHtml::link('Διαγραφή',array('comments/delete','id'=>$data->id),array('class'=>'delete')); ?> |
+		<?php echo date('d/m/Y, H:i',$data->create_time); ?>
 	</div>
 
 	<div class="content">

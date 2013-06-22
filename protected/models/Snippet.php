@@ -41,9 +41,9 @@ class Snippet  extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'title' => 'Title',
-			'image_filename' => 'Image',
-			'content' => 'Content',
+			'title' => 'Τίτλος',
+			'image_filename' => 'Εικόνα',
+			'content' => 'Περιεχόμενο',
 		);
 	}
 

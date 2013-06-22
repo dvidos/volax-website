@@ -4,12 +4,12 @@ Yii::app()->clientScript->registerScript('search',
 	"$('.search-form form').submit(function(){ $.fn.yiiGridView.update('user-grid', { data: $(this).serialize() }); return false; });");
 ?>
 
-<h1>Posts</h1>
+<h1>Αναρτήσεις</h1>
 
 <p><?php
-	echo CHtml::link('Create post', array('create'), array('class'=>'button')); 
+	echo CHtml::link('Νέα ανάρτηση', array('create'), array('class'=>'button')); 
 	echo ' ';
-	echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); 
+	echo CHtml::link('Αναζήτηση','#',array('class'=>'search-button')); 
 ?></p>
 
 <div class="search-form" style="display:none">
