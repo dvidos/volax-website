@@ -5,8 +5,6 @@
 	'enableAjaxValidation'=>true,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'author'); ?>
 		<?php echo $form->textField($model,'author',array('size'=>60,'maxlength'=>128)); ?>
@@ -32,7 +30,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Submit' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Αποστολή' : 'Αποθήκευση'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

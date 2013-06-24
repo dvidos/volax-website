@@ -102,7 +102,7 @@ class Post extends CActiveRecord
 	{
 		$links=array();
 		foreach(Tag::string2array($this->tags) as $tag)
-			$links[]=CHtml::link(CHtml::encode($tag), array('post/index', 'tag'=>$tag));
+			$links[]=CHtml::link(CHtml::encode($tag), array('post/list', 'tag'=>$tag));
 		return $links;
 	}
 
@@ -217,5 +217,50 @@ class Post extends CActiveRecord
 				'pageSize'=>25,
 			),
 		));
+	}
+	
+	/**
+	 * Return only the first portion of an article, up to the "more" link
+	 * Usable in posts listings.
+	 */
+	public function getContentHtmlUptoMore()
+	{
+		// using markdown syntax.
+		$parser = new CMarkdownParser();
+		$content = $parser->transform($this->content);
+
+		// go up to the "[more]"
+		$pos = strpos($content, Yii::app()->params['postsMoreIndicator']);
+		if ($pos !== false)
+		{
+			$content = substr($content, 0, $pos);
+			$content .= CHtml::link(Yii::app()->params['postsMoreLinkText'], array(
+				'/post/view', 
+				'id'=>$this->id, 
+				'title'=>$this->title,
+				'#'=>'more',
+			), array(
+				'class'=>'more',
+			));
+		}
+		
+		return $content;
+	}
+	
+	/**
+	 * Return the whole content, changing the "[more]" indicator to an anchor
+	 * Usable in full page posts rendering
+	 */
+	public function getContentHtmlIncludingMore()
+	{
+		// using markdown syntax.
+		$parser = new CMarkdownParser();
+		$content = $parser->transform($this->content);
+		
+		// put a "more" tag
+		if (strpos($content, Yii::app()->params['postsMoreIndicator']) !== false)
+			$content = str_replace(Yii::app()->params['postsMoreIndicator'], '<a id="more" name="more"></a>', $content);
+		
+		return $content;
 	}
 }

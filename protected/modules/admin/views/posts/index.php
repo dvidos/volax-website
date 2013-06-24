@@ -44,6 +44,12 @@ Yii::app()->clientScript->registerScript('search',
 			'filter'=>Status::items('PostStatus'),
 		),
 		array(
+			'name'=>'in_home_page',
+			'header'=>'Αρχική',
+			'value'=>'$data->in_home_page ? "Ναι" : ""',
+			'filter'=>array('1'=>'Ναι','0'=>'Οχι'),
+		),
+		array(
 			'name'=>'create_time',
 			'type'=>'raw',
 			'value'=>'date("d-M-y H:i", $data->create_time)',

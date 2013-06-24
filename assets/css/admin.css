@@ -234,6 +234,9 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
 
+
+
+
 body
 {
 	margin: 0;
@@ -242,6 +245,7 @@ body
 	font-size: 10pt;
 	font-family: 'Open sans',sans-serif;
 	background: #29546B;
+	background: white url(../images/bg_admin2.jpg) center center no-repeat fixed;
 }
 
 #page
@@ -249,6 +253,8 @@ body
 	margin-top: 5px;
 	margin-bottom: 5px;
 	background: white;
+	border: 1px solid #555;
+	box-shadow: 0px 0px 50px rgba(0, 0, 0, .3);
 }
 
 #header
@@ -321,15 +327,15 @@ x#xmainmenu ul li a:hover, x#xmainmenu ul li.active a
 #mainmenu ul li:hover > ul { display: block; }
 #mainmenu ul li a { float: left; display: block; border-right: 1px solid #467996; height: 30px; padding: 0 1em; line-height: 30px; 
 	text-decoration: none;
-	color: #23455A;
+	color: white; 
 	font-weight: bold;
 }
-#mainmenu ul li a:hover { background-color: #A1C9E2; }
+#mainmenu ul li a:hover { background-color: #4686A8; }
 #mainmenu ul li ul { display: none; position: absolute; top: 100%;
                     background-color: #5EA2CA; color: #fff; height: auto;  border: 1px solid #366984
 }
 #mainmenu ul li ul li { display: block; float: none; }
-#mainmenu ul li ul li a { padding: 4px 14px; display: block; height: 1.5em; line-height: 1em; width: 10em; border-right: none; }
+#mainmenu ul li ul li a { padding: 4px 14px; display: block; height: 1.5em; line-height: 1.5em; width: 10em; border-right: none; }
 #mainmenu ul li ul li.active a,
 #mainmenu ul li ul li a:hover { }
 

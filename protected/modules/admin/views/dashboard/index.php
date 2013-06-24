@@ -3,28 +3,38 @@
 	<h2>Αναρτήσεις</h2>
 	<table class="compact">
 		<tr>
+			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/paste.png'); ?>
 			<td><?php echo CHtml::link('Πρόχειρες', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_DRAFT)) ?></td>
 			<td><?php echo Post::model()->count('status='.Post::STATUS_DRAFT); ?></td>
 		</tr>
 		<tr>
+			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/ok.png'); ?>
 			<td><?php echo CHtml::link('Δημοσιευμένες', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_PUBLISHED)) ?></td>
 			<td><?php echo Post::model()->count('status='.Post::STATUS_PUBLISHED); ?></td>
 		</tr>
 		<tr>
+			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/multiple.png'); ?>
 			<td><?php echo CHtml::link('Αρχειοθετημένες', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_ARCHIVED)) ?></td>
 			<td><?php echo Post::model()->count('status='.Post::STATUS_ARCHIVED); ?></td>
 		</tr>
-		<tr><td colspan="2"><?php echo CHtml::link('Νέα ανάρτηση', array('/admin/posts/create'), array('class'=>'button', 'style'=>'margin-top: .5em;')); ?></td></tr>
+		<tr><td colspan="3">
+			<?php echo CHtml::link('Νέα ανάρτηση', array('/admin/posts/create'), array(
+				'class'=>'button', 
+				'style'=>'margin-top: .5em; width:100%; text-align: center;'
+			)); ?>
+		</td></tr>
 	</table>
 		
 	
 	<h2>Σχόλια</h2>
 	<table class="compact">
 		<tr>
+			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/who.png'); ?>
 			<td><?php echo CHtml::link('Εκκρεμή', array('/admin/comments/index', 'status'=>Comment::STATUS_PENDING)) ?></td>
 			<td><?php echo Comment::model()->count('status='.Comment::STATUS_PENDING); ?></td>
 		</tr>
 		<tr>
+			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/user.png'); ?>
 			<td><?php echo CHtml::link('Εγκεκρικένα', array('/admin/comments/index', 'status'=>Comment::STATUS_APPROVED)) ?></td>
 			<td><?php echo Comment::model()->count('status='.Comment::STATUS_APPROVED); ?></td>
 		</tr>
@@ -33,10 +43,12 @@
 	<h2>Κατηγορίες</h2>
 	<table class="compact">
 		<tr>
+			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/paste.png'); ?>
 			<td><?php echo CHtml::link('Πρόχειρες', array('/admin/categories/index', 'Category[status]'=>Category::STATUS_DRAFT)) ?></td>
 			<td><?php echo Category::model()->count('status='.Category::STATUS_DRAFT); ?></td>
 		</tr>
 		<tr>
+			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/ok.png'); ?>
 			<td><?php echo CHtml::link('Δημοσιευμένες', array('/admin/categories/index', 'Category[status]'=>Category::STATUS_PUBLISHED)) ?></td>
 			<td><?php echo Category::model()->count('status='.Category::STATUS_PUBLISHED); ?></td>
 		</tr>

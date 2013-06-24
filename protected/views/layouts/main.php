@@ -7,7 +7,11 @@
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&amp;subset=latin,greek" media="screen" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/print.css" media="print" />
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<title><?php 
+		if ($this->pageTitle != '')
+			echo CHtml::encode($this->pageTitle) . ' - ';
+		echo Yii::app()->name;
+	?></title>
 </head>
 <body>
 <div id="page">
@@ -17,14 +21,15 @@
 <div id="top-menu">
 	<div id="top-menu-left" style="float:left;">
 		<?php echo CHtml::link('Αρχική', array('/')); ?> |
-		<?php echo CHtml::link('Ποιοί Είμαστε', array('/site/page', 'view'=>'about')); ?>
+		<?php echo CHtml::link('Ποιοί Είμαστε', array('/site/page', 'view'=>'about')); ?> | 
+		<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?>
 	</div>
 	<div id="top-menu-right" style="float:right;">
 		<?php
 			if (Yii::app()->user->isGuest)
 			{
-				echo CHtml::link('Γίνε Μέλος', array('/site/register'));
-				echo ' | ';
+				// echo CHtml::link('Γίνε Μέλος', array('/site/register'));
+				// echo ' | ';
 				echo CHtml::link('Είσοδος', array('/site/login'));
 			}
 			else
@@ -77,13 +82,10 @@
 	
 
 <div id="footer">
-	<div id="footer-col1" style="float:left; width:50%;">
-		<b>volax.gr:</b>
-		Ενημέρωση με email<br />
-		<input><br />
-		Λοιπό functionality<br />
+	<div id="footer-col1" style="float:left; width:25%;">
+		Copyright (C) 2013, <b>D.V. &amp; D.V.</b>
 	</div>
-	<div id="footer-col2" style="float:left; width:50%;">
+	<div id="footer-col2" style="float:left; width:75%;">
 		<a href="#" onClick="$('#footer-categories-list').slideToggle(); return false;"><b>Στήλες</b></a>
 		<div id="footer-categories-list" style="display: none;">
 			<?php

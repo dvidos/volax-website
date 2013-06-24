@@ -21,7 +21,7 @@ class PostController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionList()
 	{
 		$criteria=new CDbCriteria(array(
 			'condition'=>'status='.Post::STATUS_PUBLISHED,
@@ -38,7 +38,7 @@ class PostController extends Controller
 			'criteria'=>$criteria,
 		));
 
-		$this->render('index',array(
+		$this->render('list',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}
@@ -87,8 +87,21 @@ class PostController extends Controller
 			$comment->attributes=$_POST['Comment'];
 			if($post->addComment($comment))
 			{
+				foreach (Yii::app()->params['newCommentSubscribers'] as $receiver)
+				{
+					$headers="From: info@volax.gr";
+					$title = 'Νέο σχόλιο από επισκέπτη';
+					$body = 'Στην ανάρτηση "' . $post->title . '"' . "\r\n------------\r\n";
+					$body .= $comment->content . "\r\n------------\r\n";
+					$body .= 'Από ' . $comment->author . ', email ' . $comment->email;
+					if ($comment->url != '')
+						$body .= ', url ' . $comment->url;
+					
+					mail($receiver, $title, $body, $headers);
+				}
+				
 				if($comment->status==Comment::STATUS_PENDING)
-					Yii::app()->user->setFlash('commentSubmitted','Thank you for your comment. Your comment will be posted once it is approved.');
+					Yii::app()->user->setFlash('commentSubmitted','Ευχαριστούμε για το σχόλιό σας. Θα εμφανιστεί μόλις εγκριθεί.');
 				$this->refresh();
 			}
 		}

@@ -36,7 +36,9 @@ class LoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'rememberMe'=>'Remember me next time',
+			'username'=>'Ονομα χρήστη',
+			'password'=>'Κωδικός πρόσβασης',
+			'rememberMe'=>'Αυτόματη σύνδεση',
 		);
 	}
 
@@ -64,7 +66,7 @@ class LoginForm extends CFormModel
 		}
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)
 		{
-			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
+			$duration=$this->rememberMe ? 3600 * 24 * 30 * 3: 0; // 3 months
 			Yii::app()->user->login($this->_identity,$duration);
 			return true;
 		}

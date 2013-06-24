@@ -30,8 +30,8 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		$criteria=new CDbCriteria(array(
-			'condition'=>'status='.Post::STATUS_PUBLISHED,
-			'order'=>'update_time DESC',
+			'condition'=>'status = '.Post::STATUS_PUBLISHED. ' AND in_home_page = 1',
+			'order'=>'create_time DESC',
 			'with'=>'commentCount',
 		));
 		if(isset($_GET['tag']))
@@ -77,9 +77,13 @@ class SiteController extends Controller
 			$model->attributes=$_POST['ContactForm'];
 			if($model->validate())
 			{
-				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
-				mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				foreach (Yii::app()->params['contactFormReceivers'] as $receiver)
+				{
+					$headers="From: {$model->email}\r\nReply-To: {$model->email}";
+					mail($receiver, $model->subject, $model->body, $headers);
+				}
+				
+				Yii::app()->user->setFlash('contact','Ευχαριστούμε για την επικοινωνία. Θα σας απαντήσουμε σύντομα.');
 				$this->refresh();
 			}
 		}

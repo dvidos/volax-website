@@ -13,7 +13,7 @@ class WebUser extends CWebUser
 		if ($user == null)
 			return false;
 		
-		return true; // intval($user->is_admin) == 1;
+		return intval($user->is_admin) == 1;
 	}
 
 	function getIsAuthor()

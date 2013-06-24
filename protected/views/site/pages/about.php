@@ -1,9 +1,9 @@
 <?php
-$this->pageTitle=Yii::app()->name . ' - About';
+$this->pageTitle='Ποιοί είμαστε';
 $this->breadcrumbs=array(
 	'About',
 );
 ?>
-<h1>About</h1>
+<h1>Ποιοί είμαστε</h1>
 
-<p>This is the "about" page for my blog site.</p>
+<p>Κάποιοι που αγαπούν το χωριό. Τί δεν καταλλλαβαίνετε;</p>

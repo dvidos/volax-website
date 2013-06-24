@@ -4,27 +4,6 @@ class CategoryController extends Controller
 {
 	public $layout='column1';
 
-	public function actionIndex()
-	{
-		$criteria=new CDbCriteria(array(
-			'condition'=>'status='.Category::STATUS_PUBLISHED,
-			'order'=>'update_time DESC',
-			'with'=>'postsCount',
-		));
-
-		$dataProvider=new CActiveDataProvider('Category', array(
-			'pagination'=>array(
-				'pageSize'=>Yii::app()->params['postsPerPage'],
-			),
-			'criteria'=>$criteria,
-		));
-
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
-	
 	public function actionView()
 	{
 		$category=$this->loadModel();

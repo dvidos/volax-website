@@ -178,16 +178,35 @@ class Category extends CActiveRecord
 
 	public static function getLayoutOptions()
 	{
+		// remember to change protected/views/category/view.php as well.
 		return array(
-			0 => 'Default',
-			1 => 'One column with more',
-			2 => 'Two columns',
-			3 => 'Three columns',
-			4 => 'Mixed 2:1 columns',
-			5 => 'One column brief listing',
-			6 => 'One column whole posts',
+			1 => 'One column upto more',
+			2 => 'Two columns upto more',
+			3 => 'Three columns upto more',
+			4 => 'Mixed 2:1 columns upto more',
+			5 => 'One column title only',
+			6 => 'One column full content',
 		);
 	}
+	
+	public function getLayoutItemViewFile()
+	{
+		if ($this->layout == 1)
+			return '/post/_layoutWideUptoMore';
+		else if ($this->layout == 2)
+			return '/post/_layoutHalfUptoMore';
+		else if ($this->layout == 3)
+			return '/post/_layoutThirdUptoMore';
+		else if ($this->layout == 4)
+			return '/post/_layoutNarrowWideUptoMore';
+		else if ($this->layout == 5)
+			return '/post/_layoutWideTitleOnly';
+		else if ($this->layout == 6)
+			return '/post/_layoutWideFullText';
+
+		return '/post/_layoutWideUptoMore';
+	}
+	
 	public static function getLayoutCaption($layout)
 	{
 		$options = self::getLayoutOptions();
@@ -204,6 +223,14 @@ class Category extends CActiveRecord
 			'params'=>array(':pid'=>$parent_id),
 			'order'=>'view_order,title',
 		));
+	}
+	
+	public function getContentHtml()
+	{
+		$parser = new CMarkdownParser();
+		$content = $parser->transform($this->content);
+		
+		return $content;
 	}
 }
 

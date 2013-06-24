@@ -1,11 +1,11 @@
 <?php
-$this->pageTitle=Yii::app()->name . ' - Contact Us';
+$this->pageTitle='Επικοινωνία';
 $this->breadcrumbs=array(
-	'Contact',
+	'Επικοινωνία',
 );
 ?>
 
-<h1>Contact Us</h1>
+<h1>Επικοινωνία</h1>
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -15,15 +15,11 @@ $this->breadcrumbs=array(
 
 <?php else: ?>
 
-<p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-</p>
+<p>Αν έχετε κάποιο μήνυμα ή ερώτηση, παρακαλούμε συμπληρώστε την παρακάτω φόρμα. Ευχαριστούμε.</p>
 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm'); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -54,13 +50,12 @@ If you have business inquiries or other questions, please fill out the following
 		<?php $this->widget('CCaptcha'); ?>
 		<?php echo $form->textField($model,'verifyCode'); ?>
 		</div>
-		<div class="hint">Please enter the letters as they are shown in the image above.
-		<br/>Letters are not case-sensitive.</div>
+		<div class="hint">Παρακαλούμε συμπληρώστε τα γράμματα όπως φαίνονται στην εικόνα. Κεφαλαία ή μικρά, δεν έχει σημασία.</div>
 	</div>
 	<?php endif; ?>
 
 	<div class="row submit">
-		<?php echo CHtml::submitButton('Submit'); ?>
+		<?php echo CHtml::submitButton('Αποστολή'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
