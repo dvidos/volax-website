@@ -35,7 +35,7 @@
 		</tr>
 		<tr>
 			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/user.png'); ?>
-			<td><?php echo CHtml::link('Εγκεκρικένα', array('/admin/comments/index', 'status'=>Comment::STATUS_APPROVED)) ?></td>
+			<td><?php echo CHtml::link('Εγκεκριμένα', array('/admin/comments/index', 'status'=>Comment::STATUS_APPROVED)) ?></td>
 			<td><?php echo Comment::model()->count('status='.Comment::STATUS_APPROVED); ?></td>
 		</tr>
 	</table>

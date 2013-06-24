@@ -46,7 +46,7 @@
 					'activateParents'=>true,
 					'items'=>array(
 						array('label'=>'Website', 'url'=>array('/')),
-						array('label'=>'Εξοδος', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Εξοδος ' . Yii::app()->user->name, 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 					),
 				)); ?>
 		</div>
