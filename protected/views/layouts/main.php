@@ -21,7 +21,6 @@
 <div id="top-menu">
 	<div id="top-menu-left" style="float:left;">
 		<?php echo CHtml::link('Αρχική', array('/')); ?> |
-		<?php echo CHtml::link('Ποιοί Είμαστε', array('/site/page', 'view'=>'about')); ?> | 
 		<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?>
 	</div>
 	<div id="top-menu-right" style="float:right;">
@@ -68,12 +67,69 @@
 
 
 
-
-	
-	
 <div id="content">
-	<!-- here content according to each page -->
-	<?php echo $content; ?>
+
+	<div id="content-col1" style="float:left;width:18%;margin-right:4%;">
+		
+		<div id="homepage-explanation">
+			Βωλάξ, Τήνος. 
+			Τόπος όμορφος και ζωντανός.
+			Χωριό αγαπημένο. 
+			Μέρος που θέλουμε να προστατέψουμε και να αναδείξουμε &mdash;πιο πολύ από ποτέ!
+			Εκτιμούμε όλα όσα μας προσφέρει μέσα απ' την ιστορία και την κουλτούρα του, 
+			μέσα από την αξεπέραστη φύση του και τις αξίες των ανθρώπων του...<br />
+			Ακολουθήστε μας!
+		</div>
+		<div id="homepage-main-categories-list">
+			<?php   
+				$cat = Category::model()->findByPk(3);
+				foreach ($cat->subcategories as $category)
+				{
+					$link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'category-link'));
+					echo $link;
+				}
+			?>
+		</div>
+		<div id="homepage-messages-area">
+			<?php
+				// $this->widget('application.components.SlideshowWidget', array(
+					// 'directory'=>'uploads/slideshows/homepage',
+					// 'htmlOptions'=>array(
+						// 'style'=>'border: 1px solid red;',
+					// ),
+				// ));
+			?>
+		</div>
+		<div id="homepage-action-categories-list">
+			<?php
+				$cat = Category::model()->findByPk(12);
+				foreach ($cat->subcategories as $category)
+				{
+					$link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'category-link'));
+					echo $link;
+					echo '<span class="category-prologue">' . $category->prologue . '</span>';
+				}
+			?>
+		</div>
+		<div id="homepage-pages-categories-list">
+			<?php
+				echo '<h3>οι σελίδες</h3>';
+				$cat = Category::model()->findByPk(17);
+				foreach ($cat->subcategories as $category)
+				{
+					$link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'category-link'));
+					echo $link;
+				}
+			?>
+		</div>
+	</div>
+	<div id="content-col2" style="float:left;width:78%;">
+		<?php echo $content; ?>
+	</div>
+	<div id="content-col4" style="float:left;width:0%;">
+	</div>
+	<div style="clear:both;"></div>
+	
 </div><!-- /content -->
 
 
@@ -82,14 +138,20 @@
 	
 
 <div id="footer">
-	<div id="footer-col1" style="float:left; width:25%;">
+	<div id="footer-col1" style="float:left;width:18%;margin-right:4%;">
 		Copyright (C) 2013, <b>D.V. &amp; D.V.</b>
 	</div>
-	<div id="footer-col2" style="float:left; width:75%;">
-		<a href="#" onClick="$('#footer-categories-list').slideToggle(); return false;"><b>Στήλες</b></a>
+	<div id="footer-col2" style="float:left;width:78%;">
+		<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> |
+		<?php echo CHtml::link('Ποιοί είμαστε', array('/site/page', 'view'=>'about')); ?> |
+		<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?> |
+		<?php echo CHtml::link('Οροι χρήσης', array('/site/page', 'view'=>'terms')); ?> 
+		
+		
+		
 		<div id="footer-categories-list" style="display: none;">
 			<?php
-				echo '<table width="100%"><tr><td>';
+				echo '<table width="100%"><tr><td width="33%">';
 				
 				$cat = Category::model()->findByPk(3);
 				echo '<b>' . $cat->title . '</b><br />';
@@ -98,7 +160,7 @@
 					echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
 				}
 				
-				echo '</td><td>';
+				echo '</td><td width="33%">';
 
 				$cat = Category::model()->findByPk(12);
 				echo '<b>' . $cat->title . '</b><br />';
@@ -107,7 +169,7 @@
 					echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
 				}
 
-				echo '</td><td>';
+				echo '</td><td width="33%">';
 				
 				$cat = Category::model()->findByPk(17);
 				echo '<b>' . $cat->title . '</b><br />';

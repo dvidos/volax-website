@@ -21,7 +21,10 @@
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 	
-	<p class="hint">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> syntax.</p>
+	<p class="hint">
+		Χρησιμοποιούμε σύνταξη <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a>.<br />
+		Βάζουμε <b>[more]</b> όπου θέλουμε να εμφανίζεται το <b>read more...</b>
+	</p>
 	
 </td><td width="33%" style="vertical-align: top;">
 	
@@ -100,7 +103,7 @@
 			'multiple'=>true,
 			'htmlOptions'=>array('size'=>40),
 		)); ?>
-		<p class="hint">Separate different tags with commas.</p>
+		<p class="hint">Προτιμήστε ελληνικά tags, χωρίστε τα με κόμμα.</p>
 		<?php echo $form->error($model,'tags'); ?>
 	</div>
 	
@@ -109,7 +112,7 @@
 </td></tr>
 <tr><td colspan="2">
 
-	<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<?php echo CHtml::submitButton($model->isNewRecord ? 'Δημιουργία' : 'Αποθήκευση'); ?>
 
 </td></tr>
 </table>

@@ -747,3 +747,12 @@ table.compact td {
 	padding: 1px 2px;
 	margin: 0;
 }
+
+/*
+ * some redefinitions
+ */
+
+table { border-collapse: collapse; }
+table td { vertical-align: top; }
+
+
