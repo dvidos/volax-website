@@ -138,6 +138,7 @@ class Post extends CActiveRecord
 	protected function afterConstruct()
 	{
 		$this->in_home_page = true;
+		$this->allow_comments = true;
 	}
 	
 	/**

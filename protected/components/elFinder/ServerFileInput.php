@@ -4,6 +4,7 @@ class ServerFileInput extends CInputWidget
 {
     public $settings = array();
     public $connectorRoute = false;
+	public $textFieldSize = 40;
     private $assetsDir;
 
     public function init()
@@ -73,7 +74,7 @@ class ServerFileInput extends CInputWidget
         $contHtmlOptions = $this->htmlOptions;
         $contHtmlOptions['id'] = $id . 'container';
         echo CHtml::openTag('div', $contHtmlOptions);
-        $inputOptions = array('id' => $id, 'size'=>40, 'style' => 'float:left;' /*, 'readonly' => 'readonly'*/);
+        $inputOptions = array('id' => $id, 'size'=>$this->textFieldSize, 'style' => 'float:left;' /*, 'readonly' => 'readonly'*/);
         if ($this->hasModel())
             echo CHtml::activeTextField($this->model, $this->attribute, $inputOptions);
         else

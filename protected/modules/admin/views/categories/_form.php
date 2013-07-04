@@ -56,7 +56,7 @@
 			'model' => $model,
 			'attribute' => 'image_filename',
 			'connectorRoute' => '/admin/elfinder/connector',
-			'htmlOptions'=>array('size'=>20),
+			'textFieldSize'=>30,
 		)); ?>
 		<?php echo $form->error($model,'image_filename'); ?>
 	</div>
@@ -68,7 +68,7 @@
 			'model' => $model,
 			'attribute' => 'image2_filename',
 			'connectorRoute' => '/admin/elfinder/connector',
-			'htmlOptions'=>array('size'=>20),
+			'textFieldSize'=>30,
 		)); ?>
 		<?php echo $form->error($model,'image2_filename'); ?>
 	</div>

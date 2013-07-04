@@ -34,35 +34,29 @@
 		<?php echo $form->error($model,'category_id'); ?>
 	</div>
 	
-	<table width="100%" border="1">
-	<tr><td>
-		<div class="row">
-			<?php echo $form->labelEx($model,'status'); ?>
-			<?php echo $form->dropDownList($model,'status',Status::items('PostStatus')); ?>
-			<?php echo $form->error($model,'status'); ?>
-		</div>
-		
-		<div class="row">
-			<?php echo $form->labelEx($model,'layout'); ?>
-			<?php echo $form->dropDownList($model,'layout',Post::getLayoutOptions()); ?>
-			<?php echo $form->error($model,'layout'); ?>
-		</div>
-	</td><td style="text-align: center;">
-		<div class="row">
-			<?php echo $form->labelEx($model,'in_home_page'); ?>
-			<?php echo $form->checkBox($model, 'in_home_page'); ?>
-			<?php echo $form->error($model,'in_home_page'); ?>
-		</div>
-	</td><td style="text-align: center;">
-		<div class="row">
-			<?php echo $form->labelEx($model,'allow_comments'); ?>
-			<?php echo $form->checkBox($model, 'allow_comments'); ?>
-			<?php echo $form->error($model,'allow_comments'); ?>
-		</div>
-	</td></tr>
-	</table>
+	<div class="row">
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->dropDownList($model,'status',Status::items('PostStatus')); ?>
+		<?php echo $form->error($model,'status'); ?>
+	</div>
 	
+	<div class="row">
+		<?php echo $form->labelEx($model,'layout'); ?>
+		<?php echo $form->dropDownList($model,'layout',Post::getLayoutOptions()); ?>
+		<?php echo $form->error($model,'layout'); ?>
+	</div>
 	
+	<div class="row">
+		<?php echo $form->checkBox($model, 'in_home_page'); ?>
+		<?php echo $form->labelEx($model,'in_home_page', array('style'=>'display:inline; margin-left:.5em;')); ?>
+		<?php echo $form->error($model,'in_home_page'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->checkBox($model, 'allow_comments'); ?>
+		<?php echo $form->labelEx($model,'allow_comments', array('style'=>'display:inline; margin-left:.5em;')); ?>
+		<?php echo $form->error($model,'allow_comments'); ?>
+	</div>
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'prologue'); ?>
@@ -83,7 +77,7 @@
 			'model' => $model,
 			'attribute' => 'image_filename',
 			'connectorRoute' => '/admin/elfinder/connector',
-			'htmlOptions'=>array('size'=>20),
+			'textFieldSize'=>30,
 		)); ?>
 		<?php echo $form->error($model,'image_filename'); ?>
 	</div>
@@ -95,7 +89,7 @@
 			'model' => $model,
 			'attribute' => 'image2_filename',
 			'connectorRoute' => '/admin/elfinder/connector',
-			'htmlOptions'=>array('size'=>20),
+			'textFieldSize'=>30,
 		)); ?>
 		<?php echo $form->error($model,'image2_filename'); ?>
 	</div>
@@ -113,7 +107,12 @@
 		<?php echo $form->error($model,'tags'); ?>
 	</div>
 	
-	
+	<div class="row">
+		Από τον χρήστη <b><?php echo $model->author == null ? '-' : CHtml::encode($model->author->username); ?></b><br />
+		Δημιουργία <b><?php echo $model->create_time == 0 ? '-' : date('d-m-y H:i', $model->create_time); ?></b><br />
+		Τελ. ενημέρωση <b><?php echo $model->update_time == 0 ? '-' : date('d-m-y H:i', $model->update_time); ?></b><br />
+		
+	</div>
 	
 </td></tr>
 <tr><td colspan="2">
