@@ -26,6 +26,7 @@
 					array('label'=>'Snippets', 'url'=>array('/admin/snippets')),
 					array('label'=>'Καταστάσεις', 'url'=>array('/admin/statuses')),
 					array('label'=>'Χρήστες', 'url'=>array('/admin/users')),
+					array('label'=>'Κανόνες σύνταξης', 'url'=>array('/admin/dashboard/page', 'page'=>'syntax')),
 					array('label'=>'Σημειώσεις', 'url'=>array('/admin/dashboard/page', 'page'=>'notes')),
 				);
 				$this->widget('zii.widgets.CMenu',array(
