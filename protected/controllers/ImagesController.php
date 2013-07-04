@@ -27,7 +27,7 @@ class ImagesController extends Controller
 
 		// we need to resize..
 		if (!($source_image = $this->_img_load($src)))
-			throw new CHttpException(500);
+			throw new CHttpException(500, 'Cannot load image "' . $src . '"');
 
 		$original_width = imagesx($source_image);
 		$original_height = imagesy($source_image);
