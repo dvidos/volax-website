@@ -33,15 +33,15 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content, category_id, status', 'required'),
+			array('title, content, category_id, status, layout', 'required'),
 			array('status', 'in', 'range'=>array(1,2,3)),
 			array('title', 'length', 'max'=>128),
 			array('tags', 'match', 'pattern'=>'/^[\S\s,]+$/', 'message'=>'Tags must be separated with comma.'),
 			array('tags', 'normalizeTags'),
-			array('category_id, status, render_narrow, in_home_page', 'numerical'),
-			array('image_filename, image2_filename', 'safe'),
+			array('category_id, status, layout, in_home_page', 'numerical'),
+			array('image_filename, image2_filename, allow_comments', 'safe'),
 
-			array('id, title, prologue, masthead, category_id, content, image_filename, image2_filename, tags, status, in_home_page, render_narrow, author_id', 'safe', 'on'=>'search'),
+			array('id, title, prologue, masthead, category_id, content, image_filename, image2_filename, tags, status, in_home_page, layout, author_id, allow_comments', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,10 +74,11 @@ class Post extends CActiveRecord
 			'category_id' => 'Κατηγορία',
 			'image_filename' => 'Εικόνα',
 			'image2_filename' => 'Μικρή εικόνα',
+			'layout' => 'Layout',
 			'tags' => 'Tags',
 			'status' => 'Κατάσταση',
 			'in_home_page' => 'Σε αρχική σελίδα',
-			'render_narrow' => 'Στενή εμφάνιση',
+			'allow_comments' => 'Επιτρέπονται σχόλια',
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
 			'author_id' => 'Συγγραφέας',
@@ -199,14 +200,15 @@ class Post extends CActiveRecord
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('prologue',$this->prologue,true);
 		$criteria->compare('masthead',$this->masthead,true);
+		$criteria->compare('author_id',$this->author_id);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('image_filename',$this->image_filename,true);
 		$criteria->compare('image2_filename',$this->image2_filename,true);
+		$criteria->compare('layout', $this->layout);
 		$criteria->compare('tags',$this->tags,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('in_home_page',$this->in_home_page);
-		$criteria->compare('render_narrow',$this->render_narrow);
 		
 		return new CActiveDataProvider('Post', array(
 			'criteria'=>$criteria,
@@ -263,4 +265,36 @@ class Post extends CActiveRecord
 		
 		return $content;
 	}
+	
+	
+	public static function getLayoutOptions()
+	{
+		// what WordPress names Post Format: a hint to the theme for rendering the post. see codex.wordpress.org/Post_Formats
+		
+		return array(
+			0 => 'Standard',
+			1 => 'Aside', // without a title, similar to a facebook note.
+			2 => 'Link', // the first link in the content, or the title itself, if it is a url
+			3 => 'Gallery', // usually a bunch of photos.
+			4 => 'Status', // similar to twitter status update.
+			5 => 'Quote', // a quotation.
+			6 => 'Image', // a single image
+			7 => 'Video', // a single video
+			8 => 'Audio', // audio file. podcasting, recording etc.
+		);
+	}
+	
+	
+	public static function getLayoutCaption($layout)
+	{
+		$options = self::getLayoutOptions();
+		if (array_key_exists($layout, $options))
+			return $options[$layout];
+		else
+			return '(unknown)';
+	}
+
+	
+	
+	
 }

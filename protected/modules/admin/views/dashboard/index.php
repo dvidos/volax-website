@@ -1,7 +1,7 @@
 ﻿
 <table>
 <tr>
-	<td>
+	<td width="25%">
 	
 	
 		<h2>Αναρτήσεις</h2>
@@ -31,7 +31,7 @@
 		
 		
 	</td>
-	<td>
+	<td width="25%">
 	
 	
 		<h2>Σχόλια</h2>
@@ -50,7 +50,7 @@
 		
 		
 	</td>
-	<td>
+	<td width="25%">
 	
 	
 		<h2>Κατηγορίες</h2>
@@ -69,7 +69,7 @@
 	
 	
 	</td>
-	<td rowspan="2">
+	<td width="25%" rowspan="2">
 		
 		
 		<h2>Διάρθρωση</h2>
@@ -113,11 +113,28 @@
 	<td>
 	
 	
+		<h2>Πρόχειρες</h2>
+		<?php 
+			$posts = Post::model()->findAll(array(
+				'condition'=>'status='.Post::STATUS_DRAFT,
+				'order'=>'update_time DESC',
+				'limit'=>4,
+			));
+			echo '<ul>';
+			foreach ($posts as $post)
+			{
+				echo '<li>' . CHtml::link($post->title, array('/admin/posts/update', 'id'=>$post->id)) . '</li>';
+			}
+			echo '</ul>';
+		?>
+		
+		
 		<h2>Πρόσφατες</h2>
 		<?php 
 			$posts = Post::model()->findAll(array(
+				'condition'=>'status<>'.Post::STATUS_DRAFT,
 				'order'=>'update_time DESC',
-				'limit'=>5,
+				'limit'=>4,
 			));
 			echo '<ul>';
 			foreach ($posts as $post)

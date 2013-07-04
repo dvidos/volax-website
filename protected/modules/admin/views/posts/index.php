@@ -52,7 +52,7 @@ Yii::app()->clientScript->registerScript('search',
 		array(
 			'name'=>'create_time',
 			'type'=>'raw',
-			'value'=>'date("d-M-y H:i", $data->create_time)',
+			'value'=>'date("d-m-y H:i", $data->create_time)',
 			'filter'=>false,
 		),
 		array(

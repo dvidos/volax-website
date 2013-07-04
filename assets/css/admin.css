@@ -755,4 +755,7 @@ table.compact td {
 table { border-collapse: collapse; }
 table td { vertical-align: top; }
 
-
+h2 { 
+	font-size: 1.3em;
+	border-bottom: 1px dotted #ddd;
+}

@@ -41,6 +41,12 @@
 			<?php echo $form->dropDownList($model,'status',Status::items('PostStatus')); ?>
 			<?php echo $form->error($model,'status'); ?>
 		</div>
+		
+		<div class="row">
+			<?php echo $form->labelEx($model,'layout'); ?>
+			<?php echo $form->dropDownList($model,'layout',Post::getLayoutOptions()); ?>
+			<?php echo $form->error($model,'layout'); ?>
+		</div>
 	</td><td style="text-align: center;">
 		<div class="row">
 			<?php echo $form->labelEx($model,'in_home_page'); ?>
@@ -49,9 +55,9 @@
 		</div>
 	</td><td style="text-align: center;">
 		<div class="row">
-			<?php echo $form->labelEx($model,'render_narrow'); ?>
-			<?php echo $form->checkBox($model, 'render_narrow'); ?>
-			<?php echo $form->error($model,'render_narrow'); ?>
+			<?php echo $form->labelEx($model,'allow_comments'); ?>
+			<?php echo $form->checkBox($model, 'allow_comments'); ?>
+			<?php echo $form->error($model,'allow_comments'); ?>
 		</div>
 	</td></tr>
 	</table>
