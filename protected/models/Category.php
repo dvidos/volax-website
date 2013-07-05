@@ -30,10 +30,10 @@ class Category extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, status', 'required'),
+			array('status, layout', 'required'),
 			array('title, image_filename, image2_filename', 'length', 'max'=>128),
 			array('parent_id, view_order, layout, status', 'numerical'),
-			array('content, prologue, masthead', 'safe'),
+			array('title, content, prologue, masthead', 'safe'),
 			array('id, parent_id, title, content, prologue, masthead, image_filename, image2_filename, layout, status, view_order', 'safe', 'on'=>'search'),
 		);
 	}
@@ -192,7 +192,7 @@ class Category extends CActiveRecord
 	public function getLayoutItemViewFile()
 	{
 		if ($this->layout == 1)
-			return '/post/_layoutWideUptoMore';
+			return '/post/_layoutDesiredWidth';
 		else if ($this->layout == 2)
 			return '/post/_layoutHalfUptoMore';
 		else if ($this->layout == 3)

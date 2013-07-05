@@ -14,7 +14,7 @@
 	?></title>
 </head>
 <body>
-<div id="page">
+<div id="page" style="width:1200px;margin:0 auto;">
 
 
 
@@ -69,7 +69,7 @@
 
 <div id="content">
 
-	<div id="content-col1" style="float:left;width:18%;margin-right:4%;">
+	<div id="content-col1" style="float:left;width:220px;margin-right:80px;">
 		
 		<div id="homepage-explanation">
 			Βωλάξ, Τήνος. 
@@ -123,10 +123,10 @@
 			?>
 		</div>
 	</div>
-	<div id="content-col2" style="float:left;width:78%;">
+	<div id="content-col2" style="float:left;width:900px;">
 		<?php echo $content; ?>
 	</div>
-	<div id="content-col4" style="float:left;width:0%;">
+	<div id="content-col4" style="float:left;width:0;">
 	</div>
 	<div style="clear:both;"></div>
 	

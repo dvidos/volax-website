@@ -8,11 +8,6 @@ body
 	padding: 0;
 	line-height: 150%;
 }
-div#page
-{
-	width: 1000px;
-	margin: 0 auto;
-}
 div#top-menu
 {
 	background-color: #000;

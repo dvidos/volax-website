@@ -46,7 +46,7 @@ Yii::app()->clientScript->registerScript('search',
 		),
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{delete}',
+			'template'=>'{update} {delete}',
 		),
 	),
 )); ?>

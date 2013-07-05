@@ -33,13 +33,13 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content, category_id, status, layout', 'required'),
+			array('category_id, status', 'required'),
 			array('status', 'in', 'range'=>array(1,2,3)),
 			array('title', 'length', 'max'=>128),
 			array('tags', 'match', 'pattern'=>'/^[\S\s,]+$/', 'message'=>'Tags must be separated with comma.'),
 			array('tags', 'normalizeTags'),
-			array('category_id, status, layout, in_home_page', 'numerical'),
-			array('image_filename, image2_filename, allow_comments', 'safe'),
+			array('category_id, status, layout, desired_width, in_home_page', 'numerical'),
+			array('title, content, image_filename, image2_filename, allow_comments, prologue, masthead', 'safe'),
 
 			array('id, title, prologue, masthead, category_id, content, image_filename, image2_filename, tags, status, in_home_page, layout, author_id, allow_comments', 'safe', 'on'=>'search'),
 		);
@@ -75,6 +75,7 @@ class Post extends CActiveRecord
 			'image_filename' => 'Εικόνα',
 			'image2_filename' => 'Μικρή εικόνα',
 			'layout' => 'Layout',
+			'desired_width' => 'Πλάτος',
 			'tags' => 'Tags',
 			'status' => 'Κατάσταση',
 			'in_home_page' => 'Σε αρχική σελίδα',
@@ -139,6 +140,7 @@ class Post extends CActiveRecord
 	{
 		$this->in_home_page = true;
 		$this->allow_comments = true;
+		$this->desired_width = 2;
 	}
 	
 	/**
@@ -286,6 +288,16 @@ class Post extends CActiveRecord
 	}
 	
 	
+	public static function getDesiredWidthOptions()
+	{
+		return array(
+			1 => 'Στενό',
+			2 => 'Μεσαίο',
+			3 => 'Φαρδύ',
+		);
+	}
+	
+	
 	public static function getLayoutCaption($layout)
 	{
 		$options = self::getLayoutOptions();
@@ -294,8 +306,5 @@ class Post extends CActiveRecord
 		else
 			return '(unknown)';
 	}
-
-	
-	
 	
 }

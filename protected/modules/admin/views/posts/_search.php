@@ -31,6 +31,16 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'layout'); ?>
+		<?php echo $form->textField($model,'layout'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'desired_width'); ?>
+		<?php echo $form->textField($model,'desired_width'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'content'); ?>
 		<?php echo $form->textField($model,'content'); ?>
 	</div>

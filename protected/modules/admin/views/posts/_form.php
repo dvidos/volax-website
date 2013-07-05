@@ -41,6 +41,12 @@
 	</div>
 	
 	<div class="row">
+		<?php echo $form->labelEx($model,'desired_width'); ?>
+		<?php echo $form->dropDownList($model,'desired_width',Post::getDesiredWidthOptions()); ?>
+		<?php echo $form->error($model,'desired_width'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'layout'); ?>
 		<?php echo $form->dropDownList($model,'layout',Post::getLayoutOptions()); ?>
 		<?php echo $form->error($model,'layout'); ?>
