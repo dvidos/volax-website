@@ -139,7 +139,7 @@
 
 <div id="footer">
 	<div id="footer-col1" style="float:left;width:18%;margin-right:4%;">
-		Copyright (C) 2013, <b>D.V. &amp; D.V.</b>
+		Copyright &copy; 2013, <b>D.Vidos &amp; L.Dustal</b>
 	</div>
 	<div id="footer-col2" style="float:left;width:78%;">
 		<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> |
