@@ -232,5 +232,28 @@ class Category extends CActiveRecord
 		
 		return $content;
 	}
+	
+	public static function getCMenuItems($parent_id)
+	{
+		// return a hierarchical array of items for CMenu.
+		// each item should have: label, optional url, optional items.
+		$items = array();
+		
+		$cats = self::findAllOfParent($parent_id);
+		foreach ($cats as $cat)
+		{
+			$item = array('label'=>$cat->title);
+			
+			$subItems = self::getCMenuItems($cat->id);
+			if (count($subItems) > 0)
+				$item['items'] = $subItems;
+			else
+				$item['url'] = array('category/view', 'id'=>$cat->id);
+			
+			$items[] = $item;
+		}
+		
+		return $items;
+	}
 }
 

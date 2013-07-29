@@ -530,3 +530,47 @@ span.index {
 .post h3 {
 	font-size: 105%;
 }
+
+
+
+/*
+ * left column multi-level menus
+ */
+ul.multilevelMenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul.multilevelMenu li {
+    position: relative;
+}
+ul.multilevelMenu li ul {
+    position: absolute;
+    top: 1.5em;
+    left: 8em;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 1em;
+    width: 220px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0px 0px 30px rgba(0,0,0, .2);
+    z-index: 10;
+}
+ul.multilevelMenu ul { display: none; }
+ul.multilevelMenu li:hover > ul { display: block; }
+
+ul.multilevelMenu a, ul.multilevelMenu li span {
+	display: block;
+	margin: 1em 0;
+	background-color: #66cef5;
+	text-decoration: none;
+	padding: .25em .5em;
+	font-size: 110%;
+	letter-spacing: 3px;
+	color: black;
+}
+ul.multilevelMenu a:hover, ul.multilevelMenu li span:hover {
+	background-color: #7fd6f6;
+}
+
