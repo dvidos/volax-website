@@ -62,7 +62,7 @@ $this->pageTitle=$model->title;
 	</div>
 	
 	
-	<?php $this->renderPartial('/post/_postInfo',array(
+	<?php $this->renderPartial('/post/_postInfoFull',array(
 		'post'=>$model,
 	)); ?>
 </div>
