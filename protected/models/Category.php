@@ -49,7 +49,6 @@ class Category extends CActiveRecord
 			'parent' => array(self::BELONGS_TO, 'Category', 'parent_id'),
 			'subcategories'=>array(self::HAS_MANY, 'Category', 'parent_id', 'order'=>'view_order,title', 'condition'=>'status='.Category::STATUS_PUBLISHED),
 			'posts' => array(self::HAS_MANY, 'Post', 'category_id'),
-			//'postsCount' => array(self::STAT, 'Post', 'category_id', 'condition'=>'status='.Post::STATUS_APPROVED),
 			'postsCount' => array(self::STAT, 'Post', 'category_id', 'condition'=>'status='.'2'),
 		);
 	}
@@ -224,7 +223,7 @@ class Category extends CActiveRecord
 			'order'=>'view_order,title',
 		));
 	}
-	
+
 	public function getContentHtml()
 	{
 		$parser = new CMarkdownParser();

@@ -33,6 +33,9 @@
 			}
 			else
 			{
+				if (Yii::app()->user->isAuthor)
+					echo CHtml::link('Author', array('/author')) . ' | ';
+				
 				if (Yii::app()->user->isAdmin)
 					echo CHtml::link('Admin', array('/admin')) . ' | ';
 				
@@ -85,57 +88,55 @@
 
 
 	
-
 <div id="footer">
-	<div id="footer-col1" style="float:left;width:18%;margin-right:4%;">
-		Copyright &copy; 2013, <b>D.Vidos &amp; L.Dustal</b>
-	</div>
-	<div id="footer-col2" style="float:left;width:78%;">
-		<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> |
-		<?php echo CHtml::link('Ποιοί είμαστε', array('/site/page', 'view'=>'about')); ?> |
-		<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?> |
-		<?php echo CHtml::link('Οροι χρήσης', array('/site/page', 'view'=>'terms')); ?> 
-		
-		
-		
-		<div id="footer-categories-list" style="display: none;">
+	<div id="footer-categories-list" style="display:none;">
+		<div id="footer-col1" style="float:left;width:220px;margin-right:80px;">
+			&nbsp;
+		</div>
+		<div id="footer-col2" style="float:left;width:900px;">
 			<?php
-				echo '<table width="100%"><tr><td width="33%">';
+				$c1 = '<b>Μόνιμες Στήλες</b>';
+				$c1 .= $this->widget('zii.widgets.CMenu', array(
+					'items'=>Category::getCMenuItems(3),
+					'htmlOptions'=>array('class'=>'footerMenu'),
+				), true);
+				$c2 = '<b>Κάντε</b>';
+				$c2 .= $this->widget('zii.widgets.CMenu', array(
+					'items'=>Category::getCMenuItems(12),
+					'htmlOptions'=>array('class'=>'footerMenu'),
+				), true);
+				$c3 = '<b>Οι σελίδες</b>';
+				$c3 .= $this->widget('zii.widgets.CMenu', array(
+					'items'=>Category::getCMenuItems(17),
+					'htmlOptions'=>array('class'=>'footerMenu'),
+				), true);
 				
-				$cat = Category::model()->findByPk(3);
-				echo '<b>' . $cat->title . '</b><br />';
-				foreach ($cat->subcategories as $category)
-				{
-					echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
-				}
-				
-				echo '</td><td width="33%">';
-
-				$cat = Category::model()->findByPk(12);
-				echo '<b>' . $cat->title . '</b><br />';
-				foreach ($cat->subcategories as $category)
-				{
-					echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
-				}
-
-				echo '</td><td width="33%">';
-				
-				$cat = Category::model()->findByPk(17);
-				echo '<b>' . $cat->title . '</b><br />';
-				foreach ($cat->subcategories as $category)
-				{
-					echo CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title)) . '<br />';
-				}
-				
-				echo '</td></tr></table>';
+				$html = '<table width="100%"><tr>';
+				$html .= '<td width="33%">' . $c1 . '</td>';
+				$html .= '<td width="33%">' . $c2 . '</td>';
+				$html .= '<td width="33%">' . $c3 . '</td>';
+				$html .= '</tr></table>';
+				echo $html;
 			?>
 		</div>
-		
+		<div style="clear:both;"></div>
 	</div>
-	<div style="clear:both;"></div>
+	<div id="footer-normal">
+		<div id="footer-col1" style="float:left;width:220px;margin-right:80px;">
+			&nbsp; Copyright &copy; 2013, <b>D.Vidos &amp; L.Dustal</b>
+		</div>
+		<div id="footer-col2" style="float:left;width:900px;">
+			<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> |
+			<?php echo CHtml::link('Ποιοί είμαστε', array('/site/page', 'view'=>'about')); ?> |
+			<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?> |
+			<?php echo CHtml::link('Οροι χρήσης', array('/site/page', 'view'=>'terms')); ?> 
+		</div>
+		<div style="clear:both;"></div>
+	</div>
 </div><!-- /footer -->
 
 
 </div><!-- /page -->
 </body>
 </html>
+

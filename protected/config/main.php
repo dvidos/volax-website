@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'volax.gr version 4',
+	'name'=>'volax.gr IV',
 	'language'=>'el_gr',
 
 	// preloading 'log' component
@@ -62,7 +62,7 @@ return array(
 			'routes'=>array(
 				array(
 					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+					'levels'=>'error, warning, info',
 				),
 			),
 		),
@@ -70,6 +70,7 @@ return array(
 
 	'modules' => array(
 		'admin',
+		'author',
     ),
 	
 	// application-level parameters that can be accessed
