@@ -3,10 +3,10 @@
 // this contains the application parameters that can be maintained via GUI
 return array(
 	// version, displayed on Admin.
-	'version'=>0.1,
+	'version'=>0.2,
 	
 	// this is displayed in the header section
-	'title'=>'My Yii Blog',
+	'title'=>'Volax.gr version IV Blog',
 	
 	// this is used in error pages
 	'adminEmail'=>'dvidos@gmail.com',
@@ -19,6 +19,12 @@ return array(
 	
 	// who receives email from new comments
 	'newCommentSubscribers'=>array(
+		'dvidos@gmail.com',
+		'jimel.vidos@gmail.com',
+	),
+	
+	// who receives email from new comments
+	'postSavedSubscribers'=>array(
 		'dvidos@gmail.com',
 		'jimel.vidos@gmail.com',
 	),
@@ -43,5 +49,5 @@ return array(
 	'commentNeedApproval'=>true,
 	
 	// the copyright information displayed in the footer section
-	'copyrightInfo'=>'Copyright &copy; 2009 by My Company.',
+	'copyrightInfo'=>'Copyright &copy; 2009 by Dimitris Vidos (who?).',
 );

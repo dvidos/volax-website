@@ -26,7 +26,6 @@
 						array('label'=>'Αρχική', 'url'=>array('/author')),
 						array('label'=>'Αναρτήσεις', 'url'=>array('/author/posts')),
 						array('label'=>'Αρχεία', 'url'=>array('/author/files')),
-						array('label'=>'Κανόνες σύνταξης', 'url'=>array('/author/dashboard/page', 'page'=>'syntax')),
 					),
 				)); ?>
 		</div><div style="float:right;">

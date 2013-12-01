@@ -226,8 +226,9 @@ class Category extends CActiveRecord
 
 	public function getContentHtml()
 	{
-		$parser = new CMarkdownParser();
-		$content = $parser->transform($this->content);
+		//$parser = new CMarkdownParser();
+		//$content = $parser->transform($this->content);
+		$content = $this->content;
 		
 		return $content;
 	}

@@ -231,8 +231,9 @@ class Post extends CActiveRecord
 	public function getContentHtmlUptoMore()
 	{
 		// using markdown syntax.
-		$parser = new CMarkdownParser();
-		$content = $parser->transform($this->content);
+		//$parser = new CMarkdownParser();
+		//$content = $parser->transform($this->content);
+		$content = $this->content;
 
 		// go up to the "[more]"
 		$pos = strpos($content, Yii::app()->params['postsMoreIndicator']);
@@ -259,8 +260,9 @@ class Post extends CActiveRecord
 	public function getContentHtmlIncludingMore()
 	{
 		// using markdown syntax.
-		$parser = new CMarkdownParser();
-		$content = $parser->transform($this->content);
+		//$parser = new CMarkdownParser();
+		//$content = $parser->transform($this->content);
+		$content = $this->content;
 		
 		// put a "more" tag
 		if (strpos($content, Yii::app()->params['postsMoreIndicator']) !== false)
