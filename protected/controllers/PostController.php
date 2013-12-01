@@ -87,19 +87,7 @@ class PostController extends Controller
 			$comment->attributes=$_POST['Comment'];
 			if($post->addComment($comment))
 			{
-				foreach (Yii::app()->params['newCommentSubscribers'] as $receiver)
-				{
-					$headers="From: info@volax.gr";
-					$title = 'Νέο σχόλιο από επισκέπτη';
-					$body = 'Στην ανάρτηση "' . $post->title . '"' . "\r\n------------\r\n";
-					$body .= $comment->content . "\r\n------------\r\n";
-					$body .= 'Από ' . $comment->author . ', email ' . $comment->email;
-					if ($comment->url != '')
-						$body .= ', url ' . $comment->url;
-					
-					mail($receiver, $title, $body, $headers);
-				}
-				
+				$comment->notifyEmailSubscribers();
 				if($comment->status==Comment::STATUS_PENDING)
 					Yii::app()->user->setFlash('commentSubmitted','Ευχαριστούμε για το σχόλιό σας. Θα εμφανιστεί μόλις εγκριθεί.');
 				$this->refresh();

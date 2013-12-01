@@ -23,7 +23,7 @@ return array(
 		'jimel.vidos@gmail.com',
 	),
 	
-	// who receives email from new comments
+	// who receives email from saving a post
 	'postSavedSubscribers'=>array(
 		'dvidos@gmail.com',
 		'jimel.vidos@gmail.com',

@@ -89,12 +89,12 @@ class Post extends CActiveRecord
 	/**
 	 * @return string the URL that shows the detail of the post
 	 */
-	public function getUrl()
+	public function getUrl($absolute = false)
 	{
-		return Yii::app()->createUrl('post/view', array(
-			'id'=>$this->id,
-			'title'=>$this->title,
-		));
+		if ($absolute)
+			return Yii::app()->createAbsoluteUrl('post/view', array('id'=>$this->id,'title'=>$this->title));
+		else
+			return Yii::app()->createUrl('post/view', array('id'=>$this->id,'title'=>$this->title));
 	}
 
 	/**
@@ -330,6 +330,34 @@ class Post extends CActiveRecord
 		{
 			return 'Σήμερα';
 		}
-		
+	}
+	
+	public function notifyEmailSubscribers($is_new = false)
+	{
+		foreach (Yii::app()->params['postSavedSubscribers'] as $receiver)
+		{
+			$title = $is_new ? 'Νέα ανάρτηση: ' . $this->title : 'Διορθώθηκε: ' . $this->title;
+			$body = '';
+			
+			$body .= 
+				'<p>Ο χρήστης <b>' . Yii::app()->user->name . '</b> ' .
+				($is_new ? 'δημιούργησε' : 'διόρθωσε') . ' την παρακάτω ανάρτηση, ' .
+				'σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server.</p>';
+			
+			if ($this->status == Post::STATUS_DRAFT)
+				$body .= '<p>Η ανάρτηση δεν εμφανίζεται δημόσια, επειδή είναι DRAFT.</p>';
+			if ($this->status == Post::STATUS_PUBLISHED)
+				$body .= '<p>Η ανάρτηση εμφανίζεται δημόσια ' . CHtml::link('εδω', $this->getUrl(true)) . '.</p>';
+			else if ($this->status == Post::STATUS_ARCHIVED)
+				$body .= '<p>Η ανάρτηση έχει αρχειοποιηθεί και εμφανίζεται δημόσια ' . CHtml::link('εδω', $this->getUrl(true)) . '.</p>';
+			
+			$body .= '<p>Ακολουθεί το περιεχόμενο της ανάρτησης.</p>';
+			$body .= '<div style="border: 1px solid #aaa; padding: 2em; margin: 2em 0;">';
+			$body .= '<h1>' . $this->title . ' </h1>' . "\r\n";
+			$body .= $this->content;
+			$body .= '</div>';
+			
+			Yii::app()->mailer->send($receiver, $title, $body);
+		}
 	}
 }

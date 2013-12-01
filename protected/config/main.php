@@ -29,7 +29,7 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		'db'=>array(
-			//*
+			/*
 				'connectionString' => 'mysql:host=localhost;dbname=volax4',
 				'username' => 'root',
 				'password' => '',
@@ -65,6 +65,22 @@ return array(
 					'levels'=>'error, warning, info',
 				),
 			),
+		),
+		
+		'mailer' => array(
+			'class'=>'application.components.Mailer',
+			'from' => 'info@volax.gr',
+			'bcc' => array(),
+			'htmlFormat' => true,
+			'disclaimer' => 
+				'Email Disclaimer' . "\r\n" .
+				'The information in this email is confidential and is intended solely for the addressee(s). ' .
+				'If you have received this transmission in error, and you are not an intended recipient, be aware that any disclosure, copying, distribution or use of this transmission or its contents is prohibited. '.
+				'Furthermore, you are kindly requested to delete the message from your system immediately.' . "\r\n" .
+				'Internet communications are not secure and therefore the sender does not accept legal responsibility for the contents of this message and for any damage whatsoever caused by viruses being transmitted.' . "\r\n" .
+				"\r\n" . 
+				'Thank You,' . "\r\n" .
+				'Your Volax Website publishing platform' . "\r\n",
 		),
 	),
 

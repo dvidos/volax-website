@@ -91,11 +91,12 @@ class Comment extends CActiveRecord
 	 * will query for the post.
 	 * @return string the permalink URL for this comment
 	 */
-	public function getUrl($post=null)
+	public function getUrl($post=null, $absolute = false)
 	{
 		if($post===null)
 			$post=$this->post;
-		return $post->url.'#c'.$this->id;
+		
+		return $post->getUrl($absolute) . '#c' . $this->id;
 	}
 
 	/**
@@ -144,5 +145,36 @@ class Comment extends CActiveRecord
 		}
 		else
 			return false;
+	}
+	
+	public function notifyEmailSubscribers()
+	{
+		foreach (Yii::app()->params['newCommentSubscribers'] as $receiver)
+		{
+			$title = 'Νέο σχόλιο';
+			$body = '';
+			
+			$body .=
+				'<p>Κάποιος επισκέπτης προσέθεσε νέο σχόλιο στην σελίδα <b>' . CHtml::link($this->post->title, $this->post->getUrl(true)) . '</b>, ' .
+				'σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server</p>';
+			
+			if ($this->status == Comment::STATUS_PENDING)
+				$body .= '<p>Επειδή ο σχολιασμός απαιτεί έλεγχο, το σχόλιο αυτό δεν θα εμφανιστεί μέχρι να το εγκρίνει κάποιος διαχειριστής.</p>';
+			else if ($this->status == Comment::STATUS_APPROVED)
+				$body .= '<p>O σχολιασμός δεν απαιτεί έλεγχο, το σχόλιο εμφανίζεται ήδη στην σελίδα, ' . CHtml::link('εδώ', $this->getUrl(null, true)) . '.</p>';
+			
+			
+			$body .= '<div style="border: 1px solid #aaa; padding: 2em; margin: 2em 0;">';
+			$body .= 'Ονομα: <b>' . $this->author . '</b><br />';
+			$body .= 'Email: <b>' . $this->email . '</b><br />';
+			$body .= 'URL: <b>' . $this->url . '</b></p>';
+			$body .= '<p>' . $this->content . '</p>';
+			$body .= '</div>';
+			
+			$body .= '<p>Αν είστε administrator, μπορείτε να διαχειριστείτε τα εκκρεμή σχόλια ' . 
+					CHtml::link('εδώ', Yii::app()->createAbsoluteUrl('/admin/comments', array('status'=>1))) . '.</p>';
+			
+			Yii::app()->mailer->send($receiver, $title, $body);
+		}
 	}
 }

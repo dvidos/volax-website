@@ -30,7 +30,10 @@ class PostsController extends Controller
 			$model->attributes = $_POST['Post'];
 			$model->author_id = Yii::app()->user->id;
 			if($model->save())
+			{
+				$model->notifyEmailSubscribers(true);
 				$this->redirect(array('index'));
+			}
 		}
 
 		$this->render('create',array(
@@ -49,7 +52,10 @@ class PostsController extends Controller
 		{
 			$model->attributes = $_POST['Post'];
 			if($model->save())
+			{
+				$model->notifyEmailSubscribers(false);
 				$this->redirect(array('index'));
+			}
 		}
 
 		$this->render('update',array(
