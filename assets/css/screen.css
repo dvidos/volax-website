@@ -287,6 +287,10 @@ div.breadcrumbs span
 	text-decoration: none;
 	color: #555;
 }
+div#comments
+{
+	width: 500px;
+}
 .comment
 {
 	-moz-border-radius:7px;
