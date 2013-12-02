@@ -3,10 +3,10 @@
 // this contains the application parameters that can be maintained via GUI
 return array(
 	// version, displayed on Admin.
-	'version'=>0.2,
+	'version'=>0.3,
 	
 	// this is displayed in the header section
-	'title'=>'Volax.gr version IV Blog',
+	'title'=>'Volax.gr Blog',
 	
 	// this is used in error pages
 	'adminEmail'=>'dvidos@gmail.com',
@@ -49,5 +49,5 @@ return array(
 	'commentNeedApproval'=>true,
 	
 	// the copyright information displayed in the footer section
-	'copyrightInfo'=>'Copyright &copy; 2009 by Dimitris Vidos (who?).',
+	'copyrightInfo'=>'Πνευματικά δικαιώματα &copy; '.date('Y').' Δ.Β. & Δ.Β.',
 );

@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'volax.gr IV',
+	'name'=>'volax.gr',
 	'language'=>'el_gr',
 
 	// preloading 'log' component
@@ -29,7 +29,7 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		'db'=>array(
-			/*
+			//*
 				'connectionString' => 'mysql:host=localhost;dbname=volax4',
 				'username' => 'root',
 				'password' => '',

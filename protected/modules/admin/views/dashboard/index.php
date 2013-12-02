@@ -191,5 +191,4 @@
 </table>
 
 
-<p>Volax.gr, software version <?php echo Yii::app()->params['version']; ?>
 

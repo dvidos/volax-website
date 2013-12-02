@@ -60,7 +60,8 @@
 	<?php echo $content; ?>
 
 	<div id="footer">
-		Πνευματικά δικαιώματα &copy; <?php echo date('Y'); ?> Δ.Β. &amp; Δ.Β.<br/>
+		<p>Volax.gr version <?php echo Yii::app()->params['version']; ?>, 
+		<?php echo Yii::app()->params['copyrightInfo']; ?>
 	</div><!-- footer -->
 
 </div><!-- page -->

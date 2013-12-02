@@ -5,7 +5,7 @@
 	<meta name="language" content="en" />
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&amp;subset=latin,greek" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/author.css" />
-	<title><?php echo CHtml::encode($this->pageTitle); ?> - Σύνταξη</title>
+	<title><?php echo CHtml::encode($this->pageTitle); ?> - Συντάκτης</title>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo">Αίθουσα σύνταξης <?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo">Συντάκτης <?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
@@ -49,7 +49,8 @@
 	<?php echo $content; ?>
 
 	<div id="footer">
-		Πνευματικά δικαιώματα &copy; <?php echo date('Y'); ?> Δ.Β. &amp; Δ.Β.<br/>
+		<p>Volax.gr version <?php echo Yii::app()->params['version']; ?>, 
+		<?php echo Yii::app()->params['copyrightInfo']; ?>
 	</div><!-- footer -->
 
 </div><!-- page -->

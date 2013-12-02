@@ -34,7 +34,7 @@
 			else
 			{
 				if (Yii::app()->user->isAuthor)
-					echo CHtml::link('Author', array('/author')) . ' | ';
+					echo CHtml::link('Συντάκτης', array('/author')) . ' | ';
 				
 				if (Yii::app()->user->isAdmin)
 					echo CHtml::link('Admin', array('/admin')) . ' | ';
