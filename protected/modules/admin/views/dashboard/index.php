@@ -50,8 +50,8 @@
 		
 		
 	</td>
+	<!-- 
 	<td width="25%">
-	
 	
 		<h2>Κατηγορίες</h2>
 		<table class="compact">
@@ -69,7 +69,9 @@
 	
 	
 	</td>
-	<td width="25%" rowspan="2">
+	-->
+	
+	<td width="50%" rowspan="2">
 		
 		
 		<h2>Διάρθρωση</h2>
@@ -84,9 +86,9 @@
 					$c2 = '';
 					
 					if ($depth > 0)
-						$c1 .= '-';
+						$c1 .= '';
 					for ($i = 0; $i < $depth; $i++)
-						$c1 .= '&nbsp';
+						$c1 .= '&nbsp;&nbsp;';
 					$c1 .= CHtml::link($category->title, array('/admin/categories/update', 'id'=>$category->id));
 
 					if ($category->postsCount == 0)
@@ -168,6 +170,7 @@
 		
 		
 	</td>
+	<!--
 	<td>
 	
 	
@@ -187,6 +190,7 @@
 		
 		
 	</td>
+	-->
 </tr>
 </table>
 

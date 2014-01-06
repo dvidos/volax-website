@@ -759,3 +759,5 @@ h2 {
 	font-size: 1.3em;
 	border-bottom: 1px dotted #ddd;
 }
+
+table.skinny, table.skinny tr, table.skinny th, table.skinny td { margin: 0; padding: 0; }

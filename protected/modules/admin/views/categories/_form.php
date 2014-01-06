@@ -67,11 +67,21 @@
 	
 </td><td width="33%" style="vertical-align: top;">
 	
-	<div class="row">
-		<?php echo $form->labelEx($model,'parent_id'); ?>
-		<?php echo $form->dropDownList($model,'parent_id',Category::dropDownListItems()); ?>
-		<?php echo $form->error($model,'parent_id'); ?>
-	</div>
+	<table class="skinny">
+		<tr><td width="66%">
+			<div class="row">
+				<?php echo $form->labelEx($model,'parent_id'); ?>
+				<?php echo $form->dropDownList($model,'parent_id',Category::dropDownListItems()); ?>
+				<?php echo $form->error($model,'parent_id'); ?>
+			</div>
+		</td><td width="33%">
+			<div class="row">
+				<?php echo $form->labelEx($model,'view_order'); ?>
+				<?php echo $form->textField($model,'view_order',array('size'=>5,'maxlength'=>5)); ?>
+				<?php echo $form->error($model,'view_order'); ?>
+			</div>
+		</td></tr>
+	</table>
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>
@@ -119,12 +129,6 @@
 		<?php echo $form->labelEx($model,'layout'); ?>
 		<?php echo $form->dropDownList($model,'layout',Category::getLayoutOptions()); ?>
 		<?php echo $form->error($model,'layout'); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'view_order'); ?>
-		<?php echo $form->textField($model,'view_order',array('size'=>5,'maxlength'=>5)); ?>
-		<?php echo $form->error($model,'view_order'); ?>
 	</div>
 	
 </td></tr>

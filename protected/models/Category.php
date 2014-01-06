@@ -71,7 +71,7 @@ class Category extends CActiveRecord
 			'status' => 'Κατάσταση',
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
-			'view_order' => 'Σειρά εμφάνισης',
+			'view_order' => 'Σειρά',
 		);
 	}
 
@@ -170,7 +170,7 @@ class Category extends CActiveRecord
 		$models = self::findAllOfParent($parent_id);
 		foreach ($models as $model)
 		{
-			self::$_items[$model->id] = str_repeat(' - ' , $depth) . $model->title;
+			self::$_items[$model->id] = str_repeat('. . . ' , $depth) . $model->title;
 			self::loadDropDownListItemsOf($model->id, $depth + 1);
 		}
 	}
