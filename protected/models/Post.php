@@ -336,20 +336,22 @@ class Post extends CActiveRecord
 
 	public function getFriendlyCreateTime()
 	{
+		$months = array('', 'Ιανουαρίου', 'Φεβρουαρίου', 'Μαρτίου', 'Απριλίου', 'Μαϊου', 'Ιουνίου', 'Ιουλίου', 'Αυγούστου', 'Σεπτεμβρίου', 'Οκτωβρίου', 'Νοεμβρίου', 'Δεκεμβρίου');
+		
 		if (date('Y', $this->create_time) != date('Y'))
 		{
 			// different year
-			return date('d-m-Y', $this->create_time);
+			return date('j', $this->create_time) . ' ' . $months[date('n', $this->create_time)] . ' ' . date('Y', $this->create_time);
 		}
 		else if (date('m', $this->create_time) != date('m'))
 		{
 			// different month
-			return date('d-m', $this->create_time);
+			return date('j', $this->create_time) . ' ' . $months[date('n', $this->create_time)];
 		}
 		else if (date('d', $this->create_time) != date('d'))
 		{
 			// different day
-			return date('d-m', $this->create_time);
+			return date('j', $this->create_time) . ' ' . $months[date('n', $this->create_time)];
 		}
 		else
 		{
