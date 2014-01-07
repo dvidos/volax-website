@@ -86,9 +86,11 @@
 					$c2 = '';
 					
 					if ($depth > 0)
+					{
 						$c1 .= '';
-					for ($i = 0; $i < $depth; $i++)
-						$c1 .= '&nbsp;&nbsp;';
+						for ($i = 0; $i < $depth; $i++)
+							$c1 .= '.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+					}
 					$c1 .= CHtml::link($category->title, array('/admin/categories/update', 'id'=>$category->id));
 
 					if ($category->postsCount == 0)
@@ -97,7 +99,7 @@
 						$c2 = CHtml::link($category->postsCount, array('/admin/posts/index', 'Post[category_id]'=>$category->id));
 						
 					echo '<tr><td>' . $c1 . '</td><td>' . $c2 . '</td></tr>' . "\r\n";
-					listCategoriesFor($category->id, $depth + 4);
+					listCategoriesFor($category->id, $depth + 1);
 				}
 			}
 

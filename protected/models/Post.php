@@ -219,7 +219,7 @@ class Post extends CActiveRecord
 				'defaultOrder'=>'create_time DESC',
 			),
 			'pagination'=>array(
-				'pageSize'=>25,
+				'pageSize'=>15,
 			),
 		));
 	}

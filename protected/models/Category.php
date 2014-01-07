@@ -149,7 +149,7 @@ class Category extends CActiveRecord
 				'defaultOrder'=>'parent_id, view_order, title, update_time DESC',
 			),
 			'pagination'=>array(
-				'pageSize'=>25,
+				'pageSize'=>15,
 			),
 		));
 	}

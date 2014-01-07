@@ -18,6 +18,12 @@
 	</div>
 	
 	<div class="row">
+		<?php echo $form->labelEx($model,'parent_id'); ?>
+		<?php echo $form->dropDownList($model,'parent_id',Category::dropDownListItems()); ?>
+		<?php echo $form->error($model,'parent_id'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'content'); ?>
 		<?php echo $form->textArea($model,'content', array('style'=>'width:100%;')); ?>
 		<?php echo $form->error($model,'content'); ?>
@@ -70,9 +76,9 @@
 	<table class="skinny">
 		<tr><td width="66%">
 			<div class="row">
-				<?php echo $form->labelEx($model,'parent_id'); ?>
-				<?php echo $form->dropDownList($model,'parent_id',Category::dropDownListItems()); ?>
-				<?php echo $form->error($model,'parent_id'); ?>
+				<?php echo $form->labelEx($model,'status'); ?>
+				<?php echo $form->dropDownList($model,'status',Status::items('CategoryStatus')); ?>
+				<?php echo $form->error($model,'status'); ?>
 			</div>
 		</td><td width="33%">
 			<div class="row">
@@ -84,9 +90,9 @@
 	</table>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->dropDownList($model,'status',Status::items('CategoryStatus')); ?>
-		<?php echo $form->error($model,'status'); ?>
+		<?php echo $form->labelEx($model,'layout'); ?>
+		<?php echo $form->dropDownList($model,'layout',Category::getLayoutOptions()); ?>
+		<?php echo $form->error($model,'layout'); ?>
 	</div>
 	
 	<div class="row">
@@ -123,12 +129,6 @@
 			'textFieldSize'=>30,
 		)); ?>
 		<?php echo $form->error($model,'image2_filename'); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'layout'); ?>
-		<?php echo $form->dropDownList($model,'layout',Category::getLayoutOptions()); ?>
-		<?php echo $form->error($model,'layout'); ?>
 	</div>
 	
 </td></tr>

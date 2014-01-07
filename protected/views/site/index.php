@@ -1,4 +1,5 @@
-﻿<?php if(!empty($_GET['tag'])): ?>
+﻿<?php $this->pageTitle = 'Αρχική'; ?>
+<?php if(!empty($_GET['tag'])): ?>
 	<h1>Αναρτήσεις με το tag <i><?php echo CHtml::encode($_GET['tag']); ?></i></h1>
 <?php endif; ?>
 
