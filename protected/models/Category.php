@@ -246,9 +246,12 @@ class Category extends CActiveRecord
 			
 			$subItems = self::getCMenuItems($cat->id);
 			if (count($subItems) > 0)
+			{
 				$item['items'] = $subItems;
-			else
-				$item['url'] = array('category/view', 'id'=>$cat->id);
+			}
+
+			// always, in order to make it clickable.
+			$item['url'] = array('category/view', 'id'=>$cat->id);
 			
 			$items[] = $item;
 		}
