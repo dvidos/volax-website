@@ -119,18 +119,6 @@
 		<?php echo $form->error($model,'image_filename'); ?>
 	</div>
 	
-	<div class="row">
-		<?php echo $form->labelEx($model,'image2_filename'); ?>
-		<?php /* echo $form->textField($model,'image2_filename',array('size'=>100,'maxlength'=>100)); */ ?>
-		<?php echo $this->widget('application.components.elFinder.ServerFileInput', array(
-			'model' => $model,
-			'attribute' => 'image2_filename',
-			'connectorRoute' => '/admin/elfinder/connector',
-			'textFieldSize'=>30,
-		)); ?>
-		<?php echo $form->error($model,'image2_filename'); ?>
-	</div>
-	
 </td></tr>
 </table>
 

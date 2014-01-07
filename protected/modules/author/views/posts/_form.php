@@ -129,18 +129,6 @@
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'image2_filename'); ?>
-		<?php /* echo $form->textField($model,'image2_filename',array('size'=>100,'maxlength'=>100)); */ ?>
-		<?php echo $this->widget('application.components.elFinder.ServerFileInput', array(
-			'model' => $model,
-			'attribute' => 'image2_filename',
-			'connectorRoute' => '/author/elfinder/connector',
-			'textFieldSize'=>30,
-		)); ?>
-		<?php echo $form->error($model,'image2_filename'); ?>
-	</div>
-	
-	<div class="row">
 		<?php echo $form->labelEx($model,'tags'); ?>
 		<?php $this->widget('CAutoComplete', array(
 			'model'=>$model,

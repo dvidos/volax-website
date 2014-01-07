@@ -31,10 +31,10 @@ class Category extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('status, layout', 'required'),
-			array('title, image_filename, image2_filename', 'length', 'max'=>128),
+			array('title, image_filename', 'length', 'max'=>128),
 			array('parent_id, view_order, layout, status', 'numerical'),
 			array('title, content, prologue, masthead', 'safe'),
-			array('id, parent_id, title, content, prologue, masthead, image_filename, image2_filename, layout, status, view_order', 'safe', 'on'=>'search'),
+			array('id, parent_id, title, content, prologue, masthead, image_filename, layout, status, view_order', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,7 +66,6 @@ class Category extends CActiveRecord
 			'masthead' => 'Υπέρτιτλος',
 			'content' => 'Περιεχόμενο',
 			'image_filename' => 'Εικόνα',
-			'image2_filename' => 'Μικρή εικόνα',
 			'layout' => 'Εμφάνιση',
 			'status' => 'Κατάσταση',
 			'create_time' => 'Create Time',
@@ -136,7 +135,6 @@ class Category extends CActiveRecord
 		$criteria->compare('masthead',$this->masthead,true);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('image_filename',$this->image_filename,true);
-		$criteria->compare('image2_filename',$this->image2_filename,true);
 		$criteria->compare('layout',$this->layout);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('create_time',$this->create_time);

@@ -48,10 +48,10 @@ class Post extends CActiveRecord
 			array('tags', 'match', 'pattern'=>'/^[\S\s,]+$/', 'message'=>'Tags must be separated with comma.'),
 			array('tags', 'normalizeTags'),
 			array('category_id, status, layout, desired_width, in_home_page', 'numerical'),
-			array('title, content, image_filename, image2_filename, allow_comments, prologue, masthead', 'safe'),
+			array('title, content, image_filename, allow_comments, prologue, masthead', 'safe'),
 			array('editable_create_time', 'safe'),
 
-			array('id, title, prologue, masthead, category_id, content, image_filename, image2_filename, tags, status, in_home_page, layout, author_id, allow_comments', 'safe', 'on'=>'search'),
+			array('id, title, prologue, masthead, category_id, content, image_filename, tags, status, in_home_page, layout, author_id, allow_comments', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -83,7 +83,6 @@ class Post extends CActiveRecord
 			'content' => 'Περιεχόμενο',
 			'category_id' => 'Κατηγορία',
 			'image_filename' => 'Εικόνα',
-			'image2_filename' => 'Μικρή εικόνα',
 			'layout' => 'Layout',
 			'desired_width' => 'Πλάτος',
 			'tags' => 'Tags',
@@ -232,7 +231,6 @@ class Post extends CActiveRecord
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('image_filename',$this->image_filename,true);
-		$criteria->compare('image2_filename',$this->image2_filename,true);
 		$criteria->compare('layout', $this->layout);
 		$criteria->compare('tags',$this->tags,true);
 		$criteria->compare('status',$this->status);
