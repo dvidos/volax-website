@@ -82,6 +82,10 @@ return array(
 				'Thank You,' . "\r\n" .
 				'Your Volax Website publishing platform' . "\r\n",
 		),
+		
+		'differer' => array(
+			'class'=>'application.components.Differer',
+		),
 	),
 
 	'modules' => array(
