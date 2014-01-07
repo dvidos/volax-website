@@ -155,10 +155,19 @@
 	</div>
 	
 	<div class="row">
-		Από τον χρήστη <b><?php echo $model->author == null ? '-' : CHtml::encode($model->author->username); ?></b><br />
-		Δημιουργία <b><?php echo $model->create_time == 0 ? '-' : date('d-m-y H:i', $model->create_time); ?></b><br />
-		Τελ. ενημέρωση <b><?php echo $model->update_time == 0 ? '-' : date('d-m-y H:i', $model->update_time); ?></b><br />
-		
+		<?php echo $form->labelEx($model,'author_id'); ?>
+		<?php echo $form->dropDownList($model,'author_id', CHtml::listData(User::model()->findAll(), 'id', 'username')); ?>
+		<?php echo $form->error($model,'author_id'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'editable_create_time', array('label'=>'Δημιουργία (ΗΗ-ΜΜ-ΕΕΕΕ ΩΩ:ΛΛ)')); ?>
+		<?php echo $form->textField($model,'editable_create_time'); ?>
+		<?php echo $form->error($model,'editable_create_time'); ?>
+	</div>
+	
+	<div class="row">
+		Τελ. ενημέρωση στις <?php echo $model->update_time == 0 ? '(όχι ακόμα)' : date('d-m-y H:i', $model->update_time); ?>
 	</div>
 	
 </td></tr>

@@ -5,8 +5,17 @@ class Post extends CActiveRecord
 	const STATUS_DRAFT=1;
 	const STATUS_PUBLISHED=2;
 	const STATUS_ARCHIVED=3;
+	const TIMESTAMP_FORMAT = 'd-m-Y H:i'; // for date() function
+	const TIMESTAMP_PARSE = 'dd-MM-yyyy hh:mm'; // for CDateTimeParser Yii class
 
+	var $editable_create_time;
+	
 	private $_oldTags;
+	private $_oldContent;
+	private $_oldPrologue;
+	private $_oldMasthead;
+	private $_original_editable_create_time;
+	
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -40,6 +49,7 @@ class Post extends CActiveRecord
 			array('tags', 'normalizeTags'),
 			array('category_id, status, layout, desired_width, in_home_page', 'numerical'),
 			array('title, content, image_filename, image2_filename, allow_comments, prologue, masthead', 'safe'),
+			array('editable_create_time', 'safe'),
 
 			array('id, title, prologue, masthead, category_id, content, image_filename, image2_filename, tags, status, in_home_page, layout, author_id, allow_comments', 'safe', 'on'=>'search'),
 		);
@@ -80,8 +90,8 @@ class Post extends CActiveRecord
 			'status' => 'Κατάσταση',
 			'in_home_page' => 'Σε αρχική σελίδα',
 			'allow_comments' => 'Επιτρέπονται σχόλια',
-			'create_time' => 'Create Time',
-			'update_time' => 'Update Time',
+			'create_time' => 'Δημιουργία',
+			'update_time' => 'Ενημέρωση',
 			'author_id' => 'Συγγραφέας',
 		);
 	}
@@ -141,6 +151,9 @@ class Post extends CActiveRecord
 		$this->in_home_page = true;
 		$this->allow_comments = true;
 		$this->desired_width = 2;
+		
+		$this->editable_create_time = date(self::TIMESTAMP_FORMAT);
+		$this->_original_editable_create_time = $this->editable_create_time;
 	}
 	
 	/**
@@ -150,6 +163,13 @@ class Post extends CActiveRecord
 	{
 		parent::afterFind();
 		$this->_oldTags=$this->tags;
+		$this->_oldContent = $this->content;
+		$this->_oldPrologue = $this->prologue;
+		$this->_oldMasthead = $this->masthead;
+		
+		// format editable dates
+		$this->editable_create_time = date(self::TIMESTAMP_FORMAT, $this->create_time);
+		$this->_original_editable_create_time = $this->editable_create_time;
 	}
 
 	/**
@@ -158,19 +178,24 @@ class Post extends CActiveRecord
 	 */
 	protected function beforeSave()
 	{
-		if(parent::beforeSave())
+		if (!parent::beforeSave())
+			return false;
+		
+		if($this->isNewRecord)
 		{
-			if($this->isNewRecord)
-			{
-				$this->create_time=$this->update_time=time();
-				$this->author_id=Yii::app()->user->id;
-			}
-			else
-				$this->update_time=time();
-			return true;
+			$this->create_time = $this->update_time = time();
+			$this->author_id=Yii::app()->user->id;
 		}
 		else
-			return false;
+		{
+			$this->update_time=time();
+		}
+
+		// if create or update time was edited, update it.
+		if ($this->editable_create_time != $this->_original_editable_create_time && $this->editable_create_time != '')
+			$this->create_time = CDateTimeParser::parse($this->editable_create_time, self::TIMESTAMP_PARSE);
+		
+		return true;
 	}
 
 	/**
@@ -332,32 +357,66 @@ class Post extends CActiveRecord
 		}
 	}
 	
+	
+	
 	public function notifyEmailSubscribers($is_new = false)
 	{
 		foreach (Yii::app()->params['postSavedSubscribers'] as $receiver)
-		{
-			$title = $is_new ? 'Νέα ανάρτηση: ' . $this->title : 'Διορθώθηκε: ' . $this->title;
-			$body = '';
-			
-			$body .= 
-				'<p>Ο χρήστης <b>' . Yii::app()->user->name . '</b> ' .
-				($is_new ? 'δημιούργησε' : 'διόρθωσε') . ' την παρακάτω ανάρτηση, ' .
-				'σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server.</p>';
-			
-			if ($this->status == Post::STATUS_DRAFT)
-				$body .= '<p>Η ανάρτηση δεν εμφανίζεται δημόσια, επειδή είναι DRAFT.</p>';
-			if ($this->status == Post::STATUS_PUBLISHED)
-				$body .= '<p>Η ανάρτηση εμφανίζεται δημόσια ' . CHtml::link('εδω', $this->getUrl(true)) . '.</p>';
-			else if ($this->status == Post::STATUS_ARCHIVED)
-				$body .= '<p>Η ανάρτηση έχει αρχειοποιηθεί και εμφανίζεται δημόσια ' . CHtml::link('εδω', $this->getUrl(true)) . '.</p>';
-			
-			$body .= '<p>Ακολουθεί το περιεχόμενο της ανάρτησης.</p>';
-			$body .= '<div style="border: 1px solid #aaa; padding: 2em; margin: 2em 0;">';
-			$body .= '<h1>' . $this->title . ' </h1>' . "\r\n";
-			$body .= $this->content;
-			$body .= '</div>';
-			
-			Yii::app()->mailer->send($receiver, $title, $body);
-		}
+			$this->notifyEmailSubscriber($receiver, $is_new);
 	}
+	
+	public function notifyEmailSubscriber($email, $is_new = false)
+	{
+		$title = $is_new ? 'Νέα ανάρτηση: ' . $this->title : 'Διορθώθηκε: ' . $this->title;
+		$body = $this->prepareEmailBody($is_new);
+		
+		Yii::app()->mailer->send($email, $title, $body);
+	}
+	
+	private function prepareEmailBody($is_new = false)
+	{
+		$body = '';
+		
+		$body .= '<p>';
+		$body .= 
+			'Ο χρήστης <b>' . Yii::app()->user->name . '</b> ' .
+			($is_new ? 'δημιούργησε' : 'διόρθωσε') . ' την παρακάτω ανάρτηση, ' .
+			'σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server. ';
+		
+		if ($this->status == Post::STATUS_DRAFT)
+			$body .= 'Η ανάρτηση δεν εμφανίζεται δημόσια. ';
+		if ($this->status == Post::STATUS_PUBLISHED || $this->status == Post::STATUS_ARCHIVED)
+			$body .= 'Η ανάρτηση εμφανίζεται δημόσια. ';
+			
+		$body .= '<p>';
+		
+		$h1 = '<h1>' . CHtml::encode($this->title) . ' </h1>';
+		$body .= CHtml::link($h1, $this->getUrl(true), array('style'=>'text-decoration: none; color:#2B5BA8;')) . "\r\n";
+		$body .= $this->getContentChangeDescription($this->_oldMasthead, $this->masthead, 'Υπέρτιτλος', $is_new);
+		$body .= $this->getContentChangeDescription($this->_oldPrologue, $this->prologue, 'Πρόλογος', $is_new);
+		$body .= $this->getContentChangeDescription($this->_oldContent, $this->content, 'Περιεχόμενο', $is_new);
+
+		return $body;
+	}
+	
+	private function getContentChangeDescription($oldText, $newText, $contentTitle = '', $is_new = false)
+	{
+		if ($newText == '')
+			return '';
+		
+		$html = '';
+		
+		if ($contentTitle != '')
+			$html .= '<h3 style="margin-bottom: -1em;">' . CHtml::encode($contentTitle) . '</h3>';
+		
+		$html .= '<div style="border: 1px solid #aaa; padding: 1em; margin: 1em 0;">';
+		$html .= ($is_new) ? $newText : Yii::app()->differer->compare($oldText, $newText);
+		$html .= '</div>';
+		
+		return $html;
+	}
+
+	
 }
+
+
