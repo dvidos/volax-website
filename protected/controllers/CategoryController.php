@@ -7,7 +7,7 @@ class CategoryController extends Controller
 	public function actionView()
 	{
 		$category=$this->loadModel();
-
+		
 		$this->render('view',array(
 			'model'=>$category,
 		));

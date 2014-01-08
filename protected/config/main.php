@@ -86,6 +86,9 @@ return array(
 		'differer' => array(
 			'class'=>'application.components.Differer',
 		),
+		'legacyDvTextFormatter' => array(
+			'class'=>'application.components.LegacyDvTextFormatter',
+		),
 	),
 
 	'modules' => array(
