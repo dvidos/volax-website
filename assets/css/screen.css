@@ -583,3 +583,13 @@ ul.multilevelMenu a:hover, ul.multilevelMenu li span:hover {
 ul.footerMenu { 
 	padding-left: 1.5em;
 }
+
+
+/* for posts rendered as popups (route post/popup) */
+body.popup { 
+	padding: 1em 2em;
+	background-color: #9FC3DB;
+}
+body.popup h1 { 
+	color: #4B5520;
+}

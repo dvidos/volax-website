@@ -15,7 +15,7 @@
 	</div>
 
 	<div class="time">
-		στις <?php echo date('d/m/Y, H:i',$comment->create_time); ?>
+		<?php echo $comment->getFriendlyCreateTime(); ?>
 	</div>
 
 </div><!-- comment -->

@@ -18,6 +18,14 @@ class PostController extends Controller
 		));
 	}
 
+	public function actionPopup()
+	{
+		$post=$this->loadModel();
+		$this->render('popup',array(
+			'model'=>$post,
+		));
+	}
+
 	/**
 	 * Lists all models.
 	 */
