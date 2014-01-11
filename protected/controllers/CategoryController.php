@@ -19,15 +19,16 @@ class CategoryController extends Controller
 	 */
 	public function loadModel()
 	{
-		if(isset($_GET['id']))
-		{
-			if(Yii::app()->user->isGuest)
-				$condition='status='.Category::STATUS_PUBLISHED;
-			else
-				$condition='';
-			return Category::model()->findByPk($_GET['id'], $condition);
-		}
-		if($this->_model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+		$id = $_GET['id'];
+		if (!$id)
+			throw new CHttpException(400, 'Bad request, no category given');
+		
+		$condition = (Yii::app()->user->isGuest) ? 'status='.Category::STATUS_PUBLISHED : '';
+		$category = Category::model()->findByPk($_GET['id'], $condition);
+		
+		if ($category == null)
+			throw new CHttpException(404, 'Category not found');
+		
+		return $category;
 	}
 }

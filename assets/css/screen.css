@@ -550,15 +550,15 @@ ul.multilevelMenu li {
 }
 ul.multilevelMenu li ul {
     position: absolute;
-    top: 1.5em;
-    left: 8em;
+    top: 15%;
+    left: 97%;
     list-style-type: none;
     margin: 0;
     padding: 0 1em;
     width: 220px;
     background-color: #fff;
     border: 1px solid #eee;
-    box-shadow: 0px 0px 30px rgba(0,0,0, .2);
+    box-shadow: 0px 0px 20px rgba(0,0,0,.4);
     z-index: 10;
 }
 ul.multilevelMenu ul { display: none; }
@@ -571,7 +571,7 @@ ul.multilevelMenu a, ul.multilevelMenu li span {
 	text-decoration: none;
 	padding: .25em .5em;
 	font-size: 110%;
-	letter-spacing: 3px;
+	letter-spacing: 1px;
 	color: black;
 }
 ul.multilevelMenu a:hover, ul.multilevelMenu li span:hover {
@@ -592,4 +592,13 @@ body.popup {
 }
 body.popup h1 { 
 	color: #4B5520;
+}
+
+
+/* for the pager */
+.list-view .pager {
+	clear: both;
+	text-align: left;
+	margin: 1em 0;
+	padding-top: 2em; /* cannot use margin, we are clearing a float. */
 }

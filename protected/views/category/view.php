@@ -1,11 +1,13 @@
 <?php
-$this->breadcrumbs=array(
-	$model->title,
-);
 $this->pageTitle=$model->title;
 ?>
 
+<?php
+	// a category has a similar appearance as a post, ie. it has a masthead, title, prologue, image, content
+	// but it also may have sub-categories and posts.
+?>
 <div class="post">
+
 	<?php
 		if ($model->masthead != '')
 		{
@@ -14,7 +16,6 @@ $this->pageTitle=$model->title;
 			echo '</div>' . "\r\n";
 		}
 	?>
-	
 	
 	<div class="title">
 		<?php echo CHtml::link(CHtml::encode($model->title), $model->url); ?>
@@ -73,6 +74,13 @@ $this->pageTitle=$model->title;
 		'dataProvider'=>$dataProvider,
 		'itemView'=>$itemViewFile,
 		'template'=>"{items}\n{pager}",
+		'pager'=>array(
+			'class'=>'CLinkPager',
+			'header'=>'Σελίδα: &nbsp; ',
+			'prevPageLabel'=>'Προηγούμενη',
+			'nextPageLabel'=>'Επόμενη',	
+		),
+		'ajaxUpdate'=>false, // to disable ajax update
 	));
 ?>
 

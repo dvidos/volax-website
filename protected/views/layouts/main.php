@@ -3,16 +3,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-	<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&amp;subset=latin,greek" media="screen" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/print.css" media="print" />
-	<script src="assets/js/script.js"></script>
 	<title><?php 
 		if ($this->pageTitle != '')
 			echo CHtml::encode($this->pageTitle) . ' - ';
 		echo Yii::app()->name;
 	?></title>
+	<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&amp;subset=latin,greek" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/screen.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/print.css" media="print" />
+	<script src="assets/js/script.js"></script>
 </head>
 <body>
 <div id="page" style="width:1200px;margin:0 auto;">
