@@ -129,9 +129,9 @@
 		</div>
 		<div id="footer-col2" style="float:left;width:900px;">
 			<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> |
-			<?php echo CHtml::link('Ποιοί είμαστε', array('/site/page', 'view'=>'about')); ?> |
+			<?php echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')); ?> |
 			<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?> |
-			<?php echo CHtml::link('Οροι χρήσης', array('/site/page', 'view'=>'terms')); ?> 
+			<?php echo CHtml::link('Οροι χρήσης', array('/page/view', 'url_keyword'=>'terms')); ?> 
 		</div>
 		<div style="clear:both;"></div>
 	</div>
