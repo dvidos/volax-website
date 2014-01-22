@@ -5,6 +5,7 @@
 	<meta name="language" content="en" />
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&amp;subset=latin,greek" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/author.css" />
+	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/images/favicon/logo.png" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?> - Συντάκτης</title>
 </head>
 
