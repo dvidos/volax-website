@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
 )); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
+		<?php echo $form->labelEx($model,'username',array('label'=>'Ονομα χρήστη (όχι email)')); ?>
 		<?php echo $form->textField($model,'username'); ?>
 		<?php echo $form->error($model,'username'); ?>
 	</div>
@@ -29,7 +29,7 @@ $this->breadcrumbs=array(
 
 	<div class="row rememberMe">
 		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'rememberMe'); ?>
+		<?php echo $form->label($model,'rememberMe',array('label'=>'Αυτόματη σύνδεση την επόμενη φορά (Ισχύει για ένα μήνα)')); ?>
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
