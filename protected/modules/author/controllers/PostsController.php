@@ -32,7 +32,11 @@ class PostsController extends Controller
 			if($model->save())
 			{
 				$model->notifyEmailSubscribers(true);
-				$this->redirect(array('index'));
+				Yii::app()->user->setFlash('postSaved','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
+				if (isset($_POST['saveAndStay']))
+					$this->redirect(array('update', 'id'=>$id));
+				else
+					$this->redirect(array('index'));
 			}
 		}
 
@@ -54,7 +58,11 @@ class PostsController extends Controller
 			if($model->save())
 			{
 				$model->notifyEmailSubscribers(false);
-				$this->redirect(array('index'));
+				Yii::app()->user->setFlash('postSaved','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
+				if (isset($_POST['saveAndStay']))
+					$this->redirect(array('update', 'id'=>$id));
+				else
+					$this->redirect(array('index'));
 			}
 		}
 

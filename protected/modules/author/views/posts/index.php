@@ -5,11 +5,21 @@ Yii::app()->clientScript->registerScript('search',
 ?>
 
 <h1>Αναρτήσεις</h1>
+<?php 
+	if(Yii::app()->user->hasFlash('postSaved'))
+	{
+		echo CHtml::tag('div', array('class'=>'flash-success'), CHtml::encode(Yii::app()->user->getFlash('postSaved')));
+		$js = '$(document).ready(function(){ setTimeout(function() { $(".flash-success").slideUp(); }, 4000); });';
+		echo CHtml::tag('script', array(), $js);
+	}
+?>
+
 <p><?php
 	echo CHtml::link('Νέα ανάρτηση', array('create'), array('class'=>'button')); 
 	echo ' ';
 	echo CHtml::link('Αναζήτηση','#',array('class'=>'search-button')); 
 ?></p>
+
 
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
