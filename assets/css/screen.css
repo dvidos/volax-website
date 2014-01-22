@@ -127,8 +127,11 @@ div#homepage-pages-categories-list a.category-link:hover
 div.flash-error, div.flash-notice, div.flash-success
 {
 	padding:.8em;
-	margin-bottom:1em;
-	border:2px solid #ddd;
+	margin: 1em 0;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: 110%;
+	font-weight: bold;
 }
 
 div.flash-error
@@ -147,9 +150,9 @@ div.flash-notice
 
 div.flash-success
 {
-	background:#E6EFC2;
-	color:#264409;
-	border-color:#C6D880;
+	background:#E1FBCC;
+	color:#26691A;
+	border-color:#6CC909;
 }
 
 div.flash-error a
