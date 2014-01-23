@@ -35,6 +35,8 @@
 			}
 			else
 			{
+				echo CHtml::tag('b', array(), CHtml::encode(Yii::app()->user->user->username)) . ': &nbsp;';
+				
 				if (Yii::app()->user->isAuthor)
 					echo CHtml::link('Συντάκτης', array('/author')) . ' | ';
 				
@@ -124,8 +126,8 @@
 		<div style="clear:both;"></div>
 	</div>
 	<div id="footer-normal">
-		<div id="footer-col1" style="float:left;width:220px;margin-right:80px;">
-			&nbsp; Copyright &copy; 2013, <b>D.Vidos &amp; L.Dustal</b>
+		<div id="footer-col1" style="float:left;width:270px;margin-right:30px;">
+			&nbsp; Copyright &copy; 2013 - 2014, <b>D.Vidos &amp; L.Dustal</b>
 		</div>
 		<div id="footer-col2" style="float:left;width:900px;">
 			<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> |
