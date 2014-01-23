@@ -8,7 +8,7 @@
 
 	$this->widget('zii.widgets.CListView', array(
 		'dataProvider'=>$dataProvider,
-		'itemView'=>'/post/_layoutDesiredWidth',
+		'itemView'=>'/post/_layoutHomePage',
 		'template'=>"{items}\n{pager}",
 		'pager'=>array(
 			'class'=>'CLinkPager',
