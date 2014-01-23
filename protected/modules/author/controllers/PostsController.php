@@ -34,7 +34,7 @@ class PostsController extends Controller
 				$model->notifyEmailSubscribers(true);
 				Yii::app()->user->setFlash('postSaved','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
 				if (isset($_POST['saveAndStay']))
-					$this->redirect(array('update', 'id'=>$id));
+					$this->redirect(array('update', 'id'=>$model->id));
 				else
 					$this->redirect(array('index'));
 			}
