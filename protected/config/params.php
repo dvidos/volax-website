@@ -26,7 +26,7 @@ return array(
 	// who receives email from saving a post
 	'postSavedSubscribers'=>array(
 		'dvidos@gmail.com',
-		'jimel.vidos@gmail.com',
+		//'jimel.vidos@gmail.com',
 	),
 	
 	// the markup to use for "read more..."
