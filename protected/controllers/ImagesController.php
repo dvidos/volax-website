@@ -25,6 +25,9 @@ class ImagesController extends Controller
 			Yii::app()->end();
 		}
 
+		// usually, spaces will be rendered as %20. try to decode here...
+		$src = urldecode($src);
+		
 		// we need to resize..
 		if (!($source_image = $this->_img_load($src)))
 			throw new CHttpException(500, 'Cannot load image "' . $src . '"');
