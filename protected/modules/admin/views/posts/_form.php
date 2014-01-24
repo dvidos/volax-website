@@ -18,12 +18,12 @@
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'content'); ?>
+		<?php echo $form->labelEx($model,'content',array('label'=>'Κείμενο <span id="content-size-indicator"></span>')); ?>
 		<?php echo $form->textArea($model,'content', array('style'=>'width:100%;')); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 	<script>
-		CKEDITOR.replace('Post_content', {
+		var editor = CKEDITOR.replace('Post_content', {
 			// see http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html
 			height: 400,
 			language: 'el', // for greek button labels and dialogs.
@@ -59,6 +59,14 @@
 			filebrowserWindowWidth : '730',
 			filebrowserWindowHeight : '500'
 		});
+		editor.on("instanceReady", function(){
+            this.document.on("keyup", checkLength);
+            this.document.on("paste", checkLength);
+        });
+		function checkLength() {
+			var len = CKEDITOR.instances['Post_content'].getData().length;
+			$('#content-size-indicator').html('(' + Math.ceil(len/1024) + ' Kb)');
+		}
 	</script>
 	
 	<p class="hint">
