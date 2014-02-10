@@ -615,3 +615,7 @@ body.popup h1 {
     text-decoration: none;
     color: #555555;
 }
+/* for static pages */
+#content .static-page {
+	width: 600px;
+}
