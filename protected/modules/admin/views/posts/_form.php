@@ -34,7 +34,7 @@
 				[
 					'Bold','Italic','Strike','Subscript','Superscript', '-',
 					'NumberedList','BulletedList','-','Blockquote', '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-',
-					'Link','Unlink','Image','Table','SpecialChar'
+					'Link','Unlink','Image','Table','SpecialChar','Iframe'
 				],
 				[ 'Format','Font','FontSize','-', 'TextColor','BGColor' ],
 				[ 'Preview', 'RemoveFormat', 'Source' ],
