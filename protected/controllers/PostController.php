@@ -26,6 +26,18 @@ class PostController extends Controller
 		));
 	}
 
+	
+	public function actionTags()
+	{
+		$tags = Tag::model()->findAll(array(
+			'order'=>'name'
+		));
+		$this->render('tags', array(
+			'tags'=>$tags,
+		));
+	}
+	
+	
 	/**
 	 * Lists all models.
 	 */
@@ -103,4 +115,5 @@ class PostController extends Controller
 		}
 		return $comment;
 	}
+	
 }
