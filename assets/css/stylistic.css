@@ -1,0 +1,33 @@
+
+/* formatting based on website style */
+.x-style-alt-color { 
+	color: #0099ff;
+	font-weight: bold;
+}
+
+.x-style-footnotes { 
+	color: #808080;
+}
+
+.x-style-low-text {
+	color: #cc0;
+	
+}
+
+.x-style-reference { 
+	color: #6c3;
+}
+
+.post .prologue {
+	font-weight: bold;
+	color: #09f;
+}
+
+
+.post-with-no-image .content {
+	font-family: 'Courier New';
+	color: #aa0;
+}
+	
+
+

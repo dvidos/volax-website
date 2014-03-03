@@ -35,7 +35,7 @@
 					'NumberedList','BulletedList','-','Blockquote', '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-',
 					'Link','Unlink','Anchor','Image','Table','SpecialChar','Iframe'
 				],
-				[ 'Format','Font','FontSize','-', 'TextColor','BGColor' ],
+				[ 'Format','Styles','-', 'TextColor','BGColor' ],
 				[ 'Preview', 'RemoveFormat', 'Source' ],
 		/*
 				{ name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
@@ -51,8 +51,15 @@
 				{ name: 'document', items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] },
 		*/
 			],
-			
+			stylesSet: [
+				{ name: 'Alt Color Paragraph', element: 'p', attributes: { 'class': 'x-style-alt-color' } },
+				{ name: 'Footnotes', element: 'p', attributes: { 'class': 'x-style-footnotes' } },
+				{ name: 'Reference', element: 'span', attributes: { 'class': 'x-style-reference' } },
+				{ name: 'Low Text', element: 'p', attributes: { 'class': 'x-style-low-text' } }
+			],
+			contentsCss: 'assets/css/stylistic.css',
 			// from getSimple
+			// see http://docs.cksource.com/CKEditor_3.x/Developers_Guide/File_Browser_%28Uploader%29
 			filebrowserBrowseUrl : 'filebrowser.php?type=all',
 			filebrowserImageBrowseUrl : 'filebrowser.php?type=images',
 			filebrowserWindowWidth : '730',

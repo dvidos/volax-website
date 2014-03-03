@@ -1,7 +1,6 @@
 <div class="form">
 	<script src="<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckeditor.js"></script>
 
-
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'user-form',
 	'enableAjaxValidation'=>false,
@@ -36,7 +35,7 @@
 					'NumberedList','BulletedList','-','Blockquote', '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-',
 					'Link','Unlink','Anchor','Image','Table','SpecialChar','Iframe'
 				],
-				[ 'Format','Font','FontSize','-', 'TextColor','BGColor' ],
+				[ 'Format','Styles','-', 'TextColor','BGColor' ],
 				[ 'Preview', 'RemoveFormat', 'Source' ],
 		/*
 				{ name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
@@ -52,7 +51,13 @@
 				{ name: 'document', items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] },
 		*/
 			],
-			
+			stylesSet: [
+				{ name: 'Alt Color Paragraph', element: 'p', attributes: { 'class': 'x-style-alt-color' } },
+				{ name: 'Footnotes', element: 'p', attributes: { 'class': 'x-style-footnotes' } },
+				{ name: 'Reference', element: 'span', attributes: { 'class': 'x-style-reference' } },
+				{ name: 'Low Text', element: 'p', attributes: { 'class': 'x-style-low-text' } }
+			],
+			contentsCss: 'assets/css/stylistic.css',
 			// from getSimple
 			filebrowserBrowseUrl : 'filebrowser.php?type=all',
 			filebrowserImageBrowseUrl : 'filebrowser.php?type=images',
