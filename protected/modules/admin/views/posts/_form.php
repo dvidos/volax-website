@@ -59,6 +59,7 @@
 			],
 			contentsCss: 'assets/css/stylistic.css',
 			// from getSimple
+			// see http://docs.cksource.com/CKEditor_3.x/Developers_Guide/File_Browser_%28Uploader%29
 			filebrowserBrowseUrl : 'filebrowser.php?type=all',
 			filebrowserImageBrowseUrl : 'filebrowser.php?type=images',
 			filebrowserWindowWidth : '730',

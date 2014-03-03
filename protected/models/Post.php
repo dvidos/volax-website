@@ -417,6 +417,56 @@ class Post extends CActiveRecord
 	}
 
 	
+	public function getImageHtml($desiredWidth = 0, $allowEnlarge = false)
+	{
+		if ($this->image_filename == '')
+			return false;
+		
+		if ($desiredWidth == 0)
+			return CHtml::image($this->image_filename);
+		
+		// find dimensions to scale
+		$fn = $this->image_filename;
+		
+		// must find a better way for this...
+		if (substr($fn, 0, 8) == '/volax4/')
+			$fn = substr($fn, 8);
+		if (substr($fn, 0, 4) == '/v4/')
+			$fn = substr($fn, 4);
+		if (substr($fn, 0, 1) == '/')
+			$fn = substr($fn, 1);
+			
+		$fn = urldecode($fn);
+		
+		
+		// on error return unscaled
+		$size = @getimagesize($fn);
+		if ($size === null)
+			return CHtml::image($this->image_filename);
+		
+		$imgWidth = $size[0];
+		$imgHeight = $size[1];
+		
+		if ($imgWidth == $desiredWidth)
+		{
+			// no need to scale
+			return CHtml::image($this->image_filename);
+		}
+		else if ($allowEnlarge == false && $imgWidth < $desiredWidth)
+		{
+			// do not(?) allow enalargment
+			return CHtml::image($this->image_filename);
+		}
+		else
+		{
+			// scale to a smaller image.
+			$multiplier = ($imgWidth == 0) ? 1 : ($desiredWidth - 0.001) / $imgWidth;
+			$neededHeight = round($imgHeight * $multiplier);
+			return CHtml::image($this->image_filename, '', array('width'=>$desiredWidth, 'height'=>$neededHeight));
+		}
+		
+	}
+	
 }
 
 

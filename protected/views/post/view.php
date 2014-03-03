@@ -32,28 +32,9 @@ $this->pageTitle=$model->title;
 	
 	
 	<?php
-		// couldn't we use image2 for this?
-		if ($model->image_filename != '')
-		{
-			echo '<div class="image">';
-			$fn = $model->image_filename;
-			$w = 500;
-			
-			// must find a way to automate this...
-			if (substr($fn, 0, 8) == '/volax4/')
-				$fn = substr($fn, 8);
-			if (substr($fn, 0, 4) == '/v4/')
-				$fn = substr($fn, 4);
-				
-			// width will be dependent on post layout...
-			$url = Yii::app()->createUrl('/images/show', array(
-				'src'=>$fn,
-				'width'=>$w,
-			));
-			echo CHTml::image($url);
-			// echo CHTml::image($model->image_filename);
-			echo '</div>';
-		}
+		$imgHtml = $model->getImageHtml(500);
+		if ($imgHtml !== false)
+			echo Chtml::tag('div', array('class'=>'image'), $imgHtml);
 	?>
 	
 	
