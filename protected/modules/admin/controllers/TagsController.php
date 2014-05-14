@@ -10,6 +10,9 @@ class TagsController extends Controller
 			'criteria'=>array(
 				'order'=>'t.name',
 			),
+			'pagination'=>array(
+				'pageSize'=>25,
+			),
 		));
 		
 		$this->render('index',array(
