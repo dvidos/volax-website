@@ -14,7 +14,7 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo">Διαχείριση <?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?> - Admin</div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
@@ -47,8 +47,8 @@
 					'activeCssClass'=>'active',
 					'activateParents'=>true,
 					'items'=>array(
-						array('label'=>'Website', 'url'=>array('/')),
-						array('label'=>'Εξοδος ' . Yii::app()->user->name, 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Επιστροφή', 'url'=>array('/')),
+						//array('label'=>'Εξοδος ' . Yii::app()->user->name, 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 					),
 				)); ?>
 		</div>

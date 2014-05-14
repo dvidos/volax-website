@@ -25,7 +25,8 @@
 		echo '<ul>';
 		foreach ($posts as $post)
 		{
-			echo '<li>' . CHtml::link($post->title, array('/author/posts/update', 'id'=>$post->id)) . '</li>';
+			$title = ($post->title == '') ? '#' . $post->id . ' (χωρίς τίτλo)' : $post->title;
+			echo '<li>' . CHtml::link($title, array('/author/posts/update', 'id'=>$post->id)) . '</li>';
 		}
 		echo '</ul>';
 	?>
@@ -42,7 +43,8 @@
 		echo '<ul>';
 		foreach ($posts as $post)
 		{
-			echo '<li>' . CHtml::link($post->title, array('/author/posts/update', 'id'=>$post->id)) . '</li>';
+			$title = ($post->title == '') ? '#' . $post->id . ' (χωρίς τίτλo)' : $post->title;
+			echo '<li>' . CHtml::link($title, array('/author/posts/update', 'id'=>$post->id)) . '</li>';
 		}
 		echo '</ul>';
 	?>

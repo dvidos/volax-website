@@ -245,7 +245,7 @@ body
 	font-size: 10pt;
 	font-family: 'Open sans',sans-serif;
 	background: #29546B;
-	background: white url(../images/bg_admin2.jpg) center center no-repeat fixed;
+	background: white url(../images/bg_admin.jpg) center 30% no-repeat fixed;
 }
 
 #page
@@ -253,7 +253,7 @@ body
 	margin-top: 5px;
 	margin-bottom: 5px;
 	background: white;
-	border: 1px solid #555;
+	border: 1px solid #333;
 	box-shadow: 0px 0px 50px rgba(0, 0, 0, .3);
 }
 
@@ -284,42 +284,14 @@ body
 
 #logo
 {
-	padding: 10px 20px;
-	font-size: 200%;
+	padding: .5em 1em;
+	font-size: 250%;
+	font-weight: bold;
+	color: white;
+	background: #3E7FA0 url(../images/bg_fade_black.png) bottom left repeat-x;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 }
 
-x#xmainmenu
-{
-	background:white url(../images/bg_blue.gif) repeat-x left top;
-}
-
-x#xmainmenu ul
-{
-	padding:6px 20px 5px 20px;
-	margin:0px;
-}
-
-x#xmainmenu ul li
-{
-	display: inline;
-}
-
-x#xmainmenu ul li a
-{
-	color:#ffffff;
-	background-color:transparent;
-	font-size:12px;
-	font-weight:bold;
-	text-decoration:none;
-	padding:5px 8px;
-}
-
-x#xmainmenu ul li a:hover, x#xmainmenu ul li.active a
-{
-	color: #6399cd;
-	background-color:#EFF4FA;
-	text-decoration:none;
-}
 
 #mainmenu { background:white url(../images/bg_blue.gif) repeat-x left top; padding: 0 1.5em; }
 #mainmenu ul { list-style: none; margin: 0; padding: 0; position: relative; height: 30px; border-left: 1px solid #467996; }
