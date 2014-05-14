@@ -50,6 +50,7 @@ return array(
 			'urlFormat'=>'get', // 'path',
 			'showScriptName'=>true,
 			'rules'=>array(
+				'user/<id:\d+>/<name:.*?>'=>'user/view',
 				'post/<id:\d+>/<title:.*?>'=>'post/view',
 				'category/<id:\d+>/<title:.*?>'=>'category/view',
 				'posts/<tag:.*?>'=>'post/index',
