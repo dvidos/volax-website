@@ -435,9 +435,12 @@ class Post extends CActiveRecord
 			$fn = substr($fn, 4);
 		if (substr($fn, 0, 1) == '/')
 			$fn = substr($fn, 1);
-			
-		$fn = urldecode($fn);
 		
+		
+		//$imgUrl = Yii::app()->createUrl('/images/show', array('src'=>$fn, 'maxwidth'=>$desiredWidth, 'maxheight'=>round($desiredWidth * 1.0)));
+		//return CHtml::link(CHtml::image($imgUrl, ''), array('/post/view', 'id'=>$this->id));
+		
+		$fn = urldecode($fn);
 		
 		// on error return unscaled
 		$size = @getimagesize($fn);
