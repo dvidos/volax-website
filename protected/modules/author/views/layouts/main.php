@@ -14,7 +14,7 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?> - Συντάκτης</div>
+		<div id="logo">Συντάκτης <?php echo CHtml::encode(Yii::app()->name); ?> - <?php echo CHtml::encode(Yii::app()->user->name); ?></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
