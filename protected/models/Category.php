@@ -213,11 +213,18 @@ class Category extends CActiveRecord
 			return '(unknown)';
 	}
 
-	public static function findAllOfParent($parent_id)
+	public static function findAllOfParent($parent_id, $status = -1)
 	{
+		$conditions = array('parent_id = :pid');
+		$params = array(':pid' => $parent_id);
+		if ($status != -1)
+		{
+			$conditions[] = 'status = :stat';
+			$params[':stat'] = $status;
+		}
 		return Category::model()->findAll(array(
-			'condition' => 'parent_id = :pid',
-			'params'=>array(':pid'=>$parent_id),
+			'condition' => implode(' and ', $conditions),
+			'params'=>$params,
 			'order'=>'view_order,title',
 		));
 	}
@@ -237,7 +244,7 @@ class Category extends CActiveRecord
 		// each item should have: label, optional url, optional items.
 		$items = array();
 		
-		$cats = self::findAllOfParent($parent_id);
+		$cats = self::findAllOfParent($parent_id, self::STATUS_PUBLISHED);
 		foreach ($cats as $cat)
 		{
 			$item = array('label'=>$cat->title);
