@@ -10,11 +10,22 @@ class Post extends CActiveRecord
 
 	var $editable_create_time;
 	
-	private $_oldTags;
-	private $_oldContent;
-	private $_oldPrologue;
-	private $_oldMasthead;
-	private $_original_editable_create_time;
+	var $_oldTitle;
+	var $_oldCategoryId;
+	var $_oldStatus;
+	var $_oldDesiredWidth;
+	var $_oldLayout;
+	var $_oldHomePage;
+	var $_oldAllowComments;
+	var $_oldImageFilename;
+	var $_oldTags;
+	var $_oldAuthor;
+	var $_oldCreated;
+	var $_oldUpdated;
+	var $_oldContent;
+	var $_oldPrologue;
+	var $_oldMasthead;
+	var $_original_editable_create_time;
 	
 
 	/**
@@ -67,6 +78,8 @@ class Post extends CActiveRecord
 			'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 			'comments' => array(self::HAS_MANY, 'Comment', 'post_id', 'condition'=>'comments.status='.Comment::STATUS_APPROVED, 'order'=>'comments.create_time DESC'),
 			'commentCount' => array(self::STAT, 'Comment', 'post_id', 'condition'=>'status='.Comment::STATUS_APPROVED),
+			'oldAuthor' => array(self::BELONGS_TO, 'User', '_oldAuthorId'),
+			'oldCategory' => array(self::BELONGS_TO, 'Category', '_oldCategoryId'),
 		);
 	}
 
@@ -161,10 +174,21 @@ class Post extends CActiveRecord
 	protected function afterFind()
 	{
 		parent::afterFind();
-		$this->_oldTags=$this->tags;
-		$this->_oldContent = $this->content;
+		
+		$this->_oldTitle = $this->title;
 		$this->_oldPrologue = $this->prologue;
 		$this->_oldMasthead = $this->masthead;
+		$this->_oldCategoryId = $this->category_id;
+		$this->_oldContent = $this->content;
+		$this->_oldImageFilename = $this->image_filename;
+		$this->_oldLayout = $this->layout;
+		$this->_oldDesiredWidth = $this->desired_width;
+		$this->_oldTags = $this->tags;
+		$this->_oldStatus = $this->status;
+		$this->_oldHomePage = $this->in_home_page;
+		$this->_oldAllowComments = $this->allow_comments;
+		$this->_oldCreated = $this->create_time;
+		$this->_oldAuthor = $this->author_id;
 		
 		// format editable dates
 		$this->editable_create_time = date(self::TIMESTAMP_FORMAT, $this->create_time);
@@ -380,22 +404,69 @@ class Post extends CActiveRecord
 		$body .= '<p>';
 		$body .= 
 			'Ο χρήστης <b>' . Yii::app()->user->name . '</b> ' .
-			($is_new ? 'δημιούργησε' : 'διόρθωσε') . ' την παρακάτω ανάρτηση, ' .
-			'σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server. ';
-		
-		if ($this->status == Post::STATUS_DRAFT)
-			$body .= 'Η ανάρτηση δεν εμφανίζεται δημόσια. ';
-		if ($this->status == Post::STATUS_PUBLISHED || $this->status == Post::STATUS_ARCHIVED)
-			$body .= 'Η ανάρτηση εμφανίζεται δημόσια. ';
-			
-		$body .= '<p>';
+			($is_new ? 'δημιούργησε' : 'διόρθωσε') . ' την παρακάτω ' . 
+			(($this->status == Post::STATUS_PUBLISHED || $this->status == Post::STATUS_ARCHIVED) ? 'δημόσια' : 'πρόχειρη') .
+			' ανάρτηση, σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server. ';
 		
 		$h1 = '<h1>' . CHtml::encode($this->title) . ' </h1>';
 		$body .= CHtml::link($h1, $this->getUrl(true), array('style'=>'text-decoration: none; color:#2B5BA8;')) . "\r\n";
-		$body .= $this->getContentChangeDescription($this->_oldMasthead, $this->masthead, 'Υπέρτιτλος', $is_new);
-		$body .= $this->getContentChangeDescription($this->_oldPrologue, $this->prologue, 'Πρόλογος', $is_new);
-		$body .= $this->getContentChangeDescription($this->_oldContent, $this->content, 'Περιεχόμενο', $is_new);
+		
+		
+		$body .= '<p>';
 
+		if (!$is_new)
+		{
+			if ($this->_oldTitle != $this->title)
+				$body .= 'Ο τίτλος άλλαξε από "' . $this->_oldTitle . '" σε "' . $this->title . '"<br />';
+				
+			if ($this->_oldCategoryId != $this->category_id)
+				$body .= 'Η κατηγορία άλλαξε από "' . 
+					(($this->oldCategory == null) ? '(καμμία)' : $this->oldCategory->title) . '" σε "' . 
+					(($this->category == null) ? '(καμμία)' : $this->category->title) . '"<br />';
+				
+			if ($this->_oldImageFilename != $this->image_filename)
+				$body .= 'Η εικόνα άλλαξε από "' . $this->_oldImageFilename . '" σε "' . $this->image_filename . '"<br />';
+				
+			$layouts = $this->getLayoutOptions();
+			if ($this->_oldLayout != $this->layout)
+				$body .= 'Το layout άλλαξε από "' . $layouts[$this->_oldLayout] . '" σε "' . $layouts[$this->layout] . '"<br />';
+				
+			$widths = $this->getDesiredWidthOptions();
+			if ($this->_oldDesiredWidth != $this->desired_width)
+				$body .= 'Το πλάτος άλλαξε από "' . $widths[$this->_oldDesiredWidth] . '" σε "' . $widths[$this->desired_width] . '"<br />';
+				
+			if ($this->_oldTags != $this->tags)
+				$body .= 'Τα tags άλλαξαν από "' . $this->_oldTags . '" σε "' . $this->tags . '"<br />';
+				
+			$statusCaptions = array(1=>'Draft', 2=>'Published', 3=>'Archived');
+			if ($this->_oldStatus != $this->status)
+				$body .= 'Η κατάσταση άλλαξε από "' . $statusCaptions[$this->_oldStatus] . '" σε "' . $statusCaptions[$this->status] . '"<br />';
+				
+			if ($this->_oldHomePage != $this->in_home_page)
+				$body .= 'Το σε-αρχική-σελίδα άλλαξε από "' . $this->_oldHomePage . '" σε "' . $this->in_home_page . '"<br />';
+				
+			if ($this->_oldAllowComments != $this->allow_comments)
+				$body .= 'To επιτρέπονται-σχόλια άλλαξε από "' . $this->_oldAllowComments . '" σε "' . $this->allow_comments . '"<br />';
+				
+			if ($this->_oldCreated != $this->create_time)
+				$body .= 'Η ημ/νία δημιουργίας άλλαξε από "' . 
+					date(self::TIMESTAMP_FORMAT, $this->_oldCreated) . '" σε "' .
+					date(self::TIMESTAMP_FORMAT, $this->create_time) . '"<br />';
+				
+			if ($this->_oldAuthor != $this->author_id)
+				$body .= 'Ο συγγραφέας άλλαξε από "' . 
+					(($this->oldAuthor == null) ? '(κανένας)' : $this->oldAuthor->username) . '" σε "' .
+					(($this->author == null) ? '(κανένας)' : $this->author->username) . '"<br />';
+			
+			if ($this->_oldMasthead != $this->masthead)
+				$body .= $this->getContentChangeDescription($this->_oldMasthead, $this->masthead, 'Υπέρτιτλος', $is_new);
+				
+			if ($this->_oldMasthead != $this->masthead)
+				$body .= $this->getContentChangeDescription($this->_oldPrologue, $this->prologue, 'Πρόλογος', $is_new);
+		}
+		
+		$body .= $this->getContentChangeDescription($this->_oldContent, $this->content, 'Περιεχόμενο', $is_new);
+		
 		return $body;
 	}
 	
