@@ -52,12 +52,12 @@ Yii::app()->clientScript->registerScript('search',
 			'value'=>'Status::item("PostStatus",$data->status)',
 			'filter'=>Status::items('PostStatus'),
 		),
-		array(
-			'name'=>'in_home_page',
-			'header'=>'Αρχική',
-			'value'=>'$data->in_home_page ? "Ναι" : ""',
-			'filter'=>array('1'=>'Ναι','0'=>'Οχι'),
-		),
+		//array(
+		//	'name'=>'in_home_page',
+		//	'header'=>'Αρχική',
+		//	'value'=>'$data->in_home_page ? "Ναι" : ""',
+		//	'filter'=>array('1'=>'Ναι','0'=>'Οχι'),
+		//),
 		array(
 			'name'=>'create_time',
 			'type'=>'raw',
