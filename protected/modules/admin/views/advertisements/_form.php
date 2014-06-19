@@ -9,19 +9,19 @@
 <table style="border:1px solid #ddd; background-color: #eee; padding: .5em 1em;"><tr><td>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'customer'); ?>
+		<?php echo $form->labelEx($model,'customer', array('label'=>'Επωνυμία διαφημιζόμενου')); ?>
 		<?php echo $form->textField($model,'customer', array('size'=>100)); ?>
 		<?php echo $form->error($model,'customer'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'title'); ?>
+		<?php echo $form->labelEx($model,'title', array('label'=>'Τίτλος καμπάνιας')); ?>
 		<?php echo $form->textField($model,'title', array('size'=>100)); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'image_filename'); ?>
+		<?php echo $form->labelEx($model,'image_filename', array('label'=>'Εικόνα (λογικά στο uploads/ads, διαστάσεων περίπου 700 x 100)')); ?>
 		<?php /* echo $form->textField($model,'image_filename',array('size'=>100,'maxlength'=>100)); */ ?>
 		<?php echo $this->widget('application.components.elFinder.ServerFileInput', array(
 			'model' => $model,
@@ -33,25 +33,25 @@
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'image_title'); ?>
+		<?php echo $form->labelEx($model,'image_title', array('label'=>'Κείμενο tooltip')); ?>
 		<?php echo $form->textField($model,'image_title', array('size'=>100)); ?>
 		<?php echo $form->error($model,'image_title'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'target_url'); ?>
+		<?php echo $form->labelEx($model,'target_url', array('label'=>'URL Κατάληξης')); ?>
 		<?php echo $form->textField($model,'target_url', array('size'=>100)); ?>
 		<?php echo $form->error($model,'target_url'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'from_time'); ?>
+		<?php echo $form->labelEx($model,'from_time', array('label'=>'Εμφάνιση από ημ/νία (HH-MM-EEEE)')); ?>
 		<?php echo $form->textField($model,'from_time', array('size'=>14)); ?>
 		<?php echo $form->error($model,'from_time'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'to_time'); ?>
+		<?php echo $form->labelEx($model,'to_time', array('label'=>'Εμφάνιση έως ημ/νία (HH-MM-EEEE)')); ?>
 		<?php echo $form->textField($model,'to_time', array('size'=>14)); ?>
 		<?php echo $form->error($model,'to_time'); ?>
 	</div>

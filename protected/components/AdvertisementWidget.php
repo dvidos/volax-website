@@ -36,6 +36,7 @@ class AdvertisementWidget extends CWidget
 		$actual_url = Yii::App()->createUrl('/advertisement/click', array('id'=>$ad->id));
 		$link_tag = CHtml::link($image_tag, $ad->target_url, array(
 			'onMouseDown'=>'this.href="' . $actual_url . '";return true;',
+			'target'=>'_blank',
 		));
 		$html = $link_tag;
 		

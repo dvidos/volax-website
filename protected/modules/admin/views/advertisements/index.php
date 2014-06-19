@@ -30,6 +30,18 @@ Yii::app()->clientScript->registerScript('search',
 		),
 		'customer',
 		array(
+			'name'=>'from_time',
+			'type'=>'raw',
+			'value'=>'$data->from_time',
+			'filter'=>false,
+		),
+		array(
+			'name'=>'to_time',
+			'type'=>'raw',
+			'value'=>'$data->to_time',
+			'filter'=>false,
+		),
+		array(
 			'name'=>'is_active',
 			'header'=>'Active',
 			'value'=>'$data->is_active ? "Yes" : ""',

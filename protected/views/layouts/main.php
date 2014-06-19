@@ -62,10 +62,10 @@
 	</div>
 	<div id="banner-right" style="float:right; width:75%;">
 		<?php
-			// echo CHtml::image(Yii::app()->baseUrl . '/assets/images/ad_sample.gif');
 			$this->widget('application.components.AdvertisementWidget', array(
 				'htmlOptions'=>array(
-					'style'=>'background-color: #777; border: 3px solid red; width: 468px; height: 60px; overflow: hidden;'
+					//'style'=>'background-color: #777; border: 1px solid red; width: 700x; height: 140px; overflow: hidden;'
+					'style'=>''
 				),
 			));
 		?>

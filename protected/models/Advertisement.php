@@ -45,14 +45,17 @@ class Advertisement extends CActiveRecord
         parent::afterFind();
     }
 
-    protected function beforeValidate()
+    protected function beforeSave()
     {
-            // convert to storage format
+        // convert to storage format
         $this->from_time = strtotime($this->from_time);
         $this->to_time = strtotime($this->to_time);
+		
+		if (substr($this->target_url, 0, 7) != 'http://')
+			$this->target_url = 'http://' . $this->target_url;
 
-        return parent::beforeValidate();
-    }	
+        return parent::beforeSave();
+    }
 	
 	
 	/**
