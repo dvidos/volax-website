@@ -23,7 +23,10 @@
 
 <div id="top-menu">
 	<div id="top-menu-left" style="float:left;">
-		<?php echo CHtml::link('Αρχική', array('/')); ?> |
+		<?php echo CHtml::link('Αρχική', array('/')); ?> 
+		&nbsp;|&nbsp;
+		<?php echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')); ?> 
+		&nbsp;|&nbsp;
 		<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?>
 	</div>
 	<div id="top-menu-right" style="float:right;">
@@ -36,13 +39,21 @@
 			}
 			else
 			{
-				echo CHtml::tag('b', array(), CHtml::encode(Yii::app()->user->user->username)) . ': &nbsp;';
+				$h = date('G');
+				$greeting = '';
+				if ($h < 7) $greeting = 'Είναι αργά';
+				else if ($h < 12) $greeting = 'Καλημέρα';
+				else if ($h < 16) $greeting = 'Καλό μεσημέρι';
+				else if ($h < 20) $greeting = 'Καλό απόγευμα';
+				else $greeting = 'Καλησπέρα';
+				
+				echo CHtml::tag('b', array(), $greeting . ' ' . CHtml::encode(Yii::app()->user->user->username)) . ' &nbsp;|&nbsp; ';
 				
 				if (Yii::app()->user->isAuthor)
-					echo CHtml::link('Συντάκτης', array('/author')) . ' | ';
+					echo CHtml::link('Σύνταξη', array('/author')) . ' &nbsp;|&nbsp; ';
 				
 				if (Yii::app()->user->isAdmin)
-					echo CHtml::link('Admin', array('/admin')) . ' | ';
+					echo CHtml::link('Διαχείριση', array('/admin')) . ' &nbsp;|&nbsp; ';
 				
 				echo CHtml::link('Έξοδος', array('/site/logout'));
 			}
@@ -131,10 +142,12 @@
 			&nbsp; Copyright &copy; 2013 - 2014, <b>D.Vidos &amp; L.Dustal</b>
 		</div>
 		<div id="footer-col2" style="float:left;width:900px;">
-			<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> |
-			<?php echo CHtml::link('Tags', array('/post/tags')); ?> |
-			<?php echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')); ?> |
-			<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?> |
+			<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> 
+			&nbsp;|&nbsp;
+			<?php echo CHtml::link('Tags', array('/post/tags')); ?> 
+			&nbsp;|&nbsp;
+			<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?> 
+			&nbsp;|&nbsp;
 			<?php echo CHtml::link('Οροι χρήσης', array('/page/view', 'url_keyword'=>'terms')); ?> 
 		</div>
 		<div style="clear:both;"></div>
