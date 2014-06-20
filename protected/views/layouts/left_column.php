@@ -1,5 +1,7 @@
-﻿
-	<div id="homepage-explanation">
+﻿<div id="left-column">
+
+
+	<div id="moto">
 		Βωλάξ, Τήνος. 
 		Τόπος όμορφος και ζωντανός.
 		Χωριό αγαπημένο. 
@@ -8,28 +10,16 @@
 		μέσα από την αξεπέραστη φύση και τις αξίες των ανθρώπων του...<br />
 		Ακολουθήστε μας!
 	</div>
-	<div id="homepage-main-categories-list">
+	<div class="blue-buttons">
 		<?php
-			$this->widget('zii.widgets.CMenu', array(
-				'items'=>Category::getCMenuItems(3),
-				'htmlOptions'=>array('class'=>'multilevelMenu'),
-			));
+			$blogId = Yii::app()->params['leftColumnBlogCategoryId'];
+			$category = Category::model()->findByPk($blogId);
+			$link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'xcategory-link'));
+			echo $link;
+			echo '<div class="prologue">' . $category->prologue . '</div>';
 		?>
 	</div>
-	<div id="homepage-messages-area">
-	</div>
-	<div id="homepage-action-categories-list">
-		<?php
-			$cat = Category::model()->findByPk(12);
-			foreach ($cat->subcategories as $category)
-			{
-				$link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'category-link'));
-				echo $link;
-				echo '<span class="category-prologue">' . $category->prologue . '</span>';
-			}
-		?>
-	</div>
-	<div id="homepage-pages-categories-list">
+	<div class="blue-buttons">
 		<?php
 			echo '<h3>οι σελίδες</h3>';
 			$this->widget('zii.widgets.CMenu', array(
@@ -38,3 +28,28 @@
 			));
 		?>
 	</div>
+	<div class="black-buttons">
+		<?php
+			$cat = Category::model()->findByPk(12);
+			foreach ($cat->subcategories as $category)
+			{
+				$link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'xcategory-link'));
+				echo $link;
+				echo '<div class="prologue">' . $category->prologue . '</div>';
+			}
+		?>
+	</div>
+	<div class="blue-buttons">
+		<?php
+			$this->widget('zii.widgets.CMenu', array(
+				'items'=>Category::getCMenuItems(3),
+				'htmlOptions'=>array('class'=>'multilevelMenu'),
+			));
+		?>
+	</div>
+	<div class="xhomepage-messages-area">
+	</div>
+
+	
+	
+</div>

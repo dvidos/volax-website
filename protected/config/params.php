@@ -35,6 +35,8 @@ return array(
 	// the text to use in the link for "read more..."
 	'postsMoreLinkText'=>'συνέχεια...',
 	
+	// the category to use for the BLOG in left column
+	'leftColumnBlogCategoryId'=>123,
 	
 	// number of posts displayed per page
 	'postsPerPage'=>10,
