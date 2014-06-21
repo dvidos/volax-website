@@ -508,8 +508,8 @@ class Post extends CActiveRecord
 			$fn = substr($fn, 1);
 		
 		
-		//$imgUrl = Yii::app()->createUrl('/images/show', array('src'=>$fn, 'maxwidth'=>$desiredWidth, 'maxheight'=>round($desiredWidth * 1.0)));
-		//return CHtml::link(CHtml::image($imgUrl, ''), array('/post/view', 'id'=>$this->id));
+		$imgUrl = Yii::app()->createUrl('/images/show', array('src'=>$fn, 'maxwidth'=>$desiredWidth, 'maxheight'=>round($desiredWidth * 3.0)));
+		return CHtml::link(CHtml::image($imgUrl, ''), array('/post/view', 'id'=>$this->id));
 		
 		$fn = urldecode($fn);
 		

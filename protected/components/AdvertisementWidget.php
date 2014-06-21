@@ -28,17 +28,29 @@ class AdvertisementWidget extends CWidget
 		if ($ad == null)
 			return;
 		
-		// could trick user and present the URL on the status bar...
-		// bloody Google! very nice trick!
-		$image_tag = CHtml::image($ad->image_filename, $ad->image_title, array(
-			'title'=>$ad->image_title,
-		));
-		$actual_url = Yii::App()->createUrl('/advertisement/click', array('id'=>$ad->id));
-		$link_tag = CHtml::link($image_tag, $ad->target_url, array(
-			'onMouseDown'=>'this.href="' . $actual_url . '";return true;',
-			'target'=>'_blank',
-		));
-		$html = $link_tag;
+		if ($ad->target_url == '')
+		{
+			// could trick user and present the URL on the status bar...
+			// bloody Google! very nice trick!
+			$image_tag = CHtml::image($ad->image_filename, $ad->image_title, array(
+				'title'=>$ad->image_title,
+			));
+			$actual_url = Yii::App()->createUrl('/advertisement/click', array('id'=>$ad->id));
+			$link_tag = CHtml::link($image_tag, $ad->target_url, array(
+				'onMouseDown'=>'this.href="' . $actual_url . '";return true;',
+				'target'=>'_blank',
+			));
+			$html = $link_tag;
+		}
+		else
+		{
+			// could trick user and present the URL on the status bar...
+			// bloody Google! very nice trick!
+			$image_tag = CHtml::image($ad->image_filename, $ad->image_title, array(
+				'title'=>$ad->image_title,
+			));
+			$html = $image_tag;
+		}
 		
 		$ad->times_shown++;
 		$ad->update(array('times_shown'));
