@@ -488,7 +488,7 @@ class Post extends CActiveRecord
 	}
 
 	
-	public function getImageHtml($desiredWidth = 0, $allowEnlarge = false)
+	public function getImageHtml($desiredWidth = 0, $desiredHeight = 0, $allowEnlarge = false)
 	{
 		if ($this->image_filename == '')
 			return false;
@@ -508,7 +508,25 @@ class Post extends CActiveRecord
 			$fn = substr($fn, 1);
 		
 		
-		$imgUrl = Yii::app()->createUrl('/images/show', array('src'=>$fn, 'maxwidth'=>$desiredWidth, 'maxheight'=>round($desiredWidth * 3.0)));
+		$params = array(
+			'src'=>$fn,
+		);
+		if ($allowEnlarge)
+		{
+			if ($desiredWidth != 0)
+				$params['width'] = $desiredWidth;
+			if ($desiredHeight != 0)
+				$params['height'] = $desiredHeight;
+		}
+		else
+		{
+			if ($desiredWidth != 0)
+				$params['maxwidth'] = $desiredWidth;
+			if ($desiredHeight != 0)
+				$params['maxheight'] = $desiredHeight;
+		}
+		
+		$imgUrl = Yii::app()->createUrl('/images/show', $params);
 		return CHtml::link(CHtml::image($imgUrl, ''), array('/post/view', 'id'=>$this->id));
 		
 		$fn = urldecode($fn);
