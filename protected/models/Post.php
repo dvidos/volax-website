@@ -19,7 +19,7 @@ class Post extends CActiveRecord
 	var $_oldAllowComments;
 	var $_oldImageFilename;
 	var $_oldTags;
-	var $_oldAuthor;
+	var $_oldAuthorId;
 	var $_oldCreated;
 	var $_oldUpdated;
 	var $_oldContent;
@@ -58,7 +58,7 @@ class Post extends CActiveRecord
 			array('title', 'length', 'max'=>128),
 			array('tags', 'match', 'pattern'=>'/^[\S\s,]+$/', 'message'=>'Tags must be separated with comma.'),
 			array('tags', 'normalizeTags'),
-			array('category_id, status, layout, desired_width, in_home_page', 'numerical'),
+			array('category_id, status, layout, desired_width, in_home_page, author_id', 'numerical'),
 			array('title, content, image_filename, allow_comments, prologue, masthead', 'safe'),
 			array('editable_create_time', 'safe'),
 
@@ -188,7 +188,7 @@ class Post extends CActiveRecord
 		$this->_oldHomePage = $this->in_home_page;
 		$this->_oldAllowComments = $this->allow_comments;
 		$this->_oldCreated = $this->create_time;
-		$this->_oldAuthor = $this->author_id;
+		$this->_oldAuthorId = $this->author_id;
 		
 		// format editable dates
 		$this->editable_create_time = date(self::TIMESTAMP_FORMAT, $this->create_time);
@@ -453,7 +453,7 @@ class Post extends CActiveRecord
 					date(self::TIMESTAMP_FORMAT, $this->_oldCreated) . '" σε "' .
 					date(self::TIMESTAMP_FORMAT, $this->create_time) . '"<br />';
 				
-			if ($this->_oldAuthor != $this->author_id)
+			if ($this->_oldAuthorId != $this->author_id)
 				$body .= 'Ο συγγραφέας άλλαξε από "' . 
 					(($this->oldAuthor == null) ? '(κανένας)' : $this->oldAuthor->username) . '" σε "' .
 					(($this->author == null) ? '(κανένας)' : $this->author->username) . '"<br />';
