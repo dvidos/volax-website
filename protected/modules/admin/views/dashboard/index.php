@@ -1,5 +1,5 @@
 ﻿
-<table><tr><td width="33%">
+<table><tr><td width="23%">
 	
 
 	<h2>Αναρτήσεις</h2>
@@ -7,24 +7,18 @@
 		<tr>
 			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/paste.png'); ?>
 			<td><?php echo CHtml::link('Πρόχειρες', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_DRAFT)) ?></td>
-			<td><?php echo Post::model()->count('status='.Post::STATUS_DRAFT); ?></td>
+			<td style="text-align:right;"><?php echo Post::model()->count('status='.Post::STATUS_DRAFT); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/ok.png'); ?>
 			<td><?php echo CHtml::link('Δημοσιευμένες', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_PUBLISHED)) ?></td>
-			<td><?php echo Post::model()->count('status='.Post::STATUS_PUBLISHED); ?></td>
+			<td style="text-align:right;"><?php echo Post::model()->count('status='.Post::STATUS_PUBLISHED); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/multiple.png'); ?>
 			<td><?php echo CHtml::link('Αρχειοθετημένες', array('/admin/posts/index', 'Post[status]'=>Post::STATUS_ARCHIVED)) ?></td>
-			<td><?php echo Post::model()->count('status='.Post::STATUS_ARCHIVED); ?></td>
+			<td style="text-align:right;"><?php echo Post::model()->count('status='.Post::STATUS_ARCHIVED); ?></td>
 		</tr>
-		<tr><td colspan="3">
-			<?php echo CHtml::link('Νέα ανάρτηση', array('/admin/posts/create'), array(
-				'class'=>'button', 
-				'style'=>'margin-top: .5em; text-align: center;'
-			)); ?>
-		</td></tr>
 	</table>
 	
 	<h2>Σχόλια</h2>
@@ -32,12 +26,12 @@
 		<tr>
 			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/who.png'); ?>
 			<td><?php echo CHtml::link('Εκκρεμή', array('/admin/comments/index', 'status'=>Comment::STATUS_PENDING)) ?></td>
-			<td><?php echo Comment::model()->count('status='.Comment::STATUS_PENDING); ?></td>
+			<td style="text-align:right;"><?php echo Comment::model()->count('status='.Comment::STATUS_PENDING); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/user.png'); ?>
 			<td><?php echo CHtml::link('Εγκεκριμένα', array('/admin/comments/index', 'status'=>Comment::STATUS_APPROVED)) ?></td>
-			<td><?php echo Comment::model()->count('status='.Comment::STATUS_APPROVED); ?></td>
+			<td style="text-align:right;"><?php echo Comment::model()->count('status='.Comment::STATUS_APPROVED); ?></td>
 		</tr>
 	</table>
 	
@@ -46,31 +40,35 @@
 		<tr>
 			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/paste.png'); ?>
 			<td><?php echo CHtml::link('Πρόχειρες', array('/admin/categories/index', 'Category[status]'=>Category::STATUS_DRAFT)) ?></td>
-			<td><?php echo Category::model()->count('status='.Category::STATUS_DRAFT); ?></td>
+			<td style="text-align:right;"><?php echo Category::model()->count('status='.Category::STATUS_DRAFT); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/actions/ok.png'); ?>
 			<td><?php echo CHtml::link('Δημοσιευμένες', array('/admin/categories/index', 'Category[status]'=>Category::STATUS_PUBLISHED)) ?></td>
-			<td><?php echo Category::model()->count('status='.Category::STATUS_PUBLISHED); ?></td>
+			<td style="text-align:right;"><?php echo Category::model()->count('status='.Category::STATUS_PUBLISHED); ?></td>
 		</tr>
 	</table>
 		
 		
-</td><td width="33%">
+</td><td width="1%">&nbsp;</td><td width="45%">
 	
 
 	<h2>Πρόσφατες αναρτήσεις</h2>
 	<?php 
 		$posts = Post::model()->findAll(array(
-			'condition'=>'status<>'.Post::STATUS_DRAFT,
+			'condition'=>'status='.Post::STATUS_PUBLISHED,
 			'order'=>'update_time DESC',
-			'limit'=>5,
+			'limit'=>7,
 		));
 		echo '<ul>';
 		foreach ($posts as $post)
 		{
 			$title = ($post->title == '') ? '#' . $post->id . ' (χωρίς τίτλo)' : $post->title;
-			echo '<li>' . CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id)) . '</li>';
+			echo '<li>';
+			echo CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id));
+			if ($post->author != null)
+				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id, 'Post[status]'=>Post::STATUS_PUBLISHED), array('style'=>'color:#aaa')) . ')';
+			echo '</li>';
 		}
 		echo '</ul>';
 	?>
@@ -80,19 +78,23 @@
 		$posts = Post::model()->findAll(array(
 			'condition'=>'status='.Post::STATUS_DRAFT,
 			'order'=>'update_time DESC',
-			'limit'=>5,
+			'limit'=>7,
 		));
 		echo '<ul>';
 		foreach ($posts as $post)
 		{
 			$title = ($post->title == '') ? '#' . $post->id . ' (χωρίς τίτλo)' : $post->title;
-			echo '<li>' . CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id)) . '</li>';
+			echo '<li>';
+			echo CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id));
+			if ($post->author != null)
+				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id, 'Post[status]'=>Post::STATUS_DRAFT), array('style'=>'color:#aaa')) . ')';
+			echo '</li>';
 		}
 		echo '</ul>';
 	?>
 	
 		
-</td><td width="33%">
+</td><td width="23%">
 	
 	
 	<h2>Διάρθρωση</h2>
