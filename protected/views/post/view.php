@@ -61,7 +61,7 @@ $this->pageTitle=$model->title;
 		)); ?>
 	<?php endif; ?>
 
-	<?php if ($model->allow_comments > 0): ?>
+	<?php if (false): // ($model->allow_comments > 0): ?>
 		<h3>Αφήστε ένα σχόλιο</h3>
 
 		<?php if(Yii::app()->user->hasFlash('commentSubmitted')): ?>
