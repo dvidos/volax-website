@@ -15,6 +15,8 @@ class Comment extends CActiveRecord
 	 */
 	const STATUS_PENDING=1;
 	const STATUS_APPROVED=2;
+	
+	var $captcha_content;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -45,6 +47,8 @@ class Comment extends CActiveRecord
 			array('author, email, url', 'length', 'max'=>128),
 			array('email','email'),
 			array('url','url'),
+			
+			array('captcha_content', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>'insert'),
 		);
 	}
 
@@ -74,6 +78,7 @@ class Comment extends CActiveRecord
 			'email' => 'Email',
 			'url' => 'Website',
 			'post_id' => 'Post',
+			'captcha_content'=>'Κωδικός επιβεβαίωσης',
 		);
 	}
 

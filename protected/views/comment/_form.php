@@ -29,6 +29,16 @@
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'captcha_content'); ?>
+		<?php $this->widget('CCaptcha', array(
+			
+		)); ?>
+		<?php echo $form->textField($model,'captcha_content',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->error($model,'captcha_content'); ?>
+	</div>
+
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Αποστολή' : 'Αποθήκευση'); ?>
 	</div>

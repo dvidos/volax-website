@@ -4,6 +4,18 @@ class PostController extends Controller
 {
 	public $layout='column1';
 
+	
+	public function actions()
+	{
+		return array(
+			// captcha action renders the CAPTCHA image displayed on the contact page
+			'captcha'=>array(
+				'class'=>'CCaptchaAction',
+				'backColor'=>0xFFFFFF,
+			),
+		);
+	}	
+
 	/**
 	 * Displays a particular model.
 	 */
@@ -115,5 +127,4 @@ class PostController extends Controller
 		}
 		return $comment;
 	}
-	
 }
