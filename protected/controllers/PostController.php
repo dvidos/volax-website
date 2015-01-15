@@ -23,6 +23,11 @@ class PostController extends Controller
 	{
 		$post=$this->loadModel();
 		$comment=$this->newComment($post);
+		if (!Yii::app()->user->isGuest)
+		{
+			$comment->author = Yii::app()->user->user->fullname;
+			$comment->email = Yii::app()->user->user->email;
+		}
 
 		$this->render('view',array(
 			'model'=>$post,
@@ -120,6 +125,7 @@ class PostController extends Controller
 			if($post->addComment($comment))
 			{
 				$comment->notifyEmailSubscribers();
+				$comment->notifyAuthor();
 				if($comment->status==Comment::STATUS_PENDING)
 					Yii::app()->user->setFlash('commentSubmitted','Ευχαριστούμε για το σχόλιό σας. Θα εμφανιστεί μόλις εγκριθεί.');
 				$this->refresh();

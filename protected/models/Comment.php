@@ -207,4 +207,28 @@ class Comment extends CActiveRecord
 			Yii::app()->mailer->send($receiver, $title, $body);
 		}
 	}
+	
+	public function notifyAuthor()
+	{
+		$title = 'Νέο σχόλιο στο ' . $this->post->title;
+		$body = '';
+		
+		$body .=
+			'<p>Κάποιος επισκέπτης προσέθεσε νέο σχόλιο στην ανάρτησή σας <b>' . CHtml::link($this->post->title, $this->post->getUrl(true)) . '</b>, ' .
+			'σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server</p>';
+		
+		if ($this->status == Comment::STATUS_PENDING)
+			$body .= '<p>Επειδή ο σχολιασμός απαιτεί έλεγχο, το σχόλιο αυτό δεν θα εμφανιστεί μέχρι να το εγκρίνει κάποιος διαχειριστής.</p>';
+		else if ($this->status == Comment::STATUS_APPROVED)
+			$body .= '<p>O σχολιασμός δεν απαιτεί έλεγχο, το σχόλιο εμφανίζεται ήδη στην σελίδα, ' . CHtml::link('εδώ', $this->getUrl(null, true)) . '.</p>';
+		
+		$body .= '<div style="border: 1px solid #aaa; padding: 2em; margin: 2em 0;">';
+		$body .= 'Ονομα: <b>' . $this->author . '</b><br />';
+		$body .= 'Email: <b>' . $this->email . '</b><br />';
+		$body .= 'URL: <b>' . $this->url . '</b></p>';
+		$body .= '<p>' . $this->content . '</p>';
+		$body .= '</div>';
+		
+		Yii::app()->mailer->send($this->post->author->email, $title, $body);
+	}
 }

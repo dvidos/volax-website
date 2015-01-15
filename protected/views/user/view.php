@@ -9,7 +9,7 @@ $this->pageTitle=$model->username;
 <div class="post">
 
 	<div class="title">
-		<?php echo CHtml::encode($model->username); ?>
+		<?php echo CHtml::encode($model->fullname); ?>
 	</div>
 	
 	<?php
