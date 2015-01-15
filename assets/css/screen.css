@@ -104,6 +104,35 @@ div#left-column .black-buttons a:hover {
 
 
 
+/*
+	in homepage, distinguish between narrow, medium and wide posts. 
+	we have a total of 900px space, we always want a 60px margin.
+*/
+
+div.post.narrow {
+	width: 240px;
+	margin-right: 60px;
+	float: left;
+}
+div.post.medium, div.post.standalone {
+	width: 540px;
+	margin-right: 60px;
+	float: left;
+}
+div.post.wide {
+	width: 840px;
+	margin-right: 60px;
+	float: left;
+}
+div.post.narrow img {
+	max-width: 240px;
+}
+div.post.medium img {
+	max-width: 540px;
+}
+div.post.wide img {
+	max-width: 840px;
+}
 
 
 

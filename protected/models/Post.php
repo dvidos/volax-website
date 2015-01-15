@@ -296,7 +296,11 @@ class Post extends CActiveRecord
 				'class'=>'more',
 			));
 		}
+
 		
+		// strip inline styles from images to allow master css file to render them
+		$content = preg_replace('/<img(.+?)style="[^"]+"([^>]*)>/si', '<img$1$3>', $content);
+
 		return $content;
 	}
 	
@@ -314,6 +318,11 @@ class Post extends CActiveRecord
 		// put a "more" tag
 		if (strpos($content, Yii::app()->params['postsMoreIndicator']) !== false)
 			$content = str_replace(Yii::app()->params['postsMoreIndicator'], '<a id="more" name="more"></a>', $content);
+		
+		
+		
+		// strip inline styles from images to allow master css file to render them
+		$content = preg_replace('/<img(.+?)style="[^"]+"([^>]*)>/si', '<img$1$3>', $content);
 		
 		return $content;
 	}

@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle=$model->username;
+$this->pageTitle=$model->fullname;
 ?>
 
 <?php

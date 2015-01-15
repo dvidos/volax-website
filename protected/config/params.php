@@ -25,7 +25,7 @@ return array(
 	
 	// who receives email from saving a post
 	'postSavedSubscribers'=>array(
-		'dvidos@gmail.com',
+		//'dvidos@gmail.com',
 		//'jimel.vidos@gmail.com',
 	),
 	

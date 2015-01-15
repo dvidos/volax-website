@@ -5,47 +5,25 @@ $this->breadcrumbs=array(
 $this->pageTitle=$model->title;
 ?>
 
-<div class="post">
+<div class="post medium">
 	<?php
 		if ($model->masthead != '')
-		{
-			echo '<div class="masthead">';
-			echo CHtml::encode($model->masthead);
-			echo '</div>' . "\r\n";
-		}
-	?>
-	
-	
-	<h1 class="title">
-		<?php echo CHtml::link(CHtml::encode($model->title), $model->url); ?>
-	</h1>
-	
-	
-	<?php
+			echo CHtml::tag('div', array('class'=>'masthead'), CHtml::encode($model->masthead));
+
+		echo CHtml::tag('div', array('class'=>'title'), CHtml::link(CHtml::encode($model->title), $model->url));
+
 		if ($model->prologue != '')
-		{
-			echo '<div class="prologue">';
-			echo CHtml::encode($model->prologue);
-			echo '</div>' . "\r\n";
-		}
+			echo CHtml::tag('div', array('class'=>'prologue'), CHtml::encode($model->prologue));
+
+		if ($model->image_filename != '')
+			echo CHtml::image($model->image_filename);
+
+		echo CHtml::tag('div', array('class'=>'content'), $model->getContentHtmlIncludingMore());
+		
+		$this->renderPartial('/post/_postInfoFull',array(
+			'post'=>$model,
+		)); 
 	?>
-	
-	
-	<?php
-		$imgHtml = $model->getImageHtml(500);
-		if ($imgHtml !== false)
-			echo Chtml::tag('div', array('class'=>'image'), $imgHtml);
-	?>
-	
-	
-	<div class="content">
-		<?php echo $model->getContentHtmlIncludingMore(); ?>
-	</div>
-	
-	
-	<?php $this->renderPartial('/post/_postInfoFull',array(
-		'post'=>$model,
-	)); ?>
 </div>
 
 
