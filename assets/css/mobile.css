@@ -1,0 +1,235 @@
+
+/* reset elements */
+
+/* on all sizes, images contained within their containers */
+img { max-width: 100%; }
+
+/* font face and basic size */
+body {
+	font-family: 'Open sans',sans-serif;
+	font-size: 13px;
+	background: white;
+	color: #555;
+	line-height: 150%;
+	margin: 0 0;
+	padding: 0 0;
+	border-top: 0px solid red;
+}
+
+
+/* common to all mobile devices */
+body > div#top, body > div#footer {
+	background-color: black;
+	color: #aaa;
+	padding: .5em 1em;
+	margin: 0;
+}
+body > div#top a, body > div#footer a {
+	text-decoration: none;
+	color: #aaa;
+}
+body > div#footer {
+	clear: both;
+}
+
+
+/* menus in cyan and gray */
+div.cyan-menu {
+	background-color: #66cef5;
+}
+div.cyan-menu a {
+	text-decoration: none;
+	color: black;
+	border-bottom: 1px solid #55bbee;
+	overflow: hidden;
+}
+div.gray-menu {
+	background-color: #ddd;
+}
+div.gray-menu a {
+	text-decoration: none;
+	color: black;
+	border-bottom: 1px solid #ccc;
+}
+
+
+
+
+/* ul tree having compact buttons list for narrow screens */
+ul.compact-buttons-list {
+	margin: 0;
+	padding: 0;
+}
+ul.compact-buttons-list li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+ul.compact-buttons-list li a {
+	display: block;
+	padding: .5em .75em;
+	font-weight: bold;
+}
+ul.compact-buttons-list ul {
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+ul.compact-buttons-list ul.active {
+	display: block;
+}
+ul.compact-buttons-list ul a {
+	padding-left: 1.5em;
+	font-weight: normal;
+}
+
+
+
+
+/* smartphones portrait - narrow layout */
+@media only screen and (max-width: 480px) {
+	
+	.narrow-screens { display: block; }
+	.wide-screens { display: none; }
+	
+	/* in narrow screens, main-menu is hidden and content is full-width */
+	body > div#main-menu-dropdown { display: none; }
+	body > div#main-menu-left { display: none; }
+	body > div#banner { display: block; }
+	body > div#content { 
+		display: block; 
+		padding: 3%; 
+		margin-bottom: 2em;
+	}
+}
+
+/* tablets and horizontal smartphones */
+@media only screen and (min-width: 481px) {
+	
+	.narrow-screens { display: none; }
+	.wide-screens { display: block; }
+
+	/* in wide screens main-menu is in left columns */
+	body > div#main-menu-dropdown { 
+		display: none;
+	}
+	body > div#main-menu-left {
+		display: block;
+		float: left;
+		width: 20%;
+		margin-bottom: 2em;
+	}
+	body > div#banner { 
+		float: left;
+		width: 73%;
+		margin-left: 3%;
+		margin-right: 3%;
+	}
+	body > div#content {
+		float: left;
+		width: 73%;
+		margin-left: 3%;
+		margin-right: 3%;
+		margin-top: 1em;
+		margin-bottom: 2em;
+	}
+}
+
+/* styling specific items */
+.post .masthead
+{
+	color: #333;
+	font-weight: normal;
+	margin: 1em 0;
+}
+.post .title
+{
+	font-size: 1.5em;
+	border-bottom: 1px solid #f5f5f5;
+	margin-bottom: 1em;
+	font-weight: bold;
+}
+.post .title a
+{
+	color: #555;
+	text-decoration: none;
+}
+.post .prologue
+{
+	color: #333;
+	font-weight: normal;
+	margin: 1em 0;
+}
+.post .author
+{
+	color: #888;
+	margin: 3em 0 1em 0;
+}
+.post .nav
+{
+	-moz-border-radius:7px;
+	padding: 5px;
+	background: #f3f3f3;
+	font-size: 85%;
+	margin-bottom: 1.5em;
+}
+.post .nav a 
+{
+	text-decoration: none;
+	color: #555;
+}
+.post a {
+	text-decoration: none;
+	color: #7FD6F6;
+	font-weight: bold;
+}
+.post h2 {
+	font-size: 112%; 
+}
+.post h3 {
+	font-size: 105%;
+}
+.comment
+{
+	-moz-border-radius:7px;
+	padding: 10px;
+	background: #F5F5F5;
+	margin: 5px 0;
+}
+.comment .content
+{
+	margin: 10px 0;
+}
+.comment .author
+{
+	margin: 5px 0;
+	padding: 0 0 3px;
+	border-bottom: 1px solid #DDD;
+}
+.comment .time
+{
+	color: #888;
+	font-size: 0.8em;
+}
+.comment a.cid
+{
+	color:#CCC;
+	float:right;
+	font-size:1.5em;
+	font-weight:bold;
+	padding:0 5px 5px 5px;
+	text-decoration: none;
+}
+.comment a.cid:hover
+{
+	color:#555;
+}
+.comment .pending
+{
+	color:red;
+}
+
+
+
+
+

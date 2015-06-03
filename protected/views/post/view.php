@@ -15,8 +15,9 @@ $this->pageTitle=$model->title;
 		if ($model->prologue != '')
 			echo CHtml::tag('div', array('class'=>'prologue'), CHtml::encode($model->prologue));
 
-		if ($model->image_filename != '')
-			echo CHtml::image($model->image_filename);
+		$imgHtml = $model->getImageHtml();
+		if ($imgHtml !== false)
+			echo $imgHtml;
 
 		echo CHtml::tag('div', array('class'=>'content'), $model->getContentHtmlIncludingMore());
 		

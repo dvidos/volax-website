@@ -20,4 +20,34 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+	
+	
+	
+	public function beforeAction($action)
+	{
+		$this->setDefaultTheme();
+		
+		return parent::beforeAction($action);
+	}
+	
+	function setDefaultTheme()
+	{
+		$theme_name = '';
+		
+		if (Yii::app()->request->userAgent != null && 
+			(stripos(Yii::app()->request->userAgent, 'mobile') !== false || 
+			stripos(Yii::app()->request->userAgent, 'tablet') !== false))
+			$theme_name = 'mobile';
+		
+		// if requested, save to session
+		if (@$_REQUEST['theme'] == 'mobile' || @$_REQUEST['theme'] == 'none')
+			$theme_name = @$_REQUEST['theme'];
+		
+		// if detected or requested, save to session for later
+		if (!empty($theme_name))
+			Yii::app()->session['theme_name'] = $theme_name;
+		
+		// set the theme from session (either detected, requested, or saved in session)
+		Yii::app()->theme = Yii::app()->session['theme_name'];
+	}
 }

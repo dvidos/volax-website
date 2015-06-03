@@ -502,20 +502,23 @@ class Post extends CActiveRecord
 		if ($this->image_filename == '')
 			return false;
 		
-		if ($desiredWidth == 0)
-			return CHtml::image($this->image_filename);
-		
 		// find dimensions to scale
 		$fn = $this->image_filename;
 		
 		// must find a better way for this...
 		if (substr($fn, 0, 8) == '/volax4/')
 			$fn = substr($fn, 8);
-		if (substr($fn, 0, 4) == '/v4/')
+		else if (substr($fn, 0, 7) == '/volax/')
+			$fn = substr($fn, 7);
+		else if (substr($fn, 0, 4) == '/v4/')
 			$fn = substr($fn, 4);
-		if (substr($fn, 0, 1) == '/')
+		else if (substr($fn, 0, 1) == '/')
 			$fn = substr($fn, 1);
 		
+		if ($desiredWidth == 0)
+			return CHtml::image($fn);
+		
+
 		
 		$params = array(
 			'src'=>$fn,
@@ -565,7 +568,6 @@ class Post extends CActiveRecord
 			$neededHeight = round($imgHeight * $multiplier);
 			return CHtml::image($this->image_filename, '', array('width'=>$desiredWidth, 'height'=>$neededHeight));
 		}
-		
 	}
 	
 }
