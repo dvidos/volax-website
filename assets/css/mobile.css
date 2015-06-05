@@ -189,6 +189,18 @@ ul.compact-buttons-list ul a {
 .post h3 {
 	font-size: 105%;
 }
+.post .content table {
+	border-collapse: collapse;
+	min-width: 66%;
+	max-width: 100%;
+}
+.post .content table td {
+	padding: .25em .5em;
+	border: 1px solid #ccc;
+	vertical-align: top;
+}
+
+
 .comment
 {
 	-moz-border-radius:7px;
