@@ -19,7 +19,9 @@ $this->pageTitle=$model->title;
 		if ($imgHtml !== false)
 			echo $imgHtml;
 
-		echo CHtml::tag('div', array('class'=>'content'), $model->getContentHtmlIncludingMore());
+		$content = $model->getContentHtmlIncludingMore();
+		$content = $this->widget('application.components.ContentProcessor', array('content'=>$content), true);
+		echo CHtml::tag('div', array('class'=>'content'), $content);
 		
 		$this->renderPartial('/post/_postInfoFull',array(
 			'post'=>$model,

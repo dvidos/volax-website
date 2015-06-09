@@ -18,7 +18,7 @@
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'content',array('label'=>'Κείμενο <span id="content-size-indicator"></span>')); ?>
-		<?php echo $form->textArea($model,'content', array('style'=>'width:100%;')); ?>
+		<?php echo $form->textArea($model,'content', array('class'=>'content-area', 'style'=>'width:100%;')); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 	<script>
@@ -52,9 +52,11 @@
 		*/
 			],
 			stylesSet: [
+				{ name: 'None', element: 'p', attributes: { 'class': '' } },
 				{ name: 'Alt Color Paragraph', element: 'p', attributes: { 'class': 'x-style-alt-color' } },
 				{ name: 'Footnotes', element: 'p', attributes: { 'class': 'x-style-footnotes' } },
 				{ name: 'Reference', element: 'span', attributes: { 'class': 'x-style-reference' } },
+				{ name: 'None', element: 'span', attributes: { 'class': '' } },
 				{ name: 'Low Text', element: 'p', attributes: { 'class': 'x-style-low-text' } }
 			],
 			contentsCss: 'assets/css/stylistic.css',
