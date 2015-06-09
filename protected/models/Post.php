@@ -126,7 +126,13 @@ class Post extends CActiveRecord
 	{
 		$links=array();
 		foreach(Tag::string2array($this->tags) as $tag)
+		{
+			// ignore tags beggining with a parenthesis, they are for administration.
+			if (substr($tag, 0, 1) == '(')
+				continue;
+			
 			$links[]=CHtml::link(CHtml::encode($tag), array('post/list', 'tag'=>$tag));
+		}
 		return $links;
 	}
 

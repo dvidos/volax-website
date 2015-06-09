@@ -46,8 +46,10 @@ class PostController extends Controller
 	
 	public function actionTags()
 	{
+		// do not show tags beginning with parenthesis
 		$tags = Tag::model()->findAll(array(
-			'order'=>'name'
+			'order'=>'name',
+			'condition'=>'name NOT LIKE \'(%\'',
 		));
 		$this->render('tags', array(
 			'tags'=>$tags,
