@@ -736,3 +736,10 @@ h2 {
 }
 
 table.skinny, table.skinny tr, table.skinny th, table.skinny td { margin: 0; padding: 0; }
+
+
+div.static-page {
+	max-width: 40em;
+	margin: 0 auto;
+}
+

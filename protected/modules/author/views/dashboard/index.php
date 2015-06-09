@@ -13,6 +13,17 @@
 		'style'=>'text-align: center;'
 	)); ?></p>
 
+	
+	<h2>Οδηγίες</h2>
+	<?php 
+		$this->widget('zii.widgets.CMenu', array(
+			'items'=>array(
+				array('label'=>'Για συντάκτες', 'url'=>array('dashboard/viewPage', 'url_keyword'=>'editorNotes')),
+			),
+		));
+	?>
+	
+	
 </td><td width="33%" valign="top">
 
 	<h2>Πρόχειρες</h2>

@@ -48,6 +48,16 @@
 			<td style="text-align:right;"><?php echo Category::model()->count('status='.Category::STATUS_PUBLISHED); ?></td>
 		</tr>
 	</table>
+	
+	<h2>Οδηγίες</h2>
+	<?php 
+		$this->widget('zii.widgets.CMenu', array(
+			'items'=>array(
+				array('label'=>'Για διαχειριστές', 'url'=>array('dashboard/viewPage', 'url_keyword'=>'adminNotes')),
+				array('label'=>'Για συντάκτες', 'url'=>array('dashboard/viewPage', 'url_keyword'=>'editorNotes')),
+			),
+		));
+	?>
 		
 		
 </td><td width="1%">&nbsp;</td><td width="45%">

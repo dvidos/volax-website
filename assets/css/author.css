@@ -734,3 +734,9 @@ h2 {
 	font-size: 1.3em;
 	border-bottom: 1px dotted #ddd;
 }
+
+div.static-page {
+	max-width: 40em;
+	margin: 0 auto;
+}
+
