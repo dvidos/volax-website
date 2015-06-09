@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle=$model->title;
+	$this->pageTitle=$model->title;
 ?>
 
 <?php
@@ -73,6 +73,7 @@ $this->pageTitle=$model->title;
 	$this->widget('zii.widgets.CListView', array(
 		'dataProvider'=>$dataProvider,
 		'itemView'=>$itemViewFile,
+		'emptyText'=>'Φαίνεται πως δεν υπάρχουν ακόμα αναρτήσεις εδώ...',
 		'template'=>"{items}\n{pager}",
 		'pager'=>array(
 			'class'=>'CLinkPager',
