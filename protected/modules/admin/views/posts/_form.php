@@ -154,7 +154,7 @@
 			'multiple'=>true,
 			'htmlOptions'=>array('size'=>40),
 		)); ?>
-		<p class="hint">Προτιμήστε ελληνικά tags, χωρίστε τα με κόμμα.</p>
+		<p class="hint">Χρησιμοποιήστε ελληνικά, χωρίστε τα με κόμμα. Tags σε παρένθεση δεν εμφανίζονται δημόσια.</p>
 		<?php echo $form->error($model,'tags'); ?>
 	</div>
 	

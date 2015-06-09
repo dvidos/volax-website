@@ -51,6 +51,15 @@ div.gray-menu a {
 	color: black;
 	border-bottom: 1px solid #ccc;
 }
+div.black-menu {
+	background-color: #222;
+}
+div.black-menu a {
+	text-decoration: none;
+	color: white;
+	border-bottom: 1px solid #777;
+	overflow: hidden;
+}
 
 
 

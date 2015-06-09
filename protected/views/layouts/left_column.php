@@ -34,13 +34,14 @@
 	</div>
 	<div class="black-buttons">
 		<?php
-			$cat = Category::model()->findByPk(12);
-			foreach ($cat->subcategories as $category)
-			{
-				$link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'xcategory-link'));
-				echo $link;
-				echo '<div class="prologue">' . $category->prologue . '</div>';
-			}
+			echo CHtml::link('ΔΕΙΤΕ', array('/post/list', 'tag'=>'ΔΕΙΤΕ'));
+			echo CHtml::tag('p', array(), 'εικόνες &amp; video');
+			
+			echo CHtml::link('ΑΚΟΥΣΤΕ', array('/post/list', 'tag'=>'ΑΚΟΥΣΤΕ'));
+			echo CHtml::tag('p', array(), 'διηγήσεις &amp; ήχους');
+			
+			echo CHtml::link('ΚΑΤΕΒΑΣΤΕ', array('/post/list', 'tag'=>'ΚΑΤΕΒΑΣΤΕ'));
+			echo CHtml::tag('p', array(), 'αρχεία');
 		?>
 	</div>
 	<div class="blue-buttons">

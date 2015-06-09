@@ -26,9 +26,8 @@
 	
 	
 	// then the "selides" menu
-	$pages_menu = '';
-	$pages_menu .= CHtml::tag('h3', array('style'=>'margin: 1.5em 4% 4% 4%;'), 'Οι σελίδες');
-	$pages_menu .= CHtml::tag('div', array('class'=>'gray-menu'),
+	$html .= CHtml::tag('h3', array('style'=>'margin: 1.5em 4% 4% 4%;'), 'Οι σελίδες');
+	$html .= CHtml::tag('div', array('class'=>'gray-menu'),
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>array(
 				array('label'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ', 'url'=>array('/category/view', 'id'=>103)),
@@ -36,22 +35,31 @@
 				array('label'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ', 'url'=>array('/category/view', 'id'=>18)),
 			),
 			'htmlOptions'=>array('class'=>'compact-buttons-list'),
-		), true));
+		), true)
+	);
 	
-	// on both menus
-	$html .= $pages_menu;
+	
+	// the "DO" menu
+	$html .= CHtml::tag('div', array('class'=>'black-menu', 'style'=>'margin-top: 1.5em;'),
+		$this->widget('zii.widgets.CMenu', array(
+			'items'=>array(
+				array('label'=>'ΔΕΙΤΕ', 'url'=>array('/post/list', 'tag'=>'ΔΕΙΤΕ')),
+				array('label'=>'ΑΚΟΥΣΤΕ', 'url'=>array('/post/list', 'tag'=>'ΑΚΟΥΣΤΕ')),
+				array('label'=>'ΚΑΤΕΒΑΣΤΕ', 'url'=>array('/post/list', 'tag'=>'ΚΑΤΕΒΑΣΤΕ')),
+			),
+			'htmlOptions'=>array('class'=>'compact-buttons-list'),
+		), true)
+	);
+	
 	
 	
 	// then, columns menu
-	$columns_menu = CHtml::tag('div', array('class'=>'cyan-menu', 'style'=>'margin-top: 1.5em;'),
+	$html .= CHtml::tag('div', array('class'=>'cyan-menu', 'style'=>'margin-top: 1.5em;'),
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>Category::getCMenuItems(3),
 			'htmlOptions'=>array('class'=>'compact-buttons-list'),
 		), true)
 	);
-	
-	// on both menus
-	$html .= $columns_menu;
 	
 	echo $html;
 	
