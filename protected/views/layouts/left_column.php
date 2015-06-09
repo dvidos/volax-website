@@ -10,7 +10,7 @@
 		μέσα από την αξεπέραστη φύση και τις αξίες των ανθρώπων του...<br />
 		Ακολουθήστε μας!
 	</div>
-	<div class="blue-buttons">
+	<!-- <div class="blue-buttons">
 		<?php
 			$blogId = Yii::app()->params['leftColumnBlogCategoryId'];
 			$category = Category::model()->findByPk($blogId);
@@ -18,12 +18,16 @@
 			echo $link;
 			echo '<div class="prologue">' . $category->prologue . '</div>';
 		?>
-	</div>
+	</div> -->
 	<div class="blue-buttons">
 		<?php
 			echo '<h3>οι σελίδες</h3>';
 			$this->widget('zii.widgets.CMenu', array(
-				'items'=>Category::getCMenuItems(17),
+				'items'=>array(
+					array('label'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ', 'url'=>array('/category/view', 'id'=>103)),
+					array('label'=>'ΤΟΥ ΧΩΡΙΟΥ', 'url'=>array('/category/view', 'id'=>19)),
+					array('label'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ', 'url'=>array('/category/view', 'id'=>18)),
+				),
 				'htmlOptions'=>array('class'=>'multilevelMenu'),
 			));
 		?>

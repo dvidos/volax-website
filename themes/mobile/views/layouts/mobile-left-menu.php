@@ -14,17 +14,15 @@
 
 	
 	// then, the blog link
-	$blog_menu = '';
-	$blog_category = Category::model()->findByPk(Yii::app()->params['leftColumnBlogCategoryId']);
-	$blog_menu .= CHtml::tag('div', array('class'=>'cyan-menu'),
-		$this->widget('zii.widgets.CMenu', array(
-			'items'=>array(array('label'=>$blog_category->title, 'url'=>array('/category/view', 'id'=>$blog_category->id))),
-			'htmlOptions'=>array('class'=>'compact-buttons-list'),
-		), true)
-	);
-	
-	// on both menus
-	$html .= $blog_menu;
+	//$blog_menu = '';
+	//$blog_category = Category::model()->findByPk(Yii::app()->params['leftColumnBlogCategoryId']);
+	//$blog_menu .= CHtml::tag('div', array('class'=>'cyan-menu'),
+	//	$this->widget('zii.widgets.CMenu', array(
+	//		'items'=>array(array('label'=>$blog_category->title, 'url'=>array('/category/view', 'id'=>$blog_category->id))),
+	//		'htmlOptions'=>array('class'=>'compact-buttons-list'),
+	//	), true)
+	//);
+	//$html .= $blog_menu;
 	
 	
 	// then the "selides" menu
@@ -32,7 +30,11 @@
 	$pages_menu .= CHtml::tag('h3', array('style'=>'margin: 1.5em 4% 4% 4%;'), 'Οι σελίδες');
 	$pages_menu .= CHtml::tag('div', array('class'=>'gray-menu'),
 		$this->widget('zii.widgets.CMenu', array(
-			'items'=>Category::getCMenuItems(17),
+			'items'=>array(
+				array('label'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ', 'url'=>array('/category/view', 'id'=>103)),
+				array('label'=>'ΤΟΥ ΧΩΡΙΟΥ', 'url'=>array('/category/view', 'id'=>19)),
+				array('label'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ', 'url'=>array('/category/view', 'id'=>18)),
+			),
 			'htmlOptions'=>array('class'=>'compact-buttons-list'),
 		), true));
 	

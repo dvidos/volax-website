@@ -8,8 +8,8 @@
 	$html = '';
 	
 	
-	// the home link image
-	$html .= CHtml::tag('div', array('style'=>'padding: .5em 1em;'), 
+	// logo, title, moto.
+	$html .= CHtml::tag('div', array('style'=>'padding: .5em .75em;'), 
 		CHtml::link(
 			CHtml::image(Yii::app()->baseUrl . '/assets/images/logo2.png', 'Volax.gr', array('style'=>'max-width:4em; vertical-align: middle;')),
 			array('/')
@@ -23,7 +23,9 @@
 	);
 	
 	
-	$html .= CHtml::tag('div', array('class'=>'gray-menu', 'style'=>'margin-bottom: 1em;'),
+	
+	// home link
+	$html .= CHtml::tag('div', array('class'=>'cyan-menu', 'style'=>'margin-bottom: 1em;'),
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>array(
 				array('label'=>'Αρχική', 'url'=>array('/')),
@@ -35,26 +37,29 @@
 	
 	
 	// then, the blog link
-	$blog_menu = '';
-	$blog_category = Category::model()->findByPk(Yii::app()->params['leftColumnBlogCategoryId']);
-	$blog_menu .= CHtml::tag('div', array('class'=>'cyan-menu'),
-		$this->widget('zii.widgets.CMenu', array(
-			'items'=>array(array('label'=>$blog_category->title, 'url'=>array('/category/view', 'id'=>$blog_category->id))),
-			'htmlOptions'=>array('class'=>'compact-buttons-list'),
-		), true)
-	);
-	$blog_menu .= CHtml::tag('p', array('style'=>'margin: 4%;'), $blog_category->prologue);
-	
-	// on both menus
-	$html .= $blog_menu;
+	//$blog_menu = '';
+	//$blog_category = Category::model()->findByPk(Yii::app()->params['leftColumnBlogCategoryId']);
+	//$blog_menu .= CHtml::tag('div', array('class'=>'cyan-menu'),
+	//	$this->widget('zii.widgets.CMenu', array(
+	//		'items'=>array(array('label'=>$blog_category->title, 'url'=>array('/category/view', 'id'=>$blog_category->id))),
+	//		'htmlOptions'=>array('class'=>'compact-buttons-list'),
+	//	), true)
+	//);
+	// $blog_menu .= CHtml::tag('p', array('style'=>'margin: 4%;'), $blog_category->prologue);
+	//$html .= $blog_menu;
 	
 	
 	// then the "selides" menu
+	
 	$pages_menu = '';
 	$pages_menu .= CHtml::tag('h3', array('style'=>'margin: 1.5em 4% 4% 4%;'), 'Οι σελίδες');
 	$pages_menu .= CHtml::tag('div', array('class'=>'gray-menu'),
 		$this->widget('zii.widgets.CMenu', array(
-			'items'=>Category::getCMenuItems(17),
+			'items'=>array(
+				array('label'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ', 'url'=>array('/category/view', 'id'=>103)),
+				array('label'=>'ΤΟΥ ΧΩΡΙΟΥ', 'url'=>array('/category/view', 'id'=>19)),
+				array('label'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ', 'url'=>array('/category/view', 'id'=>18)),
+			),
 			'htmlOptions'=>array('class'=>'compact-buttons-list'),
 		), true));
 	
