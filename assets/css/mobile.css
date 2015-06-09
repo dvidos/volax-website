@@ -54,7 +54,6 @@ div.gray-menu a {
 
 
 
-
 /* ul tree having compact buttons list for narrow screens */
 ul.compact-buttons-list {
 	margin: 0;
@@ -67,7 +66,7 @@ ul.compact-buttons-list li {
 }
 ul.compact-buttons-list li a {
 	display: block;
-	padding: .5em .75em;
+	padding: .75em .75em;
 	font-weight: bold;
 }
 ul.compact-buttons-list ul {

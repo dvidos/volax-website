@@ -53,7 +53,12 @@
 	
 	<div id="top">
 		<div class="narrow-screens">
-			<a href="#" onClick="$('#main-menu-dropdown').slideToggle(); return false;" style="display:block;"><?php echo CHtml::image(Yii::app()->baseUrl . '/assets/images/menu-icon-white.png', '', array('style'=>'width:1em;')); ?> &nbsp; Βωλάξ</a>
+			<a href="#" 
+				onClick="$('#main-menu-dropdown').slideToggle('slow'); return false;" 
+				style="display:block;"><?php 
+					echo CHtml::image(Yii::app()->baseUrl . '/assets/images/menu-icon-white.png', '', array('style'=>'width:1em;')); 
+				?> &nbsp; Βωλάξ
+			</a>
 		</div>
 		<div class="wide-screens">
 			<div style="float:left;">
@@ -83,127 +88,20 @@
 		</div>
 	</div>
 	
+
+	<!--
+		there must be two different menus, for when on the narrow screen, we hide the menu using jquery, 
+		and then when rotating back to landscape the menu is hidden!
+		narrow screens get a full-width drop-down menu
+		wide screens get a permanent menu floated left
+	-->
 	
-	
-	<?php
-		// prepare the menus. 
-		// must be two different ones, for when on the narrow screen, we hide the menu using jquery, 
-		// and then when rotating back to landscape the menu is hidden!
-		
-		
-		// start empty
-		$dropdown_menu_html = '';
-		$left_menu_html = '';
-		
-		
-		// the home link image
-		$dropdown_menu_html .= CHtml::tag('div', array('style'=>'margin: 2%'), 
-			CHtml::link(CHtml::image(Yii::app()->baseUrl . '/assets/images/logo2.png', 'Volax.gr', array('style'=>'max-width:5em;')), array('/'))
-		);
-		
-		$left_menu_html .= CHtml::tag('div', array('style'=>'margin: 4%'), 
-			CHtml::link(CHtml::image(Yii::app()->baseUrl . '/assets/images/logo2.png', 'Volax.gr', array('style'=>'max-width:100%;')), array('/'))
-		);
-		// $left_menu_html .= CHtml::tag('div', array('id'=>'moto'), 'Βωλάξ, Τήνος. Τόπος όμορφος και ζωντανός. Χωριό αγαπημένο. Μέρος που θέλουμε να προστατέψουμε και να αναδείξουμε πιο πολύ από ποτέ! Εκτιμούμε όλα όσα μας προσφέρει μέσα απ\' την ιστορία και την κουλτούρα του,  μέσα από την αξεπέραστη φύση και τις αξίες των ανθρώπων του...<br />Ακολουθήστε μας!');
-
-		
-		// then, the blog link
-		$blog_menu = '';
-		$blog_category = Category::model()->findByPk(Yii::app()->params['leftColumnBlogCategoryId']);
-		$blog_menu .= CHtml::tag('div', array('class'=>'cyan-menu'),
-			$this->widget('zii.widgets.CMenu', array(
-				'items'=>array(array('label'=>$blog_category->title, 'url'=>array('/category/view', 'id'=>$blog_category->id))),
-				'htmlOptions'=>array('class'=>'compact-buttons-list'),
-			), true)
-		);
-		$blog_menu .= CHtml::tag('p', array('style'=>'margin: 4%;'), $blog_category->prologue);
-		
-		// on both menus
-		$dropdown_menu_html .= $blog_menu;
-		$left_menu_html .= $blog_menu;
-		
-		
-		// then the "selides" menu
-		$pages_menu = '';
-		$pages_menu .= CHtml::tag('h3', array('style'=>'margin: 1.5em 4% 4% 4%;'), 'Οι σελίδες');
-		$pages_menu .= CHtml::tag('div', array('class'=>'gray-menu'),
-			$this->widget('zii.widgets.CMenu', array(
-				'items'=>Category::getCMenuItems(17),
-				'htmlOptions'=>array('class'=>'compact-buttons-list'),
-			), true));
-		
-		// on both menus
-		$dropdown_menu_html .= $pages_menu;
-		$left_menu_html .= $pages_menu;
-		
-		
-		// then, columns menu
-		$columns_menu = CHtml::tag('div', array('class'=>'cyan-menu', 'style'=>'margin-top: 1.5em;'),
-			$this->widget('zii.widgets.CMenu', array(
-				'items'=>Category::getCMenuItems(3),
-				'htmlOptions'=>array('class'=>'compact-buttons-list'),
-			), true)
-		);
-		
-		// on both menus
-		$dropdown_menu_html .= $columns_menu;
-		$left_menu_html .= $columns_menu;
-		
-		
-		
-
-		
-		
-
-
-		
-		// for narrow screens we need more options: login/logout and the footer links
-		$items = array();
-		if (Yii::app()->user->isGuest)
-			$items[] = array('label'=>'Είσοδος', 'url'=>array('/site/login'));
-		else
-		{
-			if (Yii::app()->user->isAuthor)
-				$items[] = array('label'=>'Σύνταξη', 'url'=>array('/author'));
-			
-			if (Yii::app()->user->isAdmin)
-				$items[] = array('label'=>'Διαχείριση', 'url'=>array('/admin'));
-			
-			$items[] = array('label'=>'Εξοδος', 'url'=>array('/site/logout'));
-		}
-		$user_menu = CHtml::tag('div', array('class'=>'gray-menu', 'style'=>'margin-top: 1.5em;'),
-			$this->widget('zii.widgets.CMenu', array(
-				'items'=>$items,
-				'htmlOptions'=>array('class'=>'compact-buttons-list'),
-			), true)
-		);
-		
-		// on dropdown_menu only
-		$dropdown_menu_html .= $user_menu;
-		
-		$items = array();
-		$items[] = array('label'=>'Ποιοί είμαστε', 'url'=>array('/page/view', 'url_keyword'=>'whoweare'));
-		$items[] = array('label'=>'Επικοινωνία', 'url'=>array('/site/contact'));
-		$items[] = array('label'=>'Όροι χρήσης', 'url'=>array('/page/view', 'url_keyword'=>'terms'));
-		$footer_menu = CHtml::tag('div', array('class'=>'cyan-menu', 'style'=>'margin-top: 1.5em;'),
-			$this->widget('zii.widgets.CMenu', array(
-				'items'=>$items,
-				'htmlOptions'=>array('class'=>'compact-buttons-list'),
-			), true)
-		);
-		
-		// on dropdown_menu only
-		$dropdown_menu_html .= $footer_menu;
-	?>
-	
-	<!-- narrow screens get a full-width drop-down menu -->
 	<div id="main-menu-dropdown">
-		<?php echo $dropdown_menu_html; ?>
+		<?php $this->renderPartial('//layouts/mobile-top-menu'); ?>
 	</div>
 	
-	<!-- wide screens get a permanent menu floated left -->
 	<div id="main-menu-left">
-		<?php echo $left_menu_html; ?>
+		<?php $this->renderPartial('//layouts/mobile-left-menu'); ?>
 	</div>
 	
 	
