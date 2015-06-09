@@ -54,5 +54,5 @@ return array(
 	'commentNeedApproval'=>false,
 	
 	// the copyright information displayed in the footer section
-	'copyrightInfo'=>'Πνευματικά δικαιώματα &copy; '.date('Y').' Δ.Β. & Δ.Β.',
+	'copyrightInfo'=>'Copyright &copy; 2008-'.date('Y').' Volax-Team',
 );

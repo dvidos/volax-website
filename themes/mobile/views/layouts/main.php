@@ -129,7 +129,7 @@
 	
 	<div id="footer">
 		<div class="narrow-screens">
-			Copyright &copy; 2008 - <?php echo date('Y'); ?> volax.gr
+			<?php /* don't encode */ echo Yii::app()->params['copyrightInfo']; ?>
 		</div>
 		<div class="wide-screens">
 			<div style="float:left;">

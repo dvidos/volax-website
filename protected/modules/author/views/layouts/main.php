@@ -50,8 +50,7 @@
 	<?php echo $content; ?>
 
 	<div id="footer">
-		<p>Volax.gr version <?php echo Yii::app()->params['version']; ?>, 
-		<?php echo Yii::app()->params['copyrightInfo']; ?>
+		<p><?php echo Yii::app()->params['copyrightInfo']; ?></p>
 	</div><!-- footer -->
 
 </div><!-- page -->

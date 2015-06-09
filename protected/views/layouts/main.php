@@ -139,7 +139,7 @@
 	</div>
 	<div id="footer-normal">
 		<div id="footer-col1" style="float:left;width:270px;margin-right:30px;">
-			&nbsp; Copyright &copy; 2013 - 2014, <b>D.Vidos &amp; L.Dustal</b>
+			&nbsp;&nbsp;<?php /* don't encode */ echo Yii::app()->params['copyrightInfo']; ?>
 		</div>
 		<div id="footer-col2" style="float:left;width:900px;">
 			<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> 

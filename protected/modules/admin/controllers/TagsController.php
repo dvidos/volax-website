@@ -11,7 +11,7 @@ class TagsController extends Controller
 				'order'=>'t.name',
 			),
 			'pagination'=>array(
-				'pageSize'=>25,
+				'pageSize'=>200,
 			),
 		));
 		
