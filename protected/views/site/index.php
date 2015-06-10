@@ -1,4 +1,6 @@
 ﻿<?php 
+	$this->pageTitle = '';
+	
 	$this->widget('zii.widgets.CListView', array(
 		'dataProvider'=>$dataProvider,
 		'itemView'=>'/post/_layoutHomePage',

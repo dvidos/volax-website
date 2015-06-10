@@ -4,17 +4,16 @@
 Options +FollowSymLinks
 IndexIgnore */*
 
-RewriteEngine on
-
-
 # if a directory or a file exists, use it directly
+# otherwise forward it to index.php
+# for some weird reason, in FORTHNET the rewrite target should not be "index.php/$1", but "index.php?/$1". 
+# don't know why this is needed. RewriteBase was set to "/" before that.
+# at home (Apache .. some version) it works correctly.
+
+RewriteEngine on
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php/$1  [NC,L]
 
-# otherwise forward it to index.php
-RewriteRule ^(.+)$ /volax4/index.php/$1
-
-
-# for working inside a folder named "booksrv" we have the following rule
-# RewriteRule ^terms$ /volax4/index.php?r=site/page&view=termsconditions
 

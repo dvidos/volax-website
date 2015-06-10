@@ -494,7 +494,7 @@ class Post extends CActiveRecord
 	}
 
 	
-	public function getImageHtml($desiredWidth = 0, $desiredHeight = 0, $allowEnlarge = false)
+	public function getImageHtml()
 	{
 		if ($this->image_filename == '')
 			return false;
@@ -512,59 +512,7 @@ class Post extends CActiveRecord
 		else if (substr($fn, 0, 1) == '/')
 			$fn = substr($fn, 1);
 		
-		if ($desiredWidth == 0)
-			return CHtml::image($fn);
-		
-
-		
-		$params = array(
-			'src'=>$fn,
-		);
-		if ($allowEnlarge)
-		{
-			if ($desiredWidth != 0)
-				$params['width'] = $desiredWidth;
-			if ($desiredHeight != 0)
-				$params['height'] = $desiredHeight;
-		}
-		else
-		{
-			if ($desiredWidth != 0)
-				$params['maxwidth'] = $desiredWidth;
-			if ($desiredHeight != 0)
-				$params['maxheight'] = $desiredHeight;
-		}
-		
-		$imgUrl = Yii::app()->createUrl('/images/show', $params);
-		return CHtml::link(CHtml::image($imgUrl, ''), array('/post/view', 'id'=>$this->id));
-		
-		$fn = urldecode($fn);
-		
-		// on error return unscaled
-		$size = @getimagesize($fn);
-		if ($size === null)
-			return CHtml::image($this->image_filename);
-		
-		$imgWidth = $size[0];
-		$imgHeight = $size[1];
-		
-		if ($imgWidth == $desiredWidth)
-		{
-			// no need to scale
-			return CHtml::image($this->image_filename);
-		}
-		else if ($allowEnlarge == false && $imgWidth < $desiredWidth)
-		{
-			// do not(?) allow enalargment
-			return CHtml::image($this->image_filename);
-		}
-		else
-		{
-			// scale to a smaller image.
-			$multiplier = ($imgWidth == 0) ? 1 : ($desiredWidth - 0.001) / $imgWidth;
-			$neededHeight = round($imgHeight * $multiplier);
-			return CHtml::image($this->image_filename, '', array('width'=>$desiredWidth, 'height'=>$neededHeight));
-		}
+		return CHtml::image(Yii::app()->baseUrl . '/' . ltrim($fn, '/'));
 	}
 	
 }
