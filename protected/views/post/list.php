@@ -6,8 +6,12 @@
 		$this->pageTitle = $tag . ': Αναρτήσεις';
 		echo CHtml::tag('h1', array('style'=>'margin: .5em 0'), CHtml::encode($tag) .': Αναρτήσεις');
 		echo CHtml::tag('p', array('style'=>'margin: .5em 0 3em 0;'), 
-			'Εμφανίζονται αναρτήσεις με την ετικέττα <b>' . CHtml::encode($tag) . '</b>. ' . 
-			'Αν θέλετε να δείτε όλες αναρτήσεις επιστρέψτε στην ' . CHtml::link('αρχική σελίδα.', array('/')));
+			'Εμφανίζονται αναρτήσεις με την ετικέττα <b>' . CHtml::encode($tag) . '</b>.' . 
+			'&nbsp; &nbsp;' .
+			CHtml::link('Ολες οι ετικέττες', array('/post/tags')) . 
+			', ' .
+			CHtml::link('Ολες οι αναρτήσεις', array('/'))
+		);
 	}
 
 	$this->widget('zii.widgets.CListView', array(

@@ -40,7 +40,6 @@ class ContentProcessor extends CWidget
 				$this->content = preg_replace_callback('/\[audio\s+src=(&quot;|")(.+?)\1\]/i', array($this, 'processAudio'), $this->content);
 			}
 			
-			
 			// [download ...]
 			
 			
