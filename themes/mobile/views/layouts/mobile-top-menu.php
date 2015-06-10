@@ -14,11 +14,11 @@
 	$html .= CHtml::tag('div', array('style'=>'padding: .5em .75em;'), 
 		CHtml::link(
 			CHtml::image(Yii::app()->baseUrl . '/assets/images/logo2.png', 'Volax.gr', array('style'=>'max-width:4em; vertical-align: middle;')),
-			array('/')
+			Yii::app()->homeUrl
 		) . ' ' .
 		CHtml::link(
 			CHtml::tag('h2', array('style'=>'display:inline; margin: .5em; vertical-align: middle;'), 'Βωλάξ'),
-			array('/'),
+			Yii::app()->homeUrl,
 			array('style'=>'text-decoration:none; color: #555;')
 		) . '<br>' . 
 		CHtml::tag('p', array('style'=>'color: #aaa; margin: 0;'), 'Ενα μικρό γραφικό χωριό της Τήνου')
@@ -30,7 +30,7 @@
 	$html .= CHtml::tag('div', array('class'=>'cyan-menu', 'style'=>'margin-bottom: 1em;'),
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>array(
-				array('label'=>'Αρχική', 'url'=>array('/')),
+				array('label'=>'Αρχική', 'url'=>Yii::app()->homeUrl),
 			),
 			'htmlOptions'=>array('class'=>'compact-buttons-list'),
 		), true)

@@ -11,7 +11,7 @@ IndexIgnore */*
 # at home (Apache .. some version) it works correctly.
 
 RewriteEngine on
-RewriteBase /
+RewriteBase /volax/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)$ index.php/$1  [NC,L]

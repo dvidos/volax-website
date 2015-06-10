@@ -7,7 +7,7 @@
 	// the home link image
 	//$html .= CHtml::tag('h2', array('style'=>'margin: 4%;'), 'Βωλάξ');
 	$html .= CHtml::tag('div', array('style'=>'margin: 4%'), 
-		CHtml::link(CHtml::image(Yii::app()->baseUrl . '/assets/images/logo2.png', 'Volax.gr', array('style'=>'max-width:100%;')), array('/'))
+		CHtml::link(CHtml::image(Yii::app()->baseUrl . '/assets/images/logo2.png', 'Volax.gr', array('style'=>'max-width:100%;')), Yii::app()->homeUrl)
 	);
 	$html .= CHtml::tag('div', array('style'=>'margin: 4%; color: #aaa;'), 'Ενα μικρό γραφικό χωριό της Τήνου');
 	// Βωλάξ, Τήνος. Τόπος όμορφος και ζωντανός. Χωριό αγαπημένο. Μέρος που θέλουμε να προστατέψουμε και να αναδείξουμε πιο πολύ από ποτέ! Εκτιμούμε όλα όσα μας προσφέρει μέσα απ\' την ιστορία και την κουλτούρα του,  μέσα από την αξεπέραστη φύση και τις αξίες των ανθρώπων του...<br />Ακολουθήστε μας!

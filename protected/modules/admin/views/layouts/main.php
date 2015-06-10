@@ -47,7 +47,7 @@
 					'activeCssClass'=>'active',
 					'activateParents'=>true,
 					'items'=>array(
-						array('label'=>'Επιστροφή', 'url'=>array('/')),
+						array('label'=>'Επιστροφή', 'url'=>Yii::app()->homeUrl),
 						//array('label'=>'Εξοδος ' . Yii::app()->user->name, 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 					),
 				)); ?>

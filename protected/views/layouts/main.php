@@ -23,7 +23,7 @@
 
 <div id="top-menu">
 	<div id="top-menu-left" style="float:left;">
-		<?php echo CHtml::link('Αρχική', array('/')); ?> 
+		<?php echo CHtml::link('Αρχική', Yii::app()->homeUrl); ?> 
 		&nbsp;|&nbsp;
 		<?php echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')); ?> 
 		&nbsp;|&nbsp;
@@ -68,7 +68,7 @@
 	<div id="banner-left" style="float:left; width:25%;">
 		<?php
 			$img = CHtml::image(Yii::app()->baseUrl . '/assets/images/logo2.png');
-			echo CHtml::link($img, array('/'))
+			echo CHtml::link($img, Yii::app()->homeUrl)
 		?>
 	</div>
 	<div id="banner-right" style="float:right; width:75%;">

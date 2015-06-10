@@ -10,7 +10,7 @@
 			'&nbsp; &nbsp;' .
 			CHtml::link('Ολες οι ετικέττες', array('/post/tags')) . 
 			', ' .
-			CHtml::link('Ολες οι αναρτήσεις', array('/'))
+			CHtml::link('Ολες οι αναρτήσεις', Yii::app()->homeUrl)
 		);
 	}
 

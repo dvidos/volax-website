@@ -63,7 +63,7 @@
 		<div class="wide-screens">
 			<div style="float:left;">
 				<?php 
-					echo CHtml::link('Βωλάξ', array('/')) . ' &nbsp;|&nbsp; ';
+					echo CHtml::link('Βωλάξ', Yii::app()->homeUrl) . ' &nbsp;|&nbsp; ';
 					echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')) . ' &nbsp;|&nbsp; ';
 					echo CHtml::link('Επικοινωνία', array('/site/contact'));
 				?>
