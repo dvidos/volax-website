@@ -49,8 +49,9 @@ return array(
 		'urlManager'=>array(
 			//'urlFormat'=>'get', // 'path',
 			'urlFormat'=>'path',
-			//'showScriptName'=>true,
-			'showScriptName'=>false,
+			// when setting showScriptName to false, elFinder crashes, loading partly!
+			'showScriptName'=>true,
+			//'showScriptName'=>false,
 			'rules'=>array(
 				'user/<id:\d+>/<name:.*?>'=>'user/view',
 				'user/<id:\d+>'=>'user/view',
