@@ -364,3 +364,13 @@ div.form .errorSummary ul
 
 
 
+/* for the tags list page */
+#content #tags-list {
+	line-height: 2em;
+	margin: 2em 0;
+}
+#content #tags-list a {
+	font-weight: bold;
+    text-decoration: none;
+    color: #555555;
+}

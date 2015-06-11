@@ -637,7 +637,8 @@ body.popup h1 {
 
 /* for the tags list page */
 #content #tags-list {
-	line-height: 2;
+	line-height: 2em;
+	margin: 2em 0;
 }
 #content #tags-list a {
 	font-weight: bold;
