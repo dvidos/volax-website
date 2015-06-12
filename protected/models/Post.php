@@ -76,7 +76,7 @@ class Post extends CActiveRecord
 		return array(
 			'author' => array(self::BELONGS_TO, 'User', 'author_id'),
 			'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
-			'comments' => array(self::HAS_MANY, 'Comment', 'post_id', 'condition'=>'comments.status='.Comment::STATUS_APPROVED, 'order'=>'comments.create_time DESC'),
+			'comments' => array(self::HAS_MANY, 'Comment', 'post_id', 'condition'=>'comments.status='.Comment::STATUS_APPROVED, 'order'=>'comments.create_time'),
 			'commentCount' => array(self::STAT, 'Comment', 'post_id', 'condition'=>'status='.Comment::STATUS_APPROVED),
 			'oldAuthor' => array(self::BELONGS_TO, 'User', '_oldAuthorId'),
 			'oldCategory' => array(self::BELONGS_TO, 'Category', '_oldCategoryId'),

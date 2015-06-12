@@ -13,6 +13,8 @@ class CommentsController extends Controller
 		));
 		if (isset($_GET['status']))
 			$criteria->addSearchCondition('t.status',$_GET['status']);
+		if (isset($_GET['post_id']))
+			$criteria->addSearchCondition('t.post_id',$_GET['post_id']);
 		
 		$dataProvider=new CActiveDataProvider('Comment', array(
 			'criteria'=>$criteria,

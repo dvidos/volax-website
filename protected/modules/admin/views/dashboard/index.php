@@ -66,9 +66,9 @@
 	<h2>Πρόσφατες αναρτήσεις</h2>
 	<?php 
 		$posts = Post::model()->findAll(array(
-			'condition'=>'status='.Post::STATUS_PUBLISHED,
-			'order'=>'update_time DESC',
-			'limit'=>7,
+			//'condition'=>'status='.Post::STATUS_PUBLISHED,
+			'order'=>'create_time DESC',
+			'limit'=>10,
 		));
 		echo '<ul>';
 		foreach ($posts as $post)
@@ -77,7 +77,27 @@
 			echo '<li>';
 			echo CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id));
 			if ($post->author != null)
-				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id, 'Post[status]'=>Post::STATUS_PUBLISHED), array('style'=>'color:#aaa')) . ')';
+				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id), array('style'=>'color:#aaa')) . ')';
+			echo '</li>';
+		}
+		echo '</ul>';
+	?>
+	
+	<h2>Πρόσφατα διορθωμένες αναρτήσεις</h2>
+	<?php 
+		$posts = Post::model()->findAll(array(
+			//'condition'=>'status='.Post::STATUS_PUBLISHED,
+			'order'=>'update_time DESC',
+			'limit'=>10,
+		));
+		echo '<ul>';
+		foreach ($posts as $post)
+		{
+			$title = ($post->title == '') ? '#' . $post->id . ' (χωρίς τίτλo)' : $post->title;
+			echo '<li>';
+			echo CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id));
+			if ($post->author != null)
+				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id), array('style'=>'color:#aaa')) . ')';
 			echo '</li>';
 		}
 		echo '</ul>';
@@ -88,7 +108,7 @@
 		$posts = Post::model()->findAll(array(
 			'condition'=>'status='.Post::STATUS_DRAFT,
 			'order'=>'update_time DESC',
-			'limit'=>7,
+			'limit'=>10,
 		));
 		echo '<ul>';
 		foreach ($posts as $post)
@@ -97,7 +117,7 @@
 			echo '<li>';
 			echo CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id));
 			if ($post->author != null)
-				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id, 'Post[status]'=>Post::STATUS_DRAFT), array('style'=>'color:#aaa')) . ')';
+				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id), array('style'=>'color:#aaa')) . ')';
 			echo '</li>';
 		}
 		echo '</ul>';

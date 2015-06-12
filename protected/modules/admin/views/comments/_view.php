@@ -24,7 +24,7 @@ Yii::app()->getClientScript()->registerScript('delete', $deleteJS);
 
 	<div class="author">
 		Από τον <?php echo $data->authorLink; ?> 
-		στο <?php echo CHtml::link(CHtml::encode($data->post->title), $data->post->url); ?>
+		στο <?php echo CHtml::link(CHtml::encode($data->post->title), array('/admin/posts/update', 'id'=>$data->post->id)); ?>
 	</div>
 
 	<div class="time">
