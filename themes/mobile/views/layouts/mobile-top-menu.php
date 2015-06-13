@@ -31,6 +31,7 @@
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>array(
 				array('label'=>'Αρχική', 'url'=>Yii::app()->homeUrl),
+				array('label'=>'Επισκεφτείτε μας', 'url'=>array('/category/view', 'id'=>127)),
 			),
 			'htmlOptions'=>array('class'=>'compact-buttons-list'),
 		), true)

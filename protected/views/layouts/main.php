@@ -25,6 +25,8 @@
 	<div id="top-menu-left" style="float:left;">
 		<?php echo CHtml::link('Αρχική', Yii::app()->homeUrl); ?> 
 		&nbsp;|&nbsp;
+		<?php echo CHtml::link('Επισκεφτείτε μας', array('/category/view', 'id'=>127)); ?> 
+		&nbsp;|&nbsp;
 		<?php echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')); ?> 
 		&nbsp;|&nbsp;
 		<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?>
@@ -105,45 +107,11 @@
 
 	
 <div id="footer">
-	<div id="footer-categories-list" style="display:none;">
-		<div id="footer-col1" style="float:left;width:220px;margin-right:80px;">
-			&nbsp;
-		</div>
-		<div id="footer-col2" style="float:left;width:900px;">
-			<?php
-				$c1 = '<b>Μόνιμες Στήλες</b>';
-				$c1 .= $this->widget('zii.widgets.CMenu', array(
-					'items'=>Category::getCMenuItems(3),
-					'htmlOptions'=>array('class'=>'footerMenu'),
-				), true);
-				$c2 = '<b>Κάντε</b>';
-				$c2 .= $this->widget('zii.widgets.CMenu', array(
-					'items'=>Category::getCMenuItems(12),
-					'htmlOptions'=>array('class'=>'footerMenu'),
-				), true);
-				$c3 = '<b>Οι σελίδες</b>';
-				$c3 .= $this->widget('zii.widgets.CMenu', array(
-					'items'=>Category::getCMenuItems(17),
-					'htmlOptions'=>array('class'=>'footerMenu'),
-				), true);
-				
-				$html = '<table width="100%"><tr>';
-				$html .= '<td width="33%">' . $c1 . '</td>';
-				$html .= '<td width="33%">' . $c2 . '</td>';
-				$html .= '<td width="33%">' . $c3 . '</td>';
-				$html .= '</tr></table>';
-				echo $html;
-			?>
-		</div>
-		<div style="clear:both;"></div>
-	</div>
 	<div id="footer-normal">
 		<div id="footer-col1" style="float:left;width:270px;margin-right:30px;">
 			&nbsp;&nbsp;<?php /* don't encode */ echo Yii::app()->params['copyrightInfo']; ?>
 		</div>
 		<div id="footer-col2" style="float:left;width:900px;">
-			<?php echo CHtml::link('Στήλες', '#', array('onClick'=>"$('#footer-categories-list').slideToggle(); return false;")); ?> 
-			&nbsp;|&nbsp;
 			<?php echo CHtml::link('Tags', array('/post/tags')); ?> 
 			&nbsp;|&nbsp;
 			<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?> 

@@ -21,12 +21,15 @@ body {
 body > div#top, body > div#footer {
 	background-color: black;
 	color: #aaa;
-	padding: .5em 1em;
+	padding: .75em 1em;
 	margin: 0;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
 }
+body > div#top { font-size: 120%; }
+body > div#footer { font-size: 100%; }
 body > div#top a, body > div#footer a {
 	text-decoration: none;
-	color: #aaa;
+	color: #ccc;
 }
 body > div#footer {
 	clear: both;

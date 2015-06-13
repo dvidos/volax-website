@@ -64,12 +64,14 @@
 			<div style="float:left;">
 				<?php 
 					echo CHtml::link('Βωλάξ', Yii::app()->homeUrl) . ' &nbsp;|&nbsp; ';
+					echo CHtml::link('Επισκεφτείτε μας', array('/category/view', 'id'=>127)) . ' &nbsp;|&nbsp; ';
 					echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')) . ' &nbsp;|&nbsp; ';
 					echo CHtml::link('Επικοινωνία', array('/site/contact'));
 				?>
 			</div>
 			<div style="float:right;">
 				<?php
+					/*
 					if (Yii::app()->user->isGuest)
 						echo CHtml::link('Είσοδος', array('/site/login'));
 					else
@@ -82,6 +84,7 @@
 						
 						echo CHtml::link('Έξοδος ' . CHtml::encode(Yii::app()->user->user->username), array('/site/logout'));
 					}
+					*/
 				?>
 			</div>
 			<div style="clear:both;"></div>
