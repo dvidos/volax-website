@@ -41,6 +41,7 @@ return array(
 			'emulatePrepare' => true,
 			'charset' => 'utf8',
 			'tablePrefix' => 'v4_',
+			'enableProfiling'=>true,
 		),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
@@ -71,7 +72,14 @@ return array(
 					'class'=>'CFileLogRoute',
 					'logFile'=>'application.log',
 					'levels'=>'trace, debug, info, warning, error',
+					//'levels'=>'warning, error',
 				),
+				array(
+					// this one presents profile info at the end of the webpage.
+					'class'=>'CProfileLogRoute',
+					//'enabled'=>true,
+					'enabled'=>false,
+				),			
 			),
 		),
 		

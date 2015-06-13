@@ -2,7 +2,8 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'comment-form',
-	'enableAjaxValidation'=>true,
+	// ajax validation causes captcha to fail on first attempt
+	'enableAjaxValidation'=>false,
 )); ?>
 
 	<div class="row">

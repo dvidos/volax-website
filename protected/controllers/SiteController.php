@@ -29,6 +29,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		Yii::beginProfile('site_index');
+		
 		$criteria=new CDbCriteria(array(
 			'condition'=>'status = '.Post::STATUS_PUBLISHED. ' AND in_home_page = 1',
 			'order'=>'create_time DESC',
@@ -48,6 +50,8 @@ class SiteController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+		
+		Yii::endProfile('site_index');
 	}
 	 
 	 
