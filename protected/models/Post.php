@@ -509,10 +509,28 @@ class Post extends CActiveRecord
 			$fn = substr($fn, 7);
 		else if (substr($fn, 0, 4) == '/v4/')
 			$fn = substr($fn, 4);
-		else if (substr($fn, 0, 1) == '/')
-			$fn = substr($fn, 1);
 		
 		return CHtml::image(Yii::app()->baseUrl . '/' . ltrim($fn, '/'));
+	}
+
+	public function getContentLinks()
+	{
+		$re = '/<a.+?href="([^"]+)".+?<\/a>/i';
+		$matches = array();
+		preg_match_all($re, $this->content, $matches);
+		$links = $matches[1];
+		return $links;
+	}
+	
+	public function getContentImages()
+	{
+		$re = '/<img.+?src="([^"]+)".+?>/i';
+		$matches = array();
+		preg_match_all($re, $this->content, $matches);
+		$images = $matches[1];
+		if ($this->image_filename != '')
+			array_unshift($images, $this->image_filename);
+		return $images;
 	}
 	
 }

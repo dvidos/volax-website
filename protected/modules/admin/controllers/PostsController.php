@@ -114,4 +114,56 @@ class PostsController extends Controller
 		}
 	}
 
+	public function actionLinks()
+	{
+		$ids = Post::model()->findAll(array(
+			'select'=>'id',
+			'order'=>'update_time DESC',
+		));
+		
+		$data = array();
+		foreach ($ids as $id)
+		{
+			$post = Post::model()->findByPk($id['id']);
+			$links = $post->getContentLinks();
+			if (empty($links))
+				continue;
+			$data[] = array(
+				'id'=>$post->id,
+				'title'=>$post->title,
+				'links'=>$links,
+			);
+		}
+		
+		$this->render('links', array(
+			'data'=>$data,
+		));
+	}
+
+	public function actionImages()
+	{
+		$ids = Post::model()->findAll(array(
+			'select'=>'id',
+			'order'=>'update_time DESC',
+		));
+		
+		$data = array();
+		foreach ($ids as $id)
+		{
+			$post = Post::model()->findByPk($id['id']);
+			$images = $post->getContentImages();
+			if (empty($images))
+				continue;
+			$data[] = array(
+				'id'=>$post->id,
+				'title'=>$post->title,
+				'images'=>$images,
+			);
+		}
+		
+		$this->render('images', array(
+			'data'=>$data,
+		));
+	}
+	
 }
