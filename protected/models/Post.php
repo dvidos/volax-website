@@ -27,7 +27,24 @@ class Post extends CActiveRecord
 	var $_oldMasthead;
 	var $_original_editable_create_time;
 	
-
+	
+	var $revision = null;
+	
+	public function createRevision()
+	{
+		$rev = new PostRevision();
+		
+		$rev->post_id = $this->id;
+		$rev->title = $this->title;
+		$rev->prologue = $this->prologue;
+		$rev->masthead = $this->masthead;
+		$rev->content = $this->content;
+		$rev->category_id = $this->category_id;
+		$rev->tags = $this->tags;
+		
+		return $rev;
+	}
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return CActiveRecord the static model class
@@ -80,6 +97,8 @@ class Post extends CActiveRecord
 			'commentCount' => array(self::STAT, 'Comment', 'post_id', 'condition'=>'status='.Comment::STATUS_APPROVED),
 			'oldAuthor' => array(self::BELONGS_TO, 'User', '_oldAuthorId'),
 			'oldCategory' => array(self::BELONGS_TO, 'Category', '_oldCategoryId'),
+			'revisions' => array(self::HAS_MANY, 'PostRevision', 'post_id'),
+			'revisionCount' => array(self::STAT, 'PostRevision', 'post_id'),
 		);
 	}
 
@@ -166,9 +185,15 @@ class Post extends CActiveRecord
 	 */
 	protected function afterConstruct()
 	{
+		Yii::log('Post::afterConstruct()', 'trace');
+		
 		$this->in_home_page = true;
 		$this->allow_comments = true;
 		$this->desired_width = 2;
+		
+		// proposed author maybe the same as user
+		if (Yii::app()->user != null)
+			$this->author_id=Yii::app()->user->id;
 		
 		$this->editable_create_time = date(self::TIMESTAMP_FORMAT);
 		$this->_original_editable_create_time = $this->editable_create_time;
@@ -180,6 +205,7 @@ class Post extends CActiveRecord
 	protected function afterFind()
 	{
 		parent::afterFind();
+		Yii::log('Post::afterFind()', 'trace');
 		
 		$this->_oldTitle = $this->title;
 		$this->_oldPrologue = $this->prologue;
@@ -199,6 +225,8 @@ class Post extends CActiveRecord
 		// format editable dates
 		$this->editable_create_time = date(self::TIMESTAMP_FORMAT, $this->create_time);
 		$this->_original_editable_create_time = $this->editable_create_time;
+		
+		$this->revision = $this->createRevision();
 	}
 
 	/**
@@ -210,15 +238,10 @@ class Post extends CActiveRecord
 		if (!parent::beforeSave())
 			return false;
 		
-		if($this->isNewRecord)
-		{
-			$this->create_time = $this->update_time = time();
-			$this->author_id=Yii::app()->user->id;
-		}
-		else
-		{
-			$this->update_time=time();
-		}
+		Yii::log('Post::beforeSave()', 'trace');
+		if ($this->isNewRecord)
+			$this->create_time = time();
+		$this->update_time = time();
 
 		// if create or update time was edited, update it.
 		if ($this->editable_create_time != $this->_original_editable_create_time && $this->editable_create_time != '')
@@ -233,7 +256,18 @@ class Post extends CActiveRecord
 	protected function afterSave()
 	{
 		parent::afterSave();
+		
+		Yii::log('Post::afterSave()', 'trace');
 		Tag::model()->updateFrequency($this->_oldTags, $this->tags);
+		
+		// save a revision.
+		if ($this->revision != null)
+		{
+			$diffs = $this->revision->getDifferencesWithPost($this);
+			Yii::log("revision to post differences:\r\n" . CVarDumper::dumpAsString($diffs), 'debug');
+			if (count($diffs) > 0)
+				$this->revision->save();
+		}
 	}
 
 	/**
@@ -242,8 +276,18 @@ class Post extends CActiveRecord
 	protected function afterDelete()
 	{
 		parent::afterDelete();
+		Yii::log('Post::afterDelete()', 'trace');
+		
 		Comment::model()->deleteAll('post_id='.$this->id);
 		Tag::model()->updateFrequency($this->tags, '');
+		
+		
+		// mark deletion
+		if ($this->revision != null)
+		{
+			$this->revision->was_deleted = 1;
+			$revision->save();
+		}
 	}
 
 	/**
@@ -492,7 +536,6 @@ class Post extends CActiveRecord
 		
 		return $html;
 	}
-
 	
 	public function getImageHtml()
 	{

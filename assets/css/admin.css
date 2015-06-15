@@ -307,7 +307,7 @@ body
                     background-color: #5EA2CA; color: #fff; height: auto;  border: 1px solid #366984
 }
 #mainmenu ul li ul li { display: block; float: none; }
-#mainmenu ul li ul li a { padding: 4px 14px; display: block; height: 1.5em; line-height: 1.5em; width: 10em; border-right: none; }
+#mainmenu ul li ul li a { padding: 4px 14px; display: block; height: 1.5em; line-height: 1.5em; width: 15em; border-right: none; }
 #mainmenu ul li ul li.active a,
 #mainmenu ul li ul li a:hover { }
 

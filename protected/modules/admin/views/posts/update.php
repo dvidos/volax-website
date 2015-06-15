@@ -8,6 +8,10 @@
 			echo CHtml::link('Επισκόπιση', array('/post/view', 'id'=>$model->id), array('target'=>'_blank')); 
 			echo ' | ';
 		}
+		if ($model->id > 0) {
+			echo CHtml::link($model->revisionCount . ' αλλαγές', array('/admin/postRevisions/index', 'PostRevision[post_id]'=>$model->id)); 
+			echo ' | ';
+		}
 	?>
 	<?php echo CHtml::link('Οδηγίες', array('/page/view', 'url_keyword'=>'editorNotes')); ?>
 </div>

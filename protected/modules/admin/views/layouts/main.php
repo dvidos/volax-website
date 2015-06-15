@@ -23,12 +23,12 @@
 				$submenu_items = array(
 					array('label'=>'Κατηγορίες', 'url'=>array('/admin/categories')),
 					array('label'=>'Tags', 'url'=>array('/admin/tags')),
+					array('label'=>'Ιστορικό αναρτήσεων', 'url'=>array('/admin/postRevisions')),
 					array('label'=>'Διαφημίσεις', 'url'=>array('/admin/advertisements')),
 					array('label'=>'Snippets', 'url'=>array('/admin/snippets')),
 					array('label'=>'Καταστάσεις', 'url'=>array('/admin/statuses')),
 					array('label'=>'Σελίδες', 'url'=>array('/admin/pages')),
 					array('label'=>'Χρήστες', 'url'=>array('/admin/users')),
-					array('label'=>'Σημειώσεις', 'url'=>array('/admin/dashboard/page', 'page'=>'notes')),
 				);
 				$this->widget('zii.widgets.CMenu',array(
 					'activeCssClass'=>'active',
