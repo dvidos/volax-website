@@ -1,8 +1,17 @@
-/* used with CKEditor */
+/* 
+	CEditor creates an iframe, containing html, head, body.
+	body has a class of "cke_editable" among other things.
+	the CKEditor javascript property "contentCss" points to a URL with a custom stylesheet.
+	this stylesheet is included in this iframe.
+	it is this very file
+ */
 
 
-
-
+/* this one works inside the iframe body of ckeditor */
+body.cke_editable {
+	font-family: 'Open sans',sans-serif;
+	font-size: 10pt;
+}
 
 /* formatting based on website style */
 .x-style-alt-color { 
@@ -21,11 +30,6 @@
 
 .x-style-reference { 
 	color: #6c3;
-}
-
-.post .prologue {
-	font-weight: bold;
-	color: #09f;
 }
 
 

@@ -6,7 +6,7 @@
 		$caption .= 'Ανάρτηση #' . $model->post->id;
 	else
 		$caption .= $model->post->title;
-	$caption .= '/' . $model->revision_no;
+	$caption .= ', r.' . $model->revision_no;
 	
 	$this->pageTitle = $caption;
 ?>
@@ -88,6 +88,16 @@
 	}
 	
 
-
+	// post was deleted, show anything useful
+	if ($model->was_deleted)
+	{
+		echo CHtml::tag('h2', array(), 'Περιεχόμενο κατά την διαγραφή');
+		echo '<table class="bordered">';
+		echo '<tr><td>Τίτλος</td><td>' . CHtml::encode($model->title) . '</td></tr>';
+		echo '<tr><td>Υπέρτιτλος</td><td>' . CHtml::encode($model->masthead) . '</td></tr>';
+		echo '<tr><td>Πρόλογος</td><td>' . CHtml::encode($model->prologue) . '</td></tr>';
+		echo '<tr><td>Κείμενο</td><td>' . CHtml::encode($model->content) . '</td></tr>';
+		echo '</table>';
+	}
 
 

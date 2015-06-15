@@ -53,13 +53,13 @@
 			],
 			stylesSet: [
 				{ name: 'None', element: 'p', attributes: { 'class': '' } },
-				{ name: 'Alt Color Paragraph', element: 'p', attributes: { 'class': 'x-style-alt-color' } },
+				{ name: 'Alt Color', element: 'p', attributes: { 'class': 'x-style-alt-color' } },
 				{ name: 'Footnotes', element: 'p', attributes: { 'class': 'x-style-footnotes' } },
 				{ name: 'Reference', element: 'span', attributes: { 'class': 'x-style-reference' } },
 				{ name: 'None', element: 'span', attributes: { 'class': '' } },
 				{ name: 'Low Text', element: 'p', attributes: { 'class': 'x-style-low-text' } }
 			],
-			contentsCss: 'assets/css/stylistic.css',
+			contentsCss: '<?php echo Yii::app()->baseUrl; ?>/assets/css/stylistic.css',
 			// from getSimple
 			// see http://docs.cksource.com/CKEditor_3.x/Developers_Guide/File_Browser_%28Uploader%29
 			filebrowserBrowseUrl : 'filebrowser.php?type=all',
@@ -67,14 +67,14 @@
 			filebrowserWindowWidth : '730',
 			filebrowserWindowHeight : '500'
 		});
-		editor.on("instanceReady", function(){
-            this.document.on("keyup", checkLength);
-            this.document.on("paste", checkLength);
-        });
-		function checkLength() {
-			var len = CKEDITOR.instances['Post_content'].getData().length;
-			$('#content-size-indicator').html('(' + Math.ceil(len/1024) + ' Kb)');
-		}
+		//editor.on("instanceReady", function(){
+        //    this.document.on("keyup", checkLength);
+        //    this.document.on("paste", checkLength);
+        //});
+		//function checkLength() {
+		//	var len = CKEDITOR.instances['Post_content'].getData().length;
+		//	$('#content-size-indicator').html('(' + Math.ceil(len/1024) + ' Kb)');
+		//}
 	</script>
 	
 	<p class="hint">

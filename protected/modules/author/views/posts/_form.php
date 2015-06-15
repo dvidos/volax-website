@@ -57,7 +57,7 @@
 				{ name: 'Reference', element: 'span', attributes: { 'class': 'x-style-reference' } },
 				{ name: 'Low Text', element: 'p', attributes: { 'class': 'x-style-low-text' } }
 			],
-			contentsCss: 'assets/css/stylistic.css',
+			contentsCss: '<?php echo Yii::app()->baseUrl; ?>/assets/css/stylistic.css',
 			// from getSimple
 			// see http://docs.cksource.com/CKEditor_3.x/Developers_Guide/File_Browser_%28Uploader%29
 			filebrowserBrowseUrl : 'filebrowser.php?type=all',

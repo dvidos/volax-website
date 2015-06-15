@@ -286,7 +286,7 @@ class Post extends CActiveRecord
 		if ($this->revision != null)
 		{
 			$this->revision->was_deleted = 1;
-			$revision->save();
+			$this->revision->save();
 		}
 	}
 

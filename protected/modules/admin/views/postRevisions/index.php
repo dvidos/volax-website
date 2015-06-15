@@ -13,7 +13,8 @@
 		),
 		array(
 			'name'=>'post_id',
-			'value'=>'$data->post == null ? "None" : $data->post->title',
+			'value'=>'$data->was_deleted ? $data->title . " (Διαγραφή)": ($data->post == null ? $data->post_id : $data->post->title . " (" . $data->post_id . ")")',
+			'header'=>'Ανάρτηση (id)',
 			//'filter'=>'',
 		),
 		array(
@@ -21,6 +22,16 @@
 			'type'=>'raw',
 			'value'=>'$data->revision_no',
 			//'filter'=>'',
+		),
+		array(
+			'name'=>'was_deleted',
+			'type'=>'raw',
+			'value'=>'$data->was_deleted ? "Ναι" : ""',
+			'header'=>'Διαγρ',
+			'filter'=>array(
+				0=>'Οχι',
+				1=>'Ναι',
+			),
 		),
 		array(
 			'name'=>'user_id',

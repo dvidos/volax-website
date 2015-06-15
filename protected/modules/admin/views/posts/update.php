@@ -4,16 +4,10 @@
 
 <div style="float:right; padding-top: .5em;">
 	<?php 
-		if ($model->id > 0) {
-			echo CHtml::link('Επισκόπιση', array('/post/view', 'id'=>$model->id), array('target'=>'_blank')); 
-			echo ' | ';
-		}
-		if ($model->id > 0) {
-			echo CHtml::link($model->revisionCount . ' αλλαγές', array('/admin/postRevisions/index', 'PostRevision[post_id]'=>$model->id)); 
-			echo ' | ';
-		}
+		echo CHtml::link('Επισκόπιση', array('/post/view', 'id'=>$model->id), array('target'=>'_blank')); 
+		echo ' | ';
+		echo CHtml::link($model->revisionCount . ' αλλαγές', array('/admin/postRevisions/index', 'PostRevision[post_id]'=>$model->id)); 
 	?>
-	<?php echo CHtml::link('Οδηγίες', array('/page/view', 'url_keyword'=>'editorNotes')); ?>
 </div>
 <h1><?php echo $this->pageTitle; ?></h1>
 <div style="clear:both;"></div>
