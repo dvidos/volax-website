@@ -42,18 +42,41 @@ $this->pageTitle=$model->title;
 		)); ?>
 	<?php endif; ?>
 
-	<?php if (Yii::app()->params['allowPostingNewComments'] && $model->allow_comments > 0): // ($model->allow_comments > 0): ?>
-		<h3>Προσθέστε το σχόλιό σας</h3>
-
-		<?php if(Yii::app()->user->hasFlash('commentSubmitted')): ?>
-			<div class="flash-success">
-				<?php echo Yii::app()->user->getFlash('commentSubmitted'); ?>
-			</div>
-		<?php else: ?>
-			<?php $this->renderPartial('/comment/_form',array(
-				'model'=>$comment,
-			)); ?>
-		<?php endif; ?>
+	
+	<?php if(Yii::app()->user->hasFlash('commentSubmitted')): ?>
+		<div class="flash-success">
+			<?php echo Yii::app()->user->getFlash('commentSubmitted'); ?>
+		</div>
 	<?php endif; ?>
+	
+	
+	<?php 
+		if (Yii::app()->params['allowPostingNewComments'] && $model->allow_comments > 0)
+		{
+			// echo CHtml::tag('p', array('style'=>'margin-bottom: 0;'), 
+				// CHtml::link('Προσθέστε το σχόλιό σας...', '#', array(
+					// 'class'=>'gray', 
+					// 'onClick'=>'$("#add-comment-form").slideToggle(); return false;',
+				// ))
+			// );
+			echo CHtml::button('Προσθήκη σχολίου', array(
+				'style'=>'display: block; margin: 1em 0 0 0;',
+				'onClick'=>'$("#add-comment-form").slideToggle(); return false;',
+			));
+			
+			// we shall display the form if any errors are present.
+			$form_display_style = ($comment->errors == null || empty($comment->errors)) ? 'none' : 'block';
+			$add_comment_form = $this->renderPartial('/comment/_form',array(
+				'model'=>$comment,
+			), true);
+			
+			echo CHtml::tag('div', array(
+				'id'=>'add-comment-form',
+				'style'=>'margin-top: 0; display: ' .$form_display_style . ';',
+			), $add_comment_form);
+		}				
+	?>
 
 </div><!-- comments -->
+
+

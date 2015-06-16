@@ -138,27 +138,11 @@ class Comment extends CActiveRecord
 
 	public function getFriendlyCreateTime()
 	{
-		$months = array('', 'Ιανουαρίου', 'Φεβρουαρίου', 'Μαρτίου', 'Απριλίου', 'Μαϊου', 'Ιουνίου', 'Ιουλίου', 'Αυγούστου', 'Σεπτεμβρίου', 'Οκτωβρίου', 'Νοεμβρίου', 'Δεκεμβρίου');
-		
-		if (date('Y', $this->create_time) != date('Y'))
-		{
-			// different year
-			return date('j', $this->create_time) . ' ' . $months[date('n', $this->create_time)] . ' ' . date('Y', $this->create_time);
-		}
-		else if (date('m', $this->create_time) != date('m'))
-		{
-			// different month
-			return date('j', $this->create_time) . ' ' . $months[date('n', $this->create_time)];
-		}
-		else if (date('d', $this->create_time) != date('d'))
-		{
-			// different day
-			return date('j', $this->create_time) . ' ' . $months[date('n', $this->create_time)];
-		}
-		else
-		{
+		if (strcmp(date('dmY', $this->create_time), date('dmY')) == 0)
 			return 'Σήμερα';
-		}
+		
+		$months = array('', 'Ιανουαρίου', 'Φεβρουαρίου', 'Μαρτίου', 'Απριλίου', 'Μαϊου', 'Ιουνίου', 'Ιουλίου', 'Αυγούστου', 'Σεπτεμβρίου', 'Οκτωβρίου', 'Νοεμβρίου', 'Δεκεμβρίου');
+		return date('j', $this->create_time) . ' ' . $months[date('n', $this->create_time)] . ' ' . date('Y', $this->create_time);
 	}
 	
 	/**

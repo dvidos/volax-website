@@ -570,6 +570,7 @@ span.index {
 
 
 
+
 /*
  * left column multi-level menus
  */
@@ -653,5 +654,15 @@ body.popup h1 {
 	width: 600px;
 }
 
-	
+#content #comments #add-comment-form {
+	padding: .5em 1em;
+	margin: 1em 0;
+	background-color: #eee;
+	border: 1px solid #ddd;
+}
+
+#content a.gray {
+	text-decoration: none;
+	color: #777;
+}	
 

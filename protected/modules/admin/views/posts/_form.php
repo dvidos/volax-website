@@ -62,10 +62,10 @@
 			contentsCss: '<?php echo Yii::app()->baseUrl; ?>/assets/css/stylistic.css',
 			// from getSimple
 			// see http://docs.cksource.com/CKEditor_3.x/Developers_Guide/File_Browser_%28Uploader%29
-			filebrowserBrowseUrl : 'filebrowser.php?type=all',
-			filebrowserImageBrowseUrl : 'filebrowser.php?type=images',
-			filebrowserWindowWidth : '730',
-			filebrowserWindowHeight : '500'
+			filebrowserBrowseUrl : '<?php echo Yii::app()->baseUrl; ?>/admin/files/browse',
+			filebrowserImageBrowseUrl : '<?php echo Yii::app()->baseUrl; ?>/admin/files/browse',
+			//filebrowserWindowWidth : '730',
+			//filebrowserWindowHeight : '500'
 		});
 		//editor.on("instanceReady", function(){
         //    this.document.on("keyup", checkLength);

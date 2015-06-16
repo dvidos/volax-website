@@ -12,6 +12,9 @@ body.cke_editable {
 	font-family: 'Open sans',sans-serif;
 	font-size: 10pt;
 }
+body.cke_editable img {
+	max-width: 100%;
+}
 
 /* formatting based on website style */
 .x-style-alt-color { 

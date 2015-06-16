@@ -41,7 +41,9 @@
 
 	
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Αποστολή' : 'Αποθήκευση'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Προσθήκη' : 'Αποθήκευση'); ?>
+		&nbsp;
+		<?php echo CHtml::link('Ακυρο', '#', array('class'=>'gray', 'onClick'=>'$("#add-comment-form").slideUp(); return false;')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
