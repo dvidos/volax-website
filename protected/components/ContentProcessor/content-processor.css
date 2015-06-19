@@ -22,3 +22,29 @@ div.audioWrapper > object.audioPlayer {
 	max-width: 100%;
 	height: 24px;
 }
+
+
+
+
+div.gallery {
+	margin: 1em 0;
+}
+
+div.gallery div.gallery-item {
+}
+
+div.gallery div.gallery-item img.gallery-item-thumb {
+	-border: 1px solid #aaa;
+}
+
+div.gallery div.gallery-item a.gallery-item-link {
+}
+
+div.gallery div.gallery-item p.gallery-item-caption {
+	text-align: center;
+	margin: .25em 0 1em 0;
+	font-size: 90%;
+	color: #777;
+	font-style: oblique;
+}
+
