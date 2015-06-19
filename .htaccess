@@ -1,19 +1,20 @@
-
-# Enable user friendlier urls in YII
-
-Options +FollowSymLinks
-IndexIgnore */*
-
-# if a directory or a file exists, use it directly
-# otherwise forward it to index.php
-# for some weird reason, in FORTHNET the rewrite target should not be "index.php/$1", but "index.php?/$1". 
-# don't know why this is needed. RewriteBase was set to "/" before that.
-# at home (Apache .. some version) it works correctly.
-
-RewriteEngine on
-RewriteBase /volax/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.+)$ index.php/$1  [NC,L]
-
-
+# 
+# # Enable user friendlier urls in YII
+# 
+# Options +FollowSymLinks
+# IndexIgnore */*
+# 
+# # if a directory or a file exists, use it directly
+# # otherwise forward it to index.php
+# # for some weird reason, in FORTHNET the rewrite target should not be "index.php/$1", but "index.php?/$1". 
+# # don't know why this is needed. RewriteBase was set to "/" before that.
+# # at home (Apache .. some version) it works correctly.
+# 
+# RewriteEngine on
+# RewriteBase /volax/
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.+)$ index.php/$1  [NC,L]
+# 
+# 
+# 
