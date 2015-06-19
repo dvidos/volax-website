@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/print.css" media="print" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/stylistic.css"/>
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/images/favicon/logo2.png" />
-	<script src="assets/js/script.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/script.js"></script>
 </head>
 <body>
 <div id="page" style="width:1200px;margin:0 auto;">

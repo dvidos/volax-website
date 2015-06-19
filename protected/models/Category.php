@@ -242,21 +242,35 @@ class Category extends CActiveRecord
 	{
 		// return a hierarchical array of items for CMenu.
 		// each item should have: label, optional url, optional items.
+		// we decided to load ALL using one single select. it is faster than 100 queries
+		$all_categories = self::model()->findAll(array(
+			'condition'=>'status = :s',
+			'params'=>array(':s'=>self::STATUS_PUBLISHED),
+			'order'=>'view_order,title',
+		));
+		
+		$items = self::getCMenuItemsForParent($parent_id, $all_categories);
+		return $items;
+	}
+	
+	static function getCMenuItemsForParent($parent_id, $all_categories)
+	{
 		$items = array();
 		
-		$cats = self::findAllOfParent($parent_id, self::STATUS_PUBLISHED);
-		foreach ($cats as $cat)
+		// we need to filter all by parent_id
+		foreach ($all_categories as $cat)
 		{
+			if ($cat->parent_id != $parent_id)
+				continue;
+			
 			$item = array('label'=>$cat->title);
 			
-			$subItems = self::getCMenuItems($cat->id);
+			$subItems = self::getCMenuItemsForParent($cat->id, $all_categories, $items);
 			if (count($subItems) > 0)
-			{
 				$item['items'] = $subItems;
-			}
 
 			// always, in order to make it clickable.
-			$item['url'] = array('category/view', 'id'=>$cat->id);
+			$item['url'] = array('category/view', 'id'=>$cat->id, 'title'=>$cat->title);
 			
 			$items[] = $item;
 		}
