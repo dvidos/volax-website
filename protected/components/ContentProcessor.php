@@ -241,7 +241,7 @@ class ContentProcessor extends CWidget
 			$captions[] = '';
 		
 		$margin_percent = 1;
-		$item_style = 'display: inline-block; margin: 0 '.$margin_percent.'% 1% 0; align: center;';
+		$item_style = 'display: inline-block; margin: 0 '.$margin_percent.'% 1% 0;';
 		if ($cols > 0)
 		{
 			$item_width = (100.0 / $cols) - $margin_percent;

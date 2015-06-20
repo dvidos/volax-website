@@ -31,20 +31,20 @@ div.gallery {
 }
 
 div.gallery div.gallery-item {
+	text-align: center;
 }
 
 div.gallery div.gallery-item img.gallery-item-thumb {
-	-border: 1px solid #aaa;
 }
 
 div.gallery div.gallery-item a.gallery-item-link {
 }
 
 div.gallery div.gallery-item p.gallery-item-caption {
-	text-align: center;
-	margin: .25em 0 1em 0;
-	font-size: 90%;
-	color: #777;
-	font-style: oblique;
+  text-align: center;
+  margin: .5em 0 1em 0;
+  font-size: 80%;
+  line-height: 1em;
+  height: 3em;
 }
 
