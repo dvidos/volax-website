@@ -18,6 +18,7 @@ class ContentProcessor extends CWidget
 		
 		$this->shortcodes_callbacks = array(
 			'video' => array($this, 'handleVideoShortcode'),
+			'audio' => array($this, 'handleAudioShortcode_swf'),
 			'audio' => array($this, 'handleAudioShortcode'),
 			'gallery' => array($this, 'handleGalleryShortcode'),
 			'post' => array($this, 'handlePostShortcode'),
@@ -168,7 +169,7 @@ class ContentProcessor extends CWidget
 		
 	}
 		
-	function handleAudioShortcode($code, $attributes, $content)
+	function handleAudioShortcode_swf($code, $attributes, $content)
 	{
 		$src = array_key_exists('src', $attributes) ? $attributes['src'] : '';
 		if (substr($src, 0, 1) != '/')
@@ -197,6 +198,18 @@ class ContentProcessor extends CWidget
 		//$html .= '<br />(src=' . $src . ', baseUrl='.Yii::app()->baseUrl.')';
 		
 		self::$player_counter++;
+		
+		return $html;
+	}
+	
+	function handleAudioShortcode($code, $attributes, $content)
+	{
+		$src = Yii::app()->baseUrl . '/' . (array_key_exists('src', $attributes) ? $attributes['src'] : '');
+		$src = str_replace('//', '/', $src);
+		
+		$type = (strcmp(strtolower(substr($src, -3)), "wav") == 0) ? 'audio/wav' : 'audio/mpeg';
+		$source = CHtml::tag('source', array('src'=>$src, 'type'=>$type));
+		$html = CHtml::tag('audio', array('controls'=>'controls'), $source);
 		
 		return $html;
 	}
