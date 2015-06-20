@@ -11,7 +11,7 @@ class ElfinderController extends CController
 				'settings' => array(
 					'root' => Yii::getPathOfAlias('webroot') . '/uploads/',
 					'URL' => Yii::app()->baseUrl . '/uploads/',
-					'rootAlias' => 'Home',
+					'rootAlias' => 'uploads',
 					'mimeDetect' => 'none'
 				)
 			),

@@ -17,7 +17,7 @@ class elFinder {
 	protected $_options = array(
 		'root'         => '',           // path to root directory
 		'URL'          => '',           // root directory URL
-		'rootAlias'    => 'Home',       // display this instead of root directory name
+		'rootAlias'    => 'uploads',       // display this instead of root directory name
 		'disabled'     => array(),      // list of not allowed commands
 		'dotFiles'     => false,        // display dot files
 		'dirSize'      => true,         // count total directories sizes
