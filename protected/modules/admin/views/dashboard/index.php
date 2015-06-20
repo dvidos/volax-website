@@ -55,6 +55,7 @@
 			'items'=>array(
 				array('label'=>'Για διαχειριστές', 'url'=>array('dashboard/viewPage', 'url_keyword'=>'adminNotes')),
 				array('label'=>'Για συντάκτες', 'url'=>array('dashboard/viewPage', 'url_keyword'=>'editorNotes')),
+				array('label'=>'Μακροεντολές', 'url'=>array('dashboard/viewPage', 'url_keyword'=>'shortcodes')),
 			),
 		));
 	?>

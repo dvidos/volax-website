@@ -2,8 +2,6 @@
 
 class SiteController extends Controller
 {
-	public $layout='column1';
-
 	/**
 	 * Declares class-based actions.
 	 */
@@ -29,7 +27,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		Yii::beginProfile('site_index');
+		//Yii::beginProfile('site_index');
 		
 		$criteria=new CDbCriteria(array(
 			'condition'=>'status = '.Post::STATUS_PUBLISHED. ' AND in_home_page = 1',
@@ -46,12 +44,11 @@ class SiteController extends Controller
 			'criteria'=>$criteria,
 		));
 
-		$this->layout = 'homepage';
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
 		
-		Yii::endProfile('site_index');
+		//Yii::endProfile('site_index');
 	}
 	 
 	 
@@ -126,7 +123,7 @@ class SiteController extends Controller
 
 	
 	/**
-	 * Logs out the current user and redirect to homepage.
+	 * Logs out the current user and redirect to home page.
 	 */
 	public function actionLogout()
 	{

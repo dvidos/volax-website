@@ -19,6 +19,7 @@
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>array(
 				array('label'=>'Για συντάκτες', 'url'=>array('dashboard/viewPage', 'url_keyword'=>'editorNotes')),
+				array('label'=>'Μακροεντολές', 'url'=>array('dashboard/viewPage', 'url_keyword'=>'shortcodes')),
 			),
 		));
 	?>

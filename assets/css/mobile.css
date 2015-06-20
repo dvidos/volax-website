@@ -3,6 +3,7 @@
 
 /* on all sizes, images contained within their containers */
 img { max-width: 100%; }
+audio { max-width: 100%; }
 
 /* font face and basic size */
 body {
@@ -109,8 +110,7 @@ ul.compact-buttons-list ul a {
 	body > div#banner { display: block; }
 	body > div#content { 
 		display: block; 
-		padding: 3%; 
-		margin-bottom: 2em;
+		margin: 3%; 
 	}
 }
 
@@ -127,22 +127,18 @@ ul.compact-buttons-list ul a {
 	body > div#main-menu-left {
 		display: block;
 		float: left;
-		width: 20%;
+		width: 25%;
 		margin-bottom: 2em;
 	}
 	body > div#banner { 
 		float: left;
-		width: 73%;
-		margin-left: 3%;
-		margin-right: 3%;
+		width: 68%;
+		margin: 0 3%;
 	}
 	body > div#content {
 		float: left;
-		width: 73%;
-		margin-left: 3%;
-		margin-right: 3%;
-		margin-top: 1em;
-		margin-bottom: 2em;
+		width: 68%;
+		margin: 2em 3%;
 	}
 }
 

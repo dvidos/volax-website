@@ -2,8 +2,6 @@
 
 class CategoryController extends Controller
 {
-	public $layout='column1';
-
 	public function actionView()
 	{
 		$category=$this->loadModel();

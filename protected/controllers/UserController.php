@@ -2,8 +2,6 @@
 
 class UserController extends Controller
 {
-	public $layout='column1';
-
 	/**
 	 * Displays a particular model.
 	 */

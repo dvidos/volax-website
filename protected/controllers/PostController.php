@@ -35,15 +35,6 @@ class PostController extends Controller
 		));
 	}
 
-	public function actionPopup()
-	{
-		$post=$this->loadModel();
-		$this->render('popup',array(
-			'model'=>$post,
-		));
-	}
-
-	
 	public function actionTags()
 	{
 		// do not show tags beginning with parenthesis

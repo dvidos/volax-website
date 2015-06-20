@@ -88,15 +88,13 @@
 
 
 
-<div id="content">
+<div id="columns-area">
 
-	<div id="content-col1" style="float:left;width:220px;margin-right:80px;">
+	<div id="left-menu" style="float:left;width:220px;margin-right:80px;">
 		<?php include('left_column.php'); ?>
 	</div>
-	<div id="content-col2" style="float:left;width:900px;">
+	<div id="content" style="float:left;width:900px;">
 		<?php echo $content; ?>
-	</div>
-	<div id="content-col4" style="float:left;width:0;">
 	</div>
 	<div style="clear:both;"></div>
 	

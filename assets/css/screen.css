@@ -32,10 +32,10 @@ div#banner-ads
 {
 	text-align: center;
 }
-div#content
+div#columns-area
 {
-	background-color: #fff;
 	min-height: 300px;
+	margin-bottom: 1em;
 }
 div#footer
 {
@@ -99,6 +99,11 @@ div#left-column .black-buttons a:hover {
 	background-color: #222;
 }
 
+div#content
+{
+	background-color: #ff;
+	min-height: 300px;
+}
 
 
 
@@ -124,17 +129,12 @@ div.post.wide {
 	margin-right: 60px;
 	float: left;
 }
-div.post.narrow img {
-	max-width: 240px;
+div.post img {
+	max-width: 100%;
 }
-div.post.medium img {
-	max-width: 540px;
+div.post audio {
+	max-width: 100%;
 }
-div.post.wide img {
-	max-width: 840px;
-}
-
-
 
 
 
