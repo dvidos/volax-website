@@ -15,6 +15,7 @@ class ElFinderWidget extends CWidget
      */
     public $settings = array();
     public $connectorRoute = false;
+	public $htmlOptions = array();
     private $assetsDir;
 
 
@@ -77,7 +78,9 @@ class ElFinderWidget extends CWidget
         $settings = CJavaScript::encode($this->settings);
         $cs = Yii::app()->getClientScript();
         $cs->registerScript('elFinder', "$('#$id').elfinder($settings);");
-        echo "<div id=\"$id\"></div>";
+		
+		$this->htmlOptions['id'] = $id;
+		echo CHtml::tag('div', $this->htmlOptions, '');
     }
 
 }

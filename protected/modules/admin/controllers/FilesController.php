@@ -1,1 +1,1 @@
-<?phpclass FilesController extends Controller{	// public $layout = 'column2';		function actionIndex()	{		$this->render('index');	}}
+<?phpclass FilesController extends Controller{	// public $layout = 'column2';		function actionIndex()	{		$this->render('index');	}		function actionBrowse()	{		$this->layout = 'minimal';		$this->render('browsePopup');	}}

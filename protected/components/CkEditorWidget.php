@@ -13,10 +13,10 @@ class CkEditorWidget extends CWidget
 		
 		// files browsing depends on whether we are under admin or author module
 		if ($this->imagesBrowseUrl == null)
-			$this->imagesBrowseUrl = Yii::app()->createUrl('/' . Yii::app()->controller->module->name . '/files/browseImages');
+			$this->imagesBrowseUrl = Yii::app()->createUrl('/' . Yii::app()->controller->module->name . '/files/browse');
 
 		if ($this->filesBrowseUrl == null)
-			$this->filesBrowseUrl = Yii::app()->createUrl('/' . Yii::app()->controller->module->name . '/files/browseFiles');
+			$this->filesBrowseUrl = Yii::app()->createUrl('/' . Yii::app()->controller->module->name . '/files/browse');
 		
 	}
 	

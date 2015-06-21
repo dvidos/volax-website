@@ -69,7 +69,7 @@
 		$posts = Post::model()->findAll(array(
 			//'condition'=>'status='.Post::STATUS_PUBLISHED,
 			'order'=>'create_time DESC',
-			'limit'=>10,
+			'limit'=>5,
 		));
 		echo '<ul>';
 		foreach ($posts as $post)
@@ -89,7 +89,7 @@
 		$posts = Post::model()->findAll(array(
 			//'condition'=>'status='.Post::STATUS_PUBLISHED,
 			'order'=>'update_time DESC',
-			'limit'=>10,
+			'limit'=>5,
 		));
 		echo '<ul>';
 		foreach ($posts as $post)
@@ -109,7 +109,7 @@
 		$posts = Post::model()->findAll(array(
 			'condition'=>'status='.Post::STATUS_DRAFT,
 			'order'=>'update_time DESC',
-			'limit'=>10,
+			'limit'=>5,
 		));
 		echo '<ul>';
 		foreach ($posts as $post)

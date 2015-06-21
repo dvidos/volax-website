@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'volax.gr',
-	'language'=>'el_gr',
+	'language'=>'el',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
