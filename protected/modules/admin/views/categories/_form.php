@@ -27,46 +27,8 @@
 		<?php echo $form->labelEx($model,'content'); ?>
 		<?php echo $form->textArea($model,'content', array('style'=>'width:100%;')); ?>
 		<?php echo $form->error($model,'content'); ?>
+		<?php $this->widget('application.components.CkEditorWidget', array('varName' => 'Category_content')); ?>
 	</div>
-	<script>
-		CKEDITOR.replace('Category_content', {
-			// see http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html
-			height: 400,
-			language: 'el', // for greek button labels and dialogs.
-			entities_greek: false, // for not converting greek letters to entities
-			entities_latin: false, // for not converting latin1 letters to entities.
-			toolbar: 'MedCms',
-			toolbar_MedCms: [
-				[
-					'Bold','Italic','Strike','Subscript','Superscript', '-',
-					'NumberedList','BulletedList','-','Blockquote', '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-',
-					'Link','Unlink','Anchor','Image','Table','SpecialChar','Iframe'
-				],
-				[ 'Format','Font','FontSize','-', 'TextColor','BGColor' ],
-				[ 'Preview', 'RemoveFormat', 'Source' ],
-		/*
-				{ name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
-				{ name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
-				{ name: 'forms', items : [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
-				{ name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
-				{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv', '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
-				{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
-				{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
-				{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
-				{ name: 'colors', items : [ 'TextColor','BGColor' ] },
-				{ name: 'tools', items : [ 'Maximize', 'ShowBlocks','-','About' ] }
-				{ name: 'document', items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] },
-		*/
-			],
-			
-			// from getSimple
-			filebrowserBrowseUrl : 'filebrowser.php?type=all',
-			filebrowserImageBrowseUrl : 'filebrowser.php?type=images',
-			filebrowserWindowWidth : '730',
-			filebrowserWindowHeight : '500'
-		});
-	</script>
-
 	<!-- <p class="hint">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> syntax.</p> -->
 	<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 

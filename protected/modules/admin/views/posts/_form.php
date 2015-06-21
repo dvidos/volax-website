@@ -15,68 +15,13 @@
 		<?php echo $form->textField($model,'title',array('style'=>'width:100%;','maxlength'=>100)); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
-	
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'content',array('label'=>'Κείμενο <span id="content-size-indicator"></span>')); ?>
 		<?php echo $form->textArea($model,'content', array('class'=>'content-area', 'style'=>'width:100%;')); ?>
 		<?php echo $form->error($model,'content'); ?>
+		<?php $this->widget('application.components.CkEditorWidget', array('varName' => 'Post_content')); ?>
 	</div>
-	<script>
-		var editor = CKEDITOR.replace('Post_content', {
-			// see http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html
-			height: 400,
-			language: 'el', // for greek button labels and dialogs.
-			entities_greek: false, // for not converting greek letters to entities
-			entities_latin: false, // for not converting latin1 letters to entities.
-			toolbar: 'MedCms',
-			toolbar_MedCms: [
-				[
-					'Bold','Italic','Strike','Subscript','Superscript', '-',
-					'NumberedList','BulletedList','-','Blockquote', '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-',
-					'Link','Unlink','Anchor','Image','Table','SpecialChar','Iframe'
-				],
-				[ 'Format','Styles','-', 'TextColor','BGColor' ],
-				[ 'Preview', 'RemoveFormat', 'Source' ],
-		/*
-				{ name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
-				{ name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
-				{ name: 'forms', items : [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
-				{ name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
-				{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv', '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
-				{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
-				{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
-				{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
-				{ name: 'colors', items : [ 'TextColor','BGColor' ] },
-				{ name: 'tools', items : [ 'Maximize', 'ShowBlocks','-','About' ] }
-				{ name: 'document', items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] },
-		*/
-			],
-			stylesSet: [
-				{ name: 'None', element: 'p', attributes: { 'class': '' } },
-				{ name: 'Alt Color', element: 'p', attributes: { 'class': 'x-style-alt-color' } },
-				{ name: 'Footnotes', element: 'p', attributes: { 'class': 'x-style-footnotes' } },
-				{ name: 'Reference', element: 'span', attributes: { 'class': 'x-style-reference' } },
-				{ name: 'None', element: 'span', attributes: { 'class': '' } },
-				{ name: 'Low Text', element: 'p', attributes: { 'class': 'x-style-low-text' } }
-			],
-			contentsCss: '<?php echo Yii::app()->baseUrl; ?>/assets/css/stylistic.css',
-			// from getSimple
-			// see http://docs.cksource.com/CKEditor_3.x/Developers_Guide/File_Browser_%28Uploader%29
-			filebrowserBrowseUrl : '<?php echo Yii::app()->baseUrl; ?>/admin/files/browse',
-			filebrowserImageBrowseUrl : '<?php echo Yii::app()->baseUrl; ?>/admin/files/browse',
-			//filebrowserWindowWidth : '730',
-			//filebrowserWindowHeight : '500'
-		});
-		//editor.on("instanceReady", function(){
-        //    this.document.on("keyup", checkLength);
-        //    this.document.on("paste", checkLength);
-        //});
-		//function checkLength() {
-		//	var len = CKEDITOR.instances['Post_content'].getData().length;
-		//	$('#content-size-indicator').html('(' + Math.ceil(len/1024) + ' Kb)');
-		//}
-	</script>
-	
 	<p class="hint">
 		Βάζουμε <b>[more]</b> όπου θέλουμε να εμφανίζεται το <b>read more...</b>
 	</p>
