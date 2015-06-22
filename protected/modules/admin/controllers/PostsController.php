@@ -144,7 +144,7 @@ class PostsController extends Controller
 	{
 		$ids = Post::model()->findAll(array(
 			'select'=>'id',
-			'order'=>'update_time DESC',
+			'order'=>'create_time DESC',
 		));
 		
 		$data = array();
