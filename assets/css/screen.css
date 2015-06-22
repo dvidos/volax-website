@@ -68,40 +68,25 @@ div#left-column h3 {
 	margin-bottom: .5em;
 }
 
-div#left-column .blue-buttons, div#left-column .black-buttons {
+div#left-column div.section {
 	margin-bottom: 5em;
 }
 
-div#left-column a {
+div#left-column a.black-button {
 	display: block;
 	margin: 1em 0;
 	text-decoration: none;
 	padding: .25em .5em;
 	font-size: 110%;
-	letter-spacing: 2px;
-}
-
-div#left-column .blue-buttons a {
-	background-color: #66cef5;
-	color: black;
-}
-
-div#left-column .blue-buttons a:hover {
-	background-color: #7fd6f6;
-}
-
-div#left-column .black-buttons a {
 	background-color: #000;
 	color: white;
 }
-
-div#left-column .black-buttons a:hover {
+div#left-column a.black-button:hover {
 	background-color: #222;
 }
 
 div#content
 {
-	background-color: #ff;
 	min-height: 300px;
 }
 
@@ -571,46 +556,50 @@ span.index {
 
 
 
-/*
- * left column multi-level menus
- */
-ul.multilevelMenu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+/* ul tree having compact buttons list for narrow screens */
+ul.main-menu-list {
+	margin: 0;
+	padding: 0;
 }
-ul.multilevelMenu li {
-    position: relative;
+ul.main-menu-list li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
-ul.multilevelMenu li ul {
-    position: absolute;
-    top: 15%;
-    left: 97%;
-    list-style-type: none;
-    margin: 0;
-    padding: 0 1em;
-    width: 220px;
-    background-color: #fff;
-    border: 1px solid #eee;
-    box-shadow: 0px 0px 20px rgba(0,0,0,.4);
-    z-index: 10;
-}
-ul.multilevelMenu ul { display: none; }
-ul.multilevelMenu li:hover > ul { display: block; }
-
-ul.multilevelMenu a, ul.multilevelMenu li span {
+ul.main-menu-list li a {
 	display: block;
-	margin: 1em 0;
-	background-color: #66cef5;
+	padding: .75em .75em;
+	margin: 1em 0 0 0;
 	text-decoration: none;
 	padding: .25em .5em;
 	font-size: 110%;
-	letter-spacing: 1px;
+	background-color: #66cef5;
 	color: black;
 }
-ul.multilevelMenu a:hover, ul.multilevelMenu li span:hover {
+ul.main-menu-list li a:hover {
 	background-color: #7fd6f6;
 }
+ul.main-menu-list ul {
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+ul.main-menu-list ul.active {
+	display: block;
+}
+ul.main-menu-list ul li {
+}
+ul.main-menu-list ul a {
+	background-color: #5dc6ed;
+	padding-left: 1.5em;
+	margin: 0;
+	border-top: 1px solid #33bbdd;
+}
+
+
+
+
+
 
 
 

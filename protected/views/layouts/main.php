@@ -15,6 +15,27 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/stylistic.css"/>
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/images/favicon/logo2.png" />
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/script.js"></script>
+
+	<script>
+		// toggling of compact menu buttons
+		$(document).ready(function () {
+			$('ul.main-menu-list > li > a').click(function(){
+				if ($(this).attr('class') != 'active'){
+					$('ul.main-menu-list li ul').slideUp();
+					$(this).next().slideToggle();
+					$('ul.main-menu-list li a').removeClass('active');
+					$(this).addClass('active');
+				}else{
+					$('ul.main-menu-list li ul').slideUp();
+					$('ul.main-menu-list li a').removeClass('active');
+				}
+				// if <li> has no <ul>, it should be allowed to be clicked.
+				var clickable = ($(this).parent().children('ul').size() == 0);
+				return clickable;
+			});
+		});
+	</script>
+	
 </head>
 <body>
 <div id="page" style="width:1200px;margin:0 auto;">

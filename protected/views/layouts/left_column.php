@@ -12,14 +12,14 @@
 	</div>
 	<!-- <div class="blue-buttons">
 		<?php
-			$blogId = Yii::app()->params['leftColumnBlogCategoryId'];
-			$category = Category::model()->findByPk($blogId);
-			$link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'xcategory-link'));
-			echo $link;
-			echo '<div class="prologue">' . $category->prologue . '</div>';
+			// $blogId = Yii::app()->params['leftColumnBlogCategoryId'];
+			// $category = Category::model()->findByPk($blogId);
+			// $link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'xcategory-link'));
+			// echo $link;
+			// echo '<div class="prologue">' . $category->prologue . '</div>';
 		?>
 	</div> -->
-	<div class="blue-buttons">
+	<div class="section">
 		<?php
 			echo '<h3>οι σελίδες</h3>';
 			$this->widget('zii.widgets.CMenu', array(
@@ -28,31 +28,29 @@
 					array('label'=>'ΤΟΥ ΧΩΡΙΟΥ', 'url'=>array('/category/view', 'id'=>19)),
 					array('label'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ', 'url'=>array('/category/view', 'id'=>18)),
 				),
-				'htmlOptions'=>array('class'=>'multilevelMenu'),
+				'htmlOptions'=>array('class'=>'main-menu-list'),
 			));
 		?>
 	</div>
-	<div class="black-buttons">
+	<div class="section">
 		<?php
-			echo CHtml::link('ΔΕΙΤΕ', array('/post/list', 'tag'=>'ΔΕΙΤΕ'));
+			echo CHtml::link('ΔΕΙΤΕ', array('/post/list', 'tag'=>'ΔΕΙΤΕ'), array('class'=>'black-button'));
 			echo CHtml::tag('p', array(), 'εικόνες &amp; video');
 			
-			echo CHtml::link('ΑΚΟΥΣΤΕ', array('/post/list', 'tag'=>'ΑΚΟΥΣΤΕ'));
+			echo CHtml::link('ΑΚΟΥΣΤΕ', array('/post/list', 'tag'=>'ΑΚΟΥΣΤΕ'), array('class'=>'black-button'));
 			echo CHtml::tag('p', array(), 'διηγήσεις &amp; ήχους');
 			
-			echo CHtml::link('ΚΑΤΕΒΑΣΤΕ', array('/post/list', 'tag'=>'ΚΑΤΕΒΑΣΤΕ'));
+			echo CHtml::link('ΚΑΤΕΒΑΣΤΕ', array('/post/list', 'tag'=>'ΚΑΤΕΒΑΣΤΕ'), array('class'=>'black-button'));
 			echo CHtml::tag('p', array(), 'αρχεία');
 		?>
 	</div>
-	<div class="blue-buttons">
+	<div class="section">
 		<?php
 			$this->widget('zii.widgets.CMenu', array(
 				'items'=>Category::getCMenuItems(3),
-				'htmlOptions'=>array('class'=>'multilevelMenu'),
+				'htmlOptions'=>array('class'=>'main-menu-list not-multilevelMenu'),
 			));
 		?>
-	</div>
-	<div class="xhomepage-messages-area">
 	</div>
 
 	
