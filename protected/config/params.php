@@ -6,7 +6,7 @@ return array(
 	'version'=>0.3,
 	
 	// this is displayed in the header section
-	'title'=>'Volax.gr Blog',
+	'title'=>'Βωλάξ',
 	
 	// this is used in error pages
 	'adminEmail'=>'dvidos@gmail.com',
@@ -14,7 +14,7 @@ return array(
 	// who receives email from the contact form.
 	'contactFormReceivers'=>array(
 		'dvidos@gmail.com',
-		'jimel.vidos@gmail.com',
+		//'jimel.vidos@gmail.com',
 	),
 	
 	// who receives email from new comments
@@ -36,7 +36,7 @@ return array(
 	'postsMoreLinkText'=>'συνέχεια...',
 	
 	// the category to use for the BLOG in left column
-	'leftColumnBlogCategoryId'=>123,
+	'leftColumnBlogCategoryId'=>124,
 	
 	// number of posts displayed per page
 	'postsPerPage'=>10,

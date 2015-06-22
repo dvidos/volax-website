@@ -1,5 +1,5 @@
 ﻿
-<table><tr><td width="23%">
+<table><tr><td width="20%">
 	
 
 	<h2>Αναρτήσεις</h2>
@@ -61,71 +61,74 @@
 	?>
 		
 		
-</td><td width="1%">&nbsp;</td><td width="45%">
+</td><td width="1%">&nbsp;</td><td width="40%">
 	
 
 	<h2>Πρόσφατες αναρτήσεις</h2>
-	<?php 
+	<p><?php 
 		$posts = Post::model()->findAll(array(
 			//'condition'=>'status='.Post::STATUS_PUBLISHED,
 			'order'=>'create_time DESC',
 			'limit'=>5,
 		));
-		echo '<ul>';
+		//echo '<ul>';
 		foreach ($posts as $post)
 		{
 			$title = ($post->title == '') ? '#' . $post->id . ' (χωρίς τίτλo)' : $post->title;
-			echo '<li>';
+			//echo '<li>';
 			echo CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id));
 			if ($post->author != null)
 				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id), array('style'=>'color:#aaa')) . ')';
-			echo '</li>';
+			echo '<br>';
+			//echo '</li>';
 		}
-		echo '</ul>';
-	?>
+		//echo '</ul>';
+	?></p>
 	
 	<h2>Πρόσφατα διορθωμένες αναρτήσεις</h2>
-	<?php 
+	<p><?php 
 		$posts = Post::model()->findAll(array(
 			//'condition'=>'status='.Post::STATUS_PUBLISHED,
 			'order'=>'update_time DESC',
 			'limit'=>5,
 		));
-		echo '<ul>';
+		//echo '<ul>';
 		foreach ($posts as $post)
 		{
 			$title = ($post->title == '') ? '#' . $post->id . ' (χωρίς τίτλo)' : $post->title;
-			echo '<li>';
+			//echo '<li>';
 			echo CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id));
 			if ($post->author != null)
 				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id), array('style'=>'color:#aaa')) . ')';
-			echo '</li>';
+			//echo '</li>';
+			echo '<br>';
 		}
-		echo '</ul>';
-	?>
+		//echo '</ul>';
+	?></p>
 	
 	<h2>Drafts</h2>
-	<?php 
+	<p><?php 
 		$posts = Post::model()->findAll(array(
 			'condition'=>'status='.Post::STATUS_DRAFT,
 			'order'=>'update_time DESC',
 			'limit'=>5,
 		));
-		echo '<ul>';
+		//echo '<ul>';
 		foreach ($posts as $post)
 		{
 			$title = ($post->title == '') ? '#' . $post->id . ' (χωρίς τίτλo)' : $post->title;
-			echo '<li>';
+			//echo '<li>';
 			echo CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id));
 			if ($post->author != null)
 				echo ' &nbsp; (' . CHtml::link($post->author->username, array('/admin/posts', 'Post[author_id]'=>$post->author_id), array('style'=>'color:#aaa')) . ')';
-			echo '</li>';
+			echo '<br>';
+			//echo '</li>';
 		}
-		echo '</ul>';
-	?>
+		//echo '</ul>';
+	?></p>
 	
 		
-</td><td width="23%">
+</td><td width="40%">
 	
 	
 	<h2>Διάρθρωση</h2>
@@ -143,7 +146,7 @@
 				{
 					$c1 .= '';
 					for ($i = 0; $i < $depth; $i++)
-						$c1 .= '.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+						$c1 .= '.&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;';
 				}
 				$c1 .= CHtml::link($category->title, array('/admin/categories/update', 'id'=>$category->id));
 
