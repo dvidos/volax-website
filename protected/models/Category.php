@@ -77,12 +77,12 @@ class Category extends CActiveRecord
 	/**
 	 * @return string the URL that shows the detail of the post
 	 */
-	public function getUrl()
+	public function getUrl($absolute = false)
 	{
-		return Yii::app()->createUrl('category/view', array(
-			'id'=>$this->id,
-			'title'=>$this->title,
-		));
+		if ($absolute)
+			return Yii::app()->createAbsoluteUrl('category/view', array('id'=>$this->id, 'title'=>$this->title));
+		else
+			return Yii::app()->createUrl('category/view', array('id'=>$this->id, 'title'=>$this->title));
 	}
 
 	/**

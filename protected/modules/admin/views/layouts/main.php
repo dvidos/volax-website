@@ -21,14 +21,14 @@
 		<div style="float:left;">
 			<?php 
 				$submenu_items = array(
-					array('label'=>'Κατηγορίες', 'url'=>array('/admin/categories')),
-					array('label'=>'Tags', 'url'=>array('/admin/tags')),
+					array('label'=>'Σχόλια', 'url'=>array('/admin/comments')),
 					array('label'=>'Ιστορικό αναρτήσεων', 'url'=>array('/admin/postRevisions')),
 					array('label'=>'Διαφημίσεις', 'url'=>array('/admin/advertisements')),
 					array('label'=>'Snippets', 'url'=>array('/admin/snippets')),
 					array('label'=>'Καταστάσεις', 'url'=>array('/admin/statuses')),
 					array('label'=>'Σελίδες', 'url'=>array('/admin/pages')),
 					array('label'=>'Χρήστες', 'url'=>array('/admin/users')),
+					array('label'=>'Εργαλεία', 'url'=>array('/admin/tools')),
 				);
 				$this->widget('zii.widgets.CMenu',array(
 					'activeCssClass'=>'active',
@@ -36,8 +36,9 @@
 					'items'=>array(
 						array('label'=>'Αρχική', 'url'=>array('/admin')),
 						array('label'=>'Αναρτήσεις', 'url'=>array('/admin/posts')),
+						array('label'=>'Κατηγορίες', 'url'=>array('/admin/categories')),
 						array('label'=>'Αρχεία', 'url'=>array('/admin/files')),
-						array('label'=>'Σχόλια', 'url'=>array('/admin/comments')),
+						array('label'=>'Tags', 'url'=>array('/admin/tags')),
 						array('label'=>'...', 'url'=>'#', 'items'=>$submenu_items),
 					),
 				)); ?>
