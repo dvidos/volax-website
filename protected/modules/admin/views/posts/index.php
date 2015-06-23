@@ -23,6 +23,10 @@ Yii::app()->clientScript->registerScript('search',
 	echo CHtml::link('Εικόνες', array('/admin/posts/images'), array('class'=>'button')); 
 	echo ' ';
 	echo CHtml::link('Links', array('/admin/posts/links'), array('class'=>'button')); 
+	echo ' ';
+	echo CHtml::link('Ακεραιότητα', array('/admin/posts/integrity'), array('class'=>'button')); 
+	echo ' ';
+	echo CHtml::link('Γλώσσες', array('/admin/posts/languages'), array('class'=>'button')); 
 ?></p>
 
 <div class="search-form" style="display:none">

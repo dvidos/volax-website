@@ -542,7 +542,7 @@ class Post extends CActiveRecord
 
 	public function getContentLinks()
 	{
-		$re = '/<a.+?href="([^"]+)".+?<\/a>/i';
+		$re = '/href\s*?=\s*?"([^"]+)"/i';
 		$matches = array();
 		preg_match_all($re, $this->content, $matches);
 		$links = $matches[1];
