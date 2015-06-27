@@ -69,27 +69,9 @@
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'prologue'); ?>
-		<?php echo $form->textArea($model,'prologue', array('style'=>'width:100%; min-height:80px;')); ?>
-		<?php echo $form->error($model,'prologue'); ?>
-	</div>
-	
-	<div class="row">
 		<?php echo $form->labelEx($model,'masthead'); ?>
-		<?php echo $form->textArea($model,'masthead', array('style'=>'width:100%; min-height:80px;')); ?>
+		<?php echo $form->textField($model,'masthead', array('style'=>'width:100%;')); ?>
 		<?php echo $form->error($model,'masthead'); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'image_filename'); ?>
-		<?php /* echo $form->textField($model,'image_filename',array('size'=>100,'maxlength'=>100)); */ ?>
-		<?php echo $this->widget('application.components.elFinder.ServerFileInput', array(
-			'model' => $model,
-			'attribute' => 'image_filename',
-			'connectorRoute' => '/admin/elfinder/connector',
-			'textFieldSize'=>30,
-		)); ?>
-		<?php echo $form->error($model,'image_filename'); ?>
 	</div>
 	
 	<div class="row">
@@ -99,7 +81,7 @@
 			'attribute'=>'tags',
 			'url'=>array('suggestTags'),
 			'multiple'=>true,
-			'htmlOptions'=>array('size'=>40),
+			'htmlOptions'=>array('size'=>40, 'style'=>'width:100%;'),
 		)); ?>
 		<p class="hint">Χρησιμοποιήστε ελληνικά, χωρίστε τα με κόμμα. Tags σε παρένθεση δεν εμφανίζονται δημόσια.</p>
 		<?php echo $form->error($model,'tags'); ?>

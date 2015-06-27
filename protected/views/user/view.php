@@ -23,31 +23,27 @@ $this->pageTitle=$model->fullname;
 	
 </div>
 
+<hr style="margin: 2em 0;" />
 
-<?php
-	$dataProvider = new CActiveDataProvider('Post', array(
-		'criteria'=>array(
-			'condition'=>'author_id = :aid AND (status=' . Post::STATUS_PUBLISHED . ' OR status=' . Post::STATUS_ARCHIVED . ')',
-			'params'=>array(':aid'=>$model->id),
-		),
-		'sort'=>array(
-			'defaultOrder'=>'create_time DESC',
-		),
-	));
-		
-	$itemViewFile = '/post/_layoutWideTitleOnly';
-	$this->widget('zii.widgets.CListView', array(
-		'dataProvider'=>$dataProvider,
-		'itemView'=>$itemViewFile,
-		'template'=>"{items}\n{pager}",
-		'pager'=>array(
-			'class'=>'CLinkPager',
-			'header'=>'Σελίδα: &nbsp; ',
-			'prevPageLabel'=>'Προηγούμενη',
-			'nextPageLabel'=>'Επόμενη',	
-		),
-		'ajaxUpdate'=>false, // to disable ajax update
-	));
-?>
-
+<div class="compact-post-list">
+	<?php
+		$dataProvider = new CActiveDataProvider('Post', array(
+			'criteria'=>array(
+				'condition'=>'author_id = :aid AND (status=' . Post::STATUS_PUBLISHED . ')',
+				'params'=>array(':aid'=>$model->id),
+			),
+			'sort'=>array(
+				'defaultOrder'=>'create_time DESC',
+			),
+		));
+			
+		$this->widget('zii.widgets.CListView', array(
+			'dataProvider'=>$dataProvider,
+			'itemView'=>'/post/_listEntryCompact',
+			'template'=>"{items}\r\n\r\n{pager}",
+			'pager'=>Yii::app()->params['defaultPagerParams'],
+			'ajaxUpdate'=>false, // to disable ajax update
+		));
+	?>
+</div>
 

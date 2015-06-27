@@ -23,10 +23,32 @@ $this->pageTitle=$model->title;
 		$content = $this->widget('application.components.ContentProcessor', array('content'=>$content), true);
 		echo CHtml::tag('div', array('class'=>'content'), $content);
 		
-		$this->renderPartial('/post/_postInfoFull',array(
-			'post'=>$model,
-		)); 
+
 	?>
+	
+	
+	<div class="post-info">
+		<?php
+			echo 'Από τον χρήστη ' . CHtml::link(CHtml::encode($model->author->fullname), array('/user/view', 'id'=>$model->author_id));
+			echo ', ';
+			echo $model->getFriendlyCreateTime();
+			
+			if ($model->category != null) {
+				echo '<br />';
+				echo 'Στήλη: <b>' . CHtml::link($model->category->title, $model->category->getUrl()) . '</b>';
+			}
+
+			if (count($model->tagLinks) > 0) {
+				echo '<br />';
+				echo 'Tags: <b>' . implode(', ', $model->tagLinks) . '</b>';
+			}
+				
+			if ($model->commentCount > 0) {
+				$caption = $model->commentCount == 1 ? 'σχόλιο' : 'σχόλια';
+				echo ', ' . CHtml::link($model->commentCount . ' ' . $caption, $model->url.'#comments');
+			}
+		?>
+	</div>
 </div>
 
 
@@ -36,10 +58,29 @@ $this->pageTitle=$model->title;
 			<?php echo $model->commentCount>1 ? $model->commentCount . ' σχόλια' : 'Ενα σχόλιο'; ?>
 		</h3>
 
-		<?php $this->renderPartial('_commentsList',array(
-			'post'=>$model,
-			'comments'=>$model->comments,
-		)); ?>
+		<?php foreach($model->comments as $comment): ?>
+		<div class="comment" id="c<?php echo $comment->id; ?>">
+
+			<?php echo CHtml::link("#{$comment->id}", $comment->getUrl($model), array(
+				'class'=>'cid',
+				'title'=>'Permalink',
+			)); ?>
+			
+			<div class="author">
+				<?php echo $comment->authorLink; ?>
+			</div>
+
+			<div class="content">
+				<?php echo nl2br(CHtml::encode($comment->content)); ?>
+			</div>
+
+			<div class="time">
+				<?php echo $comment->getFriendlyCreateTime(); ?>
+			</div>
+
+		</div><!-- comment -->
+		<?php endforeach; ?>
+
 	<?php endif; ?>
 
 	

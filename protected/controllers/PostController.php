@@ -83,7 +83,7 @@ class PostController extends Controller
 		if(isset($_GET['id']))
 		{
 			if(Yii::app()->user->isGuest)
-				$condition='status='.Post::STATUS_PUBLISHED.' OR status='.Post::STATUS_ARCHIVED;
+				$condition='status='.Post::STATUS_PUBLISHED;
 			else
 				$condition='';
 			$model=Post::model()->findByPk($_GET['id'], $condition);

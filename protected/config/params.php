@@ -41,6 +41,19 @@ return array(
 	// number of posts displayed per page
 	'postsPerPage'=>10,
 	
+	// pager params for where listings are paged.
+	'defaultPagerParams'=>array(
+		'class'=>'CLinkPager',
+		//'header'=>'Σελίδα: &nbsp; ',
+		'header'=>'',
+		//'firstPageLabel'=>'Πρώτη',
+		'prevPageLabel'=>'<',
+		'nextPageLabel'=>'>',	
+		//'lastPageLabel'=>'Τελευταία',
+		'maxButtonCount'=>5,
+	),
+	
+	
 	// maximum number of comments that can be displayed in recent comments portlet
 	'recentCommentCount'=>10,
 	

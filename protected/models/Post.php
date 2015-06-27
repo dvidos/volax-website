@@ -327,9 +327,6 @@ class Post extends CActiveRecord
 	 */
 	public function getContentHtmlUptoMore()
 	{
-		// using markdown syntax.
-		//$parser = new CMarkdownParser();
-		//$content = $parser->transform($this->content);
 		$content = $this->content;
 
 		// go up to the "[more]"
@@ -356,9 +353,6 @@ class Post extends CActiveRecord
 	 */
 	public function getContentHtmlIncludingMore()
 	{
-		// using markdown syntax.
-		//$parser = new CMarkdownParser();
-		//$content = $parser->transform($this->content);
 		$content = $this->content;
 		
 		// put a "more" tag
