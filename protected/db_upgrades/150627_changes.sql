@@ -43,6 +43,7 @@ ALTER TABLE  `v4_post`
 ALTER TABLE  `v4_post_revisions` 
 	DROP  `prologue` ;
 	
-	
+-- dropping this, no more needed...
+DROP TABLE  `v4_snippets` ;	
 
 	

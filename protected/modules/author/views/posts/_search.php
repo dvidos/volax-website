@@ -16,11 +16,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'image_filename'); ?>
-		<?php echo $form->textField($model,'image_filename'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'category_id'); ?>
 		<?php echo $form->textField($model,'category_id'); ?>
 	</div>

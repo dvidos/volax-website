@@ -2,8 +2,6 @@
 
 class StatusesController extends Controller
 {
-	// public $layout = 'column2';
-	
 	public function actionIndex()
 	{
 		$model=new Status('search');

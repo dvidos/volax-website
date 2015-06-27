@@ -15,6 +15,7 @@ return array(
 	'contactFormReceivers'=>array(
 		'dvidos@gmail.com',
 		//'jimel.vidos@gmail.com',
+		//'nikaliamoutos@gmail.com',
 	),
 	
 	// who receives email from new comments
@@ -26,6 +27,7 @@ return array(
 	// who receives email from saving a post
 	'postSavedSubscribers'=>array(
 		//'dvidos@gmail.com',
+		//'jimel.vidos@gmail.com',
 		//'jimel.vidos@gmail.com',
 	),
 	
