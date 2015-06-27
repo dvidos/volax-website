@@ -31,10 +31,10 @@ class Category extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('status, layout', 'required'),
-			array('title, image_filename', 'length', 'max'=>128),
+			array('title', 'length', 'max'=>128),
 			array('parent_id, view_order, layout, status', 'numerical'),
-			array('title, content, prologue, masthead', 'safe'),
-			array('id, parent_id, title, content, prologue, masthead, image_filename, layout, status, view_order', 'safe', 'on'=>'search'),
+			array('title, content', 'safe'),
+			array('id, parent_id, title, content, layout, status, view_order', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,10 +62,7 @@ class Category extends CActiveRecord
 			'id' => 'Id',
 			'parent_id' => 'Πατρική κατηγορία',
 			'title' => 'Τίτλος',
-			'prologue' => 'Πρόλογος',
-			'masthead' => 'Υπέρτιτλος',
 			'content' => 'Περιεχόμενο',
-			'image_filename' => 'Εικόνα',
 			'layout' => 'Εμφάνιση',
 			'status' => 'Κατάσταση',
 			'create_time' => 'Create Time',
@@ -131,10 +128,7 @@ class Category extends CActiveRecord
 
 		$criteria->compare('parent_id',$this->parent_id);
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('prologue',$this->prologue,true);
-		$criteria->compare('masthead',$this->masthead,true);
 		$criteria->compare('content',$this->content,true);
-		$criteria->compare('image_filename',$this->image_filename,true);
 		$criteria->compare('layout',$this->layout);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('create_time',$this->create_time);

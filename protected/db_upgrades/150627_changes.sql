@@ -35,3 +35,14 @@ ALTER TABLE  `v4_category`
 	DROP  `prologue` ,
 	DROP  `masthead` ,
 	DROP  `image_filename` ;
+
+ALTER TABLE  `v4_post` 
+	DROP  `prologue` ,
+	DROP  `image_filename` ;
+	
+ALTER TABLE  `v4_post_revisions` 
+	DROP  `prologue` ;
+	
+	
+
+	

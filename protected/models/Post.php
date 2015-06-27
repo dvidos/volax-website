@@ -23,7 +23,6 @@ class Post extends CActiveRecord
 	var $_oldCreated;
 	var $_oldUpdated;
 	var $_oldContent;
-	var $_oldPrologue;
 	var $_oldMasthead;
 	var $_original_editable_create_time;
 	
@@ -36,7 +35,6 @@ class Post extends CActiveRecord
 		
 		$rev->post_id = $this->id;
 		$rev->title = $this->title;
-		$rev->prologue = $this->prologue;
 		$rev->masthead = $this->masthead;
 		$rev->content = $this->content;
 		$rev->category_id = $this->category_id;
@@ -76,10 +74,10 @@ class Post extends CActiveRecord
 			array('tags', 'match', 'pattern'=>'/^[\S\s,]+$/', 'message'=>'Tags must be separated with comma.'),
 			array('tags', 'normalizeTags'),
 			array('category_id, status, layout, desired_width, in_home_page, author_id', 'numerical'),
-			array('title, content, image_filename, allow_comments, prologue, masthead', 'safe'),
+			array('title, content, allow_comments, masthead', 'safe'),
 			array('editable_create_time', 'safe'),
 
-			array('id, title, prologue, masthead, category_id, content, image_filename, tags, status, in_home_page, layout, author_id, allow_comments', 'safe', 'on'=>'search'),
+			array('id, title, masthead, category_id, content, tags, status, in_home_page, layout, author_id, allow_comments', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -110,11 +108,9 @@ class Post extends CActiveRecord
 		return array(
 			'id' => 'Id',
 			'title' => 'Τίτλος',
-			'prologue' => 'Πρόλογος',
 			'masthead' => 'Υπέρτιτλος',
 			'content' => 'Περιεχόμενο',
 			'category_id' => 'Κατηγορία',
-			'image_filename' => 'Εικόνα',
 			'layout' => 'Layout',
 			'desired_width' => 'Πλάτος',
 			'tags' => 'Tags',
@@ -208,11 +204,9 @@ class Post extends CActiveRecord
 		Yii::log('Post::afterFind()', 'trace');
 		
 		$this->_oldTitle = $this->title;
-		$this->_oldPrologue = $this->prologue;
 		$this->_oldMasthead = $this->masthead;
 		$this->_oldCategoryId = $this->category_id;
 		$this->_oldContent = $this->content;
-		$this->_oldImageFilename = $this->image_filename;
 		$this->_oldLayout = $this->layout;
 		$this->_oldDesiredWidth = $this->desired_width;
 		$this->_oldTags = $this->tags;
@@ -299,12 +293,10 @@ class Post extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('prologue',$this->prologue,true);
 		$criteria->compare('masthead',$this->masthead,true);
 		$criteria->compare('author_id',$this->author_id);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('content',$this->content,true);
-		$criteria->compare('image_filename',$this->image_filename,true);
 		$criteria->compare('layout', $this->layout);
 		$criteria->compare('tags',$this->tags,true);
 		$criteria->compare('status',$this->status);
@@ -452,9 +444,6 @@ class Post extends CActiveRecord
 					(($this->oldCategory == null) ? '(καμμία)' : $this->oldCategory->title) . '" σε "' . 
 					(($this->category == null) ? '(καμμία)' : $this->category->title) . '"<br />';
 				
-			if ($this->_oldImageFilename != $this->image_filename)
-				$body .= 'Η εικόνα άλλαξε από "' . $this->_oldImageFilename . '" σε "' . $this->image_filename . '"<br />';
-				
 			$layouts = $this->getLayoutOptions();
 			if ($this->_oldLayout != $this->layout)
 				$body .= 'Το layout άλλαξε από "' . $layouts[$this->_oldLayout] . '" σε "' . $layouts[$this->layout] . '"<br />';
@@ -488,9 +477,6 @@ class Post extends CActiveRecord
 			
 			if ($this->_oldMasthead != $this->masthead)
 				$body .= $this->getContentChangeDescription($this->_oldMasthead, $this->masthead, 'Υπέρτιτλος', $is_new);
-				
-			if ($this->_oldMasthead != $this->masthead)
-				$body .= $this->getContentChangeDescription($this->_oldPrologue, $this->prologue, 'Πρόλογος', $is_new);
 		}
 		
 		$body .= $this->getContentChangeDescription($this->_oldContent, $this->content, 'Περιεχόμενο', $is_new);
@@ -515,25 +501,6 @@ class Post extends CActiveRecord
 		return $html;
 	}
 	
-	public function getImageHtml()
-	{
-		if ($this->image_filename == '')
-			return false;
-		
-		// find dimensions to scale
-		$fn = $this->image_filename;
-		
-		// must find a better way for this...
-		if (substr($fn, 0, 8) == '/volax4/')
-			$fn = substr($fn, 8);
-		else if (substr($fn, 0, 7) == '/volax/')
-			$fn = substr($fn, 7);
-		else if (substr($fn, 0, 4) == '/v4/')
-			$fn = substr($fn, 4);
-		
-		return CHtml::image(Yii::app()->baseUrl . '/' . ltrim($fn, '/'));
-	}
-
 	public function getContentLinks()
 	{
 		$re = '/href\s*?=\s*?"([^"]+)"/i';
@@ -549,8 +516,6 @@ class Post extends CActiveRecord
 		$matches = array();
 		preg_match_all($re, $this->content, $matches);
 		$images = $matches[1];
-		if ($this->image_filename != '')
-			array_unshift($images, $this->image_filename);
 		return $images;
 	}
 	

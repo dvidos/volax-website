@@ -31,7 +31,7 @@ class PostRevision extends CActiveRecord
 			array('category_id', 'numerical'),
 			array('title, content, prologue, masthead', 'safe'),
 
-			array('id, post_id, revision_no, datetime, user_id, was_deleted, title, prologue, masthead, content, category_id, tags, status', 'safe', 'on'=>'search'),
+			array('id, post_id, revision_no, datetime, user_id, was_deleted, title, masthead, content, category_id, tags, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,7 +61,6 @@ class PostRevision extends CActiveRecord
 			'user_id'=>'Χρήστης',
 			'was_deleted'=>'Διαγράφηκε',
 			'title' => 'Τίτλος',
-			'prologue' => 'Πρόλογος',
 			'masthead' => 'Υπέρτιτλος',
 			'content' => 'Περιεχόμενο',
 			'category_id' => 'Κατηγορία',
@@ -83,7 +82,6 @@ class PostRevision extends CActiveRecord
 		$criteria->compare('datetime',$this->datetime,true);
 		$criteria->compare('was_deleted',$this->was_deleted);
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('prologue',$this->prologue,true);
 		$criteria->compare('masthead',$this->masthead,true);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('category_id',$this->category_id);
@@ -156,9 +154,6 @@ class PostRevision extends CActiveRecord
 					(($this->oldCategory == null) ? '(καμμία)' : $this->oldCategory->title) . '" σε "' . 
 					(($this->category == null) ? '(καμμία)' : $this->category->title) . '"<br />';
 				
-			if ($this->_oldImageFilename != $this->image_filename)
-				$body .= 'Η εικόνα άλλαξε από "' . $this->_oldImageFilename . '" σε "' . $this->image_filename . '"<br />';
-				
 			$layouts = $this->getLayoutOptions();
 			if ($this->_oldLayout != $this->layout)
 				$body .= 'Το layout άλλαξε από "' . $layouts[$this->_oldLayout] . '" σε "' . $layouts[$this->layout] . '"<br />';
@@ -192,9 +187,6 @@ class PostRevision extends CActiveRecord
 			
 			if ($this->_oldMasthead != $this->masthead)
 				$body .= $this->getContentChangeDescription($this->_oldMasthead, $this->masthead, 'Υπέρτιτλος', $is_new);
-				
-			if ($this->_oldMasthead != $this->masthead)
-				$body .= $this->getContentChangeDescription($this->_oldPrologue, $this->prologue, 'Πρόλογος', $is_new);
 		}
 		
 		$body .= $this->getContentChangeDescription($this->_oldContent, $this->content, 'Περιεχόμενο', $is_new);
@@ -229,9 +221,6 @@ class PostRevision extends CActiveRecord
 		if (strcmp($post->title, $this->title) != 0)
 			$diffs[] = array('field'=>'title', 'caption'=>'Τίτλος', 'old'=>$this->title, 'new'=>$post->title);
 		
-		if (strcmp($post->prologue, $this->prologue) != 0)
-			$diffs[] = array('field'=>'prologue', 'caption'=>'Πρόλογος', 'old'=>$this->prologue, 'new'=>$post->prologue);
-		
 		if (strcmp($post->masthead, $this->masthead) != 0)
 			$diffs[] = array('field'=>'masthead', 'caption'=>'Υπέρτιτλος', 'old'=>$this->masthead, 'new'=>$post->masthead);
 		
@@ -259,9 +248,6 @@ class PostRevision extends CActiveRecord
 		
 		if (strcmp($revision->title, $this->title) != 0)
 			$diffs[] = array('field'=>'title', 'caption'=>'Τίτλος', 'old'=>$older->title, 'new'=>$newer->title);
-		
-		if (strcmp($revision->prologue, $this->prologue) != 0)
-			$diffs[] = array('field'=>'prologue', 'caption'=>'Πρόλογος', 'old'=>$older->prologue, 'new'=>$newer->prologue);
 		
 		if (strcmp($revision->masthead, $this->masthead) != 0)
 			$diffs[] = array('field'=>'masthead', 'caption'=>'Υπέρτιτλος', 'old'=>$older->masthead, 'new'=>$newer->masthead);

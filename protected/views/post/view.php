@@ -12,18 +12,9 @@ $this->pageTitle=$model->title;
 
 		echo CHtml::tag('div', array('class'=>'title'), CHtml::link(CHtml::encode($model->title), $model->url));
 
-		if ($model->prologue != '')
-			echo CHtml::tag('div', array('class'=>'prologue'), CHtml::encode($model->prologue));
-
-		$imgHtml = $model->getImageHtml();
-		if ($imgHtml !== false)
-			echo $imgHtml;
-
 		$content = $model->getContentHtmlIncludingMore();
 		$content = $this->widget('application.components.ContentProcessor', array('content'=>$content), true);
 		echo CHtml::tag('div', array('class'=>'content'), $content);
-		
-
 	?>
 	
 	
