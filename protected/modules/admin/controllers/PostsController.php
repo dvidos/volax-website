@@ -314,4 +314,23 @@ class PostsController extends Controller
 			'errors'=>$errors,
 		));
 	}
+	
+	
+	public function actionSearchContent()
+	{
+		$key = array_key_exists('key', $_REQUEST) ? $_REQUEST['key'] : '';
+		$regex = array_key_exists('regex', $_REQUEST) ? $_REQUEST['regex'] : '';
+		
+		$results = array();
+		if (!empty($key))
+			$results = Post::model()->searchPostsForContent($key, $regex);
+			
+		$this->render('searchContent', array(
+			'key'=>$key,
+			'regex'=>$regex,
+			'results'=>$results,
+		));
+	}
+	
+	
 }

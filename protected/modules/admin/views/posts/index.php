@@ -27,6 +27,8 @@ Yii::app()->clientScript->registerScript('search',
 	echo CHtml::link('Ακεραιότητα', array('/admin/posts/integrity'), array('class'=>'button')); 
 	echo ' ';
 	echo CHtml::link('Γλώσσες', array('/admin/posts/languages'), array('class'=>'button')); 
+	echo ' ';
+	echo CHtml::link('Αναζήτηση', array('/admin/posts/searchContent'), array('class'=>'button')); 
 ?></p>
 
 <div class="search-form" style="display:none">

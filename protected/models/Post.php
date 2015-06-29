@@ -518,7 +518,31 @@ class Post extends CActiveRecord
 		$images = $matches[1];
 		return $images;
 	}
-	
+
+	public function searchPostsForContent($key, $regex)
+	{
+		$results = array();
+		$crit = new CDbCriteria();
+		$crit->select = 'id, title';
+		$crit->order = 'update_time DESC';
+		
+		if ($regex) // "1" for clicked, "" for not.
+		{
+			$crit->addCondition('content REGEXP :key');
+			$crit->params = array(':key'=>$key);
+		}
+		else 
+		{
+			$crit->addSearchCondition('content', $key);
+			
+		}
+		
+		$posts = $this->findAll($crit);
+		foreach ($posts as $post)
+			$results[] = array('id'=>$post->id, 'title'=>$post->title);
+		
+		return $results;
+	}
 }
 
 
