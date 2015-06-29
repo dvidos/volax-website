@@ -45,6 +45,12 @@
 		<?php echo $form->error($model,'is_author'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'fullname'); ?>
+		<?php echo $form->textField($model,'fullname',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'fullname'); ?>
+	</div>
+
 	<div class="row checkbox">
 		<?php echo $form->labelEx($model,'profile'); ?>
 		<?php echo $form->textArea($model,'profile', array('style'=>'width:100%; min-height:250px;')); ?>

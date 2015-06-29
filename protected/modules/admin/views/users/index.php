@@ -25,6 +25,7 @@ Yii::app()->clientScript->registerScript('search',
 	'columns'=>array(
 		'username',
 		'email',
+		'fullname',
 		array(
 			'name'=>'is_admin',
 			'header'=>'Admin',
