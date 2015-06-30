@@ -689,6 +689,12 @@ table.bordered td
 	border: 1px solid #aaa;
 	margin: 0;
 }
+table.bordered thead td, table.bordered tfoot td {
+	background-color: #ddd;
+	color: #333;
+	font-weight: bold;
+}
+
 
 a.button, a.search-button, input[type=submit]
 {
