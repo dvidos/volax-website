@@ -5,9 +5,10 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->errorSummary($model); ?>
+<table style="border:1px solid #ddd; background-color: #eee;">
+<tr><td>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
@@ -20,6 +21,14 @@
 		<?php echo $form->textField($model,'username',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'username'); ?>
 	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'fullname'); ?>
+		<?php echo $form->textField($model,'fullname',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'fullname'); ?>
+	</div>
+
+</td><td>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password1'); ?>
@@ -45,11 +54,8 @@
 		<?php echo $form->error($model,'is_author'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'fullname'); ?>
-		<?php echo $form->textField($model,'fullname',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'fullname'); ?>
-	</div>
+	
+</td></tr><tr><td colspan="2">
 
 	<div class="row checkbox">
 		<?php echo $form->labelEx($model,'profile'); ?>
@@ -58,9 +64,12 @@
 	</div>
 	
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Δημιουργία' : 'Αποθήκευση'); ?>
 	</div>
-
+	
+</td></tr>
+</table>
+	
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

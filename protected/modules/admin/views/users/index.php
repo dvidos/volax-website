@@ -23,7 +23,12 @@ Yii::app()->clientScript->registerScript('search',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'username',
+		//'username',
+		array(
+			'name'=>'username',
+			'type'=>'raw',
+			'value'=>'CHtml::link(CHtml::encode($data->username), array("update", "id"=>$data->id));',
+		),
 		'email',
 		'fullname',
 		array(
