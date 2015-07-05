@@ -96,11 +96,12 @@ class Tag extends CActiveRecord
 	 * @param integer maximum number of tags to be returned
 	 * @return array list of matching tag names
 	 */
-	public function suggestTags($keyword,$limit=20)
+	public function suggestTags($keyword,$limit=50)
 	{
 		$tags=$this->findAll(array(
 			'condition'=>'name LIKE :keyword',
-			'order'=>'frequency DESC, Name',
+			//'order'=>'frequency DESC, Name',
+			'order'=>'name',
 			'limit'=>$limit,
 			'params'=>array(
 				':keyword'=>'%'.strtr($keyword,array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\')).'%',

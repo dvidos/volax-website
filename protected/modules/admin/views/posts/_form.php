@@ -81,6 +81,7 @@
 			'attribute'=>'tags',
 			'url'=>array('suggestTags'),
 			'multiple'=>true,
+			'max'=>50,
 			'htmlOptions'=>array('size'=>40, 'style'=>'width:100%;'),
 		)); ?>
 		<p class="hint">Χρησιμοποιήστε ελληνικά, χωρίστε τα με κόμμα. Tags σε παρένθεση δεν εμφανίζονται δημόσια.</p>
