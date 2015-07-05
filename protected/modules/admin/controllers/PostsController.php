@@ -332,5 +332,150 @@ class PostsController extends Controller
 		));
 	}
 	
+	public function actionOrphanFiles()
+	{
+		$posts = Post::model()->findAll(array(
+			'select'=>'id, title, content',
+		));
+		
+		$links = array();
+		foreach ($posts as $post)
+			$this->orphanFiles_processPost($post, $links);
+		
+		
+		$existing_files = array();
+		$cutOff = strlen(dirname(Yii::app()->basePath));
+		$this->orphanFiles_getFiles(dirname(Yii::app()->basePath) . '/uploads', $cutOff, $existing_files);
+		// for ($i = 0; $i < count($files); $i++)
+		// {
+			// $f = $files[$i];
+			// if (substr($f, 0, 2) == './')
+				// $f = '/uploads' . substr($f, 1);
+			
+			// $files[$i] = $f;
+		// }
+		
+		
+		$this->render('orphanFiles', array(
+			'files_used_by_posts'=>$links,
+			'existing_files'=>$existing_files,
+		));
+	}
+	
+	function orphanFiles_getFiles($dir, $cutOff, &$files)
+	{
+		$d = opendir($dir);
+		while (($f = readdir($d)) !== false)
+		{
+			if ($f == '.' || $f == '..' || $f == '.tmb')
+				continue;
+			
+			$path = $dir . '/' . $f;
+			if (is_file($path))
+			{
+				$files[] = substr($path, $cutOff);
+			}
+			else if (is_dir($path))
+			{
+				$this->orphanFiles_getFiles($path, $cutOff, $files);
+			}
+		}
+		closedir($d);
+	}
+	
+	function orphanFiles_processPost($post, &$links)
+	{
+		$this->orphanFiles_processHref($post->id, $post->content, $links);
+		$this->orphanFiles_processImg($post->id, $post->content, $links);
+		$this->orphanFiles_processGalleries($post->id, $post->content, $links);
+		$this->orphanFiles_processAudio($post->id, $post->content, $links);
+	}
+	
+	function orphanFiles_processHref($id, $content, &$links)
+	{
+		$matches = array();
+		preg_match_all('/<a.+?href="([^"]+)"/', $content, $matches, PREG_SET_ORDER);
+		foreach ($matches as $match)
+		{
+			$this->orphanFiles_include($match[1], $id, $links);
+		}
+	}
+	function orphanFiles_processImg($id, $content, &$links)
+	{
+		$matches = array();
+		preg_match_all('/<img.+?src="([^"]+)"/', $content, $matches, PREG_SET_ORDER);
+		foreach ($matches as $match)
+		{
+			$this->orphanFiles_include($match[1], $id, $links);
+		}
+	}
+	function orphanFiles_processGalleries($id, $content, &$links)
+	{
+		$matches = array();
+		preg_match_all('/\[gallery\s+([^\]]+?)\]/', $content, $matches, PREG_SET_ORDER);
+		foreach ($matches as $match)
+		{
+			//echo '<tt>' . $match[0] . '</tt><br />';
+			$this->orphanFiles_processGalleryParams($id, $match[1], $links);
+		}
+	}
+
+	function orphanFiles_processGalleryParams($id, $params, &$links)
+	{
+		$matches = array();
+		preg_match_all('/([a-zA-Z]+)=&quot;(.+?)&quot;/', $params, $matches, PREG_SET_ORDER);
+		/* sample:  folder="/uploads/jimel/old_site/images" cols="4"
+		img="Libro-Maestrob.jpg"  thumb="Libro-Maestro.jpg"  caption="To Libro Maestro του χωριού (1849)"
+		img="Gregorius-XVI_Franceso_Podestib.jpg"  thumb="Gregorius-XVI_Franceso_Podesti.jpg"  caption="Ο Πάπας Γρηγόριος ΙΣΤ'"
+		img="Spitia1700b.jpg"  thumb="Spitia1700.jpg"  caption="Ο θυρεός του Οίκου Valier στο χωριό"
+		img="KAP_01.jpg"  thumb="KAP_01k.jpg"  caption="Στρατιώτης από το χωριό" */
+		
+		//echo '<p>matches: <pre>' . var_export($matches, true) . '</pre></p>';
+		$folder = '';
+		$targets = array();
+		foreach ($matches as $match)
+		{
+			if ($match[1] == 'folder')
+				$folder = $match[2];
+			else if ($match[1] == 'img' || $match == 'thumb')
+				$targets[] = $match[2];
+		}
+		
+		// now include all links.
+		foreach ($targets as $target)
+		{
+			$url = str_replace('//', '/', $folder . '/' . $target);
+			$this->orphanFiles_include($url, $id, $links);
+		}
+	}
+
+	function orphanFiles_processAudio($id, $content, &$links)
+	{
+		$matches = array();
+		preg_match_all('/\[audio.+?src=&quot;(.+?)&quot;/', $content, $matches, PREG_SET_ORDER);
+		foreach ($matches as $match)
+		{
+			$this->orphanFiles_include($match[1], $id, $links);
+		}
+	}
+
+	function orphanFiles_include($link, $id, &$links)
+	{
+		if (substr($link, 0, 15) == 'http://volax.gr')
+			$link = substr($link, 15);
+		else if (substr($link, 0, 19) == 'http://www.volax.gr')
+			$link = substr($link, 19);
+		
+		// poining to volax.gr
+		if (strlen($link) == 0)
+			return;
+			
+		$link = urldecode($link);
+		
+		if (!array_key_exists($link, $links))
+			$links[$link] = array();
+		$links[$link][] = $id;
+	}
+	
 	
 }
