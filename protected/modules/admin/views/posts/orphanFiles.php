@@ -23,7 +23,7 @@
 		$used_files[] = '/uploads/jimel/old_site/' . $file_used_by_old_volax_tinos_gr;
 	foreach ($files_used_by_posts as $file => $post_ids)
 		$used_files[] = $file;
-	sort($used_files);
+	sort($used_files, SORT_STRING);
 	//echo 'used = <pre>' . var_export($used, true) . '</pre>';
 	
 	
@@ -63,12 +63,12 @@
 	
 	echo '<h2>Αρχεία που υπάρχουν, αλλά δεν χρησιμοποιούνται</h2>';
 	echo '<textarea cols="70" rows="10" style="width:100%;">' . implode("\r\n", $orphan_files) . "\r\n" . '</textarea>';
-	sort($orphan_files);
+	sort($orphan_files, SORT_STRING);
 	echo '<p>&nbsp;</p>';
 	
 	
 	echo '<h2>Αρχεία που χρησιμοποιούνται, αλλά δεν βρέθηκαν</h2>';
-	sort($missing_files);
+	sort($missing_files, SORT_STRING);
 	foreach ($missing_files as $missing_file)
 	{
 		echo CHtml::encode($missing_file);
@@ -82,7 +82,7 @@
 	
 	echo '<h2>Αρχεία που χρησιμοποιούνται σε αναρτήσεις</h2>';
 	$used_paths = array_keys($files_used_by_posts);
-	sort($used_paths);
+	sort($used_paths, SORT_STRING);
 	foreach ($used_paths as $used_path)
 	{
 		echo CHtml::encode($used_path) . ' &nbsp; ';

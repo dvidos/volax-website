@@ -60,6 +60,15 @@
 </td><td width="0%">
 
 
+	<h3>Php Info</h3>
+	
+	<p><?php
+		echo CHtml::button('Php Info', array(
+			'onClick'=>'window.location = "' . $this->createUrl('/admin/tools/phpinfo') . '";',
+		));
+	?></p>
+	
+	
 
 </td></tr></table>
 
