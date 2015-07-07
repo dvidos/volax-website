@@ -69,20 +69,27 @@ div#left-column h3 {
 }
 
 div#left-column div.section {
-	margin-bottom: 5em;
+	margin-bottom: 4em;
 }
 
 div#left-column a.black-button {
 	display: block;
-	margin: 1em 0;
+	margin: 0 0;
 	text-decoration: none;
-	padding: .25em .5em;
+	padding: .33em .5em;
 	font-size: 110%;
 	background-color: #000;
 	color: white;
+	border-bottom: 1px solid #222;
+}
+div#left-column a.black-button span.subtitle {
+	color: #999;
+	margin-left: .5em;
+	font-size: 90%;
+	white-space: no-wrap;
 }
 div#left-column a.black-button:hover {
-	background-color: #222;
+	background-color: #171717;
 }
 
 div#content
@@ -568,13 +575,12 @@ ul.main-menu-list li {
 }
 ul.main-menu-list li a {
 	display: block;
-	padding: .75em .75em;
-	margin: 1em 0 0 0;
 	text-decoration: none;
-	padding: .25em .5em;
+	padding: .33em .5em;
 	font-size: 110%;
 	background-color: #66cef5;
 	color: black;
+	border-bottom: 1px solid #4EAFD3;
 }
 ul.main-menu-list li a:hover {
 	background-color: #7fd6f6;
@@ -590,10 +596,14 @@ ul.main-menu-list ul.active {
 ul.main-menu-list ul li {
 }
 ul.main-menu-list ul a {
-	background-color: #5dc6ed;
+	background-color: #4EAFD3;
+	border-bottom: 1px solid #3B9ABD;
 	padding-left: 1.5em;
 	margin: 0;
-	border-top: 1px solid #33bbdd;
+	color: #222;
+}
+ul.main-menu-list ul a:hover {
+	background-color: #52BEE7;
 }
 
 

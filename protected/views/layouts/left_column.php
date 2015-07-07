@@ -34,14 +34,9 @@
 	</div>
 	<div class="section">
 		<?php
-			echo CHtml::link('ΔΕΙΤΕ', array('/post/list', 'tag'=>'ΔΕΙΤΕ'), array('class'=>'black-button'));
-			echo CHtml::tag('p', array(), 'εικόνες &amp; video');
-			
-			echo CHtml::link('ΑΚΟΥΣΤΕ', array('/post/list', 'tag'=>'ΑΚΟΥΣΤΕ'), array('class'=>'black-button'));
-			echo CHtml::tag('p', array(), 'διηγήσεις &amp; ήχους');
-			
-			echo CHtml::link('ΚΑΤΕΒΑΣΤΕ', array('/post/list', 'tag'=>'ΚΑΤΕΒΑΣΤΕ'), array('class'=>'black-button'));
-			echo CHtml::tag('p', array(), 'αρχεία');
+			echo CHtml::link('ΔΕΙΤΕ <span class="subtitle">εικόνες &amp; video</span>', array('/post/list', 'tag'=>'ΔΕΙΤΕ'), array('class'=>'black-button'));
+			echo CHtml::link('ΑΚΟΥΣΤΕ <span class="subtitle">διηγήσεις &amp; ήχους</span>', array('/post/list', 'tag'=>'ΑΚΟΥΣΤΕ'), array('class'=>'black-button'));
+			echo CHtml::link('ΚΑΤΕΒΑΣΤΕ <span class="subtitle">αρχεία</span>', array('/post/list', 'tag'=>'ΚΑΤΕΒΑΣΤΕ'), array('class'=>'black-button'));
 		?>
 	</div>
 	<div class="section">
