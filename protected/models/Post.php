@@ -68,11 +68,13 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category_id, status', 'required'),
+			array('title, category_id, status', 'required'),
 			array('status', 'in', 'range'=>array(1,2,3)),
 			array('title', 'length', 'max'=>128),
+			array('title', 'application.components.validators.NoMixedLangValidator'),
 			array('tags', 'match', 'pattern'=>'/^[\S\s,]+$/', 'message'=>'Tags must be separated with comma.'),
 			array('tags', 'normalizeTags'),
+			array('tags', 'application.components.validators.NoMixedLangValidator'),
 			array('category_id, status, layout, desired_width, in_home_page, author_id', 'numerical'),
 			array('title, content, allow_comments, masthead', 'safe'),
 			array('editable_create_time', 'safe'),

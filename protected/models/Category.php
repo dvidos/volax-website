@@ -30,10 +30,11 @@ class Category extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('status, layout', 'required'),
+			array('title, status, layout', 'required'),
 			array('title', 'length', 'max'=>128),
+			array('title', 'application.components.validators.NoMixedLangValidator'),
 			array('parent_id, view_order, layout, status', 'numerical'),
-			array('title, content', 'safe'),
+			array('content', 'safe'),
 			array('id, parent_id, title, content, layout, status, view_order', 'safe', 'on'=>'search'),
 		);
 	}
