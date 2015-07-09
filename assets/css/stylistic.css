@@ -36,6 +36,15 @@ body.cke_editable img {
 }
 
 
+table {
+	border-collapse: collapse;
+	min-width: 66%;
+}
+table td {
+	padding: .25em .5em;
+	border: 1px solid #ccc;
+	vertical-align: top;
+}
 	
 
 

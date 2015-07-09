@@ -749,4 +749,5 @@ div.static-page {
 	margin: 0 auto;
 }
 
-
+del { color: #c00; text-decoration :line-through; }
+ins { color: #0c0; text-decoration: underline; }
