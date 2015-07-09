@@ -20,84 +20,54 @@
 	<tr><td>Χρήστης</td><td><?php echo $model->user == null ? '(χρήστης #'.$model->user_id.')' : $model->user->username; ?></td></tr>
 </table>
 
+
 <?php
-
-	function presentDifferences($title, $revCaption, $username, $datetime, $diffs)
-	{
-		$html = CHtml::tag('h2', array(), $title);
-		$html .= CHtml::tag('p', array(), $revCaption . ', ' . $username . ', ' . $datetime);
-		
-		if (count($diffs) == 0)
-		{
-			$html .= CHtml::tag('p', array(), 'Δεν βρέθηκαν διαφορές');
-			return $html;
-		}
-		
-		$html .= '<table class="bordered">';
-		$html .= '<tr><td>Πεδίο</td><td>Πριν</td><td>Μετά</td></tr>';
-		foreach ($diffs as $diff)
-		{
-			$html .= '<tr>' . 
-				'<td>' . CHtml::encode($diff['caption']) . '</td>' .
-				'<td>' . $diff['old'] . '</td>' .
-				'<td>' . $diff['new'] . '</td>' .
-			'</tr>';
-		}
-		$html .= '</table>';
-		
-		return $html;
-	}
-	
-	// present previous if exists.
-	if ($model->revision_no > 1)
-	{
-		$rev = PostRevision::model()->findByAttributes(array('post_id'=>$model->post_id, 'revision_no'=>$model->revision_no - 1));
-		if ($rev != null)
-		{
-			echo presentDifferences(
-				'Διαφορές με προηγούμενη αναθεώρηση',
-				'Αρ. ' . $rev->revision_no, 
-				$rev->user == null ? '(χρήστης #' . $rev->user_id . ')' : $rev->user->username,
-				$rev->datetime,
-				$rev->getDifferencesWithRevision($model)
-			);
-		}
-	}
-	
-	// see if there is a next one
-	$rev = PostRevision::model()->findByAttributes(array('post_id'=>$model->post_id, 'revision_no'=>$model->revision_no + 1));
-	if ($rev != null)
-	{
-		echo presentDifferences(
-			'Διαφορές με επόμενη αναθεώρηση',
-			'Αρ. ' . $rev->revision_no, 
-			$rev->user == null ? '(χρήστης #' . $rev->user_id . ')' : $rev->user->username,
-			$rev->datetime,
-			$model->getDifferencesWithRevision($rev)
-		);
-	}
-	else if ($model->post != null)
-	{
-		echo presentDifferences(
-			'Διαφορές με σημερινή έκδοση',
-			$model->post == null ? '(αρθρο #' . $model->post_id . ')' : $model->post->title, 
-			$model->post->author == null ? '(χρήστης #' . $model->post->author_id . ')' : $model->post->author->username,
-			date('d-m-Y H:i', $model->post->update_time),
-			$model->getDifferencesWithPost($model->post)
-		);
-	}
+	// each revision is saved after a post update. 
+	// therefore it always has a difference with the "next", 
+	// whether this next is another revision or the post.
 	
 
-	// post was deleted, show anything useful
 	if ($model->was_deleted)
 	{
-		echo CHtml::tag('h2', array(), 'Περιεχόμενο κατά την διαγραφή');
-		echo '<table class="bordered">';
-		echo '<tr><td>Τίτλος</td><td>' . CHtml::encode($model->title) . '</td></tr>';
-		echo '<tr><td>Υπέρτιτλος</td><td>' . CHtml::encode($model->masthead) . '</td></tr>';
-		echo '<tr><td>Πρόλογος</td><td>' . CHtml::encode($model->prologue) . '</td></tr>';
-		echo '<tr><td>Κείμενο</td><td>' . CHtml::encode($model->content) . '</td></tr>';
-		echo '</table>';
+		// post was deleted at this revision, present last content.
+		$title = 'Δεδομένα πριν την διαγραφή';
+		$result = array('title'=>$model->title, 'masthead'=>$model->masthead, 'content'=>$model->content);
 	}
+	else
+	{
+		$left = array('title'=>$model->title, 'masthead'=>$model->masthead, 'content'=>$model->content);
+		$right = array('title'=>'', 'masthead'=>'', 'content'=>'');
+		
+		$nextRevision = PostRevision::model()->findByAttributes(array('post_id'=>$model->post_id, 'revision_no'=>$model->revision_no + 1));
+		if ($nextRevision != null)
+		{
+			$title = 'Αλλαγές με επόμενη έκδοση';
+			$right['title'] = $nextRevision->title;
+			$right['masthead'] = $nextRevision->masthead;
+			$right['content'] = $nextRevision->content;
+		}
+		else if ($model->post != null)
+		{
+			$title = 'Αλλαγές με τρέχουσα έκδοση';
+			$right['title'] = $model->post->title;
+			$right['masthead'] = $model->post->masthead;
+			$right['content'] = $model->post->content;
+		}
+		
+		// now compare
+		$result = array(
+			'title'=>Yii::app()->textDiff->compare($left['title'], $right['title']),
+			'masthead'=>Yii::app()->textDiff->compare($left['masthead'], $right['masthead']),
+			'content'=>Yii::app()->textDiff->compare($left['content'], $right['content']),
+		);
+	}
+	
+	echo CHtml::tag('h2', array(), $title);
+	echo '<table class="bordered">';
+	echo '<tr><td>Τίτλος</td><td>' . $result['title'] . '</td></tr>';
+	echo '<tr><td>Υπέρτιτλος</td><td>' . $result['masthead'] . '</td></tr>';
+	echo '<tr><td>Κείμενο</td><td>' . $result['content'] . '</td></tr>';
+	echo '</table>';
 
+?>
 

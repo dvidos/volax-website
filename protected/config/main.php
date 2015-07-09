@@ -102,6 +102,9 @@ return array(
 		'differer' => array(
 			'class'=>'application.components.Differer',
 		),
+		'textDiff'=>array(
+			'class'=>'application.components.TextDiff',
+		),
 	),
 
 	'modules' => array(
