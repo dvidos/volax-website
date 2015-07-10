@@ -1,8 +1,5 @@
 <?php
-$this->pageTitle='Είσοδος';
-$this->breadcrumbs=array(
-	'Είσοδος',
-);
+	$this->pageTitle='Είσοδος';
 ?>
 
 <h1>Είσοδος</h1>
@@ -12,24 +9,27 @@ $this->breadcrumbs=array(
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',
-	'enableAjaxValidation'=>true,
+	'enableAjaxValidation'=>false,
 )); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'username',array('label'=>'Ονομα χρήστη (όχι email)')); ?>
-		<?php echo $form->textField($model,'username'); ?>
-		<?php echo $form->error($model,'username'); ?>
+		<?php echo $form->labelEx($model,'email'); ?>
+		<?php echo $form->textField($model,'email',array('size'=>40)); ?>
+		<?php echo $form->error($model,'email'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
 		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
+		<div class="hint"><?php echo CHtml::link('Εχω ξεχάσει τον κωδικό πρόσβασής μου', array('/user/forgotPassword'), array('style'=>'text-decoration:underline;color:inherit;')); ?></div>
 	</div>
 
-	<div class="row rememberMe">
+	<p>&nbsp;</p>
+	
+	<div class="row checkbox">
 		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'rememberMe',array('label'=>'Αυτόματη σύνδεση την επόμενη φορά (Ισχύει για ένα μήνα)')); ?>
+		<?php echo $form->label($model,'rememberMe',array('label'=>'Αυτόματη σύνδεση την επόμενη φορά')); ?>
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
@@ -39,3 +39,4 @@ $this->breadcrumbs=array(
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
+

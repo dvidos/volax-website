@@ -47,7 +47,7 @@ $this->breadcrumbs=array(
 	<div class="row">
 		<?php echo $form->labelEx($model,'verifyCode'); ?>
 		<div>
-		<?php $this->widget('CCaptcha'); ?>
+		<?php $this->widget('CCaptcha', array('imageOptions'=>array('style'=>'vertical-align: middle;'),'buttonLabel'=>'Αλλαγή', 'buttonType'=>'button')); ?><br />
 		<?php echo $form->textField($model,'verifyCode'); ?>
 		</div>
 		<div class="hint">Παρακαλούμε συμπληρώστε τα γράμματα όπως φαίνονται στην εικόνα. Κεφαλαία ή μικρά, δεν έχει σημασία.</div>

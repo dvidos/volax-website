@@ -9,7 +9,7 @@ return array(
 	'title'=>'Βωλάξ',
 	
 	// this is used in error pages
-	'adminEmail'=>'dvidos@gmail.com',
+	'adminEmail'=>'info@volax.gr',
 	
 	// who receives email from the contact form.
 	'contactFormReceivers'=>array(
@@ -28,7 +28,13 @@ return array(
 	'postSavedSubscribers'=>array(
 		//'dvidos@gmail.com',
 		//'jimel.vidos@gmail.com',
+		//'nikaliamoutos@gmail.com',
+	),
+	
+	'newUserSubscribers'=>array(
+		'dvidos@gmail.com',
 		//'jimel.vidos@gmail.com',
+		//'nikaliamoutos@gmail.com',
 	),
 	
 	// the markup to use for "read more..."

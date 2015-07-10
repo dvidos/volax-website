@@ -32,9 +32,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'captcha_content'); ?>
-		<?php $this->widget('CCaptcha', array(
-			
-		)); ?>
+		<?php $this->widget('CCaptcha', array('imageOptions'=>array('style'=>'vertical-align: middle;'),'buttonLabel'=>'Αλλαγή', 'buttonType'=>'button')); ?><br />
 		<?php echo $form->textField($model,'captcha_content',array('size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'captcha_content'); ?>
 	</div>

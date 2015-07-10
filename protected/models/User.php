@@ -4,17 +4,28 @@ class User extends CActiveRecord
 {
 	/**
 	 * The followings are the available columns in table 'tbl_user':
-	 * @var integer $id
-	 * @var string $username
-	 * @var string $password
-	 * @var string $email
-	 * @var string $profile
+		id					int(11)
+		username			varchar(128)
+		password			varchar(128)
+		email				varchar(128)
+		fullname			varchar(100)
+		is_author			int(11)
+		is_admin			int(11)
+		profile				text
+		registered_at		datetime
+		last_login_at		datetime
+		security_token		varchar(128)
+		token_expires_at	datetime
+		email_confirmed		tinyint(1)
+		want_newsletter		tinyint(1)
+		is_banned			tinyint(1)
 	 */
+
 	
 	// for changing password.
 	var $password1;
 	var $password2;
-
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return CActiveRecord the static model class
@@ -40,10 +51,12 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, email', 'required'),
+			array('email', 'required'),
 			array('username, password, fullname, email', 'length', 'max'=>128),
+			array('username', 'unique'),
+			array('is_admin, is_author, is_banned, want_newsletter, email_confirmed', 'boolean'),
 			array('password2', 'compare', 'compareAttribute'=>'password1'),
-			array('profile, password1, password2, is_admin, is_author', 'safe'),
+			array('profile, password1, password2', 'safe'),
 		);
 	}
 
@@ -66,19 +79,32 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'username' => 'Ονομα',
-			'password' => 'Κωδικός',
-			'password1' => 'Αλλαγή κωδικού (αν είναι κενό, δεν αλλάζει)',
-			'password2' => 'Επανάληψη αλλαγής κωδικού',
+			'username' => 'Ονομα χρήστη',
+			'password' => 'Κρυπτόγραμμα κωδικού',
+			'password1' => 'Νέος κωδικός (αφήστε κενό για διατήρηση του υπάρχοντος)',
+			'password2' => 'Επανάληψη νέου κωδικού',
+			'fullname' => 'Πλήρες όνομα',
 			'email' => 'Email',
 			'profile' => 'Προφίλ',
+			'registered_at'=>'Ημ/νια εγγραφής',
+			'last_login_at'=>'Ημ/νία τελευταίας εισόδου',
+			'security_token'=>'Κρυπτόγραμμα ασφαλείας',
+			'token_expires_at'=>'Λήξη κρυπτογράμματος ασφαλείας',
+			'email_confirmed'=>'Email επιβεβαιωμένο',
+			'want_newsletter'=>'Συμμετοχή σε αλληλογραφία',
+			'is_banned'=>'Απαγορευμένος',
+			'is_admin'=>'Διαχειριστής',
+			'is_author'=>'Συντάκτης',
 		);
 	}
 
 	public function beforeSave()
 	{
 		if (strlen($this->password1) > 0 && strlen($this->password2) > 0 && $this->password1 == $this->password2)
+		{
 			$this->password = $this->hashPassword($this->password1);
+			Yii::app()->user->setFlash('passwordChanged','Ο κωδικός πρόσβασης άλλαξε');
+		}
 			
 		// allow continue
 		return parent::beforeSave();
@@ -104,6 +130,24 @@ class User extends CActiveRecord
 		return crypt($password, $this->generateSalt());
 	}
 
+	/**
+	 * Generates a token to be used in a url sent through email
+	 */
+	public function createEmailToken()
+	{
+		$signature_data = $this->id . $this->email . $this->password;
+		return crypt($signature_data, $this->generateSalt());
+	}
+	
+	/**
+	 * Validates a token sent in a url through email
+	 */
+	public function validateEmailToken($token)
+	{
+		$signature_data = $this->id . $this->email . $this->password;
+		return crypt($signature_data, $token) === $token;
+	}
+	
 	/**
 	 * Generates a salt that can be used to generate a password hash.
 	 *
@@ -168,6 +212,32 @@ class User extends CActiveRecord
 				self::$_items[$user->id] = $user->username;
 		}
 		return self::$_items;
+	}
+	
+	
+	public function generateUniqueUsername($email)
+	{
+		$username = substr($email, 0, strpos($email, '@'));
+		$count = User::model()->countByAttributes(array('username'=>$username));
+		if ($count == 0)
+			return $username;
+		
+		$num = 1;
+		while (User::model()->countByAttributes(array('username'=>$username . $num)) > 0)
+			$num++;
+		
+		return $username . $num;
+	}
+	
+	public function getGreeting()
+	{
+		if ($this->username != '')
+			return $this->username;
+		
+		if ($this->email != '')
+			return $this->email;
+		
+		return 'user' . $this->id;
 	}
 }	
 

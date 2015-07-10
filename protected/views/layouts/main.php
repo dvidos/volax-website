@@ -56,9 +56,9 @@
 		<?php
 			if (Yii::app()->user->isGuest)
 			{
-				// echo CHtml::link('Γίνε Μέλος', array('/site/register'));
-				// echo ' | ';
-				echo CHtml::link('Είσοδος', array('/site/login'));
+				echo CHtml::link('Είσοδος', array('/user/login'));
+				echo ' | ';
+				echo CHtml::link('Εγγραφή', array('/user/register'));
 			}
 			else
 			{
@@ -78,7 +78,9 @@
 				if (Yii::app()->user->isAdmin)
 					echo CHtml::link('Διαχείριση', array('/admin')) . ' &nbsp;|&nbsp; ';
 				
-				echo CHtml::link('Έξοδος', array('/site/logout'));
+				echo CHtml::link('O λογαριασμός μου', array('/user/myAccount'));
+				echo ' | ';
+				echo CHtml::link('Έξοδος', array('/user/logout'));
 			}
 		?>
 	</div>

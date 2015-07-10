@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle=$model->fullname;
+$this->pageTitle=$user->fullname;
 ?>
 
 <?php
@@ -9,14 +9,14 @@ $this->pageTitle=$model->fullname;
 <div class="post">
 
 	<div class="title">
-		<?php echo CHtml::encode($model->fullname); ?>
+		<?php echo CHtml::encode($user->fullname); ?>
 	</div>
 	
 	<?php
-		if ($model->profile != '')
+		if ($user->profile != '')
 		{
 			echo '<div class="content">';
-			echo CHtml::encode($model->profile);
+			echo CHtml::encode($user->profile);
 			echo '</div>' . "\r\n";
 		}
 	?>
@@ -30,7 +30,7 @@ $this->pageTitle=$model->fullname;
 		$dataProvider = new CActiveDataProvider('Post', array(
 			'criteria'=>array(
 				'condition'=>'author_id = :aid AND (status=' . Post::STATUS_PUBLISHED . ')',
-				'params'=>array(':aid'=>$model->id),
+				'params'=>array(':aid'=>$user->id),
 			),
 			'sort'=>array(
 				'defaultOrder'=>'create_time DESC',

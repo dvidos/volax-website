@@ -28,6 +28,18 @@
 		<?php echo $form->error($model,'fullname'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'registered_at'); ?>
+		<?php echo $form->textField($model,'registered_at',array('name'=>'ra', 'readonly'=>'readonly', 'disabled'=>'disabled')); ?>
+		<?php echo $form->error($model,'registered_at'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'last_login_at'); ?>
+		<?php echo $form->textField($model,'last_login_at',array('name'=>'lla', 'readonly'=>'readonly', 'disabled'=>'disabled')); ?>
+		<?php echo $form->error($model,'last_login_at'); ?>
+	</div>
+
 </td><td>
 
 	<div class="row">
@@ -42,6 +54,15 @@
 		<?php echo $form->error($model,'password2'); ?>
 	</div>
 
+	<?php
+		if (Yii::app()->user->hasFlash('passwordChanged'))
+		{
+			echo CHtml::tag('div', array('class'=>'flash-success'), Yii::app()->user->getFlash('passwordChanged'));
+			$js = '$(document).ready(function(){ setTimeout(function() { $(".flash-success").slideUp(); }, 4000); });';
+			echo CHtml::tag('script', array(), $js);
+		}
+	?>
+	
 	<div class="row checkbox">
 		<?php echo $form->checkBox($model,'is_admin'); ?>
 		<?php echo $form->labelEx($model,'is_admin', array('style'=>'display:inline;')); ?>
@@ -54,6 +75,11 @@
 		<?php echo $form->error($model,'is_author'); ?>
 	</div>
 
+	<div class="row checkbox">
+		<?php echo $form->checkBox($model,'is_banned'); ?>
+		<?php echo $form->labelEx($model,'is_banned', array('style'=>'display:inline;')); ?>
+		<?php echo $form->error($model,'is_banned'); ?>
+	</div>
 	
 </td></tr><tr><td colspan="2">
 

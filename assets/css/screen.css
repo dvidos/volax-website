@@ -183,7 +183,7 @@ div.flash-success a
 	color:#264409;
 }
 
-div.form .rememberMe label
+div.form .rememberMe label, div.form .checkbox label
 {
 	display: inline;
 }

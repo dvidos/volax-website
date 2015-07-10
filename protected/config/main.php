@@ -85,18 +85,17 @@ return array(
 		
 		'mailer' => array(
 			'class'=>'application.components.Mailer',
-			'from' => 'info@volax.gr',
+			'from' => 'Volax.gr <info@volax.gr>',
 			'bcc' => array(),
 			'htmlFormat' => true,
 			'disclaimer' => 
-				'Email Disclaimer' . "\r\n" .
-				'The information in this email is confidential and is intended solely for the addressee(s). ' .
-				'If you have received this transmission in error, and you are not an intended recipient, be aware that any disclosure, copying, distribution or use of this transmission or its contents is prohibited. '.
-				'Furthermore, you are kindly requested to delete the message from your system immediately.' . "\r\n" .
-				'Internet communications are not secure and therefore the sender does not accept legal responsibility for the contents of this message and for any damage whatsoever caused by viruses being transmitted.' . "\r\n" .
-				"\r\n" . 
-				'Thank You,' . "\r\n" .
-				'Your Volax Website publishing platform' . "\r\n",
+				"ΓΝΩΣΤΟΠΟΙΗΣΗ\r\n" .
+				'Το περιεχόμενο αυτού του μηνύματος και των τυχόν συνημμένων σε αυτό αρχείων είναι εμπιστευτικό και απόρρητο. '.
+				'Σε περίπτωση, που περιέλθει σε σας από λάθος χωρίς να είστε ο σκοπούμενος παραλήπτης, '.
+				'παρακαλούμε να το διαγράψετε άμεσα από το σύστημά σας και να ειδοποιήσετε τον αποστολέα. '.
+				'Η αντιγραφή, χρήση ή κοινοποίηση σε τρίτους του μηνύματος αυτού από μη κατονομαζόμενο παραλήπτη αντίκειται στο νόμο. '.
+				'Δεδομένου ότι οι επικοινωνίες μέσω του διαδικτύου δεν είναι ασφαλείς, '.
+				'o αποστολέας δεν ευθύνεται για οποιαδήποτε απώλεια δεδομένων ή άλλη ζημία προκύπτει από την χρήση του παρόντος μηνύματος. '
 		),
 		
 		'differer' => array(
