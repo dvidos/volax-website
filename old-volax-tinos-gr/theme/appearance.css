@@ -825,3 +825,8 @@ COLOR: #4b5520;
     FONT-FAMILY: Tahoma, Arial, Verdana, sans-serif;
 }
 
+
+table table td {
+	border: 1px dashed #888;
+	padding: 8px;
+}

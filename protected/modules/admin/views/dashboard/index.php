@@ -5,9 +5,9 @@
 		$tooltip = ($post->author == null ? '(χρήστης #'.$post->author_id.')' : $post->author->fullname) . ' στις ' . $post->friendlyCreateTime;
 		
 		$html = '';
-		$html .= CHtml::link($title, array('/post/view', 'id'=>$post->id), array('target'=>'_blank', 'title'=>$tooltip, 'style'=>'font-weight:normal;'));
+		$html .= CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id), array('title'=>'Διόρθωση', 'style'=>'font-weight:normal; '));
 		$html .= '&nbsp;&nbsp;&nbsp;';
-		$html .= CHtml::link('[Δ]', array('/admin/posts/update', 'id'=>$post->id), array('title'=>'Διόρθωση', 'style'=>'font-weight:normal; color: #aaa;'));
+		$html .= CHtml::link('(Εμφ)', array('/post/view', 'id'=>$post->id), array('target'=>'_blank', 'title'=>$tooltip, 'style'=>'font-weight:normal; color: #aaa;'));
 		
 		return $html;
 	}
@@ -40,11 +40,18 @@
 		$posts = Post::model()->findAll(array(
 			'condition'=>'status='.Post::STATUS_PUBLISHED,
 			'order'=>'update_time DESC',
-			'limit'=>10,
+			'limit'=>8,
 		));
 		foreach ($posts as $post)
 			echo postLink($post) . '<br />';
 	?></p>
+	
+	<h2>Βοηθητικές κατηγορίες</h2>
+	<p>
+		<?php echo CHtml::link('HELLO! (blog)', array('/admin/posts/index', 'Post[category_id]'=>124), array('style'=>'font-weight:normal;')); ?><br />
+		<?php echo CHtml::link('Του Χωριού', array('/admin/posts/index', 'Post[category_id]'=>19), array('style'=>'font-weight:normal;')); ?><br />
+		<?php echo CHtml::link('Του Συλλόγου', array('/admin/posts/index', 'Post[category_id]'=>18), array('style'=>'font-weight:normal;')); ?><br />
+	</p>
 	
 	
 </td><td width="40%">
@@ -54,11 +61,17 @@
 		$posts = Post::model()->findAll(array(
 			'condition'=>'status='.Post::STATUS_DRAFT,
 			'order'=>'update_time DESC',
-			'limit'=>10,
+			'limit'=>8,
 		));
 		foreach ($posts as $post)
 			echo postLink($post) . '<br />';
 	?></p>
+	
+	<h2>Αλλα</h2>
+	<p>
+		<?php echo CHtml::link('Σελίδες του παλιού volax-tinos.gr', Yii::app()->baseUrl . '/old-volax-tinos-gr', array('target'=>'_blank', 'style'=>'font-weight:normal;')); ?><br />
+		<?php echo CHtml::link('Διαμοιραζόμενο βιβλίο excel', 'https://docs.google.com/spreadsheets/d/16zreBYooHHAdZC7MhD-IX-iPBzkRpG8IGsA7ZcAWbfA/edit?usp=sharing', array('target'=>'_blank', 'style'=>'font-weight:normal;')); ?><br />
+	</p>
 		
 </td></tr></table>
 
