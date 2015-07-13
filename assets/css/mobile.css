@@ -208,6 +208,12 @@ ul.compact-buttons-list ul a {
 	border: 1px solid #ccc;
 	vertical-align: top;
 }
+.post .content table tr:nth-child(odd) {
+	background-color: #d2d2d2;
+}
+.post .content table tr:nth-child(even) {
+	background-color: #e6e6e6;
+}
 
 
 .comment

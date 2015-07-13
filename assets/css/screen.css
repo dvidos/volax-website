@@ -539,6 +539,12 @@ div.wide form .errorMessage
 	border: 1px solid #ccc;
 	vertical-align: top;
 }
+.post .content table tr:nth-child(odd) {
+	background-color: #d2d2d2;
+}
+.post .content table tr:nth-child(even) {
+	background-color: #e6e6e6;
+}
 
 
 /*
@@ -664,4 +670,6 @@ body.popup h1 {
 	text-decoration: none;
 	color: #777;
 }	
+
+
 
