@@ -80,18 +80,20 @@ class PostController extends Controller
 	 */
 	public function loadModel()
 	{
-		if(isset($_GET['id']))
+		$id = @$_GET['id'];
+		if (!$id)
+			throw new CHttpException(400, 'Bad request, no id given');
+		
+		$condition = (Yii::app()->user->isGuest) ? 'status='.Post::STATUS_PUBLISHED : '';
+		$post = Post::model()->findByPk($id, $condition);
+		
+		if ($post === null)
 		{
-			if(Yii::app()->user->isGuest)
-				$condition='status='.Post::STATUS_PUBLISHED;
-			else
-				$condition='';
-			$model=Post::model()->findByPk($_GET['id'], $condition);
-		}
-		if($model===null)
+			Yii::log('Requested Post id ' . $id . ' not found, will fail using 404, http referer is "' . @$_SERVER['HTTP_REFERER'] . '"', 'warning');
 			throw new CHttpException(404,'The requested page does not exist.');
+		}
 			
-		return $model;
+		return $post;
 	}
 	
 	
