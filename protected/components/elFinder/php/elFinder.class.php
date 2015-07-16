@@ -1328,7 +1328,7 @@ class elFinder {
 			for ($i=0; $i < count($ls); $i++) {
 				if ($this->_isAccepted($ls[$i])) {
 					$p = $path.DIRECTORY_SEPARATOR.$ls[$i];
-					$size += filetype($p) == 'dir' && $this->_isAllowed($p, 'read') ? $this->_dirSize($p) : filesize($p);
+					$size += is_dir($p) && filetype($p) == 'dir' && $this->_isAllowed($p, 'read') ? $this->_dirSize($p) : (is_file($p) ? filesize($p) : 0);
 				}
 			}
 		}
