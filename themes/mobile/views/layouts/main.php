@@ -65,7 +65,7 @@
 			<div style="float:left;">
 				<?php 
 					echo CHtml::link('Βωλάξ', Yii::app()->homeUrl) . ' &nbsp;|&nbsp; ';
-					echo CHtml::link('Επισκεφτείτε μας', array('/category/view', 'id'=>127)) . ' &nbsp;|&nbsp; ';
+					echo CHtml::link('Επισκεφτείτε μας', array('/category/view', 'id'=>127, 'title'=>'Επισκεφτείτε μας')) . ' &nbsp;|&nbsp; ';
 					echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')) . ' &nbsp;|&nbsp; ';
 					echo CHtml::link('Επικοινωνία', array('/site/contact'));
 				?>

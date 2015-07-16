@@ -31,7 +31,7 @@
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>array(
 				array('label'=>'Αρχική', 'url'=>Yii::app()->homeUrl),
-				array('label'=>'Επισκεφτείτε μας', 'url'=>array('/category/view', 'id'=>127)),
+				array('label'=>'Επισκεφτείτε μας', 'url'=>array('/category/view', 'id'=>127, 'title'=>'Επισκευτείτε μας')),
 			),
 			'htmlOptions'=>array('class'=>'compact-buttons-list'),
 		), true)
@@ -58,9 +58,9 @@
 	$html .= CHtml::tag('div', array('class'=>'gray-menu'),
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>array(
-				array('label'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ', 'url'=>array('/category/view', 'id'=>103)),
-				array('label'=>'ΤΟΥ ΧΩΡΙΟΥ', 'url'=>array('/category/view', 'id'=>19)),
-				array('label'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ', 'url'=>array('/category/view', 'id'=>18)),
+				array('label'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ', 'url'=>array('/category/view', 'id'=>103, 'title'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ')),
+				array('label'=>'ΤΟΥ ΧΩΡΙΟΥ', 'url'=>array('/category/view', 'id'=>19, 'title'=>'ΤΟΥ ΧΩΡΙΟΥ')),
+				array('label'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ', 'url'=>array('/category/view', 'id'=>18, 'title'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ')),
 			),
 			'htmlOptions'=>array('class'=>'compact-buttons-list'),
 		), true)
@@ -103,7 +103,10 @@
 	// for narrow screens we need more options: login/logout and the footer links
 	$items = array();
 	if (Yii::app()->user->isGuest)
-		$items[] = array('label'=>'Είσοδος', 'url'=>array('/site/login'));
+	{
+		$items[] = array('label'=>'Είσοδος', 'url'=>array('/user/login'));
+		$items[] = array('label'=>'Εγγραφή', 'url'=>array('/user/register'));
+	}
 	else
 	{
 		if (Yii::app()->user->isAuthor)
@@ -112,7 +115,8 @@
 		if (Yii::app()->user->isAdmin)
 			$items[] = array('label'=>'Διαχείριση', 'url'=>array('/admin'));
 		
-		$items[] = array('label'=>'Εξοδος', 'url'=>array('/site/logout'));
+		$items[] = array('label'=>'Ο λογαριασμός μου', 'url'=>array('/user/myAccount'));
+		$items[] = array('label'=>'Εξοδος', 'url'=>array('/user/logout'));
 	}
 	$user_menu = CHtml::tag('div', array('class'=>'gray-menu', 'style'=>'margin-top: 1.5em;'),
 		$this->widget('zii.widgets.CMenu', array(
