@@ -51,17 +51,23 @@ return array(
 			//'urlFormat'=>'get', // 'path',
 			'urlFormat'=>'path',
 			// when setting showScriptName to false, elFinder crashes, loading partly!
-			'showScriptName'=>true,
-			//'showScriptName'=>false,
+			//'showScriptName'=>true,
+			'showScriptName'=>false,
+			//'urlSuffix'=>'.html',
+			
 			'rules'=>array(
-				'user/<id:\d+>/<name:.*?>'=>'user/view',
-				'user/<id:\d+>'=>'user/view',
-				'post/<id:\d+>/<title:.*?>'=>'post/view',
-				'post/<id:\d+>'=>'post/view',
-				'category/<id:\d+>/<title:.*?>'=>'category/view',
-				'category/<id:\d+>'=>'category/view',
-				'post/tag/<tag:.*?>'=>'post/list',
-				'page/<url_keyword:.*?>'=>'page/view',
+				'home'=>'site/index',
+				'visitus'=>array('category/view', 'defaultParams'=>array('id'=>127, 'title'=>'Επισκευτείτε μας')),
+				'terms'=>array('page/view', 'defaultParams'=>array('url_keyword'=>'terms')),
+				'whoweare'=>array('page/view', 'defaultParams'=>array('url_keyword'=>'whoweare')),
+				'contact'=>array('site/contact'),
+				
+				'users/<id:\d+>-<name:.*?>'=>'user/view',
+				'posts/<id:\d+>-<title:.*?>'=>'post/view',
+				'categories/<id:\d+>-<title:.*?>'=>'category/view',
+				'tags/<tag:.*?>'=>'post/list',
+				'pages/<url_keyword:.*?>'=>'page/view',
+				
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
@@ -72,7 +78,14 @@ return array(
 					'class'=>'CFileLogRoute',
 					'logFile'=>'application.log',
 					'levels'=>'trace, debug, info, warning, error',
-					//'levels'=>'warning, error',
+					//'enabled'=>true,
+					'enabled'=>false,
+				),
+				array(
+					'class'=>'CFileLogRoute',
+					'logFile'=>'errors.log',
+					'levels'=>'warning, error',
+					'enabled'=>true,
 				),
 				array(
 					// this one presents profile info at the end of the webpage.
@@ -103,6 +116,9 @@ return array(
 		),
 		'textDiff'=>array(
 			'class'=>'application.components.TextDiff',
+		),
+		'stringTools'=>array(
+			'class'=>'application.components.StringTools',
 		),
 	),
 
