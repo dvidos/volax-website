@@ -7,7 +7,7 @@
 		$html = '';
 		$html .= CHtml::link($title, array('/admin/posts/update', 'id'=>$post->id), array('title'=>'Διόρθωση', 'style'=>'font-weight:normal; '));
 		$html .= '&nbsp;&nbsp;&nbsp;';
-		$html .= CHtml::link('(Εμφ)', array('/post/view', 'id'=>$post->id), array('target'=>'_blank', 'title'=>$tooltip, 'style'=>'font-weight:normal; color: #aaa;'));
+		$html .= CHtml::link('(Εμφ)', array('/post/view', 'id'=>$post->id, 'title'=>$post->title), array('target'=>'_blank', 'title'=>$tooltip, 'style'=>'font-weight:normal; color: #aaa;'));
 		
 		return $html;
 	}

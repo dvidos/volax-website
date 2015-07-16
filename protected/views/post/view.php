@@ -20,7 +20,7 @@ $this->pageTitle=$model->title;
 	
 	<div class="post-info">
 		<?php
-			echo 'Από τον χρήστη ' . CHtml::link(CHtml::encode($model->author->fullname), array('/user/view', 'id'=>$model->author_id));
+			echo 'Από τον χρήστη ' . CHtml::link(CHtml::encode($model->author->fullname), array('/user/view', 'id'=>$model->author_id, 'name'=>$model->author->username));
 			echo ', ';
 			echo $model->getFriendlyCreateTime();
 			
