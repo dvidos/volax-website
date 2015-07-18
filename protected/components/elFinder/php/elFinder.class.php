@@ -381,6 +381,8 @@ class elFinder {
 	 **/
 	protected function _open()
 	{
+		//Yii::log('_open, $_GET is '.var_export($_GET, true), 'debug', 'elFinder.class');
+		
 		if (isset($_GET['current'])) { // read file
 			if (empty($_GET['current'])
 			||  empty($_GET['target'])
@@ -927,9 +929,12 @@ class elFinder {
 	 **/
 	protected function _content($path, $tree=false)
 	{
+		//Yii::log('_content, generating cwd ('.$path.')', 'debug', 'elFinder.class');
 		$this->_cwd($path);
+		//Yii::log('_content, generating cdc ('.$path.')', 'debug', 'elFinder.class');
 		$this->_cdc($path);
 		if ($tree) {
+			//Yii::log('_content, generating tree', 'debug', 'elFinder.class');
 			$this->_result['tree'] = $this->_tree($this->_options['root']);
 		}
 	}
@@ -1042,7 +1047,7 @@ class elFinder {
 			}
 
 			if (0 === ($p = strpos($info['mime'], 'image'))) {
-				if (false != ($s = getimagesize($path))) {
+				if (false != ($s = @getimagesize($path))) {
 					$info['dim'] = $s[0].'x'.$s[1];
 				}
 				if ($info['read']) {

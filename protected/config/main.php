@@ -50,9 +50,9 @@ return array(
 		'urlManager'=>array(
 			//'urlFormat'=>'get', // 'path',
 			'urlFormat'=>'path',
-			// when setting showScriptName to false, elFinder crashes, loading partly!
-			//'showScriptName'=>true,
-			'showScriptName'=>false,
+			// when setting showScriptName to false, elFinder crashes in forthnet, loading partly!
+			'showScriptName'=>true,
+			//'showScriptName'=>false,
 			//'urlSuffix'=>'.html',
 			
 			'rules'=>array(
@@ -77,8 +77,9 @@ return array(
 				'category/<id:\d+>/<title:.*?>'  =>array('category/view', 'parsingOnly'=>true),
 				'category/<id:\d+>'              =>array('category/view', 'parsingOnly'=>true),
 				
-				'tags/<tag:.*?>' =>array('post/list'),
-				'tag/<tag:.*?>'  =>array('post/list', 'parsingOnly'=>true),
+				'tags/<tag:.*?>'    =>array('post/list'),
+				'tag/<tag:.*?>'     =>array('post/list', 'parsingOnly'=>true),
+				'post/tag/<tag:.*?>'=>array('post/list', 'parsingOnly'=>true),
 				
 				'page/<url_keyword:.*?>' =>'page/view',
 				'pages/<url_keyword:.*?>'=>array('page/view', 'parsingOnly'=>true),
@@ -93,8 +94,8 @@ return array(
 					'class'=>'CFileLogRoute',
 					'logFile'=>'application.log',
 					'levels'=>'trace, debug, info, warning, error',
-					//'enabled'=>true,
-					'enabled'=>false,
+					'enabled'=>true,
+					//'enabled'=>false,
 				),
 				array(
 					'class'=>'CFileLogRoute',
