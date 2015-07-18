@@ -63,10 +63,25 @@ return array(
 				'contact'=>array('site/contact'),
 				
 				'users/<id:\d+>-<name:.*?>'=>'user/view',
-				'posts/<id:\d+>-<title:.*?>'=>'post/view',
-				'categories/<id:\d+>-<title:.*?>'=>'category/view',
-				'tags/<tag:.*?>'=>'post/list',
-				'pages/<url_keyword:.*?>'=>'page/view',
+				'users/<id:\d+>'           =>array('user/view', 'parsingOnly'=>true),
+				'user/<id:\d+>/<name:.*?>' =>array('user/view', 'parsingOnly'=>true),
+				'user/<id:\d+>'            =>array('user/view', 'parsingOnly'=>true),
+				
+				'posts/<id:\d+>-<title:.*?>'=>array('post/view'),
+				'posts/<id:\d+>'            =>array('post/view', 'parsingOnly'=>true),
+				'post/<id:\d+>/<title:.*?>' =>array('post/view', 'parsingOnly'=>true),
+				'post/<id:\d+>'             =>array('post/view', 'parsingOnly'=>true),
+				
+				'categories/<id:\d+>-<title:.*?>'=>array('category/view'),
+				'categories/<id:\d+>'            =>array('category/view', 'parsingOnly'=>true),
+				'category/<id:\d+>/<title:.*?>'  =>array('category/view', 'parsingOnly'=>true),
+				'category/<id:\d+>'              =>array('category/view', 'parsingOnly'=>true),
+				
+				'tags/<tag:.*?>' =>array('post/list'),
+				'tag/<tag:.*?>'  =>array('post/list', 'parsingOnly'=>true),
+				
+				'page/<url_keyword:.*?>' =>'page/view',
+				'pages/<url_keyword:.*?>'=>array('page/view', 'parsingOnly'=>true),
 				
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
