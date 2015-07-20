@@ -76,6 +76,7 @@ class Post extends CActiveRecord
 			array('tags', 'normalizeTags'),
 			array('tags', 'application.components.validators.NoMixedLangValidator'),
 			array('category_id, status, layout, desired_width, in_home_page, author_id', 'numerical'),
+			array('category_id', 'validateCategoryId'),
 			array('title, content, allow_comments, masthead', 'safe'),
 			array('editable_create_time', 'safe'),
 
@@ -152,6 +153,35 @@ class Post extends CActiveRecord
 		}
 		return $links;
 	}
+	
+	/**
+	 * Make sure we have a meaningful category_id
+	 */
+	public function validateCategoryId($attribute,$params)
+	{
+		$cid = $this->$attribute;
+		if ($cid == 0)
+		{
+			$this->addError($attribute, 'Η κατηγορία είναι κενή');
+			return;
+		}
+		
+		$cat = Category::model()->findByPk($cid);
+		if ($cat == null)
+		{
+			$this->addError($attribute, 'Η κατηγορία δεν βρέθηκε');
+			return;
+		}
+		
+		// make sure this is not a category containing subcategories
+		$c = Category::model()->countByAttributes(array('parent_id'=>$cid));
+		if ($c > 0)
+		{
+			$this->addError($attribute, 'Η κατηγορία περιέχει υποκατηγορίες');
+			return;
+		}
+	}
+
 
 	/**
 	 * Normalizes the user-entered tags.
