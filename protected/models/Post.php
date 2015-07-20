@@ -551,6 +551,10 @@ class Post extends CActiveRecord
 		$matches = array();
 		preg_match_all($re, $this->content, $matches);
 		$links = $matches[1];
+		
+		// also, get from macros
+		$links = array_merge($links, Yii::app()->contentProcessor->getLinks($this->content));
+		
 		return $links;
 	}
 	
@@ -560,6 +564,10 @@ class Post extends CActiveRecord
 		$matches = array();
 		preg_match_all($re, $this->content, $matches);
 		$images = $matches[1];
+		
+		// also, get from macros
+		$images = array_merge($images, Yii::app()->contentProcessor->getImages($this->content));
+		
 		return $images;
 	}
 
@@ -586,6 +594,63 @@ class Post extends CActiveRecord
 			$results[] = array('id'=>$post->id, 'title'=>$post->title);
 		
 		return $results;
+	}
+	
+
+	/**
+	 * Return true if url is external
+	 */
+	public static function isAbsoluteUrl($url)
+	{
+		return (substr($url, 0, 7) == 'http://' || substr($url, 0, 8) == 'https://');
+	}
+	
+	/**
+	 * Convert any url ponting to our domain to a relative form
+	 */
+	public static function makeRelativeUrl($url)
+	{
+		if (self::isAbsoluteUrl($url))
+		{
+			$local_sites = array('http://volax.gr', 'http://www.volax.gr');
+			foreach ($local_sites as $local_site)
+			{
+				if (substr($url, 0, strlen($local_site)) == $local_site)
+				{
+					$url = substr($url, strlen($local_site));
+					break;
+				}
+			}
+		}
+		
+		// so, we have an interal url. remove possible base url
+		if (substr($url, 0, strlen(Yii::app()->baseUrl)) == Yii::app()->baseUrl)
+			$url = substr($url, strlen(Yii::app()->baseUrl));
+		
+		return $url;
+	}
+	
+	/**
+	 * Check url for local files existance
+	 * Return values:
+	 *    1: exists localy
+	 *    0: does not exist localy
+	 *   -1: cannot test, url is external
+	 */
+	public static function checkUrlExistance($url)
+	{
+		// in case it is pointing to volax.gr, convert to relative
+		$url = self::makeRelativeUrl($url);
+		
+		// if it still is an external url, we cannot test
+		if (self::isAbsoluteUrl($url))
+			return -1;
+
+		// see if file exists
+		$rootPath = dirname(Yii::app()->basePath);
+		$exists = file_exists($rootPath . $url);
+		
+		return $exists ? 1 : 0;
 	}
 }
 

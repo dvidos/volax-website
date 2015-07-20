@@ -136,6 +136,9 @@ return array(
 		'stringTools'=>array(
 			'class'=>'application.components.StringTools',
 		),
+		'contentProcessor'=>array(
+			'class'=>'application.components.ContentProcessor',
+		),
 	),
 
 	'modules' => array(

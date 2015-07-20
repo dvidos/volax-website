@@ -15,7 +15,6 @@
 			// $category = Category::model()->findByPk(124);
 			// $link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'xcategory-link'));
 			// echo $link;
-			// echo '<div class="prologue">' . $category->prologue . '</div>';
 		?>
 	</div> -->
 	<div class="section">

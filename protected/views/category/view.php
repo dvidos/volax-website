@@ -3,7 +3,7 @@
 ?>
 
 <?php
-	// a category has a similar appearance as a post, ie. it has a masthead, title, prologue, image, content
+	// a category has a similar appearance as a post, ie. it has a masthead, title, image, content
 	// but it also may have sub-categories and posts.
 ?>
 <div class="post">

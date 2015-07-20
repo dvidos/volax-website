@@ -7,7 +7,7 @@
 )); ?>
 <?php echo $form->errorSummary($model); ?>
 
-<table style="border:1px solid #ddd; background-color: #eee; padding: .5em 1em;">
+<table>
 <tr><td width="66%" style="vertical-align: top;">
 
 	<div class="row">

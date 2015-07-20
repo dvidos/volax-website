@@ -747,3 +747,47 @@ div.static-page {
 	margin: 0 auto;
 }
 
+
+
+/* turn UL into tabs for editing */
+ul.tabs {
+	list-style-type: none;
+	margin: 0;
+	border-bottom: 1px solid #333;
+	padding: .75em 0 0 .75em;
+	background-color: #bbb;
+}
+ul.tabs li {
+	display: inline-block;
+	margin: 0 0 -1px 0;
+	padding: 0;
+}
+ul.tabs li a {
+	display: block;
+	padding: 5px 1em;
+	border-style: solid;
+	border-color: #333;
+	border-width: 1px 1px 0 1px;
+	border-radius: 4px 4px 0 0;
+	background-color: #ccc;
+	color: #555 !important;
+}
+ul.tabs li a:hover {
+	background-color: #ddd;
+	color: #444;
+	text-decoration: none !important;
+}
+ul.tabs li.active a {
+	background-color: #eee;
+	border-bottom: 1px solid #eee;
+	color: #333 !important;
+}
+div.tabs-page { /* used after a ul.tabs */
+	background-color: #eee;
+	border-style: solid;
+	border-color: #aaa;
+	border-width: 0 1px 1px 1px;
+	padding: 1em 1.5em;
+}
+
+

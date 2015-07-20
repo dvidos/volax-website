@@ -28,11 +28,12 @@ class PostRevision extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title', 'length', 'max'=>128),
+			array('comment', 'length', 'max'=>255),
 			array('category_id', 'numerical'),
-			array('title, content, prologue, masthead', 'safe'),
+			array('title, content, masthead', 'safe'),
 			array('was_created, was_deleted', 'boolean'),
 
-			array('id, post_id, revision_no, datetime, user_id, was_created, was_deleted, title, masthead, content, category_id, tags, status', 'safe', 'on'=>'search'),
+			array('id, post_id, revision_no, datetime, user_id, comment, was_created, was_deleted, title, masthead, content, category_id, tags, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,6 +61,8 @@ class PostRevision extends CActiveRecord
 			'post_id'=>'Ανάρτηση',
 			'revision_no'=>'Α/Α',
 			'user_id'=>'Χρήστης',
+			'datetime'=>'Ημ/νία+Ωρα',
+			'comment'=>'Σχόλιο',
 			'was_created'=>'Δημιουργήθηκε',
 			'was_deleted'=>'Διαγράφηκε',
 			'title' => 'Τίτλος',
@@ -82,6 +85,7 @@ class PostRevision extends CActiveRecord
 		$criteria->compare('revision_no',$this->revision_no);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('datetime',$this->datetime,true);
+		$criteria->compare('comment',$this->comment, true);
 		$criteria->compare('was_created',$this->was_created);
 		$criteria->compare('was_deleted',$this->was_deleted);
 		$criteria->compare('title',$this->title,true);
@@ -99,6 +103,26 @@ class PostRevision extends CActiveRecord
 				'pageSize'=>20,
 			),
 		));
+	}
+	
+	/**
+	 * Return a user friendly date, in greek date format, dd-mm-yy, hh:mm
+	 */
+	public function getFriendlyDatetime()
+	{
+		return 
+			substr($this->datetime, 8, 2) . '-' . 
+			substr($this->datetime, 5, 2) . '-' . 
+			substr($this->datetime, 2, 2) . ', ' . 
+			substr($this->datetime, 11, 5);
+	}
+	
+	/**
+	 * Return a user friendly change caption
+	 */
+	public function getFriendlyAction()
+	{
+		return ($this->was_deleted ? 'Διαγραφή' : ($this->was_created ? 'Δημιουργία' : 'Διόρθωση'));
 	}
 	
 	/**
@@ -265,6 +289,24 @@ class PostRevision extends CActiveRecord
 			$diffs[] = array('field'=>'tags', 'caption'=>'Tags', 'old'=>$older->tags, 'new'=>$newer->tags);
 		
 		return $diffs;
+	}
+	
+	
+	/**
+	 * Find next or previous revision of same post
+	 */
+	public function findNextRevision($next)
+	{
+		$op = $next ? '>' : '<';
+		$so = $next ? 'ASC' : 'DESC';
+		
+		$rev = self::model()->find(array(
+			'condition'=>'post_id = :pid AND revision_no '.$op.' :rn',
+			'params'=>array(':pid'=>$this->post_id, ':rn'=>$this->revision_no),
+			'order'=>'`datetime` '.$so.', `id` '.$so.'',
+		));
+		
+		return $rev;
 	}
 }
 

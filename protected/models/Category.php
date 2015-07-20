@@ -251,5 +251,17 @@ class Category extends CActiveRecord
 		
 		return $items;
 	}
+	
+	
+	static function tryGetTitle($id)
+	{
+		$c = self::model()->find(array(
+			'select'=>'title',
+			'condition'=>'id = :id', 
+			'params'=>array(':id'=>$id),
+			'limit'=>1,
+		));
+		return ($c == null) ? '(#' . $id . ')' : $c->title;
+	}
 }
 

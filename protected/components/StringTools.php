@@ -20,5 +20,30 @@ class StringTools extends CApplicationComponent
 		
 		return $text;
 	}	
+	
+	public function friendlySize($size)
+	{
+		$kb = 1024;
+		$mb = 1048576;
+		
+		if ($size == 0)
+		{
+			return '0';
+		}
+		else if ($size < $kb)
+		{
+			return '1 KB';
+		}
+		else if ($size < $mb)
+		{
+			$s = $size / $kb;
+			return round($s, ($s < 10) ? 1 : 0) . ' KB';
+		}
+		else
+		{
+			$s = $size / $mb;
+			return round($s, ($s < 10) ? 1 : 0) . ' MB';
+		}
+	}
 }
 

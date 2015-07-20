@@ -66,6 +66,61 @@ class PostsController extends Controller
 		));
 	}
 
+	public function actionHistory($id, $revision_no = 0)
+	{
+		$model = $this->loadModel($id);
+
+		if ($revision_no == 0)
+		{
+			$this->render('history',array(
+				'model'=>$model,
+			));
+		}
+		else
+		{
+			$revision = PostRevision::model()->findByAttributes(array('post_id'=>$id, 'revision_no'=>$revision_no));
+			if ($revision == null)
+				throw new CHttpException(404);
+			
+			$this->render('historyRevision',array(
+				'revision'=>$revision,
+				'model'=>$model,
+			));
+		}
+	}
+
+	public function actionDiscuss($id)
+	{
+		$model = $this->loadModel($id);
+
+		if(isset($_POST['Post']))
+		{
+			$model->attributes = $_POST['Post'];
+			if($model->save())
+			{
+				$model->notifyEmailSubscribers(false);
+				Yii::app()->user->setFlash('postSaved','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
+				if (isset($_POST['saveAndStay']))
+					$this->redirect(array('update', 'id'=>$id));
+				else
+					$this->redirect(array('index'));
+			}
+		}
+
+		$this->render('discuss',array(
+			'model'=>$model,
+		));
+	}
+
+	public function actionInfo($id)
+	{
+		$model = $this->loadModel($id);
+
+		$this->render('info',array(
+			'model'=>$model,
+		));
+	}
+	
 	public function actionDelete($id)
 	{
 		if(Yii::app()->request->isPostRequest)
@@ -81,6 +136,9 @@ class PostsController extends Controller
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
+	
+	
+	
 	public function loadModel($id)
 	{
 		$model=Post::model()->findByPk($id);

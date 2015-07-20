@@ -1319,7 +1319,7 @@ class elFinder {
 	{
 		$size = 0;
 		if (!$this->_options['dirSize'] || !$this->_isAllowed($path, 'read')) {
-			return filesize($path);
+			return @filesize($path);
 		}
 		if (!isset($this->_options['du'])) {
 			$this->_options['du'] = function_exists('exec')
@@ -1333,7 +1333,7 @@ class elFinder {
 			for ($i=0; $i < count($ls); $i++) {
 				if ($this->_isAccepted($ls[$i])) {
 					$p = $path.DIRECTORY_SEPARATOR.$ls[$i];
-					$size += is_dir($p) && filetype($p) == 'dir' && $this->_isAllowed($p, 'read') ? $this->_dirSize($p) : (is_file($p) ? filesize($p) : 0);
+					$size += is_dir($p) && filetype($p) == 'dir' && $this->_isAllowed($p, 'read') ? $this->_dirSize($p) : (is_file($p) ? @filesize($p) : 0);
 				}
 			}
 		}
