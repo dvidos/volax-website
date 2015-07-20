@@ -33,8 +33,10 @@
 	
 
 	function is_file_orphan($file) { global $used_files; return !in_array($file, $used_files); }
-	function is_file_missing($file) { global $existing_files_global; return !in_array($file, $existing_files_global); }
+	function is_external_link($file) { return (substr($file, 0, 7) == 'http://' || substr($file, 0, 8) == 'https://'); }
+	function is_file_missing($file) { global $existing_files_global; return !is_external_link($file) && !in_array($file, $existing_files_global); }
 	$orphan_files = array_filter($existing_files, 'is_file_orphan');
+	$external_links = array_filter(array_keys($files_used_by_posts), 'is_external_link');
 	$missing_files = array_filter(array_keys($files_used_by_posts), 'is_file_missing');
 	
 	$used_space = 0;
@@ -61,13 +63,19 @@
 	echo '</ul>' . "\r\n\r\n";
 	
 	
-	echo '<h2>Αρχεία που υπάρχουν, αλλά δεν χρησιμοποιούνται</h2>';
-	echo '<textarea cols="70" rows="10" style="width:100%;">' . implode("\r\n", $orphan_files) . "\r\n" . '</textarea>';
 	sort($orphan_files, SORT_STRING);
+	$js = '$("#existing-not-used").slideToggle(); return false;';
+	echo '<h2>' . CHtml::link('Αρχεία που υπάρχουν, αλλά δεν χρησιμοποιούνται (' . count($orphan_files) . ')', '#', array('onClick'=>$js)) . '</h2>';
+	echo '<div id="existing-not-used" style="display:none;">';
+	echo implode("<br>", $orphan_files);
+	echo '</div>';
 	echo '<p>&nbsp;</p>';
 	
 	
-	echo '<h2>Αρχεία που χρησιμοποιούνται, αλλά δεν βρέθηκαν</h2>';
+	
+	$js = '$("#used-not-found").slideToggle(); return false;';
+	echo '<h2>' . CHtml::link('Αρχεία που χρησιμοποιούνται, αλλά δεν βρέθηκαν (' . count($missing_files) . ')', '#', array('onClick'=>$js)) . '</h2>';
+	echo '<div id="used-not-found" style="display:none;">';
 	sort($missing_files, SORT_STRING);
 	foreach ($missing_files as $missing_file)
 	{
@@ -77,12 +85,15 @@
 			echo ' ' . CHtml::link('#' . $post_id, array('/admin/posts/update', 'id'=>$post_id));
 		echo '<br />';
 	}
+	echo '</div>';
 	echo '<p>&nbsp;</p>';
 	
 	
-	echo '<h2>Αρχεία που χρησιμοποιούνται σε αναρτήσεις</h2>';
 	$used_paths = array_keys($files_used_by_posts);
 	sort($used_paths, SORT_STRING);
+	$js = '$("#used-and-found").slideToggle(); return false;';
+	echo '<h2>' . CHtml::link('Αρχεία που χρησιμοποιούνται και υπάρχουν (' . count($used_paths) . ')', '#', array('onClick'=>$js)) . '</h2>';
+	echo '<div id="used-and-found" style="display:none;">';
 	foreach ($used_paths as $used_path)
 	{
 		echo CHtml::encode($used_path) . ' &nbsp; ';
@@ -91,6 +102,23 @@
 			echo ' ' . CHtml::link('#' . $post_id, array('/admin/posts/update', 'id'=>$post_id));
 		echo '<br />';
 	}
+	echo '</div>';
+	echo '<p>&nbsp;</p>';
+	
+	
+	$js = '$("#external-links").slideToggle(); return false;';
+	echo '<h2>' . CHtml::link('Εξωτερικά links (' . count($external_links) . ')', '#', array('onClick'=>$js)) . '</h2>';
+	echo '<div id="external-links" style="display:none;">';
+	sort($external_links, SORT_STRING);
+	foreach ($external_links as $external_link)
+	{
+		echo CHtml::link(CHtml::encode($external_link), $external_link, array('style'=>'font-weight:normal;'));
+		$post_ids = $files_used_by_posts[$external_link];
+		foreach ($post_ids as $post_id)
+			echo ' ' . CHtml::link('#' . $post_id, array('/admin/posts/update', 'id'=>$post_id));
+		echo '<br />';
+	}
+	echo '</div>';
 	echo '<p>&nbsp;</p>';
 	
 	
