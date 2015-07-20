@@ -2,7 +2,7 @@
 	<script src="<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckeditor.js"></script>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'user-form',
+	'id'=>'post-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 <?php echo $form->errorSummary($model); ?>

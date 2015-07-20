@@ -30,8 +30,9 @@ class PostRevision extends CActiveRecord
 			array('title', 'length', 'max'=>128),
 			array('category_id', 'numerical'),
 			array('title, content, prologue, masthead', 'safe'),
+			array('was_created, was_deleted', 'boolean'),
 
-			array('id, post_id, revision_no, datetime, user_id, was_deleted, title, masthead, content, category_id, tags, status', 'safe', 'on'=>'search'),
+			array('id, post_id, revision_no, datetime, user_id, was_created, was_deleted, title, masthead, content, category_id, tags, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +60,7 @@ class PostRevision extends CActiveRecord
 			'post_id'=>'Ανάρτηση',
 			'revision_no'=>'Α/Α',
 			'user_id'=>'Χρήστης',
+			'was_created'=>'Δημιουργήθηκε',
 			'was_deleted'=>'Διαγράφηκε',
 			'title' => 'Τίτλος',
 			'masthead' => 'Υπέρτιτλος',
@@ -80,6 +82,7 @@ class PostRevision extends CActiveRecord
 		$criteria->compare('revision_no',$this->revision_no);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('datetime',$this->datetime,true);
+		$criteria->compare('was_created',$this->was_created);
 		$criteria->compare('was_deleted',$this->was_deleted);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('masthead',$this->masthead,true);

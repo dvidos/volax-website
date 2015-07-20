@@ -24,6 +24,16 @@
 			//'filter'=>'',
 		),
 		array(
+			'name'=>'was_created',
+			'type'=>'raw',
+			'value'=>'$data->was_created ? "Ναι" : ""',
+			'header'=>'Δημ',
+			'filter'=>array(
+				0=>'Οχι',
+				1=>'Ναι',
+			),
+		),
+		array(
 			'name'=>'was_deleted',
 			'type'=>'raw',
 			'value'=>'$data->was_deleted ? "Ναι" : ""',

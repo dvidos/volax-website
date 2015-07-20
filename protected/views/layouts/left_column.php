@@ -12,8 +12,7 @@
 	</div>
 	<!-- <div class="blue-buttons">
 		<?php
-			// $blogId = Yii::app()->params['leftColumnBlogCategoryId'];
-			// $category = Category::model()->findByPk($blogId);
+			// $category = Category::model()->findByPk(124);
 			// $link = CHtml::link($category->title, array('/category/view', 'id'=>$category->id, 'title'=>$category->title), array('class'=>'xcategory-link'));
 			// echo $link;
 			// echo '<div class="prologue">' . $category->prologue . '</div>';

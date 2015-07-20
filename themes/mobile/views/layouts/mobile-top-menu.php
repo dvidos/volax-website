@@ -41,7 +41,7 @@
 	
 	// then, the blog link
 	//$blog_menu = '';
-	//$blog_category = Category::model()->findByPk(Yii::app()->params['leftColumnBlogCategoryId']);
+	//$blog_category = Category::model()->findByPk(124);
 	//$blog_menu .= CHtml::tag('div', array('class'=>'cyan-menu'),
 	//	$this->widget('zii.widgets.CMenu', array(
 	//		'items'=>array(array('label'=>$blog_category->title, 'url'=>array('/category/view', 'id'=>$blog_category->id))),

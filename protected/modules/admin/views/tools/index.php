@@ -4,19 +4,9 @@
 	
 	
 	<h3>Xml Sitemap</h3>
-	
-	<!-- <p>Εδώ μπορείτε να παράξετε ένα αρχείο 
-	<?php echo CHtml::link('sitemaps', 'https://support.google.com/webmasters/answer/156184?hl=en', array('target'=>'_blank')); ?>
-	για καλύτερη αναζήτηση από την Google και άλλες μηχανές αναζήτησης, όπως προτείνεται από τα 
-	<?php echo CHtml::link('Google Webmaster Tools', 'https://www.google.com/webmasters/tools', array('target'=>'_blank')); ?>.</p>
-	
-	<p>Το αρχείο θα είναι το <?php echo $xml_sitemap_filename; ?> 
-	και μπορείτε να το δείτε στο <?php echo CHtml::link($xml_sitemap_url, $xml_sitemap_url); ?></p> -->
-	
 	<p>Παραγωγή αρχείου <?php echo CHtml::link('sitemaps', 'https://support.google.com/webmasters/answer/156184?hl=en', array('target'=>'_blank')); ?>, 
 	στο <?php echo CHtml::link($xml_sitemap_url, $xml_sitemap_url); ?>, 
 	για τα <?php echo CHtml::link('Google Webmaster Tools', 'https://www.google.com/webmasters/tools', array('target'=>'_blank')); ?>.</p>
-	
 	<?php
 		if(Yii::app()->user->hasFlash('xmlSitemap'))
 		{
@@ -31,9 +21,10 @@
 		));
 	?></p>
 	
+
 	
 	
-	
+
 	
 	
 	
@@ -41,16 +32,12 @@
 </td><td width="33%">
 
 
-	<h3>Μέγεθος αρχείων</h3>
-	
-	
-	<p>Μέτρηση μεγάθους αρχείων, καταλόγων και εύρεση ορφανών αρχείων</p>
+	<h3>Search Post Content</h3>
 	<p><?php
-		echo CHtml::button('Μέγεθος αρχείων', array(
-			'onClick'=>'window.location = "' . $this->createUrl('/admin/tools/diskUsage') . '";',
+		echo CHtml::button('Search Post Content', array(
+			'onClick'=>'window.location = "' . $this->createUrl('/admin/tools/searchPostContent') . '";',
 		));
 	?></p>
-	
 	
 	
 	
@@ -59,17 +46,19 @@
 
 </td><td width="0%">
 
-
-	<h3>Php Info</h3>
 	
-	<p><?php
-		echo CHtml::button('Php Info', array(
-			'onClick'=>'window.location = "' . $this->createUrl('/admin/tools/phpinfo') . '";',
-		));
-	?></p>
+	<h3>Πληροφοριακά εργαλεία</h3>
+	<ul>
+		<li><?php echo CHtml::link('Χρήση δίσκου, αρχεία ανά μέγεθος', array('/admin/tools/diskUsage')); ?></li>
+		<li><?php echo CHtml::link('Αρχεία, ορφανά και χρησιμοποιούμενα', array('/admin/tools/orphanFiles')); ?></li>
+		<li><?php echo CHtml::link('Posts Images', array('/admin/tools/postsImages')); ?></li>
+		<li><?php echo CHtml::link('Posts Links', array('/admin/tools/postsLinks')); ?></li>
+		<li><?php echo CHtml::link('Posts Integrity', array('/admin/tools/postsIntegrity')); ?></li>
+		<li><?php echo CHtml::link('Posts Languages', array('/admin/tools/postsLanguages')); ?></li>
+		<li><?php echo CHtml::link('PHP info', array('/admin/tools/phpinfo')); ?></li>
+	</ul>
 	
 	
-
 </td></tr></table>
 
 

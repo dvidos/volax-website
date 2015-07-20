@@ -1,7 +1,7 @@
 <h1>Php Info</h1>
 <style>
-	table { max-width: 100%; }
-	td, th { border: 1px solid #999; font-size: 85%; word-wrap: break-word; }
+	table { max-width: 100%; -table-layout: fixed; }
+	td, th { color: #222; border: 1px solid #888; font-size: 85%; }
 	.p { text-align: left; }
 	.e { background-color: #ccccff; font-weight: bold; }
 	.h { background-color: #9999cc; font-weight: bold; }

@@ -27,7 +27,13 @@
 	// whether this next is another revision or the post.
 	
 
-	if ($model->was_deleted)
+	if ($model->was_created)
+	{
+		// post was created at this revision
+		$title = 'Δεδομένα κατά την δημιουργία';
+		$result = array('title'=>$model->title, 'masthead'=>$model->masthead, 'content'=>$model->content);
+	}
+	else if ($model->was_deleted)
 	{
 		// post was deleted at this revision, present last content.
 		$title = 'Δεδομένα πριν την διαγραφή';

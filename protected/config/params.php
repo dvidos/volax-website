@@ -43,8 +43,8 @@ return array(
 	// the text to use in the link for "read more..."
 	'postsMoreLinkText'=>'συνέχεια...',
 	
-	// the category to use for the BLOG in left column
-	'leftColumnBlogCategoryId'=>124,
+	// default category for new posts
+	'defaultPostCategoryId'=>124,
 	
 	// number of posts displayed per page
 	'postsPerPage'=>10,

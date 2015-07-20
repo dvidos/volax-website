@@ -218,6 +218,7 @@ class Post extends CActiveRecord
 		$this->in_home_page = true;
 		$this->allow_comments = true;
 		$this->desired_width = 2;
+		$this->category_id = Yii::app()->params['defaultPostCategoryId'];
 		
 		// proposed author maybe the same as user
 		if (Yii::app()->user != null)
@@ -284,15 +285,26 @@ class Post extends CActiveRecord
 		parent::afterSave();
 		
 		Yii::log('Post::afterSave()', 'trace');
+		Yii::log('isNewRecord: ' . ($this->isNewRecord ? 'true' : 'false'));
+		
 		Tag::model()->updateFrequency($this->_oldTags, $this->tags);
 		
-		// save a revision.
-		if ($this->revision != null)
+		// save a revision (isNewRecord is true if new record, although we could have auto-incremented id value)
+		if ($this->isNewRecord)
 		{
-			$diffs = $this->revision->getDifferencesWithPost($this);
-			Yii::log("revision to post differences:\r\n" . CVarDumper::dumpAsString($diffs), 'debug');
-			if (count($diffs) > 0)
-				$this->revision->save();
+			$this->revision = $this->createRevision();
+			$this->revision->was_created = 1;
+			$this->revision->save();
+		}
+		else 
+		{
+			if ($this->revision != null)
+			{
+				$diffs = $this->revision->getDifferencesWithPost($this);
+				Yii::log("revision to post differences:\r\n" . CVarDumper::dumpAsString($diffs), 'debug');
+				if (count($diffs) > 0)
+					$this->revision->save();
+			}
 		}
 	}
 
