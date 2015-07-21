@@ -652,6 +652,17 @@ class Post extends CActiveRecord
 		
 		return $exists ? 1 : 0;
 	}
+	
+	static function tryGetTitle($id)
+	{
+		$c = self::model()->find(array(
+			'select'=>'title',
+			'condition'=>'id = :id', 
+			'params'=>array(':id'=>$id),
+			'limit'=>1,
+		));
+		return ($c == null) ? '(#' . $id . ')' : $c->title;
+	}
 }
 
 

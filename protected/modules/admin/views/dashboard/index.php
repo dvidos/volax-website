@@ -132,27 +132,26 @@
 <h2>Πρόσφατη δραστηριότητα</h2>
 <table class="compact">
 <?php
-	$actions = PostRevision::model()->findAll(array(
-		'select'=>'id, post_id, `datetime`, user_id, was_deleted',
+	$revisions = PostRevision::model()->findAll(array(
+		'select'=>'id, post_id, `datetime`, user_id, was_created, was_deleted',
 		'order'=>'`datetime` DESC',
 		'limit'=>30,
 	));
 	$presented = array();
-	foreach ($actions as $action)
+	foreach ($revisions as $revision)
 	{
-		$key = $action->user_id . '-' . $action->post_id;
+		$key = $revision->user_id . '-' . $revision->post_id;
 		if (in_array($key, $presented))
 			continue;
 		$presented[] = $key;
 		if (count($presented) > 10)
 			break;
 		
-		$greek_datetime = substr($action->datetime, 8, 2) . '-' . substr($action->datetime, 5, 2) . '-' . substr($action->datetime, 2, 2) . ',&nbsp;' . substr($action->datetime, 11, 5);
 		echo '<tr>';
-		echo '<td style="white-space: nowrap; padding-right: 2em;">' . $greek_datetime . '</td>';
-		echo '<td style="white-space: nowrap; padding-right: 2em;">' . ($action->user == null ? '(χρήστης&nbsp;#'.$action->user_id.')' : str_replace(' ', '&nbsp;', $action->user->fullname)) . '</td>';
-		echo '<td style="white-space: nowrap; padding-right: 2em;">' . ($action->was_deleted ? 'Διέγραψε' : 'Διόρθωσε') . '</td>';
-		echo '<td>' . ($action->post == null ? '(ανάρτηση #'.$action->post_id.')' : postLink($action->post)) . '</td>';
+		echo '<td style="white-space: nowrap; padding-right: 2em;">' . $revision->friendlyDatetime . '</td>';
+		echo '<td style="white-space: nowrap; padding-right: 2em;">' . str_replace(' ', '&nbsp;', User::tryGetFullName($revision->user_id)) . '</td>';
+		echo '<td style="white-space: nowrap; padding-right: 2em;">' . $revision->friendlyAction . '</td>';
+		echo '<td>' . ($revision->post == null ? '(ανάρτηση #'.$revision->post_id.')' : postLink($revision->post)) . '</td>';
 		echo '</tr>';
 	}
 ?>

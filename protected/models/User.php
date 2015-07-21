@@ -239,6 +239,17 @@ class User extends CActiveRecord
 		
 		return 'user' . $this->id;
 	}
+	
+	static function tryGetFullName($id)
+	{
+		$c = self::model()->find(array(
+			'select'=>'fullname',
+			'condition'=>'id = :id', 
+			'params'=>array(':id'=>$id),
+			'limit'=>1,
+		));
+		return ($c == null) ? '(#' . $id . ')' : $c->fullname;
+	}
 }	
 
 
