@@ -36,7 +36,7 @@ class PostsController extends Controller
 			if($model->save())
 			{
 				$model->notifyEmailSubscribers(true);
-				Yii::app()->user->setFlash('postSaved','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
+				Yii::app()->user->setFlash('success','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
 				$this->redirect(array('update', 'id'=>$model->id));
 			}
 		}
@@ -63,7 +63,7 @@ class PostsController extends Controller
 			if($model->save())
 			{
 				$model->notifyEmailSubscribers(false);
-				Yii::app()->user->setFlash('postSaved','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
+				Yii::app()->user->setFlash('success','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
 			}
 		}
 
@@ -105,7 +105,7 @@ class PostsController extends Controller
 			if($model->save())
 			{
 				$model->notifyEmailSubscribers(false);
-				Yii::app()->user->setFlash('postSaved','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
+				Yii::app()->user->setFlash('success','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
 			}
 		}
 

@@ -57,8 +57,23 @@
 		<div style="clear:both;"></div>
 	</div><!-- mainmenu -->
 
-	<?php echo $content; ?>
+		
+	<div class="container">
+		<div id="content">
+			<?php 
+				if(Yii::app()->user->hasFlash('success'))
+				{
+					echo CHtml::tag('p', array('class'=>'flash-success'), CHtml::encode(Yii::app()->user->getFlash('success')));
+					$js = '$(document).ready(function(){ setTimeout(function() { $(".flash-success").slideUp(); }, 4000); });';
+					echo CHtml::tag('script', array(), $js);
+				}
+			?>
+			
+			<?php echo $content; ?>
+		</div><!-- content -->
+	</div>
 
+	
 	<div id="footer">
 		<p><?php echo Yii::app()->params['copyrightInfo']; ?></p>
 	</div><!-- footer -->

@@ -25,7 +25,10 @@ class CategoriesController extends Controller
 		{
 			$model->attributes = $_POST['Category'];
 			if($model->save())
-				$this->redirect(array('index'));
+			{
+				Yii::app()->user->setFlash('success','Η κατηγορία αποθηκεύτηκε: ' . CHtml::encode($model->title));
+				$this->redirect(array('update', 'id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -37,17 +40,30 @@ class CategoriesController extends Controller
 	{
 		$model = $this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		if(isset($_POST['Category']))
+		{
+			$model->attributes = $_POST['Category'];
+			if($model->save())
+				Yii::app()->user->setFlash('success','Η κατηγορία αποθηκεύτηκε: ' . CHtml::encode($model->title));
+		}
+
+		$this->render('update',array(
+			'model'=>$model,
+		));
+	}
+
+	public function actionDiscuss($id)
+	{
+		$model = $this->loadModel($id);
 
 		if(isset($_POST['Category']))
 		{
 			$model->attributes = $_POST['Category'];
 			if($model->save())
-				$this->redirect(array('index'));
+				Yii::app()->user->setFlash('success','Η κατηγορία αποθηκεύτηκε: ' . CHtml::encode($model->title));
 		}
 
-		$this->render('update',array(
+		$this->render('discuss',array(
 			'model'=>$model,
 		));
 	}

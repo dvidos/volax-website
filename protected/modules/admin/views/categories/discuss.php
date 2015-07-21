@@ -1,8 +1,4 @@
-<?php
-	$this->pageTitle = CHtml::encode($model->title); 
-?>
-
-<h1><?php echo $this->pageTitle; ?></h1>
+<h1><?php echo $model->title; ?></h1>
 
 <?php echo $this->renderPartial('_tabs', array('model'=>$model)); ?>
 <div class="tabs-page">
@@ -23,10 +19,6 @@
 		<?php $this->endWidget(); ?>
 	</div><!-- form -->
 
-
-
 	
 	
 </div>
-
-

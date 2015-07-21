@@ -23,7 +23,7 @@
 		<?php $this->widget('application.components.CkEditorWidget', array('varName' => 'Post_content')); ?>
 	</div>
 	
-	<?php echo CHtml::submitButton($model->isNewRecord ? 'Δημιουργία' : 'Αποθήκευση', array('name'=>'saveAndStay')); ?>
+	<?php echo CHtml::submitButton($model->isNewRecord ? 'Δημιουργία' : 'Αποθήκευση'); ?>
 	
 </td><td width="33%" style="vertical-align: top;">
 	

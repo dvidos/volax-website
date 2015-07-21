@@ -5,7 +5,7 @@ class CkEditorWidget extends CWidget
 	public $varName = 'content';
 	public $imagesBrowseUrl = null;
 	public $filesBrowseUrl = null;
-	
+	public $height = 400; // i guess in pixels
 	
 	public function init()
 	{
@@ -24,7 +24,7 @@ class CkEditorWidget extends CWidget
 	{
 		// see http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html
 		$editor_config = array(
-			'height'=>400,
+			'height'=>$this->height, // i guess in pixels
 			'language'=>'el', // for greek button labels and dialogs.
 			'entities_greek'=>false, // for not converting greek letters to entities
 			'entities_latin'=>false, // for not converting latin1 letters to entities.

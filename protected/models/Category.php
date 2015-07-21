@@ -30,11 +30,11 @@ class Category extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, status, layout', 'required'),
-			array('title', 'length', 'max'=>128),
+			array('title, status', 'required'),
+			array('title, layout', 'length', 'max'=>128),
 			array('title', 'application.components.validators.NoMixedLangValidator'),
 			array('parent_id, view_order, layout, status', 'numerical'),
-			array('content', 'safe'),
+			array('content, discussion', 'safe'),
 			array('id, parent_id, title, content, layout, status, view_order', 'safe', 'on'=>'search'),
 		);
 	}
@@ -49,8 +49,9 @@ class Category extends CActiveRecord
 		return array(
 			'parent' => array(self::BELONGS_TO, 'Category', 'parent_id'),
 			'subcategories'=>array(self::HAS_MANY, 'Category', 'parent_id', 'order'=>'view_order,title', 'condition'=>'status='.Category::STATUS_PUBLISHED),
+			'subcategoriesCount'=>array(self::STAT, 'Category', 'parent_id', 'condition'=>'status=2'),
 			'posts' => array(self::HAS_MANY, 'Post', 'category_id'),
-			'postsCount' => array(self::STAT, 'Post', 'category_id', 'condition'=>'status='.'2'),
+			'postsCount' => array(self::STAT, 'Post', 'category_id', 'condition'=>'status=2'),
 		);
 	}
 
