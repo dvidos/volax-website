@@ -1,1 +1,0 @@
-<?phpclass FilesController extends Controller{	function actionIndex()	{		$this->render('index');	}		function actionBrowse()	{		$this->layout = 'minimal';		$this->render('browsePopup');	}}

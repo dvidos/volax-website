@@ -77,10 +77,7 @@
 						echo CHtml::link('Είσοδος', array('/site/login'));
 					else
 					{
-						if (Yii::app()->user->isAuthor)
-							echo CHtml::link('Σύνταξη', array('/author')) . ' &nbsp;|&nbsp; ';
-						
-						if (Yii::app()->user->isAdmin)
+						if (Yii::app()->user->isAuthor || Yii::app()->user->isAdmin)
 							echo CHtml::link('Διαχ', array('/admin')) . ' &nbsp;|&nbsp; ';
 						
 						echo CHtml::link('Έξοδος ' . CHtml::encode(Yii::app()->user->user->username), array('/site/logout'));

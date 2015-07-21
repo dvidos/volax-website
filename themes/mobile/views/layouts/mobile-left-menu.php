@@ -72,10 +72,7 @@
 	}
 	else
 	{
-		if (Yii::app()->user->isAuthor)
-			$items[] = array('label'=>'Σύνταξη', 'url'=>array('/author'));
-		
-		if (Yii::app()->user->isAdmin)
+		if (Yii::app()->user->isAuthor || Yii::app()->user->isAdmin)
 			$items[] = array('label'=>'Διαχείριση', 'url'=>array('/admin'));
 		
 		$items[] = array('label'=>'Ο λογαριασμός μου', 'url'=>array('/user/myAccount'));

@@ -6,9 +6,14 @@ class PostsController extends Controller
 	{
 		$model=new Post('search');
 		$model->unsetAttributes();  // clear any default values
+		
 		if(isset($_GET['Post']))
 			$model->attributes=$_GET['Post'];
 
+		// authors only view their own posts
+		if (!Yii::app()->user->isAdmin)
+			$model->author_id = Yii::app()->user->id;
+			
 		$this->render('index',array(
 			'model'=>$model,
 		));
@@ -24,6 +29,10 @@ class PostsController extends Controller
 		if(isset($_POST['Post']))
 		{
 			$model->attributes = $_POST['Post'];
+			
+			if (!Yii::app()->user->isAdmin)
+				$model->author_id = Yii::app()->user->id;
+				
 			if($model->save())
 			{
 				$model->notifyEmailSubscribers(true);
@@ -50,6 +59,10 @@ class PostsController extends Controller
 		if(isset($_POST['Post']))
 		{
 			$model->attributes = $_POST['Post'];
+			
+			if (!Yii::app()->user->isAdmin)
+				$model->author_id = Yii::app()->user->id;
+			
 			if($model->save())
 			{
 				$model->notifyEmailSubscribers(false);
@@ -137,13 +150,18 @@ class PostsController extends Controller
 	}
 
 	
-	
-	
 	public function loadModel($id)
 	{
 		$model=Post::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
+		
+		if (!Yii::app()->user->isAdmin)
+		{
+			if ($model->author_id != Yii::app()->user->id)
+				throw new CHttpException(403, 'The requested post is not owned by you');
+		}
+		
 		return $model;
 	}
 

@@ -231,13 +231,22 @@ class User extends CActiveRecord
 	
 	public function getGreeting()
 	{
+		$h = date('G');
+		$greeting = '';
+		if ($h < 7) $greeting = 'Είναι αργά';
+		else if ($h < 12) $greeting = 'Καλημέρα';
+		else if ($h < 16) $greeting = 'Καλό μεσημέρι';
+		else if ($h < 20) $greeting = 'Καλό απόγευμα';
+		else $greeting = 'Καλησπέρα';
+		
 		if ($this->username != '')
-			return $this->username;
+			$greeting .= ' ' . $this->username;
+		else if ($this->email != '')
+			$greeting .= ' ' . $this->email;
+		else
+			$greeting .= ' user #' . $this->id;
 		
-		if ($this->email != '')
-			return $this->email;
-		
-		return 'user' . $this->id;
+		return $greeting . '!';
 	}
 	
 	static function tryGetFullName($id)

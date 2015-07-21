@@ -89,19 +89,37 @@
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'author_id'); ?>
-		<?php echo $form->dropDownList($model,'author_id', CHtml::listData(User::model()->findAll(), 'id', 'fullname')); ?>
-		<?php echo $form->error($model,'author_id'); ?>
+		<?php
+			if (Yii::app()->user->isAdmin)
+			{
+				echo $form->labelEx($model,'author_id');
+				echo $form->dropDownList($model,'author_id', CHtml::listData(User::model()->findAll(), 'id', 'fullname'));
+				echo $form->error($model,'author_id');
+			}
+			else
+			{
+				echo 'Χρήστης <b>' . ($model->author == null ? '-' : CHtml::encode($model->author->username)) .'</b>';
+			}
+		?>
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'editable_create_time', array('label'=>'Δημιουργία (ΗΗ-ΜΜ-ΕΕΕΕ ΩΩ:ΛΛ)')); ?>
-		<?php echo $form->textField($model,'editable_create_time'); ?>
-		<?php echo $form->error($model,'editable_create_time'); ?>
+		<?php
+			if (Yii::app()->user->isAdmin)
+			{
+				echo $form->labelEx($model,'editable_create_time', array('label'=>'Δημιουργία (ΗΗ-ΜΜ-ΕΕΕΕ ΩΩ:ΛΛ)'));
+				echo $form->textField($model,'editable_create_time');
+				echo $form->error($model,'editable_create_time');
+			}
+			else
+			{
+				echo 'Δημιουργία <b>' . ($model->create_time == 0 ? '-' : date('d-m-y H:i', $model->create_time)) . '</b>';
+			}
+		?>
 	</div>
 	
 	<div class="row">
-		Τελ. ενημέρωση στις <?php echo $model->update_time == 0 ? '(όχι ακόμα)' : date('d-m-y H:i', $model->update_time); ?>
+		Τελ. ενημέρωση στις <b><?php echo $model->update_time == 0 ? '(όχι ακόμα)' : date('d-m-y H:i', $model->update_time); ?></b>
 	</div>
 	
 </td></tr>

@@ -25,7 +25,7 @@ class AdminModule extends CWebModule
 			// this method is called before any module controller action is performed
 			// you may place customized code here
 
-			if (!Yii::app()->user->isAdmin)
+			if (!Yii::app()->user->isAdmin && !Yii::app()->user->isAuthor)
 				throw new CHttpException(403, 'You must be logged in as administrator');
 			
 			return true;

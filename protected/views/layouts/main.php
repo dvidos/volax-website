@@ -62,20 +62,9 @@
 			}
 			else
 			{
-				$h = date('G');
-				$greeting = '';
-				if ($h < 7) $greeting = 'Είναι αργά';
-				else if ($h < 12) $greeting = 'Καλημέρα';
-				else if ($h < 16) $greeting = 'Καλό μεσημέρι';
-				else if ($h < 20) $greeting = 'Καλό απόγευμα';
-				else $greeting = 'Καλησπέρα';
+				echo CHtml::tag('b', array(), Yii::app()->user->user->getGreeting()) . ' &nbsp;|&nbsp; ';
 				
-				echo CHtml::tag('b', array(), $greeting . ' ' . CHtml::encode(Yii::app()->user->user->username)) . ' &nbsp;|&nbsp; ';
-				
-				if (Yii::app()->user->isAuthor)
-					echo CHtml::link('Σύνταξη', array('/author')) . ' &nbsp;|&nbsp; ';
-				
-				if (Yii::app()->user->isAdmin)
+				if (Yii::app()->user->isAdmin || Yii::app()->user->isAuthor)
 					echo CHtml::link('Διαχείριση', array('/admin')) . ' &nbsp;|&nbsp; ';
 				
 				echo CHtml::link('O λογαριασμός μου', array('/user/myAccount'));

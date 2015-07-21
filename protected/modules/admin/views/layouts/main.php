@@ -15,20 +15,21 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo">Διαχείριση <?php echo CHtml::encode(Yii::app()->name); ?> - <?php echo CHtml::encode(Yii::app()->user->name); ?></div>
+		<div id="logo">Διαχείριση <?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="sublogo"><?php echo Yii::app()->user->user->getGreeting(); ?></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
 		<div style="float:left;">
 			<?php 
 				$submenu_items = array(
-					array('label'=>'Σχόλια', 'url'=>array('/admin/comments')),
-					array('label'=>'Ιστορικό αναρτήσεων', 'url'=>array('/admin/postRevisions')),
-					array('label'=>'Διαφημίσεις', 'url'=>array('/admin/advertisements')),
-					array('label'=>'Καταστάσεις', 'url'=>array('/admin/statuses')),
-					array('label'=>'Σελίδες', 'url'=>array('/admin/pages')),
-					array('label'=>'Χρήστες', 'url'=>array('/admin/users')),
-					array('label'=>'Εργαλεία', 'url'=>array('/admin/tools')),
+					array('label'=>'Σχόλια', 'url'=>array('/admin/comments'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Ιστορικό αναρτήσεων', 'url'=>array('/admin/postRevisions'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Διαφημίσεις', 'url'=>array('/admin/advertisements'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Καταστάσεις', 'url'=>array('/admin/statuses'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Σελίδες', 'url'=>array('/admin/pages'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Χρήστες', 'url'=>array('/admin/users'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Εργαλεία', 'url'=>array('/admin/tools'), 'visible'=>Yii::app()->user->isAdmin),
 				);
 				$this->widget('zii.widgets.CMenu',array(
 					'activeCssClass'=>'active',
@@ -36,10 +37,10 @@
 					'items'=>array(
 						array('label'=>'Αρχική', 'url'=>array('/admin')),
 						array('label'=>'Αναρτήσεις', 'url'=>array('/admin/posts')),
-						array('label'=>'Κατηγορίες', 'url'=>array('/admin/categories')),
+						array('label'=>'Κατηγορίες', 'url'=>array('/admin/categories'), 'visible'=>Yii::app()->user->isAdmin),
 						array('label'=>'Αρχεία', 'url'=>array('/admin/files')),
-						array('label'=>'Tags', 'url'=>array('/admin/tags')),
-						array('label'=>'...', 'url'=>'#', 'items'=>$submenu_items),
+						array('label'=>'Tags', 'url'=>array('/admin/tags'), 'visible'=>Yii::app()->user->isAdmin),
+						array('label'=>'...', 'url'=>'#', 'items'=>$submenu_items, 'visible'=>Yii::app()->user->isAdmin),
 					),
 				)); ?>
 		</div><div style="float:right;">
@@ -55,10 +56,6 @@
 		</div>
 		<div style="clear:both;"></div>
 	</div><!-- mainmenu -->
-
-	<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-		'links'=>$this->breadcrumbs,
-	)); ?><!-- breadcrumbs -->
 
 	<?php echo $content; ?>
 
