@@ -615,7 +615,7 @@ class Post extends CActiveRecord
 			$local_sites = array('http://volax.gr', 'http://www.volax.gr');
 			foreach ($local_sites as $local_site)
 			{
-				if (substr($url, 0, strlen($local_site)) == $local_site)
+				if (strlen($url) > strlen($local_site) && substr($url, 0, strlen($local_site)) == $local_site)
 				{
 					$url = substr($url, strlen($local_site));
 					break;
