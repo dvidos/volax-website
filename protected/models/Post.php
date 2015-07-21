@@ -77,7 +77,7 @@ class Post extends CActiveRecord
 			array('tags', 'application.components.validators.NoMixedLangValidator'),
 			array('category_id, status, layout, desired_width, in_home_page, author_id', 'numerical'),
 			array('category_id', 'validateCategoryId'),
-			array('title, content, allow_comments, masthead', 'safe'),
+			array('title, content, allow_comments, masthead, discussion', 'safe'),
 			array('editable_create_time', 'safe'),
 
 			array('id, title, masthead, category_id, content, tags, status, in_home_page, layout, author_id, allow_comments', 'safe', 'on'=>'search'),
@@ -120,6 +120,7 @@ class Post extends CActiveRecord
 			'status' => 'Κατάσταση',
 			'in_home_page' => 'Σε αρχική σελίδα',
 			'allow_comments' => 'Επιτρέπονται σχόλια',
+			'discussion'=>'Σημειώσεις',
 			'create_time' => 'Δημιουργία',
 			'update_time' => 'Ενημέρωση',
 			'author_id' => 'Συγγραφέας',

@@ -17,18 +17,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'content',array('label'=>'Κείμενο <span id="content-size-indicator"></span>')); ?>
+		<?php echo $form->labelEx($model,'content'); ?>
 		<?php echo $form->textArea($model,'content', array('class'=>'content-area', 'style'=>'width:100%;')); ?>
 		<?php echo $form->error($model,'content'); ?>
 		<?php $this->widget('application.components.CkEditorWidget', array('varName' => 'Post_content')); ?>
 	</div>
-	<p class="hint">
-		Βάζουμε <b>[more]</b> όπου θέλουμε να εμφανίζεται το <b>read more...</b>
-	</p>
 	
 	<?php echo CHtml::submitButton($model->isNewRecord ? 'Δημιουργία' : 'Αποθήκευση', array('name'=>'saveAndStay')); ?>
-	&nbsp;
-	<?php // echo CHtml::submitButton($model->isNewRecord ? 'Δημιουργία κι επιστροφή' : 'Αποθήκευση κι επιστροφή', array('name'=>'saveAndReturn')); ?>
 	
 </td><td width="33%" style="vertical-align: top;">
 	
@@ -84,7 +79,6 @@
 			'max'=>50,
 			'htmlOptions'=>array('size'=>40, 'style'=>'width:100%;'),
 		)); ?>
-		<p class="hint">Χρησιμοποιήστε ελληνικά, χωρίστε τα με κόμμα. Tags σε παρένθεση δεν εμφανίζονται δημόσια.</p>
 		<?php echo $form->error($model,'tags'); ?>
 	</div>
 	
