@@ -49,24 +49,24 @@ $this->pageTitle=$model->title;
 			<?php echo $model->commentCount>1 ? $model->commentCount . ' σχόλια' : 'Ενα σχόλιο'; ?>
 		</h3>
 
-		<?php foreach($model->comments as $comment): ?>
-		<div class="comment" id="c<?php echo $comment->id; ?>">
+		<?php foreach($model->comments as $old_comment): ?>
+		<div class="comment" id="c<?php echo $old_comment->id; ?>">
 
-			<?php echo CHtml::link("#{$comment->id}", $comment->getUrl($model), array(
+			<?php echo CHtml::link("#{$old_comment->id}", $old_comment->getUrl($model), array(
 				'class'=>'cid',
 				'title'=>'Permalink',
 			)); ?>
 			
 			<div class="author">
-				<?php echo $comment->authorLink; ?>
+				<?php echo $old_comment->authorLink; ?>
 			</div>
 
 			<div class="content">
-				<?php echo nl2br(CHtml::encode($comment->content)); ?>
+				<?php echo nl2br(CHtml::encode($old_comment->content)); ?>
 			</div>
 
 			<div class="time">
-				<?php echo $comment->getFriendlyCreateTime(); ?>
+				<?php echo $old_comment->getFriendlyCreateTime(); ?>
 			</div>
 
 		</div><!-- comment -->
