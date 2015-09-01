@@ -673,24 +673,6 @@ body.popup h1 {
 
 
 
-/* for "gallery" content preprocessor plugin */
-.post .content table.img-gallery {
-	border-collapse: collapse;
-	margin: 1em 0;
-	width: 100%;
-}
-.post .content table.img-gallery tr {
-	background-color: transparent;
-}
-.post .content table.img-gallery td {
-	border: none;
-	text-align: center;
-	font-size: 80%;
-	padding: 0 1% 1% 0;
-}
-.post .content table.img-gallery img {
-	max-width: 100%;
-}
 
 
 
