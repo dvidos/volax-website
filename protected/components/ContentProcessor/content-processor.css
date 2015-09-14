@@ -26,20 +26,21 @@ div.audioWrapper > object.audioPlayer {
 
 
 /* for "gallery" content preprocessor plugin */
-table.img-gallery {
-	border-collapse: collapse;
-	margin: 1em 0;
-	width: 100%;
+.img-gallery {
+	margin: 2em 0;
 }
-table.img-gallery tr {
-	background-color: transparent !important;
+.img-gallery .gallery-row {
+	overflow: hidden; /* this for clearing floats */
 }
-table.img-gallery td {
-	border: none !important;
+.img-gallery .gallery-img-cell img {
+	max-width: 100%;
+}
+.img-gallery .gallery-caption-cell {
 	text-align: center;
 	font-size: 80%;
-	padding: 0 1% 1% 0;
-}
-table.img-gallery img {
-	max-width: 100%;
+	color: #777;
+	line-height: 1.2em;
+	margin-top: .5em;
+	margin-bottom: 1em;
+	overflow: hidden;
 }

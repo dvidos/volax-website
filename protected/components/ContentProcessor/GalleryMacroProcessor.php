@@ -36,17 +36,20 @@ class GalleryMacroProcessor extends BaseMacroProcessor
 		
 		
 		
-		$table_cols_count = max($cols, 1);
-		$table_rows_count = ceil(count($images) / $table_cols_count);
-		$table_col_width = round(100 / $table_cols_count);
+		$cell_margin_percent = 1.0;
+		$gallery_cols_count = max($cols, 1);
+		$gallery_rows_count = ceil(count($images) / $gallery_cols_count);
+		$margin_needed = ($gallery_cols_count - 1) * $cell_margin_percent;
+		$gallery_col_width = round((100 - $margin_needed) / $gallery_cols_count, 2);
+		$gallery_divs = array();
 		$index = 0;
-		for ($r = 0; $r < $table_rows_count; $r++)
+		for ($r = 0; $r < $gallery_rows_count; $r++)
 		{
 			$thumbs_cells = array();
 			$captions_cells = array();
 			$row_has_caption = false;
 			
-			for ($c = 0; $c < $table_cols_count; $c++)
+			for ($c = 0; $c < $gallery_cols_count; $c++)
 			{
 				if ($index < count($images))
 				{
@@ -72,17 +75,21 @@ class GalleryMacroProcessor extends BaseMacroProcessor
 					$caption_cell = '&nbsp;';
 				}
 				
-				$thumbs_cells[] = CHtml::tag('td', array('style'=>'width:'.$table_col_width.'%'), $thumb_cell);
-				$captions_cells[] = CHtml::tag('td', array(), $caption_cell);
+				// rightmost cell does not need a margin...
+				$margin_width = ($c == $gallery_cols_count - 1) ? 0 : $cell_margin_percent;
+				$cell_style = 'float:left; width:'.$gallery_col_width.'%; margin-right:'.$margin_width.'%;';
+				
+				$thumbs_cells[] = CHtml::tag('div', array('class'=>'gallery-img-cell', 'style'=>$cell_style), $thumb_cell);
+				$captions_cells[] = CHtml::tag('div', array('class'=>'gallery-caption-cell', 'style'=>$cell_style), $caption_cell);
 				$index++;
 			}
 			
-			$table_rows[] = CHtml::tag('tr', array(), implode('', $thumbs_cells));
+			$gallery_divs[] = CHtml::tag('div', array('class'=>'gallery-row'), "\r\n".implode("\r\n", $thumbs_cells)."\r\n");
 			if ($row_has_caption)
-				$table_rows[] = CHtml::tag('tr', array(), implode('', $captions_cells));
+				$gallery_divs[] = CHtml::tag('div', array('class'=>'gallery-row'), "\r\n".implode("\r\n", $captions_cells)."\r\n");
 		}
 		
-		$html = CHtml::tag('table', array('class'=>'img-gallery'), implode('', $table_rows));
+		$html = CHtml::tag('div', array('class'=>'img-gallery'), "\r\n" . implode("\r\n", $gallery_divs) . "\r\n<div style=\"clear:both;\"><div>");
 		
 		
 		
