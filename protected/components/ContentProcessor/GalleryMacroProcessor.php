@@ -77,7 +77,7 @@ class GalleryMacroProcessor extends BaseMacroProcessor
 				
 				// rightmost cell does not need a margin...
 				$margin_width = ($c == $gallery_cols_count - 1) ? 0 : $cell_margin_percent;
-				$cell_style = 'float:left; width:'.$gallery_col_width.'%; margin-right:'.$margin_width.'%;';
+				$cell_style = 'float:left; width:'.$gallery_col_width.'%; margin-right:'.$margin_width.'%; margin-bottom:'.$margin_width.'%;';
 				
 				$thumbs_cells[] = CHtml::tag('div', array('class'=>'gallery-img-cell', 'style'=>$cell_style), $thumb_cell);
 				$captions_cells[] = CHtml::tag('div', array('class'=>'gallery-caption-cell', 'style'=>$cell_style), $caption_cell);
@@ -89,7 +89,7 @@ class GalleryMacroProcessor extends BaseMacroProcessor
 				$gallery_divs[] = CHtml::tag('div', array('class'=>'gallery-row'), "\r\n".implode("\r\n", $captions_cells)."\r\n");
 		}
 		
-		$html = CHtml::tag('div', array('class'=>'img-gallery'), "\r\n" . implode("\r\n", $gallery_divs) . "\r\n<div style=\"clear:both;\"><div>");
+		$html = CHtml::tag('div', array('class'=>'img-gallery'), "\r\n" . implode("\r\n", $gallery_divs) . "\r\n<div style=\"clear:both;\"></div>");
 		
 		
 		
