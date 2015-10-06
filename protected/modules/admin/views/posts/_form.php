@@ -58,6 +58,12 @@
 	</div>
 	
 	<div class="row">
+		<?php echo $form->checkBox($model, 'sticky'); ?>
+		<?php echo $form->labelEx($model,'sticky', array('style'=>'display:inline; margin-left:.5em;')); ?>
+		<?php echo $form->error($model,'sticky'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->checkBox($model, 'allow_comments'); ?>
 		<?php echo $form->labelEx($model,'allow_comments', array('style'=>'display:inline; margin-left:.5em;')); ?>
 		<?php echo $form->error($model,'allow_comments'); ?>
@@ -87,7 +93,7 @@
 			if (Yii::app()->user->isAdmin)
 			{
 				echo $form->labelEx($model,'author_id');
-				echo $form->dropDownList($model,'author_id', CHtml::listData(User::model()->findAll(), 'id', 'fullname'));
+				echo $form->dropDownList($model,'author_id', CHtml::listData(User::model()->findAll(array('condition'=>'is_author <> 0', 'order'=>'fullname')), 'id', 'fullname'));
 				echo $form->error($model,'author_id');
 			}
 			else

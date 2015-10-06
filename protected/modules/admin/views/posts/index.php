@@ -54,6 +54,12 @@ Yii::app()->clientScript->registerScript('search',
 			//'type'=>'raw',
 			//'value'=>'CHtml::link(CHtml::encode($data->title), array("update", "id"=>$data->id))',
 		),
+		array(
+			'name'=>'sticky',
+			'header'=>'Sticky',
+			'value'=>'$data->sticky ? "Ναι" : ""',
+			'filter'=>array('1'=>'Ναι','0'=>'Οχι'),
+		),
 		//array(
 		//	'name'=>'create_time',
 		//	'type'=>'raw',

@@ -16,6 +16,7 @@ class Post extends CActiveRecord
 	var $_oldDesiredWidth;
 	var $_oldLayout;
 	var $_oldHomePage;
+	var $_oldSticky;
 	var $_oldAllowComments;
 	var $_oldImageFilename;
 	var $_oldTags;
@@ -75,7 +76,7 @@ class Post extends CActiveRecord
 			array('tags', 'match', 'pattern'=>'/^[\S\s,]+$/', 'message'=>'Tags must be separated with comma.'),
 			array('tags', 'normalizeTags'),
 			array('tags', 'application.components.validators.NoMixedLangValidator'),
-			array('category_id, status, layout, desired_width, in_home_page, author_id', 'numerical'),
+			array('category_id, status, layout, desired_width, in_home_page, sticky, author_id', 'numerical'),
 			array('category_id', 'validateCategoryId'),
 			array('title, content, allow_comments, masthead, discussion', 'safe'),
 			array('editable_create_time', 'safe'),
@@ -119,6 +120,7 @@ class Post extends CActiveRecord
 			'tags' => 'Tags',
 			'status' => 'Κατάσταση',
 			'in_home_page' => 'Σε αρχική σελίδα',
+			'sticky' => 'Sticky',
 			'allow_comments' => 'Επιτρέπονται σχόλια',
 			'discussion'=>'Σημειώσεις',
 			'create_time' => 'Δημιουργία',
@@ -218,6 +220,7 @@ class Post extends CActiveRecord
 		
 		$this->in_home_page = true;
 		$this->allow_comments = true;
+		$this->sticky = false;
 		$this->desired_width = 2;
 		$this->category_id = Yii::app()->params['defaultPostCategoryId'];
 		
@@ -246,6 +249,7 @@ class Post extends CActiveRecord
 		$this->_oldTags = $this->tags;
 		$this->_oldStatus = $this->status;
 		$this->_oldHomePage = $this->in_home_page;
+		$this->_oldSticky = $this->sticky;
 		$this->_oldAllowComments = $this->allow_comments;
 		$this->_oldCreated = $this->create_time;
 		$this->_oldAuthorId = $this->author_id;
@@ -346,6 +350,8 @@ class Post extends CActiveRecord
 		$criteria->compare('tags',$this->tags,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('in_home_page',$this->in_home_page);
+		$criteria->compare('sticky',$this->sticky);
+		$criteria->compare('allow_comments',$this->allow_comments);
 		
 		return new CActiveDataProvider('Post', array(
 			'criteria'=>$criteria,
@@ -506,6 +512,9 @@ class Post extends CActiveRecord
 				
 			if ($this->_oldHomePage != $this->in_home_page)
 				$body .= 'Το σε-αρχική-σελίδα άλλαξε από "' . $this->_oldHomePage . '" σε "' . $this->in_home_page . '"<br />';
+				
+			if ($this->_oldSticky != $this->sticky)
+				$body .= 'Το sticky άλλαξε από "' . $this->_oldSticky . '" σε "' . $this->sticky . '"<br />';
 				
 			if ($this->_oldAllowComments != $this->allow_comments)
 				$body .= 'To επιτρέπονται-σχόλια άλλαξε από "' . $this->_oldAllowComments . '" σε "' . $this->allow_comments . '"<br />';

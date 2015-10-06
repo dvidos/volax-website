@@ -13,7 +13,11 @@
 	</div>
 	
 	<div class="content">
-		<?php echo $model->getContentHtml(); ?>
+		<?php 
+			$content = $model->getContentHtml(); 
+			$content = Yii::app()->contentProcessor->process($content);
+			echo $content;
+		?>
 	</div>
 	
 </div>
@@ -28,7 +32,7 @@
 				'params'=>array(':cid'=>$model->id),
 			),
 			'sort'=>array(
-				'defaultOrder'=>'create_time DESC',
+				'defaultOrder'=>'sticky DESC, create_time DESC',
 			),
 		));
 			
