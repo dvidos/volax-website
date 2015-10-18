@@ -35,7 +35,7 @@ class PostsController extends Controller
 				
 			if($model->save())
 			{
-				$model->notifyEmailSubscribers(true);
+				$model->notifyEmailSubscribers(true, false);
 				Yii::app()->user->setFlash('success','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
 				$this->redirect(array('update', 'id'=>$model->id));
 			}
@@ -62,7 +62,7 @@ class PostsController extends Controller
 			
 			if($model->save())
 			{
-				$model->notifyEmailSubscribers(false);
+				$model->notifyEmailSubscribers(false, false);
 				Yii::app()->user->setFlash('success','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
 			}
 		}
@@ -104,7 +104,7 @@ class PostsController extends Controller
 			$model->attributes = $_POST['Post'];
 			if($model->save())
 			{
-				$model->notifyEmailSubscribers(false);
+				$model->notifyEmailSubscribers(false, false);
 				Yii::app()->user->setFlash('success','Η ανάρτηση αποθηκεύτηκε: ' . CHtml::encode($model->title));
 			}
 		}
@@ -128,8 +128,10 @@ class PostsController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
-
+			$model = $this->loadModel($id);
+			$model->delete();
+			$model->notifyEmailSubscribers(false, true);
+			
 			// if AJAX request (triggered by deletion via admin gridview), we should not redirect the browser
 			if(!isset($_GET['ajax']))
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));

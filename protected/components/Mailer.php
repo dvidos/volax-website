@@ -32,6 +32,7 @@ class Mailer extends CApplicationComponent
 		$headers = $this->prepareHeaders();
 		
 		Yii::log('Mailer: Sending mail to "' . $to . '", titled "' . $title . '"', 'info', 'Mailer');
+		Yii::log($body, 'debug', 'Mailer');
 		if (!mail($to, $title, $body, implode("\r\n", $headers) . "\r\n"))
 		{
 			Yii::log('Mailer: mail() function returned false, sending failed', 'error', 'Mailer');

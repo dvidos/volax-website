@@ -5,29 +5,13 @@ class Post extends CActiveRecord
 	const STATUS_DRAFT=1;
 	const STATUS_PUBLISHED=2;
 	const STATUS_ARCHIVED=3;
+	
 	const TIMESTAMP_FORMAT = 'd-m-Y H:i'; // for date() function
 	const TIMESTAMP_PARSE = 'dd-MM-yyyy hh:mm'; // for CDateTimeParser Yii class
 
 	var $editable_create_time;
-	
-	var $_oldTitle;
-	var $_oldCategoryId;
-	var $_oldStatus;
-	var $_oldDesiredWidth;
-	var $_oldLayout;
-	var $_oldHomePage;
-	var $_oldSticky;
-	var $_oldAllowComments;
-	var $_oldImageFilename;
-	var $_oldTags;
-	var $_oldAuthorId;
-	var $_oldCreated;
-	var $_oldUpdated;
-	var $_oldContent;
-	var $_oldMasthead;
+	var $_original_tags;
 	var $_original_editable_create_time;
-	
-	
 	var $revision = null;
 	
 	public function createRevision()
@@ -97,8 +81,6 @@ class Post extends CActiveRecord
 			'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 			'comments' => array(self::HAS_MANY, 'Comment', 'post_id', 'condition'=>'comments.status='.Comment::STATUS_APPROVED, 'order'=>'comments.create_time'),
 			'commentCount' => array(self::STAT, 'Comment', 'post_id', 'condition'=>'status='.Comment::STATUS_APPROVED),
-			'oldAuthor' => array(self::BELONGS_TO, 'User', '_oldAuthorId'),
-			'oldCategory' => array(self::BELONGS_TO, 'Category', '_oldCategoryId'),
 			'revisions' => array(self::HAS_MANY, 'PostRevision', 'post_id'),
 			'revisionCount' => array(self::STAT, 'PostRevision', 'post_id'),
 		);
@@ -230,6 +212,7 @@ class Post extends CActiveRecord
 		
 		$this->editable_create_time = date(self::TIMESTAMP_FORMAT);
 		$this->_original_editable_create_time = $this->editable_create_time;
+		$this->_original_tags = $this->tags;
 	}
 	
 	/**
@@ -240,23 +223,10 @@ class Post extends CActiveRecord
 		parent::afterFind();
 		Yii::log('Post::afterFind()', 'trace');
 		
-		$this->_oldTitle = $this->title;
-		$this->_oldMasthead = $this->masthead;
-		$this->_oldCategoryId = $this->category_id;
-		$this->_oldContent = $this->content;
-		$this->_oldLayout = $this->layout;
-		$this->_oldDesiredWidth = $this->desired_width;
-		$this->_oldTags = $this->tags;
-		$this->_oldStatus = $this->status;
-		$this->_oldHomePage = $this->in_home_page;
-		$this->_oldSticky = $this->sticky;
-		$this->_oldAllowComments = $this->allow_comments;
-		$this->_oldCreated = $this->create_time;
-		$this->_oldAuthorId = $this->author_id;
-		
 		// format editable dates
 		$this->editable_create_time = date(self::TIMESTAMP_FORMAT, $this->create_time);
 		$this->_original_editable_create_time = $this->editable_create_time;
+		$this->_original_tags = $this->tags;
 		
 		$this->revision = $this->createRevision();
 	}
@@ -292,7 +262,7 @@ class Post extends CActiveRecord
 		Yii::log('Post::afterSave()', 'trace');
 		Yii::log('isNewRecord: ' . ($this->isNewRecord ? 'true' : 'false'));
 		
-		Tag::model()->updateFrequency($this->_oldTags, $this->tags);
+		Tag::model()->updateFrequency($this->_original_tags, $this->tags);
 		
 		// save a revision (isNewRecord is true if new record, although we could have auto-incremented id value)
 		if ($this->isNewRecord)
@@ -433,7 +403,6 @@ class Post extends CActiveRecord
 		);
 	}
 	
-	
 	public static function getLayoutCaption($layout)
 	{
 		$options = self::getLayoutOptions();
@@ -451,108 +420,32 @@ class Post extends CActiveRecord
 		$months = array('', 'Ιανουαρίου', 'Φεβρουαρίου', 'Μαρτίου', 'Απριλίου', 'Μαϊου', 'Ιουνίου', 'Ιουλίου', 'Αυγούστου', 'Σεπτεμβρίου', 'Οκτωβρίου', 'Νοεμβρίου', 'Δεκεμβρίου');
 		return date('j', $this->create_time) . ' ' . $months[date('n', $this->create_time)] . ' ' . date('Y', $this->create_time);
 	}
-	
-	
-	
-	public function notifyEmailSubscribers($is_new = false)
-	{
-		foreach (Yii::app()->params['postSavedSubscribers'] as $receiver)
-			$this->notifyEmailSubscriber($receiver, $is_new);
-	}
-	
-	public function notifyEmailSubscriber($email, $is_new = false)
-	{
-		$title = $is_new ? 'Νέα ανάρτηση: ' . $this->title : 'Διορθώθηκε: ' . $this->title;
-		$body = $this->prepareEmailBody($is_new);
-		
-		Yii::app()->mailer->send($email, $title, $body);
-	}
-	
-	private function prepareEmailBody($is_new = false)
-	{
-		$body = '';
-		
-		$body .= '<p>';
-		$body .= 
-			'Ο χρήστης <b>' . Yii::app()->user->name . '</b> ' .
-			($is_new ? 'δημιούργησε' : 'διόρθωσε') . ' την παρακάτω ' . 
-			(($this->status == Post::STATUS_PUBLISHED || $this->status == Post::STATUS_ARCHIVED) ? 'δημόσια' : 'πρόχειρη') .
-			' ανάρτηση, σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server. ';
-		
-		$h1 = '<h1>' . CHtml::encode($this->title) . ' </h1>';
-		$body .= CHtml::link($h1, $this->getUrl(true), array('style'=>'text-decoration: none; color:#2B5BA8;')) . "\r\n";
-		
-		
-		$body .= '<p>';
 
-		if (!$is_new)
-		{
-			if ($this->_oldTitle != $this->title)
-				$body .= 'Ο τίτλος άλλαξε από "' . $this->_oldTitle . '" σε "' . $this->title . '"<br />';
-				
-			if ($this->_oldCategoryId != $this->category_id)
-				$body .= 'Η κατηγορία άλλαξε από "' . 
-					(($this->oldCategory == null) ? '(καμμία)' : $this->oldCategory->title) . '" σε "' . 
-					(($this->category == null) ? '(καμμία)' : $this->category->title) . '"<br />';
-				
-			$layouts = $this->getLayoutOptions();
-			if ($this->_oldLayout != $this->layout)
-				$body .= 'Το layout άλλαξε από "' . $layouts[$this->_oldLayout] . '" σε "' . $layouts[$this->layout] . '"<br />';
-				
-			$widths = $this->getDesiredWidthOptions();
-			if ($this->_oldDesiredWidth != $this->desired_width)
-				$body .= 'Το πλάτος άλλαξε από "' . $widths[$this->_oldDesiredWidth] . '" σε "' . $widths[$this->desired_width] . '"<br />';
-				
-			if ($this->_oldTags != $this->tags)
-				$body .= 'Τα tags άλλαξαν από "' . $this->_oldTags . '" σε "' . $this->tags . '"<br />';
-				
-			$statusCaptions = array(1=>'Draft', 2=>'Published', 3=>'Archived');
-			if ($this->_oldStatus != $this->status)
-				$body .= 'Η κατάσταση άλλαξε από "' . $statusCaptions[$this->_oldStatus] . '" σε "' . $statusCaptions[$this->status] . '"<br />';
-				
-			if ($this->_oldHomePage != $this->in_home_page)
-				$body .= 'Το σε-αρχική-σελίδα άλλαξε από "' . $this->_oldHomePage . '" σε "' . $this->in_home_page . '"<br />';
-				
-			if ($this->_oldSticky != $this->sticky)
-				$body .= 'Το sticky άλλαξε από "' . $this->_oldSticky . '" σε "' . $this->sticky . '"<br />';
-				
-			if ($this->_oldAllowComments != $this->allow_comments)
-				$body .= 'To επιτρέπονται-σχόλια άλλαξε από "' . $this->_oldAllowComments . '" σε "' . $this->allow_comments . '"<br />';
-				
-			if ($this->_oldCreated != $this->create_time)
-				$body .= 'Η ημ/νία δημιουργίας άλλαξε από "' . 
-					date(self::TIMESTAMP_FORMAT, $this->_oldCreated) . '" σε "' .
-					date(self::TIMESTAMP_FORMAT, $this->create_time) . '"<br />';
-				
-			if ($this->_oldAuthorId != $this->author_id)
-				$body .= 'Ο συγγραφέας άλλαξε από "' . 
-					(($this->oldAuthor == null) ? '(κανένας)' : $this->oldAuthor->username) . '" σε "' .
-					(($this->author == null) ? '(κανένας)' : $this->author->username) . '"<br />';
-			
-			if ($this->_oldMasthead != $this->masthead)
-				$body .= $this->getContentChangeDescription($this->_oldMasthead, $this->masthead, 'Υπέρτιτλος', $is_new);
-		}
-		
-		$body .= $this->getContentChangeDescription($this->_oldContent, $this->content, 'Περιεχόμενο', $is_new);
-		
-		return $body;
+	public function getFriendlyStatus()
+	{
+		if ($this->status == Post::STATUS_DRAFT)
+			return 'Πρόχειρη';
+		else if ($this->status == Post::STATUS_PUBLISHED)
+			return 'Δημοσιευμένη';
+		else if ($this->status == Post::STATUS_ARCHIVED)
+			return 'Αρχειοθετημένη';
+		else
+			return '(Αγνωστο)';
 	}
 	
-	private function getContentChangeDescription($oldText, $newText, $contentTitle = '', $is_new = false)
+	public function notifyEmailSubscribers($is_new = false, $is_deleted = false)
 	{
-		if ($newText == '')
-			return '';
-		
-		$html = '';
-		
-		if ($contentTitle != '')
-			$html .= '<h3 style="margin-bottom: -1em;">' . CHtml::encode($contentTitle) . '</h3>';
-		
-		$html .= '<div style="border: 1px solid #aaa; padding: 1em; margin: 1em 0;">';
-		$html .= ($is_new) ? $newText : Yii::app()->differer->compare($oldText, $newText);
-		$html .= '</div>';
-		
-		return $html;
+		$subject = ($is_new ? 'Νέα ανάρτηση' : ($is_deleted ? 'Διαγράφηκε' : 'Διορθώθηκε')) . ': ' . $this->title;
+		foreach (Yii::app()->params['postSavedSubscribers'] as $receiver)
+		{
+			$body = Yii::app()->controller->renderPartial('_changeNotificationEmail', array(
+				'is_new'=>$is_new,
+				'is_deleted'=>$is_deleted,
+				'post'=>$this,
+				'revision'=> ($is_new || $is_deleted) ? null : $this->revision,
+			), true);
+			Yii::app()->mailer->send($receiver, $subject, $body);
+		}
 	}
 	
 	public function getContentLinks()

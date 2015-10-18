@@ -670,10 +670,10 @@ class FineDiff {
 			if ( strcspn($deletion, " \n\r") === 0 ) {
 				$deletion = str_replace(array("\n","\r"), array('\n','\r'), $deletion);
 				}
-			echo '<del>', $deletion, '</del>';
+			echo '<del style="color:#c00;">', $deletion, '</del>';
 			}
 		else /* if ( $opcode === 'i' ) */ {
- 			echo '<ins>', substr($from, $from_offset, $from_len), '</ins>';
+ 			echo '<ins style="color:#0c0;">', substr($from, $from_offset, $from_len), '</ins>';
 			}
 		}
 	}

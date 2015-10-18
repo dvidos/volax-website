@@ -3,7 +3,7 @@
 // this contains the application parameters that can be maintained via GUI
 return array(
 	// version, displayed on Admin.
-	'version'=>0.3,
+	'version'=>0.4,
 	
 	// this is displayed in the header section
 	'title'=>'Βωλάξ',
@@ -26,7 +26,7 @@ return array(
 	
 	// who receives email from saving a post
 	'postSavedSubscribers'=>array(
-		//'dvidos@gmail.com',
+		'dvidos@gmail.com',
 		//'jimel.vidos@gmail.com',
 		//'nikaliamoutos@gmail.com',
 	),
