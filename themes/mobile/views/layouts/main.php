@@ -64,9 +64,10 @@
 		<div class="wide-screens">
 			<div style="float:left;">
 				<?php 
-					echo CHtml::link('Βωλάξ', Yii::app()->homeUrl) . ' &nbsp;|&nbsp; ';
-					echo CHtml::link('Επισκεφτείτε μας', array('/category/view', 'id'=>127, 'title'=>'Επισκεφτείτε μας')) . ' &nbsp;|&nbsp; ';
-					echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')) . ' &nbsp;|&nbsp; ';
+					echo CHtml::link('Βωλάξ', Yii::app()->homeUrl) . ' &nbsp;&middot;&nbsp; ';
+					echo CHtml::link('Επισκεφτείτε μας', array('/category/view', 'id'=>127, 'title'=>'Επισκεφτείτε μας')) . ' &nbsp;&middot;&nbsp; ';
+					echo CHtml::link('Αναζήτηση', array('/site/search')) . ' &nbsp;&middot;&nbsp; ';
+					echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')) . ' &nbsp;&middot;&nbsp; ';
 					echo CHtml::link('Επικοινωνία', array('/site/contact'));
 				?>
 			</div>
@@ -78,7 +79,7 @@
 					else
 					{
 						if (Yii::app()->user->isAuthor || Yii::app()->user->isAdmin)
-							echo CHtml::link('Διαχ', array('/admin')) . ' &nbsp;|&nbsp; ';
+							echo CHtml::link('Διαχ', array('/admin')) . ' &nbsp;&middot;&nbsp; ';
 						
 						echo CHtml::link('Έξοδος ' . CHtml::encode(Yii::app()->user->user->username), array('/site/logout'));
 					}
@@ -137,7 +138,6 @@
 				Copyright &copy; 2008 - <?php echo date('Y'); ?> volax.gr
 			</div>
 			<div style="float:right;">
-				<?php echo CHtml::link('Οροι χρήσης', array('/page/view', 'url_keyword'=>'terms')); ?>
 			</div>
 			<div style="clear:both;"></div>
 		</div>

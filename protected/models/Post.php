@@ -673,6 +673,37 @@ class Post extends CActiveRecord
 		));
 		return ($c == null) ? '(#' . $id . ')' : $c->title;
 	}
+	
+	
+	public function getExcerpt($length = 150)
+	{
+		$excerpt = '';
+		
+		if (!empty($this->content))
+		{
+			$excerpt = mb_substr(strip_tags($this->content), 0, $length);
+		}
+		else if (!empty($this->masthead))
+		{
+			$excerpt = mb_substr(strip_tags($this->masthead), 0, $length);
+		}
+		
+		// remove more
+		$excerpt = str_replace('[more]', '', $excerpt);
+		
+		// cut to last space
+		if (mb_strlen($excerpt) > 10)
+		{
+			$pos = mb_strrpos($excerpt, ' ');
+			if ($pos != -1)
+			{
+				$excerpt = mb_substr($excerpt, 0, $pos);
+				$excerpt = rtrim($excerpt, '.,/-:');
+				$excerpt .= '...';
+			}
+		}
+		return $excerpt;
+	}
 }
 
 

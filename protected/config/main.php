@@ -61,6 +61,7 @@ return array(
 				'terms'=>array('page/view', 'defaultParams'=>array('url_keyword'=>'terms')),
 				'whoweare'=>array('page/view', 'defaultParams'=>array('url_keyword'=>'whoweare')),
 				'contact'=>array('site/contact'),
+				'search'=>array('site/search'),
 				
 				'users/<id:\d+>-<name:.*?>'=>'user/view',
 				'users/<id:\d+>'           =>array('user/view', 'parsingOnly'=>true),

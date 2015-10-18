@@ -126,6 +126,7 @@
 	$html .= $user_menu;
 	
 	$items = array();
+	$items[] = array('label'=>'Αναζήτηση', 'url'=>array('/site/search'));
 	$items[] = array('label'=>'Ποιοί είμαστε', 'url'=>array('/page/view', 'url_keyword'=>'whoweare'));
 	$items[] = array('label'=>'Επικοινωνία', 'url'=>array('/site/contact'));
 	$items[] = array('label'=>'Όροι χρήσης', 'url'=>array('/page/view', 'url_keyword'=>'terms'));

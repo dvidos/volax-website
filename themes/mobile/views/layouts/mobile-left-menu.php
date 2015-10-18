@@ -78,6 +78,8 @@
 		$items[] = array('label'=>'Ο λογαριασμός μου', 'url'=>array('/user/myAccount'));
 		$items[] = array('label'=>'Εξοδος', 'url'=>array('/user/logout'));
 	}
+	$items[] = array('label'=>'Όροι χρήσης', 'url'=>array('/page/view', 'url_keyword'=>'terms'));
+	
 	$user_menu = CHtml::tag('div', array('class'=>'gray-menu', 'style'=>'margin-top: 1.5em;'),
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>$items,
@@ -90,3 +92,4 @@
 	
 
 	echo $html;
+

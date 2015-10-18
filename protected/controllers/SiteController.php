@@ -91,4 +91,21 @@ class SiteController extends Controller
 		
 		$this->render('contact',array('model'=>$model));
 	}
+	
+	public function actionSearch()
+	{
+		$model = new SearchFormModel();
+		// could be GET, could be POST...
+		if (isset($_REQUEST['SearchFormModel']))
+		{
+			$model->attributes = $_REQUEST['SearchFormModel'];
+			if ($model->validate())
+			{
+				$model->doSearch();
+			}
+		}
+		
+		$this->render('search',array('model'=>$model));
+	}
+
 }

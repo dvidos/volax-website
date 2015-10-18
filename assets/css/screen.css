@@ -267,7 +267,6 @@ div.breadcrumbs span
 .post .title
 {
 	font-size: 1.5em;
-	-border-bottom: 1px solid #ddd;
 	margin-bottom: 1em;
 	font-weight: bold;
 }
@@ -673,6 +672,41 @@ body.popup h1 {
 
 
 
+
+.search-results {
+	max-width: 540px;
+	margin-top: 2em;
+}
+.search-results .post-entry {
+	margin-bottom: 1.5em;
+}
+
+.search-results .category-entry {
+}
+
+.search-results .tag-entry {
+}
+.search-results .title {
+	color: #09f; 
+	margin: 0;
+	font-size: 110%;
+}
+.search-results .title a {
+	color: inherit;
+	text-decoration: none;
+}
+.search-results .excerpt {
+	
+}
+.search-results .info {
+	color: #555;
+	font-size: 85%;
+}
+.search-results .info a {
+	color: inherit;
+	text-decoration: none;
+	font-weight: bold;
+}
 
 
 

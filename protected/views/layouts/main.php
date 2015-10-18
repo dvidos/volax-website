@@ -45,11 +45,13 @@
 <div id="top-menu">
 	<div id="top-menu-left" style="float:left;">
 		<?php echo CHtml::link('Αρχική', Yii::app()->homeUrl); ?> 
-		&nbsp;|&nbsp;
+		&nbsp;&middot;&nbsp;
 		<?php echo CHtml::link('Επισκεφτείτε μας', array('/category/view', 'id'=>127)); ?> 
-		&nbsp;|&nbsp;
+		&nbsp;&middot;&nbsp;
+		<?php echo CHtml::link('Αναζήτηση', array('/site/search')); ?> 
+		&nbsp;&middot;&nbsp;
 		<?php echo CHtml::link('Ποιοί είμαστε', array('/page/view', 'url_keyword'=>'whoweare')); ?> 
-		&nbsp;|&nbsp;
+		&nbsp;&middot;&nbsp;
 		<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?>
 	</div>
 	<div id="top-menu-right" style="float:right;">
@@ -57,18 +59,18 @@
 			if (Yii::app()->user->isGuest)
 			{
 				echo CHtml::link('Είσοδος', array('/user/login'));
-				echo ' | ';
+				echo ' &middot; ';
 				echo CHtml::link('Εγγραφή', array('/user/register'));
 			}
 			else
 			{
-				echo CHtml::tag('b', array(), Yii::app()->user->user->getGreeting()) . ' &nbsp;|&nbsp; ';
+				echo CHtml::tag('b', array(), Yii::app()->user->user->getGreeting()) . ' &nbsp;&middot;&nbsp; ';
 				
 				if (Yii::app()->user->isAdmin || Yii::app()->user->isAuthor)
-					echo CHtml::link('Διαχείριση', array('/admin')) . ' &nbsp;|&nbsp; ';
+					echo CHtml::link('Διαχείριση', array('/admin')) . ' &nbsp;&middot;&nbsp; ';
 				
 				echo CHtml::link('O λογαριασμός μου', array('/user/myAccount'));
-				echo ' | ';
+				echo ' &middot; ';
 				echo CHtml::link('Έξοδος', array('/user/logout'));
 			}
 		?>
@@ -123,9 +125,9 @@
 		</div>
 		<div id="footer-col2" style="float:left;width:900px;">
 			<?php echo CHtml::link('Tags', array('/post/tags')); ?> 
-			&nbsp;|&nbsp;
+			&nbsp;&middot;&nbsp;
 			<?php echo CHtml::link('Επικοινωνία', array('/site/contact')); ?> 
-			&nbsp;|&nbsp;
+			&nbsp;&middot;&nbsp;
 			<?php echo CHtml::link('Οροι χρήσης', array('/page/view', 'url_keyword'=>'terms')); ?> 
 		</div>
 		<div style="clear:both;"></div>
