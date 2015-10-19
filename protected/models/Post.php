@@ -121,6 +121,18 @@ class Post extends CActiveRecord
 		else
 			return Yii::app()->createUrl('post/view', array('id'=>$this->id,'title'=>$this->title));
 	}
+	
+	public function getSharingUrl()
+	{
+		// our short url, for twitter etc, without SEO title part.
+		$url = Yii::app()->createAbsoluteUrl('posts/' . $this->id);
+		
+		// remove index.php, if it exists.
+		// a .htaccess should rename this to correct for anyway
+		$url = str_replace('/index.php', '', $url);
+		
+		return $url;
+	}
 
 	/**
 	 * @return array a list of links that point to the post list filtered by every tag of this post
@@ -574,15 +586,17 @@ class Post extends CActiveRecord
 		
 		if (!empty($this->content))
 		{
-			$excerpt = mb_substr(strip_tags($this->content), 0, $length);
+			$excerpt = trim(mb_substr(strip_tags($this->content), 0, $length));
 		}
 		else if (!empty($this->masthead))
 		{
-			$excerpt = mb_substr(strip_tags($this->masthead), 0, $length);
+			$excerpt = trim(mb_substr(strip_tags($this->masthead), 0, $length));
 		}
 		
 		// remove more
 		$excerpt = str_replace('[more]', '', $excerpt);
+		$excerpt = str_replace("\r\n", ' ', $excerpt);
+		$excerpt = str_replace("\n", ' ', $excerpt);
 		
 		// cut to last space
 		if (mb_strlen($excerpt) > 10)
@@ -596,6 +610,23 @@ class Post extends CActiveRecord
 			}
 		}
 		return $excerpt;
+	}
+	
+	public function getSharingImage()
+	{
+		// try to find the first image of the content.
+		// if not, return empty... (and the icon will take over!)
+		
+		$matches = array();
+		if (preg_match('/<img[^>]+src="([^"]+)"/', $this->content, $matches))
+		{
+			return 
+				Yii::app()->request->hostInfo . 
+				Yii::app()->request->baseUrl . 
+				$this->makeRelativeUrl($matches[1]);
+		}
+		
+		return '';
 	}
 }
 

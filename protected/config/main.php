@@ -140,6 +140,9 @@ return array(
 		'contentProcessor'=>array(
 			'class'=>'application.components.ContentProcessor',
 		),
+		'openGraph'=>array(
+			'class'=>'application.components.OpenGraph',
+		),
 	),
 
 	'modules' => array(

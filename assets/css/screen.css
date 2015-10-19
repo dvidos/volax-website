@@ -709,4 +709,13 @@ body.popup h1 {
 }
 
 
+#social-sharing {
+	clear: both;
+	float: none;
+}
+#social-sharing img {
+	max-width: 24px;
+	margin-right: .5em;
+}
+
 

@@ -15,7 +15,11 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/css/stylistic.css"/>
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/images/favicon/logo2.png" />
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/script.js"></script>
-
+	<?php 
+		if (Yii::app()->openGraph->image == '')
+			Yii::app()->openGraph->image = Yii::app()->request->baseUrl . '/assets/images/favicon/logo2.png';
+		Yii::app()->openGraph->render(); 
+	?>
 	<script>
 		// toggling of compact menu buttons
 		$(document).ready(function () {

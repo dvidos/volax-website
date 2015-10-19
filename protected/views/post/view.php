@@ -1,8 +1,13 @@
 <?php
-$this->breadcrumbs=array(
-	$model->title,
-);
-$this->pageTitle=$model->title;
+	$this->pageTitle=$model->title;
+	
+	// fill some facebook info...
+	Yii::app()->openGraph->locale = 'el_GR';
+	Yii::app()->openGraph->type = 'article';
+	Yii::app()->openGraph->title = $model->title;
+	Yii::app()->openGraph->description = $model->excerpt;
+	Yii::app()->openGraph->image = $model->sharingImage;
+	Yii::app()->openGraph->url = $model->sharingUrl;
 ?>
 
 <div class="post medium">
@@ -43,6 +48,21 @@ $this->pageTitle=$model->title;
 </div>
 
 
+<div id="social-sharing">
+	<h3>Μοιραστείτε το</h3>
+	
+	<?php
+		$this->widget('application.components.SocialShareButton.SocialShareButton', array(
+			// we use short url...
+			'url'=>$model->sharingUrl,
+			'title'=>$model->title,
+			'networks'=>array('facebook', 'twitter', 'googleplus', ),
+		));
+	?>
+</div>
+
+
+<a name="comments"></a>
 <div id="comments">
 	<?php if($model->commentCount >= 1): ?>
 		<h3>
