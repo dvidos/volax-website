@@ -544,6 +544,12 @@ div.wide form .errorMessage
 .post .content table tr:nth-child(even) {
 	background-color: #e6e6e6;
 }
+.post .content table.plain tr {
+	background-color: transparent;
+}
+.post .content table.plain td {
+	border: 0px solid #ccc;
+}
 
 
 /*
