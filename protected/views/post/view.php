@@ -56,7 +56,7 @@
 			// we use short url...
 			'url'=>$model->sharingUrl,
 			'title'=>$model->title,
-			'networks'=>array('facebook', 'twitter', 'googleplus', ),
+			'networks'=>array('facebook', 'twitter', 'googleplus', 'email'),
 		));
 	?>
 </div>
