@@ -9,7 +9,6 @@
 	echo '<h2>Στατιστικά αρχεία</h2>';
 	echo '<ul>';
 	echo '<li><b>' . count($existing_files) . '</b> αρχεία στο /uploads ('.Yii::app()->stringTools->friendlySize($existing_files_size).')';
-	echo '<li><b>'.$old_volax_tinos_files_count.'</b> αρχεία χρησιμοποιούνται από τις παλιές σελίδες του volax-tinos.gr ('.Yii::app()->stringTools->friendlySize($old_volax_tinos_files_size).')';
 	echo '<li><b>' . count($used_files) . '</b> αρχεία χρησιμοποιούνται ('.Yii::app()->stringTools->friendlySize($used_files_size).')';
 	echo '<li><b>' . count($orphan_files) . '</b> ορφανά αρχεία, που δεν χρησιμοποιούνται ('.Yii::app()->stringTools->friendlySize($orphan_files_size).')';
 	echo '<li><b>' . count($missing_files) . '</b> αρχεία που δεν βρέθηκαν';
