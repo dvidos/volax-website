@@ -15,6 +15,11 @@
 <div class="container" id="page">
 
 	<div id="header">
+		<div id="logo-right">
+			<?php echo CHtml::link("Επιστροφή", Yii::app()->homeUrl); ?>
+			&nbsp;·&nbsp;
+			<?php echo CHtml::link("Αποσύνδεση", array('/user/logout')); ?>
+		</div>
 		<div id="logo">Διαχείριση <?php echo CHtml::encode(Yii::app()->name); ?></div>
 		<div id="sublogo"><?php echo Yii::app()->user->user->getGreeting(); ?></div>
 	</div><!-- header -->
@@ -22,37 +27,35 @@
 	<div id="mainmenu">
 		<div style="float:left;">
 			<?php 
-				$submenu_items = array(
-					array('label'=>'Σχόλια', 'url'=>array('/admin/comments'), 'visible'=>Yii::app()->user->isAdmin),
+				$more_items = array(
+					array('label'=>'Κατηγορίες αναρτήσεων', 'url'=>array('/admin/categories'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Σχόλια αναρτήσεων', 'url'=>array('/admin/comments'), 'visible'=>Yii::app()->user->isAdmin),
 					array('label'=>'Ιστορικό αναρτήσεων', 'url'=>array('/admin/postRevisions'), 'visible'=>Yii::app()->user->isAdmin),
 					array('label'=>'Διαφημίσεις', 'url'=>array('/admin/advertisements'), 'visible'=>Yii::app()->user->isAdmin),
-					array('label'=>'Καταστάσεις', 'url'=>array('/admin/statuses'), 'visible'=>Yii::app()->user->isAdmin),
-					array('label'=>'Σελίδες', 'url'=>array('/admin/pages'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Καταστάσεις δημοσίευσης', 'url'=>array('/admin/statuses'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Σελίδες κειμένου', 'url'=>array('/admin/pages'), 'visible'=>Yii::app()->user->isAdmin),
 					array('label'=>'Χρήστες', 'url'=>array('/admin/users'), 'visible'=>Yii::app()->user->isAdmin),
-					array('label'=>'Εργαλεία', 'url'=>array('/admin/tools'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Διάφορα εργαλεία', 'url'=>array('/admin/tools'), 'visible'=>Yii::app()->user->isAdmin),
+				);
+				$geo_items = array(
+					array('label'=>'Εγγραφές', 'url'=>array('/admin/geoFeatures'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Waypoints', 'url'=>array('/admin/geoWaypoints'), 'visible'=>Yii::app()->user->isAdmin),
+					array('label'=>'Ομάδες', 'url'=>array('/admin/geoGroups'), 'visible'=>Yii::app()->user->isAdmin),
 				);
 				$this->widget('zii.widgets.CMenu',array(
 					'activeCssClass'=>'active',
 					'activateParents'=>true,
 					'items'=>array(
-						array('label'=>'Αρχική', 'url'=>array('/admin')),
+						array('label'=>'Επισκόπιση', 'url'=>array('/admin')),
 						array('label'=>'Αναρτήσεις', 'url'=>array('/admin/posts')),
-						array('label'=>'Κατηγορίες', 'url'=>array('/admin/categories'), 'visible'=>Yii::app()->user->isAdmin),
 						array('label'=>'Αρχεία', 'url'=>array('/admin/files')),
 						array('label'=>'Tags', 'url'=>array('/admin/tags'), 'visible'=>Yii::app()->user->isAdmin),
-						array('label'=>'...', 'url'=>'#', 'items'=>$submenu_items, 'visible'=>Yii::app()->user->isAdmin),
+						array('label'=>'Γεωδαιτικά', 'url'=>'#', 'items'=>$geo_items, 'visible'=>Yii::app()->user->isAdmin),
+						array('label'=>'Περισσότερα...', 'url'=>'#', 'items'=>$more_items, 'visible'=>Yii::app()->user->isAdmin),
 					),
 				)); ?>
 		</div><div style="float:right;">
-			<?php 
-				$this->widget('zii.widgets.CMenu',array(
-					'activeCssClass'=>'active',
-					'activateParents'=>true,
-					'items'=>array(
-						array('label'=>'Επιστροφή', 'url'=>Yii::app()->homeUrl),
-						//array('label'=>'Εξοδος ' . Yii::app()->user->name, 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-					),
-				)); ?>
+			<!-- here was the link to public website -->
 		</div>
 		<div style="clear:both;"></div>
 	</div><!-- mainmenu -->
@@ -65,6 +68,12 @@
 				{
 					echo CHtml::tag('p', array('class'=>'flash-success'), CHtml::encode(Yii::app()->user->getFlash('success')));
 					$js = '$(document).ready(function(){ setTimeout(function() { $(".flash-success").slideUp(); }, 4000); });';
+					echo CHtml::tag('script', array(), $js);
+				}
+				if(Yii::app()->user->hasFlash('error'))
+				{
+					echo CHtml::tag('p', array('class'=>'flash-error'), CHtml::encode(Yii::app()->user->getFlash('error')));
+					$js = '$(document).ready(function(){ setTimeout(function() { $(".flash-error").slideUp(); }, 4000); });';
 					echo CHtml::tag('script', array(), $js);
 				}
 			?>

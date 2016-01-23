@@ -300,6 +300,19 @@ body
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 	letter-spacing: 1px;
 }
+#logo-right
+{
+	float: right;
+	padding: .75em 1em 0 0;
+	color: #eee;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+	font-size: 90%;
+}
+#logo-right a
+{
+	color: white;
+	text-decoration: none;
+}
 
 
 #mainmenu { background:white url(../images/bg_blue.gif) repeat-x left top; padding: 0 1.5em; }

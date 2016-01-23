@@ -23,6 +23,7 @@
 			<tr><td>Αρχειοθετημένες</td><td style="text-align:right;"><?php echo Post::model()->count('status='.Post::STATUS_ARCHIVED); ?></td></tr>
 			<tr><td>Κατηγορίες</td><td style="text-align:right;"><?php echo Category::model()->count('status='.Category::STATUS_PUBLISHED); ?></td></tr>
 			<tr><td>Σχόλια</td><td style="text-align:right;"><?php echo Comment::model()->count('status='.Comment::STATUS_APPROVED); ?></td></tr>
+			<tr><td>Γεωδαιτικά</td><td style="text-align:right;"><?php echo GeoFeature::model()->count(); ?></td></tr>
 			<tr><td>Χρήστες</td><td style="text-align:right;"><?php echo User::model()->count(); ?></td></tr>
 		<?php else: ?>
 			<tr><td>Αναρτήσεις</td><td style="text-align:right;"><?php echo Post::model()->count('status='.Post::STATUS_PUBLISHED.' AND author_id='.Yii::app()->user->id); ?></td></tr>
@@ -95,7 +96,8 @@
 	
 	<h2>Αλλα</h2>
 	<p>
-		<?php echo CHtml::link('Σελίδες του παλιού volax-tinos.gr', Yii::app()->baseUrl . '/old-volax-tinos-gr', array('target'=>'_blank', 'style'=>'font-weight:normal;')); ?><br />
+		<?php echo CHtml::link('Email λίστες ανακοινώσεων', 'http://lists.volax.gr/mailman/admin', array('target'=>'_blank', 'style'=>'font-weight:normal;')); ?>
+		<span style="font-weight: bold; color:#c00;">(νέο)</span><br />
 		<?php echo CHtml::link('Διαμοιραζόμενο βιβλίο excel', 'https://docs.google.com/spreadsheets/d/16zreBYooHHAdZC7MhD-IX-iPBzkRpG8IGsA7ZcAWbfA/edit?usp=sharing', array('target'=>'_blank', 'style'=>'font-weight:normal;')); ?><br />
 	</p>
 		

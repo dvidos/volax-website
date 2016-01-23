@@ -128,9 +128,6 @@ return array(
 				'o αποστολέας δεν ευθύνεται για οποιαδήποτε απώλεια δεδομένων ή άλλη ζημία προκύπτει από την χρήση του παρόντος μηνύματος. '
 		),
 		
-		'differer' => array(
-			'class'=>'application.components.Differer',
-		),
 		'textDiff'=>array(
 			'class'=>'application.components.TextDiff',
 		),
@@ -142,6 +139,9 @@ return array(
 		),
 		'openGraph'=>array(
 			'class'=>'application.components.OpenGraph',
+		),
+		'geoFileConverter'=> array(
+			'class'=>'application.components.GeoFileConverter',
 		),
 	),
 
