@@ -98,6 +98,8 @@
 	<p>
 		<?php echo CHtml::link('Email λίστες ανακοινώσεων', 'http://lists.volax.gr/mailman/admin', array('target'=>'_blank', 'style'=>'font-weight:normal;')); ?>
 		<span style="font-weight: bold; color:#c00;">(νέο)</span><br />
+		
+		<?php echo CHtml::link('Στατιστικά Google Analytics', 'https://www.google.com/analytics/', array('target'=>'_blank', 'style'=>'font-weight:normal;')); ?><br />
 		<?php echo CHtml::link('Διαμοιραζόμενο βιβλίο excel', 'https://docs.google.com/spreadsheets/d/16zreBYooHHAdZC7MhD-IX-iPBzkRpG8IGsA7ZcAWbfA/edit?usp=sharing', array('target'=>'_blank', 'style'=>'font-weight:normal;')); ?><br />
 	</p>
 		

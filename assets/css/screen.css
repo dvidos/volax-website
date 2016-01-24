@@ -99,6 +99,37 @@ div#content
 
 
 
+/* for maps, we use a special layout file, to allow full screen */
+body.map-layout #top-menu {
+	height: 20px;
+	padding: 5px 10px;
+}
+body.map-layout #map-container {
+	height: calc(100vh - 60px);
+	width: 75%;
+	float:left;
+}
+body.map-layout #map-container #map {
+	height: 100%;
+	width: 100%;
+}
+body.map-layout #info-container {
+	height: calc(100vh - 60px);
+	width: 25%;
+	float:right;
+	overflow-y: scroll;
+	overflow-x: auto;
+}
+body.map-layout #info-container #info-panel {
+	margin: 1em;
+}
+body.map-layout #footer {
+	height: 20px;
+	padding: 5px 10px;
+}
+
+
+
 
 
 /*

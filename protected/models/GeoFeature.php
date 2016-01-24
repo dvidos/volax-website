@@ -163,5 +163,32 @@ class GeoFeature extends CActiveRecord
 		GeoWaypoint::model()->deleteAll('feature_id='.$this->id);
 	}
 	
-	
+	public function toAjaxAssoc()
+	{
+		$ajax = array(
+			'id'=>$this->id,
+			'featureType'=>$this->feature_type,
+			'groupId'=>$this->group_id,
+			'title'=>$this->title,
+			'description'=>$this->description,
+			'geoLong'=>$this->geo_long,
+			'geoLat'=>$this->geo_lat,
+		);
+		
+		if ($this->waypointsCount > 0)
+		{
+			$ajax['waypoints'] = array();
+			foreach ($this->waypoints as $waypoint)
+			{
+				$ajax['waypoints'][] = array(
+					'id'=>$waypoint->id,
+					'waypointNo'=>$waypoint->waypoint_no,
+					'geoLong'=>$waypoint->geo_long,
+					'geoLat'=>$waypoint->geo_lat,
+				);
+			}
+		}
+		
+		return $ajax;
+	}
 }

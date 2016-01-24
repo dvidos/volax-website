@@ -96,4 +96,13 @@ class GeoGroup extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function toAjaxAssoc()
+	{
+		return array(
+			'id'=>$this->id,
+			'title'=>$this->title,
+			'description'=>$this->description,
+		);
+	}
 }
