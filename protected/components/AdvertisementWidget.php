@@ -28,7 +28,7 @@ class AdvertisementWidget extends CWidget
 		if ($ad == null)
 			return;
 		
-		if ($ad->target_url == '')
+		if ($ad->target_url != '')
 		{
 			// could trick user and present the URL on the status bar...
 			// bloody Google! very nice trick!
