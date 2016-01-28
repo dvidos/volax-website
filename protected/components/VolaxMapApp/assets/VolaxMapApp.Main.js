@@ -65,7 +65,7 @@ VolaxMapApp.Main =
 			// by google maps: 37.591793,25.1790143,17z
 			this.map.render();
 			this.map.setCenter(25.1790143, 37.591793);
-			this.map.setZoom(19);
+			this.map.setZoom(17);
 
 			this.loadGeoGroups();
 			this.loadGeoFeatures();
