@@ -161,58 +161,37 @@ class Comment extends CActiveRecord
 			return false;
 	}
 	
-	public function notifyEmailSubscribers()
+	public function notifyAllByEmail()
 	{
-		foreach (Yii::app()->params['newCommentSubscribers'] as $receiver)
+		if ($this->post == null)
+			return;
+		
+		// create a list of recipients
+		// arrays are assigned by copy in PHP
+		$all_recipients = Yii::app()->params['newCommentSubscribers'];
+		if ($this->post->author != null)
+			$all_recipients[] = $this->post->author->email;
+		foreach ($this->post->comments as $comment)
+			$all_recipients[] = $comment->email;
+		$recipients = array_unique($all_recipients);
+		
+		
+		foreach ($recipients as $recipient)
 		{
-			$title = 'Νέο σχόλιο';
+			$title = '[Νέο σχόλιο] ' . $this->post->title;
+			
 			$body = '';
-			
-			$body .=
-				'<p>Κάποιος επισκέπτης προσέθεσε νέο σχόλιο στην σελίδα <b>' . CHtml::link($this->post->title, $this->post->getUrl(true)) . '</b>, ' .
-				'σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server</p>';
-			
-			if ($this->status == Comment::STATUS_PENDING)
-				$body .= '<p>Επειδή ο σχολιασμός απαιτεί έλεγχο, το σχόλιο αυτό δεν θα εμφανιστεί μέχρι να το εγκρίνει κάποιος διαχειριστής.</p>';
-			else if ($this->status == Comment::STATUS_APPROVED)
-				$body .= '<p>O σχολιασμός δεν απαιτεί έλεγχο, το σχόλιο εμφανίζεται ήδη στην σελίδα, ' . CHtml::link('εδώ', $this->getUrl(null, true)) . '.</p>';
-			
-			
-			$body .= '<div style="border: 1px solid #aaa; padding: 2em; margin: 2em 0;">';
-			$body .= 'Ονομα: <b>' . $this->author . '</b><br />';
-			$body .= 'Email: <b>' . $this->email . '</b><br />';
-			$body .= 'URL: <b>' . $this->url . '</b></p>';
-			$body .= '<p>' . $this->content . '</p>';
+			$body .= 
+				'<p>O/Η <b>' . $this->author . '</b> πρόσθεσε ένα σχόλιο '.
+				'στην ανάρτηση <b>' . CHtml::link($this->post->title, $this->post->getUrl(true)) . '</b></p>';
+			$body .= '<div style="border: 1px solid #aaa; padding: 1em; margin: 1em 0;">';
+			$body .= '<p>' . nl2br($this->content) . '</p>';
 			$body .= '</div>';
+			$body .= '<p>&nbsp;</p>';
+			$body .= '<p>Φιλικά,<br />η ομάδα του <a href="http://volax.gr/">volax.gr</a></p>';
 			
-			$body .= '<p>Αν είστε administrator, μπορείτε να διαχειριστείτε τα εκκρεμή σχόλια ' . 
-					CHtml::link('εδώ', Yii::app()->createAbsoluteUrl('/admin/comments', array('status'=>1))) . '.</p>';
-			
-			Yii::app()->mailer->send($receiver, $title, $body);
+			Yii::app()->mailer->send($recipient, $title, $body);
 		}
 	}
-	
-	public function notifyAuthor()
-	{
-		$title = 'Νέο σχόλιο στο ' . $this->post->title;
-		$body = '';
-		
-		$body .=
-			'<p>Κάποιος επισκέπτης προσέθεσε νέο σχόλιο στην ανάρτησή σας <b>' . CHtml::link($this->post->title, $this->post->getUrl(true)) . '</b>, ' .
-			'σήμερα '. date('d/m/Y') . ', στις ' . date('H:i:s') . ', ώρα server</p>';
-		
-		if ($this->status == Comment::STATUS_PENDING)
-			$body .= '<p>Επειδή ο σχολιασμός απαιτεί έλεγχο, το σχόλιο αυτό δεν θα εμφανιστεί μέχρι να το εγκρίνει κάποιος διαχειριστής.</p>';
-		else if ($this->status == Comment::STATUS_APPROVED)
-			$body .= '<p>O σχολιασμός δεν απαιτεί έλεγχο, το σχόλιο εμφανίζεται ήδη στην σελίδα, ' . CHtml::link('εδώ', $this->getUrl(null, true)) . '.</p>';
-		
-		$body .= '<div style="border: 1px solid #aaa; padding: 2em; margin: 2em 0;">';
-		$body .= 'Ονομα: <b>' . $this->author . '</b><br />';
-		$body .= 'Email: <b>' . $this->email . '</b><br />';
-		$body .= 'URL: <b>' . $this->url . '</b></p>';
-		$body .= '<p>' . $this->content . '</p>';
-		$body .= '</div>';
-		
-		Yii::app()->mailer->send($this->post->author->email, $title, $body);
-	}
 }
+

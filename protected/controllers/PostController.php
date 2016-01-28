@@ -119,10 +119,12 @@ class PostController extends Controller
 			$comment->attributes=$_POST['Comment'];
 			if($post->addComment($comment))
 			{
-				$comment->notifyEmailSubscribers();
-				$comment->notifyAuthor();
+				if($comment->status==Comment::STATUS_APPROVED)
+					$comment->notifyAllByEmail();
+					
 				if($comment->status==Comment::STATUS_PENDING)
 					Yii::app()->user->setFlash('commentSubmitted','Ευχαριστούμε για το σχόλιό σας. Θα εμφανιστεί μόλις εγκριθεί.');
+
 				$this->refresh();
 			}
 		}
