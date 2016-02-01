@@ -46,7 +46,7 @@
 					'activeCssClass'=>'active',
 					'activateParents'=>true,
 					'items'=>array(
-						array('label'=>'Επισκόπιση', 'url'=>array('/admin')),
+						array('label'=>'Επισκόπηση', 'url'=>array('/admin')),
 						array('label'=>'Αναρτήσεις', 'url'=>array('/admin/posts')),
 						array('label'=>'Αρχεία', 'url'=>array('/admin/files')),
 						array('label'=>'Tags', 'url'=>array('/admin/tags'), 'visible'=>Yii::app()->user->isAdmin),

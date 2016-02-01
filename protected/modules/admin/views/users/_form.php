@@ -63,6 +63,12 @@
 		}
 	?>
 	
+	<div class="row">
+		<?php echo $form->labelEx($model,'initials'); ?>
+		<?php echo $form->textField($model,'initials',array('size'=>5,'maxlength'=>5)); ?>
+		<?php echo $form->error($model,'initials'); ?>
+	</div>
+
 	<div class="row checkbox">
 		<?php echo $form->checkBox($model,'is_admin'); ?>
 		<?php echo $form->labelEx($model,'is_admin', array('style'=>'display:inline;')); ?>

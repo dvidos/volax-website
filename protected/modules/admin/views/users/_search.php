@@ -17,7 +17,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 	<div class="row">
 		<?php echo $form->label($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->textField($model,'username'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'fullname'); ?>
+		<?php echo $form->textField($model,'fullname',array('size'=>50,'maxlength'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'initials'); ?>
+		<?php echo $form->textField($model,'initials'); ?>
 	</div>
 
 	<div class="row">

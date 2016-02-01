@@ -9,6 +9,7 @@ class User extends CActiveRecord
 		password			varchar(128)
 		email				varchar(128)
 		fullname			varchar(100)
+		initials			varchar(5)
 		is_author			int(11)
 		is_admin			int(11)
 		profile				text
@@ -53,7 +54,8 @@ class User extends CActiveRecord
 		return array(
 			array('email', 'required'),
 			array('username, password, fullname, email', 'length', 'max'=>128),
-			array('username', 'unique'),
+			array('initials', 'length', 'max'=>5),
+			array('username, initials', 'unique'),
 			array('is_admin, is_author, is_banned, want_newsletter, email_confirmed', 'boolean'),
 			array('password2', 'compare', 'compareAttribute'=>'password1'),
 			array('profile, password1, password2', 'safe'),
@@ -84,6 +86,7 @@ class User extends CActiveRecord
 			'password1' => 'Νέος κωδικός (αφήστε κενό για διατήρηση του υπάρχοντος)',
 			'password2' => 'Επανάληψη νέου κωδικού',
 			'fullname' => 'Πλήρες όνομα',
+			'initials' => 'Αρχικά',
 			'email' => 'Email',
 			'profile' => 'Προφίλ',
 			'registered_at'=>'Ημ/νια εγγραφής',
