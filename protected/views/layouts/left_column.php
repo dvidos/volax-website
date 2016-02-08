@@ -32,8 +32,8 @@
 	</div>
 	<div class="section">
 		<?php
-			echo CHtml::link('ΔΕΙΤΕ <span class="subtitle">εικόνες &amp; video</span>', array('/post/list', 'tag'=>'ΔΕΙΤΕ'), array('class'=>'black-button'));
-			echo CHtml::link('ΑΚΟΥΣΤΕ <span class="subtitle">διηγήσεις &amp; ήχους</span>', array('/post/list', 'tag'=>'ΑΚΟΥΣΤΕ'), array('class'=>'black-button'));
+			echo CHtml::link('ΔΕΙΤΕ <span class="subtitle">video</span>', array('/post/list', 'tag'=>'VIDEO'), array('class'=>'black-button'));
+			echo CHtml::link('ΑΚΟΥΣΤΕ <span class="subtitle">ηχητικά</span>', array('/post/list', 'tag'=>'AUDIO'), array('class'=>'black-button'));
 			echo CHtml::link('ΚΑΤΕΒΑΣΤΕ <span class="subtitle">αρχεία</span>', array('/post/list', 'tag'=>'ΚΑΤΕΒΑΣΤΕ'), array('class'=>'black-button'));
 		?>
 	</div>

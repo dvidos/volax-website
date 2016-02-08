@@ -73,8 +73,8 @@
 	$html .= CHtml::tag('div', array('class'=>'black-menu', 'style'=>'margin-top: 1.5em;'),
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>array(
-				array('label'=>'ΔΕΙΤΕ', 'url'=>array('/post/list', 'tag'=>'ΔΕΙΤΕ')),
-				array('label'=>'ΑΚΟΥΣΤΕ', 'url'=>array('/post/list', 'tag'=>'ΑΚΟΥΣΤΕ')),
+				array('label'=>'ΔΕΙΤΕ', 'url'=>array('/post/list', 'tag'=>'VIDEO')),
+				array('label'=>'ΑΚΟΥΣΤΕ', 'url'=>array('/post/list', 'tag'=>'AUDIO')),
 				array('label'=>'ΚΑΤΕΒΑΣΤΕ', 'url'=>array('/post/list', 'tag'=>'ΚΑΤΕΒΑΣΤΕ')),
 			),
 			'htmlOptions'=>array('class'=>'compact-buttons-list'),
