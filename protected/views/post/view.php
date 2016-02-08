@@ -36,7 +36,7 @@
 
 			if (count($model->tagLinks) > 0) {
 				echo '<br />';
-				echo 'Tags: <b>' . implode(', ', $model->tagLinks) . '</b>';
+				echo 'Tags: ' . implode(', ', $model->tagLinks) . '';
 			}
 				
 			if ($model->commentCount > 0) {

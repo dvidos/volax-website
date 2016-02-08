@@ -7,9 +7,10 @@
 <?php 
 	function showTag($name, $freq)
 	{
-		return 
+		return
 			CHtml::link(CHtml::encode($name), array('post/list', 'tag'=>$name)) .
-			'&nbsp;(' . $freq . ')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ';
+			//'&nbsp;(' . $freq . ')' . 
+			'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ';
 	}
 	
 	function showTags($tags, $regExp, &$included)
@@ -67,7 +68,7 @@
 			if (!preg_match($group['re'], $tag->name))
 				continue;
 			
-			$groupBody .= CHtml::link(CHtml::encode($tag->name), array('post/list', 'tag'=>$tag->name)) . '&nbsp;(' . $tag->frequency . ')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ';
+			$groupBody .= CHtml::link(CHtml::encode($tag->name), array('post/list', 'tag'=>$tag->name)) . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ';
 			$found = true;
 		}
 		$groupBody .= '</p>';
