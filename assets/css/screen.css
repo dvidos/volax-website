@@ -326,15 +326,17 @@ div.breadcrumbs span
 	-moz-border-radius:7px;
 	-border-top: 1px solid #ddd;
 	-background: #c7c8ca;
-	background: #ddd;
+	background: #f7f7f7;
 	padding: .125em .5em;
 	font-size: 85%;
 	margin: 1em 0;
+	color: #999;
 }
 .post .post-info a 
 {
 	text-decoration: none;
-	color: #555;
+	color: #444;
+	font-weight: normal;
 }
 div#comments
 {
