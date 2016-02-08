@@ -54,7 +54,7 @@ class PostController extends Controller
 	public function actionList()
 	{
 		$criteria=new CDbCriteria(array(
-			'condition'=>'status='.Post::STATUS_PUBLISHED,
+			'condition'=>'status=' . Post::STATUS_PUBLISHED . ' AND create_time <= ' . time(),
 			'order'=>'create_time DESC',
 			'with'=>'commentCount',
 		));

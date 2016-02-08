@@ -30,7 +30,7 @@ class SiteController extends Controller
 		//Yii::beginProfile('site_index');
 		
 		$criteria=new CDbCriteria(array(
-			'condition'=>'status = '.Post::STATUS_PUBLISHED. ' AND in_home_page = 1',
+			'condition'=>'status = '.Post::STATUS_PUBLISHED. ' AND in_home_page = 1 AND create_time <= ' . time(),
 			'order'=>'create_time DESC',
 			'with'=>'commentCount',
 		));

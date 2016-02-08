@@ -60,7 +60,7 @@ class SearchFormModel extends CFormModel
 		}
 		
 		$posts_criteria = array(
-			'condition'=>'status = '.Post::STATUS_PUBLISHED.' AND (' . implode(' AND ', $posts_conditions) . ')',
+			'condition'=>'status = '.Post::STATUS_PUBLISHED.' AND create_time <= ' . time() . ' AND (' . implode(' AND ', $posts_conditions) . ')',
 			'params'=>$params,
 			'order'=>'create_time DESC',
 		);

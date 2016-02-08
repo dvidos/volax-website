@@ -28,7 +28,7 @@
 	<?php
 		$dataProvider = new CActiveDataProvider('Post', array(
 			'criteria'=>array(
-				'condition'=>'category_id = :cid AND (status=' . Post::STATUS_PUBLISHED . ')',
+				'condition'=>'category_id = :cid AND (status=' . Post::STATUS_PUBLISHED . ') AND create_time <= ' . time(),
 				'params'=>array(':cid'=>$model->id),
 			),
 			'sort'=>array(

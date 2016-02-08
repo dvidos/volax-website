@@ -29,7 +29,7 @@ $this->pageTitle=$user->fullname;
 	<?php
 		$dataProvider = new CActiveDataProvider('Post', array(
 			'criteria'=>array(
-				'condition'=>'author_id = :aid AND (status=' . Post::STATUS_PUBLISHED . ')',
+				'condition'=>'author_id = :aid AND (status=' . Post::STATUS_PUBLISHED . ') AND create_time <= ' . time(),
 				'params'=>array(':aid'=>$user->id),
 			),
 			'sort'=>array(
