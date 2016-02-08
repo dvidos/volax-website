@@ -3,8 +3,8 @@
 	$tag = array_key_exists('tag', $_GET) ? @$_GET['tag'] : '';
 	if (!empty($tag))
 	{
-		$this->pageTitle = $tag . ': Αναρτήσεις';
-		echo CHtml::tag('h1', array('style'=>'margin: .5em 0'), CHtml::encode($tag) .': Αναρτήσεις');
+		$this->pageTitle = $tag;
+		echo CHtml::tag('h1', array('style'=>'margin: .5em 0'), CHtml::encode($tag));
 		echo CHtml::tag('p', array('style'=>'margin: .5em 0 3em 0;'), 
 			'Εμφανίζονται αναρτήσεις με την ετικέττα <b>' . CHtml::encode($tag) . '</b>.' . 
 			'&nbsp; &nbsp;' .
