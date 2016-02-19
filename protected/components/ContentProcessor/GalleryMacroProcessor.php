@@ -40,7 +40,10 @@ class GalleryMacroProcessor extends BaseMacroProcessor
 		$gallery_cols_count = max($cols, 1);
 		$gallery_rows_count = ceil(count($images) / $gallery_cols_count);
 		$margin_needed = ($gallery_cols_count - 1) * $cell_margin_percent;
-		$gallery_col_width = round((100 - $margin_needed) / $gallery_cols_count, 2);
+		$gallery_col_width = (100 - $margin_needed) / $gallery_cols_count;
+		// floor to one decimal digit (0.1% ~= 1px in 1024px)
+		// because for 3 cols, i had a width of 32.68%, adding all up would give 100.1%
+		$gallery_col_width = floor($gallery_col_width * 10) / 10; 
 		$gallery_divs = array();
 		$index = 0;
 		for ($r = 0; $r < $gallery_rows_count; $r++)
