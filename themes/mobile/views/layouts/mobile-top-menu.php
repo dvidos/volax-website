@@ -58,7 +58,8 @@
 	$html .= CHtml::tag('div', array('class'=>'gray-menu'),
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>array(
-				array('label'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ', 'url'=>array('/category/view', 'id'=>103, 'title'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ')),
+				//array('label'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ', 'url'=>array('/category/view', 'id'=>103, 'title'=>'ΤΗΣ ΚΑΤΑΣΚΗΝΩΣΗΣ')),
+				array('label'=>'HELLO!', 'url'=>array('/category/view', 'id'=>124, 'title'=>'HELLO!')),
 				array('label'=>'ΤΟΥ ΧΩΡΙΟΥ', 'url'=>array('/category/view', 'id'=>19, 'title'=>'ΤΟΥ ΧΩΡΙΟΥ')),
 				array('label'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ', 'url'=>array('/category/view', 'id'=>18, 'title'=>'ΤΟΥ ΣΥΛΛΟΓΟΥ')),
 			),

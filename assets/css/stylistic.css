@@ -11,6 +11,7 @@
 body.cke_editable {
 	font-family: 'Open sans',sans-serif;
 	font-size: 10pt;
+	background-color: white;
 }
 body.cke_editable img {
 	max-width: 100%;
@@ -28,7 +29,7 @@ body.cke_editable img {
 
 .x-style-low-text {
 	color: #cc0;
-	
+	color: #ff6600; /* new, 29/02/2016 */
 }
 
 .x-style-reference { 
