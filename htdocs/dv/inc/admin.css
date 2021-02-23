@@ -1,0 +1,14 @@
+div#admin-panel
+{
+	border: 1px solid #777;
+	background-color: #ddd;
+	x-background-image: -moz-linear-gradient(top, #aaa, #eee);
+	padding: .5em 1em;
+	margin: 1em 0;
+	border-radius: 3px;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.5);;
+}
+div#admin-panel a
+{
+	color: #00c;
+}
