@@ -30,9 +30,9 @@ return array(
 		),
 		'db'=>array(
 			//*
-				'connectionString' => 'mysql:host=localhost;dbname=volax4',
-				'username' => 'root',
-				'password' => '',
+				'connectionString' => 'mysql:host=localhost;dbname=forthnet_volax_gr',
+				'username' => 'volax_gr_user2',
+				'password' => 'QUk?J-At8N_-59K',
 			/*/
 				'connectionString' => 'mysql:host=mysql5.internet.gr;port=3305;dbname=forthnet_volax_gr',
 				'username' => 'volax_gr',
