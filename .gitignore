@@ -1,5 +1,7 @@
 
 htdocs/protected/runtime/application.log
 htdocs/protected/runtime/errors.log
+htdocs/assets/*
+htdocs/uploads/*
 
 
