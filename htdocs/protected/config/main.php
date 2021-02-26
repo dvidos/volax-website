@@ -35,7 +35,7 @@ return array(
 			array(
 				'connectionString' => 'mysql:host=db56.grserver.gr;port=3306;dbname=forthnet_volax_gr',
 				'username' => 'volax_gr',
-				'password' => 'Rtesnd@4s',
+				'password' => 'QUk?J-At8N_-59K',
 				'emulatePrepare' => true,
 				'charset' => 'utf8',
 				'tablePrefix' => 'v4_',
