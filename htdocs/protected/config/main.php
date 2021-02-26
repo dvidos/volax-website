@@ -1,5 +1,8 @@
 <?php
 
+$env_prod = strtolower(substr($_SERVER['HTTP_HOST'], -8)) == 'volax.gr';
+$env_dev = !$env_prod;
+
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -28,21 +31,24 @@ return array(
 			'class'=>'WebUser',
 			'allowAutoLogin'=>true,
 		),
-		'db'=>array(
-			//*
+		'db'=>$env_prod ? 
+			array(
+				'connectionString' => 'mysql:host=db56.grserver.gr;port=3306;dbname=forthnet_volax_gr',
+				'username' => 'volax_gr',
+				'password' => 'Rtesnd@4s',
+				'emulatePrepare' => true,
+				'charset' => 'utf8',
+				'tablePrefix' => 'v4_',
+				'enableProfiling'=>true,
+			) : array(
 				'connectionString' => 'mysql:host=localhost;dbname=forthnet_volax_gr',
 				'username' => 'volax_gr_user2',
 				'password' => 'QUk?J-At8N_-59K',
-			/*/
-				'connectionString' => 'mysql:host=mysql5.internet.gr;port=3305;dbname=forthnet_volax_gr',
-				'username' => 'volax_gr',
-				'password' => 'Rtesnd@4s',
-			// */
-			'emulatePrepare' => true,
-			'charset' => 'utf8',
-			'tablePrefix' => 'v4_',
-			'enableProfiling'=>true,
-		),
+				'emulatePrepare' => true,
+				'charset' => 'utf8',
+				'tablePrefix' => 'v4_',
+				'enableProfiling'=>true,
+			),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -95,8 +101,7 @@ return array(
 					'class'=>'CFileLogRoute',
 					'logFile'=>'application.log',
 					'levels'=>'trace, debug, info, warning, error',
-					'enabled'=>true,
-					//'enabled'=>false,
+					'enabled'=> $env_dev,
 				),
 				array(
 					'class'=>'CFileLogRoute',
@@ -118,6 +123,7 @@ return array(
 			'from' => 'Volax.gr <info@volax.gr>',
 			'bcc' => array(),
 			'htmlFormat' => true,
+			'bypass' => $env_dev,
 			'disclaimer' => 
 				"ΓΝΩΣΤΟΠΟΙΗΣΗ\r\n" .
 				'Το περιεχόμενο αυτού του μηνύματος και των τυχόν συνημμένων σε αυτό αρχείων είναι εμπιστευτικό και απόρρητο. '.

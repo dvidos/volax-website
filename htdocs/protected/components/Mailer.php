@@ -22,6 +22,12 @@ class Mailer extends CApplicationComponent
 	 */
 	public $htmlFormat = true;
 	
+	/**
+	 * Whether to bypass - useful for development
+	 */
+	public $bypass = false;
+	
+	
 	public function init()
 	{
 	}
@@ -30,6 +36,13 @@ class Mailer extends CApplicationComponent
 	{
 		$body = $this->addDisclaimer($body, $skip_disclaimer);
 		$headers = $this->prepareHeaders();
+		
+		if ($this->bypass)
+		{
+			Yii::log('Mailer: Bypassing sending mail to "' . $to . '", titled "' . $title . '"', 'info', 'Mailer');
+			Yii::log($body, 'debug', 'Mailer');
+			return;
+		}
 		
 		Yii::log('Mailer: Sending mail to "' . $to . '", titled "' . $title . '"', 'info', 'Mailer');
 		Yii::log($body, 'debug', 'Mailer');
