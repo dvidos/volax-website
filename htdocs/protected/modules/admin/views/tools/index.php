@@ -40,6 +40,13 @@
 	?></p>
 	
 	
+	<h3>Populate WordPress Content</h3>
+	<p><?php
+		echo CHtml::button('Populate WP Content', array(
+			'onClick'=>'if (window.confirm("Οι εγγραφές στο Wordpress θα χαθούν, είστε σίγουρος;")) { window.location = "' . $this->createUrl('/admin/tools/populateWordpress') . '"; }',
+		));
+	?></p>
+	
 	
 
 

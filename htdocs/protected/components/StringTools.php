@@ -15,7 +15,9 @@ class StringTools extends CApplicationComponent
 		
 		$text = str_replace(' ', '-', $text);
 		$text = str_replace($gr, $en, $text);
-		$text = preg_replace('/[^a-zA-Z0-9_\-]/', '', $text);
+		$text = preg_replace('/[^a-zA-Z0-9_\-]/', '-', $text);
+		$text = str_replace('--', '-', $text);
+		$text = trim($text, '-');
 		$text = strtolower($text);
 		
 		return $text;

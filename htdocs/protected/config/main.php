@@ -149,6 +149,10 @@ return array(
 		'geoFileConverter'=> array(
 			'class'=>'application.components.GeoFileConverter',
 		),
+		'wordpressPopulator' => array(
+			'class'=>'application.components.WordpressPopulator',
+			'wpTablesPrefix' => $env_prod ? 'wp5_' : 'wp_',
+		)
 	),
 
 	'modules' => array(

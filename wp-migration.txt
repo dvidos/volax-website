@@ -1,0 +1,114 @@
+Volax.gr Tags -> 
+-------------------
+wp5_terms
+- name: tag name
+- slug: custom slug or name url encoded
+- item_group: 0
+wp5_term_taxonomy
+- term_id -> wp5_terms.id
+- taxonomy -> "post_tag"
+- description -> tag description (longtext)
+- parent -> 0 (zero)
+- count -> 0 (zero)
+
+
+Volax.gr Categories -> 
+------------------------
+wp5_terms
+- name: category title
+- slug: custom slug or name url encoded
+- item_group: 0
+wp5_term_taxonomy
+- term_id -> wp5_terms.id
+- taxonomy -> "post_tag"
+- description -> any description (longtext)
+- parent: wp5_terms.id of parent or 0 (zero)
+- count: count of articles maybe?
+
+
+
+Posts
+------------------------
+post_author	wp_users.id
+post_date	datetime posted (GR local time I think)
+post_date_gmt	datetime posted GMT
+post_content	longtext, the content. html is fine.
+post_title	title (text)
+post_excerpt	i guess the before the "[more]" part. close tags. (text)
+post_status	char(20) status: "publish", "pending", "auto-draft", "draft", "inherit" etc (posts: publish, pending, draft)
+comment_status	"open", "closed" (open = allowed)
+ping_status	"open", "closed" (open = allowed)
+post_password	empty string (not null)
+post_name	most probably the slug
+to_ping		empty
+pinged		empty
+post_modified	date time updated (gr local time)
+post modified_gmt   date time updated (UTC)
+post_parent	0 for posts
+guid     	seems to be the URL (e.g. "http://volax.gr/wp-demo/?p=1")
+menu_order	0 for posts
+post_type	"post" for posts.
+post_mime_type	empty for posts
+comment_count	number of comments.
+
+
+
+
+Comments
+-----------------
+post_author	wp_users.id
+post_date	datetime posted (GR local time I think)
+post_date_gmt	datetime posted GMT
+post_content	longtext, the content. html is fine.
+post_title	title (text)
+post_excerpt	i guess the before the "[more]" part. close tags. (text)
+post_status	char(20) status: "publish", "pending", "auto-draft", "draft", "inherit" etc (posts: publish, pending, draft)
+comment_status	"open", "closed" (open = allowed)
+ping_status	"open", "closed" (open = allowed)
+post_password	empty string (not null)
+post_name	slug part (just a small string piece)
+to_ping		empty
+pinged		empty
+post_modified	date time updated (gr local time)
+post modified_gmt   date time updated (UTC)
+post_parent	0 for posts
+guid     	seems to be the URL (e.g. "http://volax.gr/wp-demo/?p=1")
+menu_order	0 for posts
+post_type	"post" for posts.
+post_mime_type	empty for posts
+comment_count	number of comments.
+
+
+
+Static pages (αποθηκεύει μια γραμμή για το πρώτο και μια για κάθε revision)
+------------------
+post_author	wp_users.id
+post_date	datetime posted (GR local time I think)
+post_date_gmt	datetime posted GMT
+post_content	longtext, the content. html is fine.
+post_title	title (text)
+post_excerpt	i guess the before the "[more]" part. close tags. (text)
+post_status	char(20) status: "publish", "pending", "auto-draft", "draft", "inherit" etc (posts: publish, pending, draft, for revisions, can be inherit)
+comment_status	"closed" (open = allowed)
+ping_status	"closed" (open = allowed)
+post_password	empty string (not null)
+post_name	slug part (just a small string piece)
+to_ping		empty
+pinged		empty
+post_modified	date time updated (gr local time)
+post modified_gmt   date time updated (UTC)
+post_parent	0 for posts
+guid     	seems to be the URL (e.g. "http://volax.gr/wp-demo/?page_id=18")
+menu_order	0 for posts
+post_type	"page" for pages.
+post_mime_type	empty for posts
+comment_count	0 (for pages)
+
+
+
+
+
+Not to forget:
+---------------------
+* custom css rules, like "low-text" or "alt-text".
+* redirection rules for existing links
