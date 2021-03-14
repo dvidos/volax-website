@@ -826,9 +826,9 @@ class WordpressPopulator extends CApplicationComponent
 		)";
 		Yii::app()->db->createCommand($sql)->execute();
 		
-		$sql = "update `wp_posts` set comment_count = 
+		$sql = "update `{$this->wpTablesPrefix}posts` set comment_count = 
 				(
-					select count(*) from wp_comments 
+					select count(*) from {$this->wpTablesPrefix}comments 
 					WHERE `comment_post_ID` = `ID` 
 					and comment_approved = '1'
 				)";
