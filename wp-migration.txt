@@ -112,3 +112,10 @@ Not to forget:
 ---------------------
 * custom css rules, like "low-text" or "alt-text".
 * redirection rules for existing links
+* short codes for [gallery], [video], [audio]
+* fixing the [more] short towards the excerpt in WP
+* assigning the main picture of a post.
+* fixing peripheral menus, such as on the header and footer (home, search, tags, who are we etc)
+
+
+

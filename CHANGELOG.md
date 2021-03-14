@@ -34,3 +34,14 @@ for Worpress to work.
 * Auto-detection of environment (prod / dev) in config file, 
 config now auto adjusting to this environment.
 
+### Mar 14, 2021
+
+* Code for transfering at least the bulk of posts, comments, pages, categories, tags from old site to new. Idempotent.
+* Still pending:
+    * Fixing the `[more]` shortcode and a post's excerpt
+    * Fixing other short codes, such as `[gallery], [video], [audio]`.
+    * Assigning the post's main picture
+* Redirection plugin for old urls (e.g. `volax.gr/post/<id>`)
+
+
+
