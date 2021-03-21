@@ -512,13 +512,15 @@ class ToolsController extends Controller
 		$posts = '',
 		$categories = '',
 		$tags = '',
-		$pages = ''
+		$pages = '',
+		$media = ''
 	) {
 		Yii::app()->wordpressPopulator->run(
 			$posts,
 			$categories,
 			$tags,
-			$pages
+			$pages,
+			$media
 		);
 		$log = Yii::app()->wordpressPopulator->getLog();
 		
@@ -527,6 +529,7 @@ class ToolsController extends Controller
 			'desired_categories' => $categories,
 			'desired_tags' => $tags,
 			'desired_pages' => $pages,
+			'desired_media' => $media,
 			'log' => $log,
 		));
 	}

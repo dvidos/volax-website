@@ -323,7 +323,8 @@ class WordpressPopulator extends CApplicationComponent
 		$desired_posts = '',
 		$desired_categories = '',
 		$desired_tags = '',
-		$desired_pages = ''
+		$desired_pages = '',
+		$desired_media = ''
 	) {
 		// clear log
 		$this->log_lines = [];
@@ -334,6 +335,7 @@ class WordpressPopulator extends CApplicationComponent
 			'category' => $desired_categories,
 			'tag' => $desired_tags,
 			'page' => $desired_pages,
+			'media' => $desired_media,
 		];
 		
 		// $this->log("Timestamps verification");
@@ -375,8 +377,10 @@ class WordpressPopulator extends CApplicationComponent
 		$this->log("- Found $posts_count posts, ID {$min_post_id} to {$max_post_id}");
 		$this->log("- Found $terms_count terms (categories+tags), ID {$min_term_id} to {$max_term_id}");
 		
-		if (!$this->load_user_mappings())
-			return;
+		if (!empty($this->desired_identifiers['post'])) {
+			if (!$this->load_user_mappings())
+				return;
+		}
 		
 		// categories and posts are populated with the same ID they have on volax.gr
 		
@@ -386,11 +390,10 @@ class WordpressPopulator extends CApplicationComponent
 		$this->load_wp_tags_and_taxonomies();
 		// $this->log("tag_term_ids", $this->tag_term_ids);
 		// $this->log("term_taxonomy_ids", $this->term_taxonomy_ids);
-		
 		$this->populate_posts();
-		
-		// pages should be done after posts, for there is a risk of ID collision
 		$this->populate_pages(); 
+		
+		$this->populate_media();
 		
 		$this->recalculate_counts();
 	}
@@ -449,7 +452,7 @@ class WordpressPopulator extends CApplicationComponent
 		$category_ids = Yii::app()->db->createCommand('SELECT id FROM v4_category WHERE parent_id = 0')->queryColumn();
 		$this->log("Root categories", implode(',', $category_ids));
 		foreach ($category_ids as $id) {
-			if (!$this->is_desired('category', $id))
+			if (!$this->is_desired_id('category', $id))
 				continue;
 			$category = Category::model()->findByPk($id);
 			$this->populate_category($category);
@@ -457,7 +460,7 @@ class WordpressPopulator extends CApplicationComponent
 		$category_ids = Yii::app()->db->createCommand('SELECT id FROM v4_category WHERE parent_id IN (' . implode(",", $category_ids) . ")")->queryColumn();
 		$this->log("Second categories", implode(',', $category_ids));
 		foreach ($category_ids as $id) {
-			if (!$this->is_desired('category', $id))
+			if (!$this->is_desired_id('category', $id))
 				continue;
 			$category = Category::model()->findByPk($id);
 			$this->populate_category($category);
@@ -465,7 +468,7 @@ class WordpressPopulator extends CApplicationComponent
 		$category_ids = Yii::app()->db->createCommand('SELECT id FROM v4_category WHERE parent_id IN (' . implode(",", $category_ids) . ")")->queryColumn();
 		$this->log("Third categories", implode(',', $category_ids));
 		foreach ($category_ids as $id) {
-			if (!$this->is_desired('category', $id))
+			if (!$this->is_desired_id('category', $id))
 				continue;
 			$category = Category::model()->findByPk($id);
 			$this->populate_category($category);
@@ -510,7 +513,7 @@ class WordpressPopulator extends CApplicationComponent
 	private function populate_tags() {
 		$tag_ids = Yii::app()->db->createCommand('SELECT id FROM v4_tag')->queryColumn();
 		foreach ($tag_ids as $id) {
-			if (!$this->is_desired('tag', $id))
+			if (!$this->is_desired_id('tag', $id))
 				continue;
 			
 			$tag = Tag::model()->findByPk($id);
@@ -565,7 +568,7 @@ class WordpressPopulator extends CApplicationComponent
 	private function populate_pages() {
 		$page_ids = Yii::app()->db->createCommand('SELECT id FROM v4_pages')->queryColumn();
 		foreach ($page_ids as $id) {
-			if (!$this->is_desired('page', $id))
+			if (!$this->is_desired_id('page', $id))
 				continue;
 				
 			$page = Page::model()->findByPk($id);
@@ -644,7 +647,7 @@ class WordpressPopulator extends CApplicationComponent
 		$page_ids = Yii::app()->db->createCommand('SELECT id FROM v4_post ORDER BY id')->queryColumn();
 		$count = 0;
 		foreach ($page_ids as $id) {
-			if (!$this->is_desired('post', $id))
+			if (!$this->is_desired_id('post', $id))
 				continue;
 			
 			$page = Post::model()->findByPk($id);
@@ -856,7 +859,7 @@ class WordpressPopulator extends CApplicationComponent
 		return strlen($t) == 0 ? $id : $t;
 	}
 	
-	private function is_desired($type, $id) {
+	private function is_desired_id($type, $id) {
 		$desired_ids = $this->desired_identifiers[$type];
 		
 		if ($desired_ids == 'all')
@@ -885,6 +888,20 @@ class WordpressPopulator extends CApplicationComponent
 		return false;
 	}
 	
+	private function is_desired_prefix($type, $filepath) {
+		$desired_prefix = $this->desired_identifiers[$type];
+		
+		if ($desired_prefix == 'all')
+			return true;
+		if (empty($desired_prefix))
+			return false;
+		
+		// for example "dvidos" will match "dvidos/2012/01/tada.jpg" etc
+		$desired_prefix = mb_strtolower(trim($desired_prefix, '/'));
+		$filepath = mb_strtolower(trim($filepath, '/'));
+		return (mb_substr($filepath, 0, mb_strlen($desired_prefix)) == $desired_prefix);
+	}
+	
 	private function log($str, $value = 0xDEADBEEF) {
 		$extra = ($value == 0xDEADBEEF) ? '' : ': ' . var_export($value, true);
 		
@@ -902,6 +919,86 @@ class WordpressPopulator extends CApplicationComponent
 		$str = mb_strtolower($str);
 		$str = str_replace($with_tones, $no_tones, $str);
 		return $str;
+	}
+	
+	private function populate_media() {
+		if (!$this->desired_identifiers['media'])
+			return;
+		
+		$volax_uploads_folder = dirname(dirname(__DIR__)) . '/uploads';
+		$wp_uploads_folder = dirname(dirname(__DIR__)) . '/wp/wp-content/uploads';
+		$all_folders = $this->get_all_folders($volax_uploads_folder);
+		
+		$this->log("All folders", $all_folders);
+		foreach ($all_folders as $folder) {
+			if (!$this->is_desired_prefix('media', $folder)) {
+				$this->log("Skipping folder {$folder}");
+				continue;
+			}
+			$this->log("Copying folder {$folder}");
+			$this->copy_folder_and_files($volax_uploads_folder, $wp_uploads_folder, $folder);
+		}
+	}
+	
+	private function get_all_folders($root_folder, $current_folder = '') {
+		$folders = [];
+		$entries = glob($root_folder . ($current_folder == '' ? '' : '/') . $current_folder . '/*');
+		// entries are like: "/media/dimitris/[...]/git-repo/htdocs/uploads/jimel/new_site/periigites_vol_05.jpg"
+		foreach ($entries as $entry) {
+			if (!is_dir($entry) || substr($entry, -5) == '/.tmb') {
+				continue;
+			}
+			$folder = substr($entry, mb_strlen($root_folder) + 1);
+			$folders[] = $folder;
+			
+			$subfolders = $this->get_all_folders($root_folder, $folder);
+			foreach ($subfolders as $subfolder)
+				$folders[] = $subfolder;
+		}
+		return $folders;
+	}
+	
+	private function get_media($folder, $root_folder) {
+		$root_len = mb_strlen($root_folder);
+		
+		$media = [];
+		// entries are like: "/media/dimitris/[...]/git-repo/htdocs/uploads/jimel/new_site/periigites_vol_05.jpg"
+		$entries = glob($folder . '/*');
+		foreach ($entries as $entry) {
+			if (is_file($entry)) {
+				$extension = strtolower(pathinfo($entry, PATHINFO_EXTENSION));
+				if (!in_array($extension, ['jpg', 'gif', 'png', 'jpeg', 'jpe'])) {
+					$this->log("Ignoring non-image file " . substr($entry, $root_len + 1));
+					continue;
+				}
+				$media[] = substr($entry, $root_len + 1);
+			} if (is_dir($entry)) {
+				$media += $this->get_media($entry, $root_folder);
+			}
+		}
+		
+		return $media;
+	}
+	
+	private function copy_folder_and_files($volax_uploads, $wp_uploads, $relative_folder = '') {
+		$source_folder = $volax_uploads . ($relative_folder == '' ? '' : '/') . $relative_folder;
+		$target_folder = $wp_uploads . ($relative_folder == '' ? '' : '/') . $relative_folder;
+		
+		if (!is_dir($target_folder)) {
+			$this->log("- Creating folder $target_folder");
+			mkdir($target_folder, 0777, true);
+		}
+		
+		$entries = glob($source_folder . '/*');
+		foreach ($entries as $entry) {
+			if (is_dir($entry))
+				continue;
+			
+			$filename = mb_substr($entry, mb_strlen($source_folder) + 1);
+			$this->log("- Copying file $filename");
+			// $this->log("- Copying file $source_folder/$filename\n            to $target_folder/$filename");
+			copy("$source_folder/$filename", "$target_folder/$filename");
+		}
 	}
 }
 

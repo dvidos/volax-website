@@ -105,7 +105,16 @@ post_mime_type	empty for posts
 comment_count	0 (for pages)
 
 
-
+On images migration
+-----------------------
+- our images are located in /uploads
+- wp wants media root to be somewhere under the wp directory
+- after trying to mark it outside (volax.gr/uploads and wp in volax.gr/wp/) it did not play nice.
+- so, i decided the following:
+    1. we will copy the files from uploads to wp/wp-content/uploads
+    2. we shall use the "Media Sync" plugin to import that data (it creates thumbs as well)
+    3. we shall use the "Better Search Replace" plugin to update URLs in posts.
+    4. we lose the owner of the file, but... 
 
 
 Not to forget:
