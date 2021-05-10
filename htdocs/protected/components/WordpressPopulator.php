@@ -686,6 +686,21 @@ class WordpressPopulator extends CApplicationComponent
 		 * 		comment_count = the comment count
 		 */
 		$this->log("Populating post {$post->id} {$post->title}");
+		if ($post->id == 1097) {
+			$before = $post->content;
+			
+			$content = $post->content;
+			$content = $this->clean_up_spans($content);
+			$content = $this->fix_video_tags($content);
+			$content = $this->fix_audio_tags($content);
+			$content = $this->fix_gallery_tags($content);
+			[$content, $excerpt] = $this->fix_and_extract_excerpt($content);
+			$post->content = $content;
+			
+			//$this->log("Before: " . htmlspecialchars($before, ENT_NOQUOTES));
+			//$this->log("After: " . htmlspecialchars($content, ENT_NOQUOTES));
+		}
+		//return;
 		
 		$cond = "ID = :id";
 		$params = [':id' => $post->id];
@@ -721,7 +736,7 @@ class WordpressPopulator extends CApplicationComponent
 			'post_date_gmt' => $this->getDateTimeGMT($post->create_time),
 			'post_content' => $post->content,
 			'post_title' => $post->title,
-			'post_excerpt' => '',
+			'post_excerpt' => $excerpt,
 			'post_status' => $wp_statuses[$post->status],
 			'comment_status' => ($post->allow_comments ? 'open' : 'closed'),
 			'ping_status' => 'closed',
@@ -816,6 +831,55 @@ class WordpressPopulator extends CApplicationComponent
 				'user_id' => 0,
 			]);
 		}
+	}
+	
+	private function clean_up_spans($content) {
+		// sample: "<p><span>[audio src="/uploads/</span>nikaliamoutos/2016/kalaman2016(1)valenapioume.mp3<span>"]</span></p>"
+		// the question mark turns the greedy matching into a lazy one
+		$converted = preg_replace('/<span\>(.*?)\<\/span\>/s', '\1', $content);
+		return $converted;
+	}
+	
+	private function fix_video_tags($content) {
+		// sample: "<p>[video src="https://www.youtube.com/watch?v=23AQBuachus"]</p>"
+		// using the "Youtube Embed" plugin,
+		// we need format of: "[youtube]https://www.youtube.com/watch?v=wlOGhC3241o[/youtube]"
+		$content = preg_replace('/\[video src="(.+?)"\]/', '[youtube]\1[/youtube]', $content);
+		$content = preg_replace('/\[video src=&quot;(.+?)&quot;\]/', '[youtube]\1[/youtube]', $content);
+		return $content;
+	}
+	
+	private function fix_audio_tags($content) {
+		// sample: "<p>[audio src="/uploads/nikaliamoutos/2016/kalaman2016(1)valenapioume.mp3"]</p>"
+		// wordpress supports: [audio src="audio-source.mp3"]  where the audio-source.mp3 must be the path to the file.
+		$content = preg_replace('/\[audio src="\/?(.+?)"\]/', '[audio src="/\1"]', $content);
+		$content = preg_replace('/\[audio src=&quot;\/?(.+?)&quot;\]/', '[audio src="/\1"]', $content);
+		return $content;
+	}
+	
+	private function fix_gallery_tags($content) {
+		// sample: "<p>[gallery folder="uploads/nikaliamoutos/2016" cols="3"<br />
+		//		&nbsp; &nbsp; img="kalaman2016(13).JPG" &nbsp;thumb="kalaman2016(13)th.JPG"<br />
+		//		&nbsp;&nbsp;&nbsp; img="kalaman2016(14).JPG" &nbsp;thumb="kalaman2016(14)th.JPG"<br />
+		//		&nbsp;&nbsp; &nbsp;img="kalaman2016(15).JPG" &nbsp;thumb="kalaman2016(15)th.JPG"]</p>"
+		return $content;
+	}
+	
+	private function fix_and_extract_excerpt($content) {
+		// in theory WP supports the "<!--more-->" thingy.
+		// but we could also extract the first 55 words.
+		$excerpt = '';
+		
+		$pos = mb_strpos($content, '[more]');
+		if ($pos !== false) {
+			$content = str_replace("[more]", "<!--more-->", $content);
+			$excerpt = '';
+		} else {
+			$words = explode(" ", $content);
+			$first_words = array_slice($words, 0, 55);
+			$excerpt = implode(" ", $first_words);
+		}
+		return [$content, $excerpt];
 	}
 	
 	private function recalculate_counts() {
