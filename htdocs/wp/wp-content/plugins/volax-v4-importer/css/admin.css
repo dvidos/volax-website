@@ -1,22 +1,30 @@
 @CHARSET "UTF-8";
 
 /* Sample CSS styles below */
-body.plugin-base-admin_page_dx-remote-subpage h3 {
-	margin: 20px 0;
+
+.volax-importer-page ul {
+	# border: 1px solid red;
+}
+.volax-importer-page ul li {
+	list-style-type: disc;
+	list-style-position: outside;
+	margin: 0 0 0 1.5em;
+	# border: 1px solid green;
 }
 
-#dx_page_messages {
-	width: 100%;
-	background-color: yellow;
-	margin-bottom: 20px;
+#ajax-loader {
+	width: 24px;
+	height: 24px;
+	margin-bottom: -6px;
+	margin-left: 6px;
+	display: none;
 }
 
-#resource-window {
-	margin-top: 50px;
-	background-color: #DDD;
-	font-size: 19px;
+#ajax-response {
+	padding: .5em 1em;
+	border: 1px solid #aaa;
+	margin: 1em 0;
+	background-color: white;
+	display: none;
 }
 
-#resource-window p {
-	padding: 20px;
-}

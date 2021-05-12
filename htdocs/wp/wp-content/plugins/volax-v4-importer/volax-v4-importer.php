@@ -75,10 +75,6 @@ class Volax_Importer_Plugin {
 		//// Add a sample widget
 		//add_action( 'widgets_init', array( $this, 'vi_sample_widget' ) );
 		
-		///*
-		 //* TODO:
-		 //* 		template_redirect
-		 //*/
 		
 		// Add ajax callback actions. prefix "action" with "wp_ajax_"
 		// use the wp_ajax_nopriv_ hook for non-logged users (handle guest actions)
@@ -427,15 +423,20 @@ class Volax_Importer_Plugin {
 	/**
 	 * Called via ajax, from js/admin.js, from various forms in inc/*page.php
 	 * Make sure to register the action first, it is not matched by naming convention.
+	 * can also echo json_encode(["any" => "array"]);
 	 */
 	public function posted_ajax_form() {
-		// use $_POST[] to get variables and values.
-		// can also echo json_encode(["any" => "array"]);
-		sleep(2);
-		echo "Hello, my name is <b>Jimmy</b>";
-		flush();
-		sleep(5);
-		echo "<br />Hello, my other name is <b>Jimminy Cricket</b>";
+		$what = @$_POST['data']['what'];
+		$identities = @$_POST['data']['identities'];
+		$skip_dry_run = @$_POST['data']['skip_dry_run'];
+		
+		if (empty($identities)) {
+			echo "Identities are empty - aborting.";
+			die;
+		}
+		
+		$out = $this->v4->doImport($what, $idetities, $skip_dry_run);
+		echo $out;
 		die();
 	}
 }
