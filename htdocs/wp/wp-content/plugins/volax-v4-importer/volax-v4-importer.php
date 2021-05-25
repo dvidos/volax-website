@@ -417,7 +417,7 @@ class Volax_Importer_Plugin {
 			}
 		}
 		echo json_encode( __( 'No title found or site was not fetched properly', 'vibase' ) );
-		die();
+		die("");
 	}
 	
 	/**
@@ -426,17 +426,18 @@ class Volax_Importer_Plugin {
 	 * can also echo json_encode(["any" => "array"]);
 	 */
 	public function posted_ajax_form() {
-		$what = @$_POST['data']['what'];
-		$identities = @$_POST['data']['identities'];
-		$skip_dry_run = @$_POST['data']['skip_dry_run'];
-		
-		if (empty($identities)) {
-			echo "Identities are empty - aborting.";
-			die;
+		try {
+			$what = @$_POST['data']['what'];
+			$identities = @$_POST['data']['identities'];
+			$skip_dry_run = @$_POST['data']['skip_dry_run'];
+			$overwrite = @$_POST['data']['overwrite'];
+			
+			$this->v4->doRequestedImports($what, $identities, $skip_dry_run, $overwrite);
+			echo nl2br(implode("<br />", $this->v4->get_log_entries()));
+		} catch (\Throwable $t) {
+			$out = '<span style="color: red;">' . strval($t) . '</span>';
+			echo nl2br($out);
 		}
-		
-		$out = $this->v4->doImport($what, $idetities, $skip_dry_run);
-		echo $out;
 		die();
 	}
 }

@@ -6,21 +6,47 @@ jQuery(document).ready(function($) {
 		e.preventDefault();
 		$("#ajax-loader").show();
 		$("input[type=submit]").attr("disabled", true);
+		$('#ajax-response').html('');
 		
-		// var ajax_field_value = 
 		var what = $('#what').val();
 		var identities = $('#identities').val();
 		var skip_dry_run = $('#skip-dry-run').is(":checked") ? 1 : 0;
+		var overwrite = $('#overwrite').is(":checked") ? 1 : 0;
 		
-		$.post(ajaxurl, {
-			data: {'what': what, 'identities': identities, 'skip_dry_run': skip_dry_run },
-			action: 'posted_ajax_form'
+		$.ajax({
+			url: ajaxurl,
+			type: "POST",
+			data: {
+				action: 'posted_ajax_form',
+				data: {
+					'what': what, 
+					'identities': identities, 
+					'skip_dry_run': skip_dry_run, 
+					'overwrite': overwrite 
+				},
+			},
+			success: function(response) {
+				$("#ajax-loader").hide();
+				$("input[type=submit]").attr("disabled", false);
+				$('#ajax-response').html(response);
+				$('#ajax-response').show();
+			},
+			error: function(xhr, status, error) {
+				var errorMessage = xhr.status + ': ' + xhr.statusText
+				// alert('Error - ' + errorMessage);
+				
+				$("#ajax-loader").hide();
+				$("input[type=submit]").attr("disabled", false);
+				$('#ajax-response').html(errorMessage);
+				$('#ajax-response').show();
+			}
+		});		
+		/*$.post(ajaxurl, {
+			data: {'what': what, 'identities': identities, 'skip_dry_run': skip_dry_run, 'overwrite': overwrite },
+			action: 'posted_ajax_form_1234'
 		}, function(response) {
-			$("#ajax-loader").hide();
-			$("input[type=submit]").attr("disabled", false);
-			$('#ajax-response').html(response);
-			$('#ajax-response').show();
-		});
+			alert(response);
+		});*/
 	});
 	
 	// Handle the AJAX field save action

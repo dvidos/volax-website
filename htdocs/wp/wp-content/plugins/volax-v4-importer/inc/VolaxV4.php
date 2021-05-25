@@ -2,6 +2,9 @@
 
 class VolaxV4 {
 	
+	// have a way to tell dev from prod.
+	private $is_dev;
+	
 	// instance of global WPDB database access object
 	private $wpdb;
 	
@@ -11,11 +14,15 @@ class VolaxV4 {
 	// keys: v4 user ids, values: wp user ids
 	private $user_id_mappings = [];
 	
+	// see clear_log(), log(), get_log_entries()
+	private $log_entries = [];
 	
 	
 	public function __construct() {
 		global $wpdb;
 		$this->wpdb = $wpdb;
+		
+		$this->is_dev = $_SERVER['HTTP_HOST'] == 'localhost';
 	}
 	
 	/*
@@ -312,11 +319,31 @@ class VolaxV4 {
 		foreach ($users as $user)
 			$v4_users_per_username[$user->username] = $user->id;
 		
-		$aliases = [
-			'dvidos' => 'boston',
-			'frGeorges' => 'fr_georges',
-			'loukia' => 'lsigala',
-		];
+		if ($this->is_dev) {
+			$aliases = [
+				'dvidos' => 'dvidos',
+				'jimel' => 'jimmel',
+				'payloskal' => 'jimmel',
+				'nikaliamoutos' => 'jimmel',
+				'leopold' => 'jimmel',
+				'iranon' => 'jimmel',
+				'maggie' => 'jimmel',
+				'mix' => 'jimmel',
+				'jacques' => 'jimmel',
+				'eva' => 'dvidos',
+				'Maria' => 'dvidos',
+				'frGeorges' => 'dvidos',
+				'Sidirm' => 'dvidos',
+				'giannisx' => 'dvidos',
+				'loukia' => 'dvidos',
+			];
+		} else {
+			$aliases = [
+				'dvidos' => 'boston',
+				'frGeorges' => 'fr_georges',
+				'loukia' => 'lsigala',
+			];
+		}
 		
 		$this->user_name_mappings = [];
 		$this->user_id_mappings = [];
@@ -358,13 +385,85 @@ class VolaxV4 {
 		return $non_mapped;
 	}
 	
+	
+	public function clear_log() {
+		$this->log_entries = [];
+	}
+	
+	public function log($message = "") {
+		$this->log_entries[] = $message;
+	}
+	
+	public function get_log_entries() {
+		return $this->log_entries;
+	}
+	
+	
 	/**
 	 * Called by Ajax when importing
 	 */
-	public function doImport($type, $identities, $skipDryRun) {
+	public function doRequestedImports($type, $identities, $skipDryRun, $overwrite) {
 		$log = [];
-		$log[] = "Not really working yet...";
+		$this->log("doRequestedImports() arguments");
+		$this->log("- Type = " . $type);
+		$this->log("- Identities = " . $identities);
+		$this->log("- Skip Dry Run = " . ($skipDryRun ? 1 : 0));
+		$this->log("- Overwrite = " . ($overwrite ? 1 : 0));
 		
-		return implode("\n", $log);
+		if ($type == "posts") {
+			$this->doPostsImports($identities, $skipDryRun, $overwrite);
+		}
+	}
+	
+	private function id_passes($id, $filter): bool {
+		if ($filter == "") 
+			return false;
+		if ($filter == "*" || $filter == "all")
+			return true;
+		if (strpos($filter, "-") !== false) {
+			$parts = explode("-", $filter, 2);
+			return $id >= $parts[0] && $id <= $parts[1];
+		}
+		if (strpos($filter, ",") !== false) {
+			$ids = explode(",", $filter);
+			return in_array($id, $ids);
+		}
+		// non empty passed, taken as literal
+		return $id == $filter;
+	}
+	
+	private function doPostsImports($identities, $skipDryRun, $overwrite) {
+		$v4_identities = $this->wpdb->get_col("SELECT id FROM v4_post");
+		$wp_identities = $this->wpdb->get_col("SELECT ID FROM wp_posts");
+		$this->log("Loaded " . count($v4_identities) . " v4 identities");
+		$this->log("Loaded " . count($wp_identities) . " WP identities");
+		
+		foreach ($v4_identities as $v4_id) {
+			if (!$this->id_passes($v4_id, $identities))
+				continue;
+			
+			if (in_array($v4_id, $wp_identities) && !$overwrite) {
+				$this->log("Post ID $v4_id already exists, skipping. Turn on overwrite if desired");
+				continue;
+			}
+			
+			$this->importPost($v4_id, $skipDryRun);
+		}
+	}
+	
+	private function importPost($post_id, $skipDryRun) {
+		$post = $this->wpdb->get_row("SELECT * FROM v4_post WHERE id = " . $post_id);
+		$post->comments = $this->wpdb->get_results("SELECT * FROM v4_comment WHERE post_id = " . $post_id);
+		
+		$this->log("post data: " . htmlspecialchars(var_export($post, true)));
+		
+		# things to do:
+		# - import media
+		# - set associated picture
+		# - save masthead in _masthead post metadata
+		# - import comments
+		# - import tags (as needed)
+		# - clean useless spans
+		# - 
 	}
 }

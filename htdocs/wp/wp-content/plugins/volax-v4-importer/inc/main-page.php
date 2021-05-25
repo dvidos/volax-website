@@ -35,7 +35,7 @@
 								echo "<b style='color:#900;'>V4 users not mapped to WP</b>: " . implode(", ", $non_mapped);
 								echo "<br>Please fix by editing \$aliases in VolaxV4.php.";
 							} else {
-								echo "All " . count($this->v4->get_user_name_mappings) . " v4 users mapped to wp users";
+								echo "All " . count($this->v4->get_user_name_mappings()) . " v4 users mapped to wp users";
 							}
 							//echo "<pre>Names: " . var_export($this->v4->get_user_name_mappings(), true) . "</pre>";
 							//echo "<pre>IDs: " . var_export($this->v4->get_user_id_mappings(), true) . "</pre>";
@@ -85,12 +85,16 @@
 							</select>
 						</td></tr>
 						<tr><td>Identities</td><td>
-							<input id="identities" name="identities" size="20">
-							(can be *=all, comma separated, range with a dash)
+							<input id="identities" name="identities" size="10">
+							(can be *=all, comma separated, range with a dash, e.g. 1097, 1260)
 						</td></tr>
 						<tr><td>&nbsp;</td><td>
 							<input type="checkbox" id="skip-dry-run" name="skip-dry-run">
 							Skip dry-run, enable writing
+						</td></tr>
+						<tr><td>&nbsp;</td><td>
+							<input type="checkbox" id="overwrite" name="overwrite">
+							Overwrite if already existing
 						</td></tr>
 						<tr><td colspan="2">
 							<input type="submit" value="Import" />
