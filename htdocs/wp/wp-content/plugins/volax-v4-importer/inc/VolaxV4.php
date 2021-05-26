@@ -390,14 +390,16 @@ class VolaxV4 {
 		$this->log_entries = [];
 	}
 	
-	public function log($message = "") {
+	public function log($message = "", $var = null) {
+		if ($var !== null) {
+			$message .= " " . var_export($var, true);
+		}
 		$this->log_entries[] = $message;
 	}
 	
 	public function get_log_entries() {
 		return $this->log_entries;
 	}
-	
 	
 	/**
 	 * Called by Ajax when importing
@@ -455,15 +457,117 @@ class VolaxV4 {
 		$post = $this->wpdb->get_row("SELECT * FROM v4_post WHERE id = " . $post_id);
 		$post->comments = $this->wpdb->get_results("SELECT * FROM v4_comment WHERE post_id = " . $post_id);
 		
-		$this->log("post data: " . htmlspecialchars(var_export($post, true)));
+		
+		// $this->log("post: ", $post);
+		$post->content = $this->cleanUpContent($post->content);
+		$this->log("cleaned content: ", $post->content);
+		
+		//$this->log("content images: ", $this->getContentImages($post->content));
+		//$this->log("galleries: ", $this->extractShortcodes($post->content, 'gallery'));
+		//$this->log("audios: ", $this->extractShortcodes($post->content, 'audio'));
+		
+		$media = [];
+		$images = $this->getContentImages($post->content);
+		$galleries = $this->extractShortcodes($post->content, 'gallery');
+		foreach ($images as $image)
+			$media[] = $image;
+		foreach ($galleries as $gallery) {
+			$folder = trim($gallery['folder'], "/");
+			if (is_array($gallery['img'])) {
+				foreach ($gallery['img'] as $img)
+					$media[] = "/$folder/$img";
+			} else {
+				$media[] = "/$folder/{$gallery['img']}";
+			}
+		}
+		$this->log("post's media:", $media);
 		
 		# things to do:
 		# - import media
+		# - fix excerpt or "more"
 		# - set associated picture
 		# - save masthead in _masthead post metadata
+		# - convert shortcodes (gallery, audio, video)
 		# - import comments
 		# - import tags (as needed)
 		# - clean useless spans
-		# - 
+	}
+	
+	private function cleanUpContent($content) {
+		// sample: "<p><span>[audio src="/uploads/</span>nikaliamoutos/2016/kalaman2016(1)valenapioume.mp3<span>"]</span></p>"
+		// the question mark turns the greedy matching into a lazy one
+		$content = preg_replace('/<span\>(.*?)\<\/span\>/is', '\1', $content);
+		
+		// sample "τώρα με χαρά <span style="color:rgb(34, 34, 34)">βλέπει κανείς"
+		$content = preg_replace('/<span style="color:rgb\(34, 34, 34\)"\>(.*?)\<\/span\>/is', '\1', $content);
+		$content = preg_replace('/<span style="color:rgb\(35, 35, 35\)"\>(.*?)\<\/span\>/is', '\1', $content);
+		$content = preg_replace('/<span style="font-size:10pt"\>(.*?)\<\/span\>/is', '\1', $content);
+		$content = preg_replace('/<span style="background-color:transparent"\>(.*?)\<\/span\>/is', '\1', $content);
+		
+		// sample: "κορυφώθηκαν το&nbsp;προηγούμενο βράδυ"
+		// we happen to convert simple empty paragraphs with the above "\S" (non-whitespace)
+		$content = preg_replace('/(\S)&nbsp;(\S)/', '\1 \2', $content);
+		$content = str_replace('<p> </p>', '<p>&nbsp;</p>', $content);
+		
+		// use WP more tag
+		$content = str_replace('<p>[more]</p>', '<!--more-->', $content);
+		$content = str_replace('[more]', '<!--more-->', $content);
+		
+		return $content;
+	}
+	
+	private function getContentImages($content) {
+		$media = [];
+		$matches = [];
+		/**
+		 * using PREG_PATTERN_ORDER,
+		 *   $matches[0] contains an array of all the full matches,
+		 *   $matches[1] contains an array of all the first parentheses
+		 *   $matches[2] contains an array of all the second parentheses
+		 * and so forth
+		 */
+		preg_match_all("/\<img[^\>]+src=\"([^\"]+)\"/si", $content, $matches, PREG_PATTERN_ORDER);
+		foreach ($matches[1] as $src)
+			$media[] = $src;
+		
+		return $media;
+	}
+	
+	private function extractShortcodes($content, $shortcode) {
+		$matches = [];
+		preg_match_all("/\[$shortcode([^\]]+)\]/si", $content, $matches, PREG_PATTERN_ORDER);
+		$shortcodes = [];
+		foreach ($matches[1] as $code) {
+			$code = strip_tags($code);
+			$code = str_replace(["\r", "\n", "&nbsp;"], [' ', ' ', ' '], $code);
+			$code = htmlspecialchars_decode($code);
+			//$this->log("shortcode is [$code]");
+			$a = [];
+			$parts = explode(" ", $code);
+			//$this->log("parts are", $parts);
+			foreach ($parts as $part) {
+				$part = trim($part);
+				if (strlen($part) == 0)
+					continue;
+				[$name, $value] = explode("=", $part, 2);
+				$name = trim($name);
+				$value = trim($value, " \r\n\t\0'\"");
+				if (empty($name) || empty($value))
+					continue;
+				//$this->log("part <$part> --> <$name> = <$value>");
+				if (array_key_exists($name, $a)) {
+					if (!is_array($a[$name])) {
+						$a[$name] = [ $a[$name] ];
+					}
+					$a[$name][] = $value;
+				} else {
+					$a[$name] = $value;
+				}
+			}
+			//$this->log("parsed shortcode is", $a);
+			$shortcodes[] = $a;
+		}
+		
+		return $shortcodes;
 	}
 }

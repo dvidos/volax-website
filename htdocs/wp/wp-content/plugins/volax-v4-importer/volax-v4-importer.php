@@ -433,7 +433,11 @@ class Volax_Importer_Plugin {
 			$overwrite = @$_POST['data']['overwrite'];
 			
 			$this->v4->doRequestedImports($what, $identities, $skip_dry_run, $overwrite);
-			echo nl2br(implode("<br />", $this->v4->get_log_entries()));
+			$lines = $this->v4->get_log_entries();
+			$text = implode("\n", $lines);
+			$encoded = htmlspecialchars($text, ENT_NOQUOTES);
+			$html = nl2br($encoded);
+			echo $html;
 		} catch (\Throwable $t) {
 			$out = '<span style="color: red;">' . strval($t) . '</span>';
 			echo nl2br($out);
